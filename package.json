@@ -4,13 +4,17 @@
   "description": "Sdílená UI knihovna — tokeny a komponenty z návrhu darkglass. Používají ji aplikace AppFactory (CashRegister Admin i Pokladna, dál InvoiceHub a další).",
   "license": "UNLICENSED",
   "type": "module",
-  "sideEffects": ["*.css"],
+  "sideEffects": [
+    "*.css"
+  ],
   "exports": {
     ".": "./src/index.ts",
     "./tokens.css": "./src/tokens/tokens.css",
     "./styles.css": "./src/styles.css"
   },
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "peerDependencies": {
     "react": ">=19",
     "react-dom": ">=19"
@@ -18,5 +22,10 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "showcase": "vite showcase"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^7.0.2"
   }
 }
