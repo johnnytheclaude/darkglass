@@ -1,4 +1,5 @@
 import type { HTMLAttributes, ReactNode, Ref } from 'react'
+import { IconChevronRight } from '../Icons/IconChevronRight'
 
 export type NotificationTone = 'danger' | 'warning' | 'accent' | 'success' | 'neutral'
 
@@ -11,6 +12,10 @@ export interface NotificationItemProps extends Omit<HTMLAttributes<HTMLLIElement
   subtitle?: ReactNode
   /** Datum vpravo. */
   date?: ReactNode
+  /** Otevření věci, která čeká. S handlerem je celý řádek tlačítko. */
+  onSelect?: () => void
+  /** Šipka vpravo; návrh ji má u položky, na kterou se dá jít. */
+  chevron?: boolean
   ref?: Ref<HTMLLIElement>
 }
 
@@ -21,19 +26,39 @@ export function NotificationItem({
   title,
   subtitle,
   date,
+  onSelect,
+  chevron,
   className,
   ...rest
 }: NotificationItemProps) {
   const classes = ['dg-notification', className].filter(Boolean).join(' ')
+  const showChevron = chevron ?? onSelect != null
 
-  return (
-    <li className={classes} {...rest}>
+  const content = (
+    <>
       <span className={`dg-notification__tile dg-notification__tile--${tone}`}>{icon}</span>
       <span className="dg-notification__text">
         {title != null ? <span className="dg-notification__title">{title}</span> : null}
         {subtitle != null ? <span className="dg-notification__sub">{subtitle}</span> : null}
       </span>
       {date != null ? <span className="dg-notification__date">{date}</span> : null}
+      {showChevron ? (
+        <span className="dg-notification__chevron" aria-hidden="true">
+          <IconChevronRight size={17} />
+        </span>
+      ) : null}
+    </>
+  )
+
+  return (
+    <li className={classes} {...rest}>
+      {onSelect ? (
+        <button type="button" className="dg-notification__row" onClick={onSelect}>
+          {content}
+        </button>
+      ) : (
+        <span className="dg-notification__row">{content}</span>
+      )}
     </li>
   )
 }

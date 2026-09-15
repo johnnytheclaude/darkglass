@@ -1,6 +1,7 @@
 import { useId } from 'react'
 import type { HTMLAttributes, ReactNode, Ref } from 'react'
 import { IconX } from '../Icons/IconX'
+import { useEscapeClose } from '../Overlays/useEscapeClose'
 
 export interface FormDialogProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   /** Nadpis dialogu — čte ho i odečítač jako jméno dialogu. */
@@ -10,6 +11,8 @@ export interface FormDialogProps extends Omit<HTMLAttributes<HTMLDivElement>, 't
   /** Zavření; bez handleru se křížek nevykreslí. */
   onClose?: () => void
   closeLabel?: string
+  /** Escape zavírá dialog — rozdělaný formulář zahodí aplikace, ne knihovna. */
+  closeOnEscape?: boolean
   /** Pole formuláře — komponenty § Textová pole, dialog je jen jejich rám. */
   children?: ReactNode
   /** Tlačítka vpravo dole (Zrušit / Vytvořit). */
@@ -26,12 +29,14 @@ export function FormDialog({
   subtitle,
   onClose,
   closeLabel = 'Zavřít dialog',
+  closeOnEscape = true,
   children,
   footer,
   className,
   ...rest
 }: FormDialogProps) {
   const titleId = useId()
+  useEscapeClose(onClose, closeOnEscape)
 
   return (
     <div

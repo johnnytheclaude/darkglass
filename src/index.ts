@@ -124,12 +124,15 @@ export type { TreeItemProps, TreeViewProps } from './components/Navigation/TreeV
 
 export { ConfirmDialog } from './components/Overlays/ConfirmDialog'
 export type { ConfirmDialogProps, ConfirmDialogTone } from './components/Overlays/ConfirmDialog'
+export { DialogActions } from './components/Overlays/DialogActions'
+export type { DialogActionsProps } from './components/Overlays/DialogActions'
 export { Drawer, DrawerRow } from './components/Overlays/Drawer'
 export type { DrawerProps, DrawerRowProps } from './components/Overlays/Drawer'
 export { Menu, MenuItem, MenuSeparator } from './components/Overlays/Menu'
 export type { MenuItemProps, MenuProps, MenuSeparatorProps } from './components/Overlays/Menu'
 export { SectionHeader } from './components/Overlays/SectionHeader'
 export type { SectionHeaderProps } from './components/Overlays/SectionHeader'
+export { useEscapeClose } from './components/Overlays/useEscapeClose'
 
 export { ActionTile } from './components/Overview/ActionTile'
 export type { ActionTileProps } from './components/Overview/ActionTile'
@@ -226,6 +229,7 @@ export { StatusModal, StatusModalLine } from './components/Pos/StatusModal'
 export type {
   StatusModalProps,
   StatusModalLineProps,
+  StatusModalState,
   StatusModalTone,
 } from './components/Pos/StatusModal'
 export { StepsCompact } from './components/Pos/StepsCompact'

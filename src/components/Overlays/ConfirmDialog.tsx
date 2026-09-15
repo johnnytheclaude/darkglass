@@ -1,6 +1,7 @@
 import { useId } from 'react'
 import type { HTMLAttributes, ReactNode, Ref } from 'react'
 import { IconX } from '../Icons/IconX'
+import { useEscapeClose } from './useEscapeClose'
 
 export type ConfirmDialogTone = 'danger' | 'accent' | 'warning' | 'success'
 
@@ -14,7 +15,9 @@ export interface ConfirmDialogProps extends Omit<HTMLAttributes<HTMLDivElement>,
   tone?: ConfirmDialogTone
   onClose?: () => void
   closeLabel?: string
-  /** Tlačítka vpravo dole (Zrušit / potvrzení). */
+  /** Escape zavírá dialog (= odpověď „ne“). Vypni jen výjimečně. */
+  closeOnEscape?: boolean
+  /** Tlačítka vpravo dole (Zrušit / potvrzení) — u dvou akcí `DialogActions`. */
   footer?: ReactNode
   ref?: Ref<HTMLDivElement>
 }
@@ -30,12 +33,14 @@ export function ConfirmDialog({
   tone = 'danger',
   onClose,
   closeLabel = 'Zavřít dialog',
+  closeOnEscape = true,
   footer,
   className,
   children,
   ...rest
 }: ConfirmDialogProps) {
   const titleId = useId()
+  useEscapeClose(onClose, closeOnEscape)
 
   return (
     <div

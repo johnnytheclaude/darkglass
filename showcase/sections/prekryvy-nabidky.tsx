@@ -1,15 +1,20 @@
 import { useState } from 'react'
 import { Button } from '../../src/components/Buttons/Button'
+import { TextField } from '../../src/components/Fields/TextField'
 import { IconAlert } from '../../src/components/Icons/IconAlert'
+import { IconCheck } from '../../src/components/Icons/IconCheck'
 import { IconFile } from '../../src/components/Icons/IconFile'
 import { IconPencil } from '../../src/components/Icons/IconPencil'
 import { IconPlus } from '../../src/components/Icons/IconPlus'
 import { IconUpload } from '../../src/components/Icons/IconUpload'
 import { IconX } from '../../src/components/Icons/IconX'
 import { ConfirmDialog } from '../../src/components/Overlays/ConfirmDialog'
+import { DialogActions } from '../../src/components/Overlays/DialogActions'
 import { Drawer, DrawerRow } from '../../src/components/Overlays/Drawer'
 import { Menu, MenuItem, MenuSeparator } from '../../src/components/Overlays/Menu'
 import { SectionHeader } from '../../src/components/Overlays/SectionHeader'
+import { StatusModal, StatusModalLine } from '../../src/components/Pos/StatusModal'
+import { FormDialog } from '../../src/components/System/FormDialog'
 import type { ShowcaseSection } from '../registry'
 
 /* Data jsou zástupná — knihovna doménu nezná. */
@@ -104,6 +109,121 @@ function UkazkaNabidky() {
   )
 }
 
+function UkazkaFormulare() {
+  const [ptamSe, setPtamSe] = useState(false)
+
+  if (ptamSe) {
+    return (
+      <ConfirmDialog
+        title="Opravdu záznam odstranit?"
+        body="Záznam ZÁZ-2026-000021 zmizí i z přehledů. Tuhle akci nejde vrátit zpět."
+        icon={<IconAlert size={22} />}
+        onClose={() => setPtamSe(false)}
+        footer={
+          <DialogActions>
+            <Button variant="secondary" onClick={() => setPtamSe(false)}>
+              Zrušit
+            </Button>
+            <Button variant="danger" onClick={() => setPtamSe(false)}>
+              Odstranit
+            </Button>
+          </DialogActions>
+        }
+      />
+    )
+  }
+
+  return (
+    <FormDialog
+      title="Upravit záznam"
+      subtitle="Vyplňte povinná pole označená hvězdičkou."
+      onClose={() => {}}
+      footer={
+        <DialogActions
+          destructive={
+            <Button variant="dangerSoft" onClick={() => setPtamSe(true)}>
+              Odstranit
+            </Button>
+          }
+        >
+          <Button variant="secondary">Zrušit</Button>
+          <Button variant="primary">Uložit</Button>
+        </DialogActions>
+      }
+    >
+      <TextField label="Název" required defaultValue="Zimní sako A-230" />
+      <TextField label="Poznámka" placeholder="Nepovinný text…" />
+    </FormDialog>
+  )
+}
+
+function UkazkaStavu() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, width: '100%' }}>
+      <StatusModal
+        state="progress"
+        title="Čekám na terminál"
+        meta="GP tom · 1 890 Kč · přiložte kartu"
+        hint="Platbu jde zrušit na terminálu i tady; účet zůstane rozdělaný."
+        touch
+        footer={
+          <DialogActions
+            touch
+            destructive={<Button variant="dangerSoft">Zrušit platbu</Button>}
+          >
+            <Button variant="secondary">Zaplatit jinak</Button>
+          </DialogActions>
+        }
+      />
+      <StatusModal
+        state="success"
+        icon={<IconCheck size={22} />}
+        title="Zaplaceno kartou"
+        meta="GP tom · 1 890 Kč · Mastercard 7789 · autorizace 304163"
+        touch
+        onClose={() => {}}
+        footer={
+          <DialogActions touch>
+            <Button variant="secondary">Vytisknout znovu</Button>
+            <Button variant="primary">Hotovo</Button>
+          </DialogActions>
+        }
+      />
+      <StatusModal
+        state="error"
+        icon={<IconAlert size={22} />}
+        title="3 doklady se nepodařilo odeslat"
+        meta="InvoiceHub · poslední pokus 14:31 · odpověď 401 Unauthorized"
+        hint="Klíč nejspíš vypršel. Opraví ho majitel v Nastavení → Integrace; fronta pak odejde sama."
+        touch
+        onClose={() => {}}
+        footer={
+          <DialogActions touch>
+            <Button variant="secondary">Upozornit majitele</Button>
+            <Button variant="primary">Zkusit znovu</Button>
+          </DialogActions>
+        }
+      >
+        <StatusModalLine label="P01-2026-000122 · 14:12 · 1 890 Kč" status="401" error />
+        <StatusModalLine label="P01-2026-000123 · 14:20 · 16 872 Kč" status="401" error />
+      </StatusModal>
+      <StatusModal
+        state="canceled"
+        icon={<IconX size={22} />}
+        title="Platba zrušena"
+        meta="GP tom · zrušeno na terminálu ve 14:33"
+        touch
+        onClose={() => {}}
+        footer={
+          <DialogActions touch>
+            <Button variant="primary">Zpět na účet</Button>
+          </DialogActions>
+        }
+      />
+    </div>
+  )
+}
+
 export const section: ShowcaseSection = {
   id: 'prekryvy-nabidky',
   title: '§ Překryvy a nabídky',
@@ -116,6 +236,20 @@ export const section: ShowcaseSection = {
       stack: true,
       wide: true,
       render: () => <UkazkaDialogu />,
+    },
+    {
+      title: 'Dialog s formulářem a nevratnou akcí',
+      note: 'Odstranit stojí samo vlevo, Uložit vpravo — mezi nimi je Zrušit. Klik na Odstranit se ještě zeptá; Escape dialog zavře.',
+      stack: true,
+      wide: true,
+      render: () => <UkazkaFormulare />,
+    },
+    {
+      title: 'Stavový modál — čekání, hotovo, chyba, zrušení',
+      note: 'Čekání na terminál drží kolečko a hlásí se čtečce; akce mají 52 px na prst. Z čekání se odchází akcí Zrušit platbu (dosažitelnou tabem), z ostatních stavů Escapem nebo křížkem.',
+      stack: true,
+      wide: true,
+      render: () => <UkazkaStavu />,
     },
     {
       title: 'Boční panel s detailem',

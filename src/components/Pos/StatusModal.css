@@ -145,3 +145,19 @@
   background-color: var(--success-soft);
   color: var(--success);
 }
+
+.dg-status-modal--neutral .dg-status-modal__tile {
+  background-color: var(--surface-15);
+  color: var(--text-2);
+}
+
+/* Dotykový displej Pokladny — čekání na terminál se odklepává prstem. */
+.dg-status-modal--touch .dg-status-modal__footer {
+  gap: calc(14px * var(--scale));
+}
+
+.dg-status-modal--touch .dg-status-modal__footer :where(button, a) {
+  min-height: calc(52px * var(--scale));
+  padding-right: calc(24px * var(--scale));
+  padding-left: calc(24px * var(--scale));
+}

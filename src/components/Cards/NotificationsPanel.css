@@ -91,13 +91,45 @@
 .dg-notification {
   display: flex;
   position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Řádek je buď span, nebo tlačítko (položka, na kterou se dá jít) — rozvržení
+   má společné, aby tlačítko nevypadalo jinak než text. */
+.dg-notification__row {
+  display: flex;
   align-items: center;
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
   min-height: calc(88px * var(--scale));
+  margin: 0;
   padding: calc(10px * var(--scale)) 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
   gap: calc(12px * var(--scale));
+}
+
+button.dg-notification__row {
+  cursor: pointer;
+}
+
+button.dg-notification__row:focus-visible {
+  outline: calc(2px * var(--scale)) solid var(--focus-ring);
+  outline-offset: calc(-2px * var(--scale));
+  border-radius: calc(12px * var(--scale));
+}
+
+.dg-notification__chevron {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  color: var(--text-3);
 }
 
 .dg-notification + .dg-notification::before {

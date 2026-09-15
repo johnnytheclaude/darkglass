@@ -80,6 +80,7 @@
 @import "./components/Navigation/TopBar.css";
 @import "./components/Navigation/TreeView.css";
 @import "./components/Overlays/ConfirmDialog.css";
+@import "./components/Overlays/DialogActions.css";
 @import "./components/Overlays/Drawer.css";
 @import "./components/Overlays/Menu.css";
 @import "./components/Overlays/SectionHeader.css";
