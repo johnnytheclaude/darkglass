@@ -168,7 +168,9 @@ export function ListRow({
     <div
       className={classes}
       onClick={interactive ? onClick : undefined}
-      onKeyDown={handleKeyDown}
+      /* Tichý řádek (bez odkazu i bez onClick) nesmí nést žádný handler — jinak
+         ho serverová komponenta Nextu nepředá klientovi a stránka spadne. */
+      onKeyDown={interactive || onKeyDown ? handleKeyDown : undefined}
       role={interactive ? 'button' : undefined}
       tabIndex={interactive ? 0 : undefined}
       aria-disabled={disabled ? true : undefined}
