@@ -1,0 +1,73 @@
+/* Row / Stav — § Pokladna · provoz a doklady.
+   Návrh: řádek vysoký 43,5 px (odsazení 13 px), popis 15/400 ztlumený,
+   stav 15/500 barevný, akce 15/500 na akcentu. */
+
+.dg-status-list {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.dg-status-list__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: calc(13px * var(--scale)) 0;
+  gap: calc(10px * var(--scale));
+  font-size: calc(15px * var(--scale));
+  line-height: 1.2;
+}
+
+.dg-status-list__label {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-2);
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-status-list__value {
+  margin-left: auto;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.dg-status-list__value--ok {
+  color: var(--success);
+}
+
+.dg-status-list__value--warning {
+  color: var(--warning);
+}
+
+.dg-status-list__value--danger {
+  color: var(--danger);
+}
+
+.dg-status-list__value--neutral {
+  color: var(--text-2);
+}
+
+.dg-status-list__action,
+.dg-status-list__action-text {
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--accent);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.dg-status-list__action {
+  cursor: pointer;
+}
+
+.dg-status-list__action:focus-visible {
+  outline: calc(3px * var(--scale)) solid var(--focus-ring);
+  outline-offset: calc(2px * var(--scale));
+}

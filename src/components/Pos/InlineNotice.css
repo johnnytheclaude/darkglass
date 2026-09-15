@@ -1,0 +1,46 @@
+/* Notice / Inline (+ Danger, OK) — § Pokladna · provoz a doklady.
+   Návrh: rádius 12, odsazení 13 16, mezera 8, popisek 13/700, text 13/400
+   s opacitou 0,85. Text se v úzkém místě zalomí pod popisek, nikdy nepřeteče. */
+
+.dg-inline-notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(13px * var(--scale)) calc(16px * var(--scale));
+  border-radius: var(--r-sm);
+  gap: calc(8px * var(--scale));
+  font-size: calc(13px * var(--scale));
+  line-height: 1.35;
+}
+
+.dg-inline-notice__label {
+  font-weight: 700;
+}
+
+.dg-inline-notice__text {
+  min-width: 0;
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+.dg-inline-notice--warning {
+  background-color: var(--warning-soft);
+  color: var(--warning);
+}
+
+.dg-inline-notice--danger {
+  background-color: var(--danger-soft);
+  color: var(--danger-text);
+}
+
+.dg-inline-notice--success {
+  background-color: var(--success-soft);
+  color: var(--success);
+}
+
+.dg-inline-notice--accent {
+  background-color: var(--accent-soft);
+  color: var(--accent);
+}

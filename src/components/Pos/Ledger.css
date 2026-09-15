@@ -1,0 +1,57 @@
+/* Ledger / Rozpis — § Pokladna · provoz a doklady.
+   Návrh: řádek 9 px nad i pod, text 15/400, součet 17/700 s odsazením 13 px
+   a linkou nad sebou. Hodnoty drží vpravo a mají tabulkové číslice. */
+
+.dg-ledger {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.dg-ledger__line,
+.dg-ledger__total {
+  display: flex;
+  align-items: baseline;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-ledger__line {
+  padding: calc(9px * var(--scale)) 0;
+  font-size: calc(15px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-ledger__total {
+  padding: calc(13px * var(--scale)) 0;
+  font-size: calc(17px * var(--scale));
+  font-weight: 700;
+}
+
+.dg-ledger__label {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-2);
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-ledger__value {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--text-1);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.dg-ledger__total .dg-ledger__label {
+  color: var(--text-1);
+}
+
+.dg-ledger__rule {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--border);
+}

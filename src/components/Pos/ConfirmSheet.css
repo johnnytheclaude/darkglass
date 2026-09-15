@@ -1,0 +1,39 @@
+/* Sheet / Dolní — § Pokladna · provoz a doklady.
+   Návrh: rádius 24, odsazení 22, nadpis 18/600, popis 14/400,
+   řádek akcí s mezerou 12 px a odsazením 10 px shora.
+   Akce se v úzkém místě zalomí pod sebe místo přetečení. */
+
+.dg-confirm-sheet {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(22px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface-solid);
+  gap: calc(8px * var(--scale));
+}
+
+.dg-confirm-sheet__title {
+  color: var(--text-1);
+  font-size: calc(18px * var(--scale));
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.dg-confirm-sheet__desc {
+  color: var(--text-2);
+  font-size: calc(14px * var(--scale));
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.dg-confirm-sheet__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  padding-top: calc(10px * var(--scale));
+  gap: calc(12px * var(--scale));
+}

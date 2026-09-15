@@ -1,0 +1,61 @@
+/* Row / Úloha — § Pokladna · provoz a doklady.
+   Návrh: rádius 16, odsazení 15 16, název 15/400, odznak pilulka 6 12
+   s popiskem 12/600 na měkkém podkladu. */
+
+.dg-task-row {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(15px * var(--scale)) calc(16px * var(--scale));
+  border-radius: var(--r-md);
+  background-color: var(--surface-05);
+  gap: calc(12px * var(--scale));
+}
+
+.dg-task-row__name {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-1);
+  font-size: calc(15px * var(--scale));
+  font-weight: 400;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-task-row__badge {
+  margin-left: auto;
+  flex-shrink: 0;
+  padding: calc(6px * var(--scale)) calc(12px * var(--scale));
+  border-radius: var(--r-pill);
+  font-size: calc(12px * var(--scale));
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.dg-task-row__badge--accent {
+  background-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+.dg-task-row__badge--success {
+  background-color: var(--success-soft);
+  color: var(--success);
+}
+
+.dg-task-row__badge--warning {
+  background-color: var(--warning-soft);
+  color: var(--warning);
+}
+
+.dg-task-row__badge--danger {
+  background-color: var(--danger-soft);
+  color: var(--danger-text);
+}
+
+.dg-task-row__badge--neutral {
+  background-color: var(--surface-15);
+  color: var(--text-2);
+}

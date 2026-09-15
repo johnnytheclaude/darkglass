@@ -1,0 +1,57 @@
+/* Nav / Steps Compact — § Pokladna · provoz a doklady.
+   Návrh: kolečko 30 px, mezera mezi krokem a popiskem 9 px, mezi kroky 20 px,
+   popisek 15 px; hotové i právě probíhající kolečko na akcentu, další ztlumená. */
+
+.dg-steps-compact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  gap: calc(20px * var(--scale));
+  list-style: none;
+}
+
+.dg-steps-compact__step {
+  display: flex;
+  align-items: center;
+  gap: calc(9px * var(--scale));
+  min-width: 0;
+}
+
+.dg-steps-compact__circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: calc(30px * var(--scale));
+  height: calc(30px * var(--scale));
+  border-radius: var(--r-pill);
+  background-color: var(--surface-15);
+  color: var(--text-3);
+  font-size: calc(13px * var(--scale));
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.dg-steps-compact__label {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-2);
+  font-size: calc(15px * var(--scale));
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-steps-compact__step.is-done .dg-steps-compact__circle,
+.dg-steps-compact__step.is-current .dg-steps-compact__circle {
+  background-color: var(--accent);
+  color: var(--text-on-color);
+}
+
+.dg-steps-compact__step.is-current .dg-steps-compact__label {
+  color: var(--text-1);
+  font-weight: 600;
+}

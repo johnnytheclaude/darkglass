@@ -1,0 +1,98 @@
+/* Card / Žádost — § Pokladna · provoz a doklady.
+   Návrh: rádius 24, odsazení 18, mezera 14, kolečko ikony 44 px,
+   nadpis 16/600, meta 13/400, odznak pilulka 6 12 s popiskem 12/600,
+   akce v řádku s mezerou 12 px. Hlavička se v úzkém místě zalomí. */
+
+.dg-request-card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(18px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface-05);
+  gap: calc(14px * var(--scale));
+}
+
+.dg-request-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  gap: calc(14px * var(--scale));
+}
+
+.dg-request-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: calc(44px * var(--scale));
+  height: calc(44px * var(--scale));
+  border-radius: var(--r-pill);
+}
+
+.dg-request-card__text {
+  display: flex;
+  flex: 1 1 calc(200px * var(--scale));
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(2px * var(--scale));
+}
+
+.dg-request-card__title {
+  color: var(--text-1);
+  font-size: calc(16px * var(--scale));
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.dg-request-card__meta {
+  color: var(--text-3);
+  font-size: calc(13px * var(--scale));
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.dg-request-card__badge {
+  margin-left: auto;
+  flex-shrink: 0;
+  padding: calc(6px * var(--scale)) calc(12px * var(--scale));
+  border-radius: var(--r-pill);
+  font-size: calc(12px * var(--scale));
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.dg-request-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-request-card--accent .dg-request-card__icon,
+.dg-request-card--accent .dg-request-card__badge {
+  background-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+.dg-request-card--warning .dg-request-card__icon,
+.dg-request-card--warning .dg-request-card__badge {
+  background-color: var(--warning-soft);
+  color: var(--warning);
+}
+
+.dg-request-card--danger .dg-request-card__icon,
+.dg-request-card--danger .dg-request-card__badge {
+  background-color: var(--danger-soft);
+  color: var(--danger-text);
+}
+
+.dg-request-card--success .dg-request-card__icon,
+.dg-request-card--success .dg-request-card__badge {
+  background-color: var(--success-soft);
+  color: var(--success);
+}

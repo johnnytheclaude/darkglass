@@ -8,6 +8,7 @@
   flex-direction: column;
   box-sizing: border-box;
   width: 100%;
+  min-width: 0;
   padding: calc(18px * var(--scale));
   border-radius: var(--r-lg);
   background-color: var(--surface);
@@ -78,8 +79,11 @@
   flex-shrink: 0;
 }
 
+/* Na úzké obrazovce se krokovač a cena zalomí pod název; bez toho by řádek
+   vynutil svou nejmenší šířku a košík by přetekl přes okraj sloupce. */
 .dg-cart-line {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   box-sizing: border-box;
   width: 100%;
@@ -91,7 +95,7 @@
 
 .dg-cart-line__text {
   display: flex;
-  flex: 1 1 auto;
+  flex: 1 1 calc(180px * var(--scale));
   flex-direction: column;
   min-width: 0;
   gap: calc(2px * var(--scale));

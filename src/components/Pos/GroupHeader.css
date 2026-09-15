@@ -1,0 +1,31 @@
+/* Table / Group Header — § Pokladna · provoz a doklady.
+   Návrh: odsazení 11 16, popisek 11/600 s prostrkáním 0,6 px, počet 11/500. */
+
+.dg-group-header {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(11px * var(--scale)) calc(16px * var(--scale));
+  background-color: var(--surface-05);
+  gap: calc(8px * var(--scale));
+  color: var(--text-3);
+  font-size: calc(11px * var(--scale));
+  letter-spacing: 0.6px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.dg-group-header__label {
+  min-width: 0;
+  overflow: hidden;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-group-header__count {
+  flex-shrink: 0;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}

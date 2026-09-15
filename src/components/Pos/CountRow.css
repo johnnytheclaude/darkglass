@@ -1,0 +1,60 @@
+/* Row / Tint OK · Chyba · Info — § Pokladna · provoz a doklady.
+   Návrh: rádius 12, odsazení 15 16, mezera 12, text 15/600, číselné sloupce
+   64 px zarovnané doprava. Název se zkracuje výpustkou, čísla se nezlomí. */
+
+.dg-count-row {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(15px * var(--scale)) calc(16px * var(--scale));
+  border-radius: var(--r-sm);
+  background-color: var(--surface-05);
+  gap: calc(12px * var(--scale));
+  font-size: calc(15px * var(--scale));
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.dg-count-row__name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-1);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-count-row__value,
+.dg-count-row__diff {
+  flex: 0 0 auto;
+  width: calc(64px * var(--scale));
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.dg-count-row--ok {
+  background-color: var(--success-soft);
+}
+
+.dg-count-row--ok .dg-count-row__diff {
+  color: var(--success);
+}
+
+.dg-count-row--error {
+  background-color: var(--danger-soft);
+}
+
+.dg-count-row--error .dg-count-row__diff {
+  color: var(--danger);
+}
+
+.dg-count-row--info {
+  background-color: var(--accent-soft);
+}
+
+.dg-count-row--info .dg-count-row__diff {
+  color: var(--accent);
+}
