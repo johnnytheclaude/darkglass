@@ -6,7 +6,9 @@ import { IconArchive } from '../../src/components/Icons/IconArchive'
 import { IconCheck } from '../../src/components/Icons/IconCheck'
 import { IconFile } from '../../src/components/Icons/IconFile'
 import { IconPencil } from '../../src/components/Icons/IconPencil'
+import { IconPercent } from '../../src/components/Icons/IconPercent'
 import { IconPlus } from '../../src/components/Icons/IconPlus'
+import { IconShield } from '../../src/components/Icons/IconShield'
 import { IconUpload } from '../../src/components/Icons/IconUpload'
 import { IconX } from '../../src/components/Icons/IconX'
 import { ConfirmDialog } from '../../src/components/Overlays/ConfirmDialog'
@@ -14,6 +16,7 @@ import { DialogActions } from '../../src/components/Overlays/DialogActions'
 import { Drawer, DrawerRow } from '../../src/components/Overlays/Drawer'
 import { Menu, MenuItem, MenuSeparator } from '../../src/components/Overlays/Menu'
 import { SectionHeader } from '../../src/components/Overlays/SectionHeader'
+import { ListRow } from '../../src/components/Lists/ListRow'
 import { ChoiceGroup } from '../../src/components/Pos/ChoiceGroup'
 import { StatusModal, StatusModalLine } from '../../src/components/Pos/StatusModal'
 import { FormDialog } from '../../src/components/System/FormDialog'
@@ -142,6 +145,50 @@ function UkazkaNabidky() {
         Odstranit položku
       </MenuItem>
     </Menu>
+  )
+}
+
+/* Potvrzeni nad vyberem radku — hromadny vyber stoji v tele dialogu a hlavni
+   akce rekne, ze si vyzada cizi PIN. */
+function UkazkaDialoguSVyberem() {
+  const [vybrane, setVybrane] = useState<string[]>(['a'])
+  const radky = [
+    { id: 'a', title: 'Položka A-230 · vel. 50', sub: '1 ks · z 4 990 Kč', amount: '2 450 Kč' },
+    { id: 'b', title: 'Položka B-114 · vel. 41', sub: '2 ks · z 1 290 Kč', amount: '640 Kč' },
+    { id: 'c', title: 'Položka C-077', sub: 'cena není známá — bez skladové karty', amount: '—' },
+  ]
+
+  return (
+    <ConfirmDialog
+      tone="warning"
+      icon={<IconPercent size={22} />}
+      title="Prodej za nákupní cenu"
+      body="Vybrané položky se přecení na nákupní cenu včetně DPH. Marže klesne na nulu, proto to potřebuje PIN vedoucího."
+      onClose={() => {}}
+      footer={
+        <DialogActions>
+          <Button variant="secondary">Zrušit</Button>
+          <Button variant="primary" iconStart={<IconShield size={16} />} disabled={vybrane.length === 0}>
+            Zadat PIN vedoucího
+          </Button>
+        </DialogActions>
+      }
+    >
+      {radky.map((radek) => (
+        <ListRow
+          key={radek.id}
+          selectable
+          selected={vybrane.includes(radek.id)}
+          disabled={radek.id === 'c'}
+          onSelectedChange={(on) =>
+            setVybrane((prev) => (on ? [...prev, radek.id] : prev.filter((id) => id !== radek.id)))
+          }
+          title={radek.title}
+          sub={radek.sub}
+          amount={radek.amount}
+        />
+      ))}
+    </ConfirmDialog>
   )
 }
 
@@ -279,6 +326,13 @@ export const section: ShowcaseSection = {
       stack: true,
       wide: true,
       render: () => <UkazkaDialoguSVolbou />,
+    },
+    {
+      title: 'Potvrzovací dialog s výběrem řádků',
+      note: 'Hromadný výběr patří do těla dialogu; řádek bez ceny je neaktivní i s důvodem a hlavní akce dopředu řekne, že si vyžádá cizí PIN.',
+      stack: true,
+      wide: true,
+      render: () => <UkazkaDialoguSVyberem />,
     },
     {
       title: 'Dialog s formulářem a nevratnou akcí',
