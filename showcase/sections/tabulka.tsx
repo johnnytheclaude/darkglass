@@ -6,6 +6,8 @@ import { IconFile } from '../../src/components/Icons/IconFile'
 import { IconFolderTree } from '../../src/components/Icons/IconFolderTree'
 import { IconMinus } from '../../src/components/Icons/IconMinus'
 import { IconPlus } from '../../src/components/Icons/IconPlus'
+import { IconBrain } from '../../src/components/Icons/IconBrain'
+import { IconMerge } from '../../src/components/Icons/IconMerge'
 import { IconPrinter } from '../../src/components/Icons/IconPrinter'
 import { IconSearch } from '../../src/components/Icons/IconSearch'
 import { TableEmpty } from '../../src/components/Data/TableEmpty'
@@ -111,6 +113,12 @@ function UkazkaPanelu() {
           </Button>
           <Button variant="secondary" size="s" iconStart={<IconFile size={16} />}>
             Vytisknout
+          </Button>
+          <Button variant="secondary" size="s" iconStart={<IconMerge size={16} />}>
+            Sloučit duplicity
+          </Button>
+          <Button variant="secondary" size="s" iconStart={<IconBrain size={16} />}>
+            Klíč pro AI
           </Button>
         </>
       }
