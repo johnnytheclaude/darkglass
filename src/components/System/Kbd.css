@@ -1,0 +1,26 @@
+/* Kbd (Klávesová zkratka) — § Systémové prvky.
+   Návrh: klávesa 28 px vysoká, rádius 8, odsazení 0 10, text 13/600. */
+
+.dg-kbd {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(5px * var(--scale));
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-kbd__key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: calc(28px * var(--scale));
+  height: calc(28px * var(--scale));
+  padding: 0 calc(10px * var(--scale));
+  border-radius: var(--r-xs);
+  background-color: var(--surface-2);
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(13px * var(--scale));
+  font-weight: 600;
+  line-height: 1;
+}

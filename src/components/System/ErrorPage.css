@@ -1,0 +1,72 @@
+/* Error Page (Chybová stránka) — § Systémové prvky.
+   Návrh: šířka 460, rádius 24, odsazení 48 32, mezera 14, kolečko 72 px,
+   kód 44/700, nadpis 18/600, text 14/400 vystředěný. */
+
+.dg-error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: calc(460px * var(--scale));
+  max-width: 100%;
+  padding: calc(48px * var(--scale)) calc(32px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  gap: calc(14px * var(--scale));
+  font-family: var(--font), system-ui, sans-serif;
+  text-align: center;
+}
+
+.dg-error-page__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(72px * var(--scale));
+  height: calc(72px * var(--scale));
+  border-radius: var(--r-pill);
+}
+
+.dg-error-page--danger .dg-error-page__icon {
+  background-color: var(--danger-soft);
+  color: var(--danger);
+}
+
+.dg-error-page--warning .dg-error-page__icon {
+  background-color: var(--warning-soft);
+  color: var(--warning);
+}
+
+.dg-error-page--accent .dg-error-page__icon {
+  background-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+.dg-error-page__code {
+  color: var(--text-1);
+  font-size: calc(44px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -1.6px;
+  line-height: 1.05;
+}
+
+.dg-error-page__title {
+  color: var(--text-1);
+  font-size: calc(18px * var(--scale));
+  font-weight: 600;
+}
+
+.dg-error-page__body {
+  width: 100%;
+  color: var(--text-2);
+  font-size: calc(14px * var(--scale));
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.dg-error-page__action {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: calc(4px * var(--scale));
+  gap: calc(10px * var(--scale));
+}

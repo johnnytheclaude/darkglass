@@ -50,6 +50,16 @@
 @import "./components/Pos/TotalCard.css";
 @import "./components/Pos/VariantRow.css";
 
+@import "./components/System/AccountMenu.css";
+@import "./components/System/Banner.css";
+@import "./components/System/Divider.css";
+@import "./components/System/ErrorPage.css";
+@import "./components/System/FormDialog.css";
+@import "./components/System/Kbd.css";
+@import "./components/System/LoginCard.css";
+@import "./components/System/SettingRow.css";
+@import "./components/System/Spinner.css";
+
 /* Tři velikosti UI Pokladny jedou přes --scale, který nastavuje aplikace na
    kořeni (:root[data-size='small'|'large'], poměry 0,85 a 1,18 z artboardu 16).
    Admin velikosti nemá, proto výchozí 1 — bez něj by se calc() v komponentách

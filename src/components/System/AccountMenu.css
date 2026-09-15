@@ -1,0 +1,123 @@
+/* Menu / User (Nabídka účtu) — § Systémové prvky.
+   Návrh: šířka 270, rádius 18, odsazení 6, hlavička s avatarem 40 px,
+   položka 42 px s rádiusem 11, odhlášení červeně, nad ním linka. */
+
+.dg-account-menu {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: calc(270px * var(--scale));
+  max-width: 100%;
+  padding: calc(6px * var(--scale));
+  border-radius: calc(18px * var(--scale));
+  background-color: var(--surface-solid);
+  box-shadow: 0 calc(16px * var(--scale)) calc(48px * var(--scale)) 0 var(--border);
+  gap: 1px;
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-account-menu__head {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(10px * var(--scale)) calc(10px * var(--scale)) calc(12px * var(--scale));
+  gap: calc(11px * var(--scale));
+}
+
+.dg-account-menu__avatar {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: calc(40px * var(--scale));
+  height: calc(40px * var(--scale));
+  border-radius: var(--r-pill);
+  background-color: var(--avatar-1);
+  color: var(--text-on-color);
+  font-size: calc(14px * var(--scale));
+  font-weight: 600;
+}
+
+.dg-account-menu__who {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  gap: 1px;
+}
+
+.dg-account-menu__name {
+  overflow: hidden;
+  color: var(--text-1);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-account-menu__mail {
+  overflow: hidden;
+  color: var(--text-3);
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-account-menu__slot {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.dg-account-menu__sep {
+  width: 100%;
+  height: 1px;
+  margin: calc(5px * var(--scale)) 0;
+  background-color: var(--border);
+}
+
+.dg-account-menu__item {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(42px * var(--scale));
+  padding: 0 calc(12px * var(--scale));
+  border: 0;
+  border-radius: calc(11px * var(--scale));
+  background-color: transparent;
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(14px * var(--scale));
+  font-weight: 500;
+  text-align: left;
+  gap: calc(11px * var(--scale));
+  cursor: pointer;
+}
+
+.dg-account-menu__item:hover {
+  background-color: var(--surface-05);
+}
+
+.dg-account-menu__item.is-danger {
+  color: var(--danger);
+}
+
+.dg-account-menu__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  color: var(--text-2);
+}
+
+.dg-account-menu__item.is-danger .dg-account-menu__icon {
+  color: inherit;
+}
+
+.dg-account-menu__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

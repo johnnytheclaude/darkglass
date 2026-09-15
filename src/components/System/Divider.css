@@ -1,0 +1,31 @@
+/* Divider / Line · Labeled — § Systémové prvky.
+   Návrh: linka 1 px --border, mezera 12 px, popisek 12,5 px --text-3. */
+
+.dg-divider {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  gap: calc(12px * var(--scale));
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-divider--plain {
+  display: block;
+  height: 1px;
+  background-color: var(--border);
+}
+
+.dg-divider__line {
+  flex: 1 1 0;
+  min-width: calc(12px * var(--scale));
+  height: 1px;
+  background-color: var(--border);
+}
+
+.dg-divider__label {
+  flex: 0 0 auto;
+  color: var(--text-3);
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 400;
+}

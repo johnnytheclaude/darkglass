@@ -1,0 +1,77 @@
+/* Modal / Form (Dialog s formulářem) — § Systémové prvky.
+   Návrh: šířka 480, rádius 24, odsazení 24, mezera 18, nadpis 20/700,
+   podtitul 13,5/400, tlačítka vpravo dole s mezerou 10. */
+
+.dg-form-dialog {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: calc(480px * var(--scale));
+  max-width: 100%;
+  padding: calc(24px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface-solid);
+  box-shadow: 0 calc(16px * var(--scale)) calc(48px * var(--scale)) 0 var(--border);
+  gap: calc(18px * var(--scale));
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-form-dialog__head {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-form-dialog__titles {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(4px * var(--scale));
+}
+
+.dg-form-dialog__title {
+  color: var(--text-1);
+  font-size: calc(20px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.dg-form-dialog__sub {
+  color: var(--text-2);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.dg-form-dialog__close {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: calc(30px * var(--scale));
+  height: calc(30px * var(--scale));
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-pill);
+  background-color: var(--surface-15);
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.dg-form-dialog__fields {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: calc(14px * var(--scale));
+}
+
+.dg-form-dialog__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  width: 100%;
+  gap: calc(10px * var(--scale));
+}

@@ -1,0 +1,52 @@
+/* Settings List + Set / Řádek nastavení — § Systémové prvky.
+   Návrh: karta 500 px rádius 24, řádek odsazení 16 18, mezera 16,
+   název 15/600, popis 13/400. Návrh mezi řádky linku nemá — drží je odsazení. */
+
+.dg-settings-list {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: calc(500px * var(--scale));
+  max-width: 100%;
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-setting-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(16px * var(--scale)) calc(18px * var(--scale));
+  gap: calc(16px * var(--scale));
+}
+
+.dg-setting-row__text {
+  display: flex;
+  flex: 1 1 calc(200px * var(--scale));
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(3px * var(--scale));
+}
+
+.dg-setting-row__title {
+  color: var(--text-1);
+  font-size: calc(15px * var(--scale));
+  font-weight: 600;
+}
+
+.dg-setting-row__sub {
+  color: var(--text-2);
+  font-size: calc(13px * var(--scale));
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.dg-setting-row__control {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: calc(8px * var(--scale));
+}

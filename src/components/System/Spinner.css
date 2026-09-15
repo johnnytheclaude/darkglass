@@ -1,0 +1,73 @@
+/* Spinner (Malý · Střední · Velký) — § Systémové prvky.
+   Návrh: hrany 36 / 52 / 72 px, stopa --surface-3, oblouk --accent.
+   Oblouk se otáčí uvnitř SVG, takže nepřispívá do přetečení rodiče. */
+
+.dg-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dg-spinner__ring {
+  display: block;
+}
+
+.dg-spinner__track,
+.dg-spinner__arc {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.dg-spinner__track {
+  stroke: var(--surface-3);
+}
+
+.dg-spinner__arc {
+  stroke: var(--accent);
+  /* čtvrtkruh z obvodu 2πr ≈ 132 */
+  stroke-dasharray: 33 99;
+  transform-origin: 25px 25px;
+  animation: dg-spinner-turn 0.8s linear infinite;
+}
+
+.dg-spinner--s .dg-spinner__ring {
+  width: calc(36px * var(--scale));
+  height: calc(36px * var(--scale));
+}
+
+.dg-spinner--s .dg-spinner__track,
+.dg-spinner--s .dg-spinner__arc {
+  stroke-width: 4.2;
+}
+
+.dg-spinner--m .dg-spinner__ring {
+  width: calc(52px * var(--scale));
+  height: calc(52px * var(--scale));
+}
+
+.dg-spinner--m .dg-spinner__track,
+.dg-spinner--m .dg-spinner__arc {
+  stroke-width: 3.9;
+}
+
+.dg-spinner--l .dg-spinner__ring {
+  width: calc(72px * var(--scale));
+  height: calc(72px * var(--scale));
+}
+
+.dg-spinner--l .dg-spinner__track,
+.dg-spinner--l .dg-spinner__arc {
+  stroke-width: 3.5;
+}
+
+@keyframes dg-spinner-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dg-spinner__arc {
+    animation-duration: 2.4s;
+  }
+}

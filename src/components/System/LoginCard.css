@@ -1,0 +1,55 @@
+/* Login Card (Přihlášení) — § Systémové prvky.
+   Návrh: šířka 400, rádius 24, odsazení 32, mezera 16, značka 48 px
+   v akcentu, nadpis 24/700, tlačítka přes celou šířku. */
+
+.dg-login-card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: calc(400px * var(--scale));
+  max-width: 100%;
+  padding: calc(32px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  gap: calc(16px * var(--scale));
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-login-card__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(48px * var(--scale));
+  height: calc(48px * var(--scale));
+  border-radius: calc(14px * var(--scale));
+  background-color: var(--accent);
+  color: var(--text-on-color);
+  font-size: calc(18px * var(--scale));
+  font-weight: 700;
+}
+
+.dg-login-card__title {
+  color: var(--text-1);
+  font-size: calc(24px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -0.7px;
+}
+
+.dg-login-card__fields {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-login-card__submit,
+.dg-login-card__alt {
+  display: flex;
+  width: 100%;
+}
+
+.dg-login-card__submit > *,
+.dg-login-card__alt > * {
+  flex: 1 1 auto;
+  min-width: 0;
+}
