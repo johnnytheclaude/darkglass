@@ -1,0 +1,64 @@
+/* Nav / Záložky s podtržením — § Navigace.
+   Návrh: řádek zarovnaný dolů, mezera 4 px, popisek 14,5 px s odsazením
+   10 14 0, podtržení 3 px s rádiusem 2 (vybraná na akcentu, ostatní prázdné). */
+
+.dg-tabs-underline {
+  display: flex;
+  align-items: flex-end;
+  max-width: 100%;
+  gap: calc(4px * var(--scale));
+  overflow-x: auto;
+  font-family: var(--font), system-ui, sans-serif;
+  scrollbar-width: none;
+}
+
+.dg-tabs-underline::-webkit-scrollbar {
+  display: none;
+}
+
+.dg-tabs-underline__tab {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  gap: calc(10px * var(--scale));
+  font: inherit;
+  cursor: pointer;
+}
+
+.dg-tabs-underline__label {
+  padding: calc(10px * var(--scale)) calc(14px * var(--scale)) 0;
+  color: var(--text-2);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.dg-tabs-underline__rule {
+  width: 100%;
+  height: calc(3px * var(--scale));
+  border-radius: 2px;
+  background-color: transparent;
+}
+
+.dg-tabs-underline__tab:hover .dg-tabs-underline__label {
+  color: var(--text-1);
+}
+
+.dg-tabs-underline__tab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--r-xs);
+}
+
+.dg-tabs-underline__tab.is-active .dg-tabs-underline__label {
+  color: var(--text-1);
+  font-weight: 600;
+}
+
+.dg-tabs-underline__tab.is-active .dg-tabs-underline__rule {
+  background-color: var(--accent);
+}
