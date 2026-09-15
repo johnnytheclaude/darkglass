@@ -48,6 +48,15 @@
   padding-left: calc(24px * var(--scale));
 }
 
+/* Panel / Dostupnost: obě akce jsou stejně velké a vyplní celou šířku patky. */
+.dg-dialog-actions--stretch .dg-dialog-actions__main {
+  flex: 1 1 auto;
+}
+
+.dg-dialog-actions--stretch .dg-dialog-actions__main > * {
+  flex: 1 1 0;
+}
+
 @media (max-width: 560px) {
   .dg-dialog-actions {
     flex-direction: column-reverse;

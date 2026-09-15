@@ -7,6 +7,8 @@ export interface DialogActionsProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
   /** Dotykové cíle: akce dostanou výšku 52 px a větší rozestup. */
   touch?: boolean
+  /** Akce si rozdělí šířku patky rovným dílem (Panel / Dostupnost). */
+  stretch?: boolean
   ref?: Ref<HTMLDivElement>
 }
 
@@ -21,10 +23,16 @@ export function DialogActions({
   destructive,
   children,
   touch = false,
+  stretch = false,
   className,
   ...rest
 }: DialogActionsProps) {
-  const classes = ['dg-dialog-actions', touch ? 'dg-dialog-actions--touch' : null, className]
+  const classes = [
+    'dg-dialog-actions',
+    touch ? 'dg-dialog-actions--touch' : null,
+    stretch ? 'dg-dialog-actions--stretch' : null,
+    className,
+  ]
     .filter(Boolean)
     .join(' ')
 
