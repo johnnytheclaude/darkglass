@@ -152,19 +152,49 @@
   --scale: 1;
 }
 
-/* Oddělovač --sep přichází z Penu jako jediná hodnota (#E5E5EA), protože se
-   generoval ze světlého návrhu — v tmavém motivu proto svítil skoro bíle.
-   Návrh má v tmavém motivu oddělovač #FFFFFF1F, tedy tutéž hodnotu jako
-   --border. Dokud token nepřijde z Penu jako dvojice, dopočítává se tady;
-   do generovaného tokens.css nepatří. Světlý motiv zůstává na hodnotě
-   z návrhu. Hlídá to scratch/t512-check.cjs. */
+/* Tokeny, které Pen vygeneroval jako JEDINOU hodnotu (tokens.css blok :root,
+   řádky 15–25), takže nesou barvu ze světlého návrhu a v tmavém motivu se
+   nezmění. Prošly jedním po druhém (task #512 = --sep, task #515 = zbytek):
+
+   | token         | světlý  | tmavý   | rozhodnutí                              |
+   |---------------|---------|---------|-----------------------------------------|
+   | --sep         | #E5E5EA | #FFFFFF1F | oddělovač; tmavá varianta = --border   |
+   | --page        | #F2F2F7 | #0D1014 | podklad plochy; tmavá = --bg            |
+   | --card        | #FFFFFF | #1E242C | plocha karty; tmavá = --surface-solid   |
+   | --blue        | #007AFF | #0A84FF | systémová modrá; tmavá = --accent (iOS) |
+   | --red         | #D70015 | #FF453A | tmavá = --danger                        |
+   | --orange      | #C93400 | #FF9F0A | tmavá = --warning                       |
+   | --green       | #248A3D | #30D158 | tmavá = --success                       |
+   | --fill-red    | #FF3B30 | —       | ZÁMĚRNĚ bez tmavé varianty: sytá výplň  |
+   | --fill-orange | #FF9500 | —       | je v obou motivech stejná (pruh Sandboxu|
+   | --fill-green  | #34C759 | —       | přes --orange-fill), čitelnost řeší     |
+   | --fill-gray   | #8E8E93 | —       | inkoust --on-* z tasku #513.            |
+
+   Dopočet patří sem, ne do generovaného tokens.css — kdyby token jednou přišel
+   z Penu jako dvojice, tenhle blok se smaže. Světlý motiv zůstává na hodnotách
+   z návrhu. Uvnitř knihovny se tyhle tokeny nekreslí: podklad obrazovky bere
+   --bg a přechod Slideru --accent/--pink/--warning (viz ScreenBackground.css
+   a Slider.css). Dopočet je pojistka pro aplikace, které by token sáhly.
+   Hlídá to scratch/t512-check.cjs a scratch/t515-check.cjs. */
 [data-theme="dark"] {
   --sep: #FFFFFF1F;
+  --page: #0D1014;
+  --card: #1E242C;
+  --blue: #0A84FF;
+  --red: #FF453A;
+  --orange: #FF9F0A;
+  --green: #30D158;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --sep: #FFFFFF1F;
+    --page: #0D1014;
+    --card: #1E242C;
+    --blue: #0A84FF;
+    --red: #FF453A;
+    --orange: #FF9F0A;
+    --green: #30D158;
   }
 }
 

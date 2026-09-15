@@ -1,12 +1,14 @@
 /* Pozadí / Gradient — § Přehled · doplňky.
-   Návrh: jemné pozadí obrazovky (#EEF0F5 ve světlém motivu). Odstíny jsou
-   v tokenech (--page, --bg-tint-a, --bg-tint-b), aby tmavý motiv sedl sám. */
+   Návrh: jemné pozadí obrazovky, #EEF0F5 ve světlém a #0D1014 v tmavém motivu —
+   tedy token --bg. Dřív tu stál --page, což je jediná hodnota z Penu bez tmavé
+   varianty, takže plocha v tmavém motivu svítila #F2F2F7 (task #515).
+   Odstíny přechodu jsou v tokenech (--bg-tint-a, --bg-tint-b). */
 
 .dg-screen-bg {
   box-sizing: border-box;
   width: 100%;
   min-height: calc(120px * var(--scale));
-  background-color: var(--page);
+  background-color: var(--bg);
   background-image: radial-gradient(
       60% 60% at 15% 10%,
       var(--bg-tint-a) 0%,

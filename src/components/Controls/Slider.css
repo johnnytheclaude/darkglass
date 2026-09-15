@@ -58,7 +58,11 @@
 }
 
 .dg-slider--gradient .dg-slider__track::before {
-  background-image: linear-gradient(90deg, var(--accent) 0%, var(--red) 50%, var(--orange) 100%);
+  /* Návrh (Slider / S barevným přechodem) kreslí dráhu z motivových barev:
+     zleva akce, uprostřed růžová, vpravo čekání — světlý #0071E3 → #D01A44 →
+     #B87400, tmavý #0A84FF → #FF375F → #FF9F0A. Dřív tu stály --red a --orange,
+     tedy jediné hodnoty z Penu bez tmavé varianty (task #515). */
+  background-image: linear-gradient(90deg, var(--accent) 0%, var(--pink) 50%, var(--warning) 100%);
 }
 
 .dg-slider__fill {
