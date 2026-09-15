@@ -49,7 +49,8 @@
 }
 
 .dg-command__field::placeholder {
-  color: var(--text-muted);
+  /* výzva pole je běžný obsah, ne neaktivní stav (task #516) */
+  color: var(--text-3);
 }
 
 .dg-command__field:focus {

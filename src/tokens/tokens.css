@@ -1,9 +1,14 @@
 /* Tokeny návrhu CashRegister (darkglass) — vygenerováno z .pen 14. 9. 2026.
    Zdroj pravdy je návrh v Penu; tenhle soubor se generuje, needituj ho ručně.
    Akcent je white-label — firma si --accent přepisuje.
-   Výjimka (task #514): --text-3 je proti návrhu o odstín tmavší ve světlém
-   a o odstín světlejší v tmavém motivu, aby druhotný text držel 4,5:1 na
-   kartě i na ploše. Odstín (modrošedá) zůstává, mění se jen jas. */
+   Výjimka (task #514, zpřísněná v #516): --text-3 je proti návrhu tmavší ve
+   světlém a světlejší v tmavém motivu, aby druhotný text držel 4,5:1 i na té
+   nejtišší ploše (--surface-15 nad --bg, tedy #E0E2E7). Odstín (modrošedá)
+   zůstává, mění se jen jas.
+   Role tokenů (rozhodnuto v #516): --text-3 je BĚŽNÝ OBSAH (popisky, metadata,
+   jednotky, prázdné stavy) a poměr 4,5:1 pro něj platí vždy. --text-muted je
+   výhradně NEAKTIVNÍ STAV (vypnuté prvky), na který se poměr podle WCAG 1.4.3
+   nevztahuje — pro čitelný text se nikdy nepoužívá. */
 
 :root {
   --font: Inter;
@@ -29,7 +34,7 @@
 :root, [data-theme="light"] {
   --text-1: #14171C;
   --text-2: #575F6B;
-  --text-3: #666E79;
+  --text-3: #5D646E;
   --bg: #EEF0F5;
   --bg-tint-a: #FFFFFF;
   --bg-tint-b: #DCE4F2;

@@ -25,8 +25,8 @@ const POVRCHY: Vzorek[] = [
 const TEXT: Vzorek[] = [
   { token: '--text-1', popis: 'Hlavní text' },
   { token: '--text-2', popis: 'Vedlejší text' },
-  { token: '--text-3', popis: 'Popisky' },
-  { token: '--text-muted', popis: 'Neaktivní text' },
+  { token: '--text-3', popis: 'Popisky (běžný obsah, 4,5:1)' },
+  { token: '--text-muted', popis: 'Neaktivní stav (vypnuté prvky)' },
   { token: '--chevron', popis: 'Šipka řádku' },
 ]
 
