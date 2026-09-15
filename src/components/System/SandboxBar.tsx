@@ -1,4 +1,5 @@
 import type { HTMLAttributes, ReactNode, Ref } from 'react'
+import { IconFlask } from '../Icons/IconFlask'
 
 export interface SandboxBarProps extends HTMLAttributes<HTMLDivElement> {
   /** Co se obsluze říká („Zkušební režim — doklady nejsou ostré“). */
@@ -21,6 +22,7 @@ export function SandboxBar({ text, actionLabel, onAction, className, ...rest }: 
       role="status"
       {...rest}
     >
+      <IconFlask className="dg-sandbox-strip__icon" size={16} />
       <span className="dg-sandbox-strip__text">{text}</span>
       {actionLabel != null ? (
         <button type="button" className="dg-sandbox-strip__action" onClick={onAction}>

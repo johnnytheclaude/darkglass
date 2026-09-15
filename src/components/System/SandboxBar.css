@@ -15,6 +15,15 @@
   gap: calc(12px * var(--scale));
 }
 
+/* Baňka před textem (artboard 30) — plná fialová, ne tlumená barva textu, aby
+   pruh šel poznat i koutkem oka. Velikost jede s --scale jako všechno ostatní. */
+.dg-sandbox-strip__icon {
+  flex-shrink: 0;
+  width: calc(16px * var(--scale));
+  height: calc(16px * var(--scale));
+  color: var(--purple);
+}
+
 .dg-sandbox-strip__text {
   flex: 1 1 auto;
   min-width: 0;
