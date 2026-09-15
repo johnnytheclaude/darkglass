@@ -68,6 +68,7 @@ const RADKY: DataTableRow[] = [
   },
   {
     id: 'b510',
+    tone: 'warn',
     cells: [
       <TableName>Položka B-510</TableName>,
       'S1-51',

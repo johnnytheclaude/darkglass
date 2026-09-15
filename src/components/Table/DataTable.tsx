@@ -23,10 +23,11 @@ export interface DataTableRow {
   cells: ReactNode[]
   /**
    * Podbarvení celého řádku (Row / Tint z návrhu): sedí (ok), chyba či záporná
-   * hodnota (danger), doplňující údaj (info). Podklad nese jen zvýraznění —
+   * hodnota (danger), nedodělek k doplnění (warn), doplňující údaj (info).
+   * Podklad nese jen zvýraznění —
    * co se stalo, musí říct i obsah buňky (znaménko, slovo, odznak).
    */
-  tone?: 'ok' | 'danger' | 'info'
+  tone?: 'ok' | 'danger' | 'warn' | 'info'
   /** Vybraný řádek (hromadný výběr) — zaškrtnuté políčko a tichý akcentový podklad. */
   selected?: boolean
   /** Mezitulek skupiny (Table / Group Header) nad tímto řádkem. */
