@@ -127,6 +127,7 @@
 @import "./components/Pos/QuickCash.css";
 @import "./components/Pos/RequestCard.css";
 @import "./components/Pos/StatusBar.css";
+@import "./components/Pos/NoteRow.css";
 @import "./components/Pos/StatusList.css";
 @import "./components/Pos/StockTile.css";
 @import "./components/Pos/StatusModal.css";

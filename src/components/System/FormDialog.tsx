@@ -8,6 +8,10 @@ export interface FormDialogProps extends Omit<HTMLAttributes<HTMLDivElement>, 't
   title: ReactNode
   /** Věta pod nadpisem: co se po člověku chce. */
   subtitle?: ReactNode
+  /** Údaj vpravo v hlavičce (cena zboží) — vedle nadpisu, před křížkem. */
+  aside?: ReactNode
+  /** Širší rám (620 px podle Panel / Dostupnost) pro dialog se seznamem. */
+  wide?: boolean
   /** Zavření; bez handleru se křížek nevykreslí. */
   onClose?: () => void
   closeLabel?: string
@@ -27,6 +31,8 @@ export interface FormDialogProps extends Omit<HTMLAttributes<HTMLDivElement>, 't
 export function FormDialog({
   title,
   subtitle,
+  aside,
+  wide = false,
   onClose,
   closeLabel = 'Zavřít dialog',
   closeOnEscape = true,
@@ -40,7 +46,9 @@ export function FormDialog({
 
   return (
     <div
-      className={['dg-form-dialog', className].filter(Boolean).join(' ')}
+      className={['dg-form-dialog', wide ? 'dg-form-dialog--wide' : null, className]
+        .filter(Boolean)
+        .join(' ')}
       role="dialog"
       aria-modal="true"
       aria-labelledby={titleId}
@@ -53,6 +61,7 @@ export function FormDialog({
           </div>
           {subtitle != null ? <div className="dg-form-dialog__sub">{subtitle}</div> : null}
         </div>
+        {aside != null ? <div className="dg-form-dialog__aside">{aside}</div> : null}
         {onClose ? (
           <button
             type="button"

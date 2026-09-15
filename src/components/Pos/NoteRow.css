@@ -1,0 +1,37 @@
+/* Row / Poznámka — § Pokladna · prodej (Panel / Dostupnost).
+   Návrh: rádius 12, výplň 13/16, mezera 8, popisek 13/700 šířky 110,
+   text 13/400. Návrh text ještě ztlumuje průhledností 0,85; knihovna to
+   nedělá — poznámka je běžný obsah a musí držet kontrast (task #516). */
+
+.dg-note-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(13px * var(--scale)) calc(16px * var(--scale));
+  border-radius: var(--r-sm);
+  background-color: var(--surface-05);
+  gap: calc(8px * var(--scale));
+  font-size: calc(13px * var(--scale));
+  line-height: 1.35;
+}
+
+.dg-note-row__label {
+  flex-shrink: 0;
+  width: calc(110px * var(--scale));
+  color: var(--text-2);
+  font-weight: 700;
+}
+
+.dg-note-row__text {
+  flex: 1 1 calc(160px * var(--scale));
+  min-width: 0;
+  color: var(--text-3);
+  font-weight: 400;
+}
+
+.dg-note-row__action {
+  flex-shrink: 0;
+  margin-left: auto;
+}

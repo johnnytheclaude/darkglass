@@ -8,6 +8,7 @@ import { PosSearch } from '../../src/components/Pos/PosSearch'
 import { ProductTile } from '../../src/components/Pos/ProductTile'
 import { TotalCard } from '../../src/components/Pos/TotalCard'
 import { StockTile } from '../../src/components/Pos/StockTile'
+import { NoteRow } from '../../src/components/Pos/NoteRow'
 import { VariantRow } from '../../src/components/Pos/VariantRow'
 import { IconScanBarcode } from '../../src/components/Icons/IconScanBarcode'
 import { IconSearch } from '../../src/components/Icons/IconSearch'
@@ -193,6 +194,30 @@ export const section: ShowcaseSection = {
           <StockTile label="XL" count="2 ks" tone="warning" />
           <StockTile label="XXL" count="0 ks" tone="danger" />
           <StockTile label="128" count="sklad neevidován" />
+      title: 'Poznámka pod seznamem',
+      stack: true,
+      note: 'Popisek vlevo drží pevnou šířku, text doplňuje, co seznam neukazuje. Vpravo se vejde akce; na úzkém displeji se řádek zalomí pod popisek.',
+      render: () => (
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 10,
+            width: '100%',
+            maxWidth: 520,
+          }}
+        >
+          <NoteRow label="Jiné sklady">· firma má jednu prodejnu a žádný centrální sklad</NoteRow>
+          <NoteRow
+            label="Jiné sklady"
+            action={
+              <Button variant="secondary" size="s">
+                Rezervovat
+              </Button>
+            }
+          >
+            vel. 52 · Hochman Vinohrady 3 ks
+          </NoteRow>
         </div>
       ),
     },
