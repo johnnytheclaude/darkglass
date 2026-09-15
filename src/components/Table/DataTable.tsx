@@ -79,6 +79,10 @@ export function DataTable({
 
   return (
     <div className={classes} role="table" ref={wrap} {...rest}>
+      {/* Mřížka drží hlavičku i řádky v jedné šířce. Bez ní si při vodorovném
+          posouvání každý řádek spočítal vlastní max-content a sloupce se
+          v úzkém okně rozjely proti hlavičce (task #563). */}
+      <div className="dg-table__grid" role="rowgroup">
       <div className="dg-table__header" role="row">
         {selectable ? <span className="dg-table__check-col" /> : null}
         {columns.map((column, i) => (
@@ -158,6 +162,7 @@ export function DataTable({
         </div>
         </Fragment>
       ))}
+      </div>
     </div>
   )
 }

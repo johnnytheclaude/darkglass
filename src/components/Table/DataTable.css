@@ -19,12 +19,22 @@
   scrollbar-color: var(--surface-3) transparent;
 }
 
+/* Mřížka tabulky — hlavička i řádky v jedné šířce, aby se sloupce při
+   vodorovném posouvání nerozjely proti hlavičce (task #563). */
+.dg-table__grid {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-width: max-content;
+  width: 100%;
+}
+
 .dg-table__header {
   display: flex;
   flex: 0 0 auto;
   align-items: center;
   box-sizing: border-box;
-  min-width: max-content;
   width: 100%;
   min-height: calc(46px * var(--scale));
   padding: 0 calc(16px * var(--scale));
@@ -58,7 +68,6 @@
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  min-width: max-content;
   width: 100%;
   min-height: calc(63.5px * var(--scale));
   padding: 0 calc(16px * var(--scale));
