@@ -70,5 +70,5 @@
   flex-wrap: wrap;
   min-width: 0;
   margin-left: auto;
-  gap: calc(10px * var(--scale));
+  gap: calc(14px * var(--scale));
 }

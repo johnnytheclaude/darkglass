@@ -1,5 +1,6 @@
 /* Banner (Pruh přes celou šířku) — § Systémové prvky.
    Návrh: výška 58, rádius 14, odsazení 0 10 0 18, mezera 12, text 14,5/500,
+   ikona 19 v barvě ladění, linka 1 px v barvě ladění,
    akce plná v barvě ladění (36 px, pilulka), zavření 30 px kolečko. */
 
 .dg-banner {
@@ -11,9 +12,17 @@
   min-height: calc(58px * var(--scale));
   padding: calc(9px * var(--scale)) calc(10px * var(--scale)) calc(9px * var(--scale))
     calc(18px * var(--scale));
+  border: 1px solid;
   border-radius: calc(14px * var(--scale));
   gap: calc(12px * var(--scale));
   font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-banner__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
 }
 
 .dg-banner__text {
@@ -59,7 +68,12 @@
 }
 
 .dg-banner--warning {
+  border-color: var(--warning);
   background-color: var(--warning-soft);
+}
+
+.dg-banner--warning .dg-banner__icon {
+  color: var(--warning);
 }
 
 .dg-banner--warning .dg-banner__action {
@@ -67,7 +81,12 @@
 }
 
 .dg-banner--danger {
+  border-color: var(--danger);
   background-color: var(--danger-soft);
+}
+
+.dg-banner--danger .dg-banner__icon {
+  color: var(--danger);
 }
 
 .dg-banner--danger .dg-banner__action {
@@ -75,7 +94,12 @@
 }
 
 .dg-banner--success {
+  border-color: var(--success);
   background-color: var(--success-soft);
+}
+
+.dg-banner--success .dg-banner__icon {
+  color: var(--success);
 }
 
 .dg-banner--success .dg-banner__action {
@@ -83,7 +107,12 @@
 }
 
 .dg-banner--accent {
+  border-color: var(--accent);
   background-color: var(--accent-soft);
+}
+
+.dg-banner--accent .dg-banner__icon {
+  color: var(--accent);
 }
 
 .dg-banner--accent .dg-banner__action {

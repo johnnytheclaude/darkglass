@@ -9,6 +9,7 @@ import { Tooltip } from '../../src/components/Feedback/Tooltip'
 import { IconAlert } from '../../src/components/Icons/IconAlert'
 import { IconCheck } from '../../src/components/Icons/IconCheck'
 import { IconFile } from '../../src/components/Icons/IconFile'
+import { IconInbox } from '../../src/components/Icons/IconInbox'
 import { IconPlus } from '../../src/components/Icons/IconPlus'
 import { IconX } from '../../src/components/Icons/IconX'
 import type { ShowcaseSection } from '../registry'
@@ -111,6 +112,18 @@ export const section: ShowcaseSection = {
       ),
     },
     {
+      title: 'Plovoucí oznámení · tóny',
+      note: 'Stejná bublina v ostatních tónech — pro sdělení, které není jen neutrální.',
+      stack: true,
+      render: () => (
+        <>
+          <Toast tone="info" title="Účtenka odeslána" sub="zakaznik@example.cz" />
+          <Toast tone="warning" title="Tiskárna došla papír" sub="Zařízení 1" actionLabel="Zkusit znovu" />
+          <Toast tone="danger" title="Doklad se neodeslal" sub="3 pokusy" actionLabel="Detail" />
+        </>
+      ),
+    },
+    {
       title: 'Ukazatel průběhu',
       note: 'Nad pruhem je slovy, co se počítá — samotný pruh neřekne nic.',
       stack: true,
@@ -121,9 +134,32 @@ export const section: ShowcaseSection = {
       ),
     },
     {
+      title: 'Ukazatel průběhu · tóny',
+      note: 'Tón nese význam: běžný postup, upozornění, chyba.',
+      stack: true,
+      render: () => (
+        <div style={{ width: 300, maxWidth: '100%', display: 'grid', gap: 12 }}>
+          <ProgressBar tone="accent" label="Synchronizace" valueLabel="40 %" value={40} />
+          <ProgressBar tone="warning" label="Místo na disku" valueLabel="82 %" value={82} />
+          <ProgressBar tone="danger" label="Neodeslané doklady" valueLabel="9 z 10" value={9} max={10} />
+        </div>
+      ),
+    },
+    {
       title: 'Kroužek',
       note: 'Průběh v kroužku pro dlaždice a karty; číslo uprostřed dodává aplikace.',
       render: () => <ProgressRing value={71}>71 %</ProgressRing>,
+    },
+    {
+      title: 'Kroužek · tóny',
+      note: 'Tytéž tóny jako u pruhu, pro dlaždice se stavem.',
+      render: () => (
+        <>
+          <ProgressRing tone="accent" value={40}>40 %</ProgressRing>
+          <ProgressRing tone="warning" value={82}>82 %</ProgressRing>
+          <ProgressRing tone="danger" value={95}>95 %</ProgressRing>
+        </>
+      ),
     },
     {
       title: 'Prázdný stav',
@@ -131,7 +167,7 @@ export const section: ShowcaseSection = {
       stack: true,
       render: () => (
         <EmptyState
-          icon={<IconFile size={28} />}
+          icon={<IconInbox size={28} />}
           title="Zatím žádný záznam"
           actionLabel="Vytvořit ukázkový"
           actionIcon={<IconPlus size={16} />}

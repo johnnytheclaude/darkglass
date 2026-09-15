@@ -29,7 +29,8 @@ export function ProgressRing({
 }: ProgressRingProps) {
   const safeMax = max > 0 ? max : 1
   const ratio = Math.min(Math.max(value / safeMax, 0), 1)
-  const radius = 42
+  /* stopa 9 (v návrhu 8,28 px na hraně 92) lícuje s hranou kroužku */
+  const radius = 45.5
   const circumference = 2 * Math.PI * radius
   const classes = ['dg-ring', `dg-ring--${tone}`, className].filter(Boolean).join(' ')
 

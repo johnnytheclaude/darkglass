@@ -13,7 +13,7 @@
   border-radius: calc(16px * var(--scale));
   gap: calc(12px * var(--scale));
   background-color: var(--surface-solid);
-  box-shadow: 0 calc(8px * var(--scale)) calc(28px * var(--scale)) var(--shadow-soft);
+  box-shadow: 0 calc(8px * var(--scale)) calc(28px * var(--scale)) var(--shadow);
   font-family: var(--font), system-ui, sans-serif;
 }
 

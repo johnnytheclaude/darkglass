@@ -1,5 +1,5 @@
 import type { HTMLAttributes, ReactNode, Ref } from 'react'
-import { IconChevronLeft } from '../Icons/IconChevronLeft'
+import { IconArrowLeft } from '../Icons/IconArrowLeft'
 
 export interface PageHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   /** Tlačítko zpět se ukáže, jakmile je co dělat po kliknutí. */
@@ -32,7 +32,7 @@ export function PageHeader({
     <div className={classes} {...rest}>
       {onBack ? (
         <button className="dg-page-header__back" type="button" aria-label={backLabel} onClick={onBack}>
-          <IconChevronLeft />
+          <IconArrowLeft />
         </button>
       ) : null}
       <div className="dg-page-header__titles">

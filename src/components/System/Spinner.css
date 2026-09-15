@@ -24,8 +24,8 @@
 
 .dg-spinner__arc {
   stroke: var(--accent);
-  /* čtvrtkruh z obvodu 2πr ≈ 132 */
-  stroke-dasharray: 33 99;
+  /* oblouk je 28 % kola jako v návrhu; délka dráhy je normovaná na 100 */
+  stroke-dasharray: 28 72;
   transform-origin: 25px 25px;
   animation: dg-spinner-turn 0.8s linear infinite;
 }
@@ -35,29 +35,14 @@
   height: calc(36px * var(--scale));
 }
 
-.dg-spinner--s .dg-spinner__track,
-.dg-spinner--s .dg-spinner__arc {
-  stroke-width: 4.2;
-}
-
 .dg-spinner--m .dg-spinner__ring {
   width: calc(52px * var(--scale));
   height: calc(52px * var(--scale));
 }
 
-.dg-spinner--m .dg-spinner__track,
-.dg-spinner--m .dg-spinner__arc {
-  stroke-width: 3.9;
-}
-
 .dg-spinner--l .dg-spinner__ring {
   width: calc(72px * var(--scale));
   height: calc(72px * var(--scale));
-}
-
-.dg-spinner--l .dg-spinner__track,
-.dg-spinner--l .dg-spinner__arc {
-  stroke-width: 3.5;
 }
 
 @keyframes dg-spinner-turn {
