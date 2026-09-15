@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Button } from '../../src/components/Buttons/Button'
 import { IconBell } from '../../src/components/Icons/IconBell'
 import { IconChevronLeft } from '../../src/components/Icons/IconChevronLeft'
+import { IconGift } from '../../src/components/Icons/IconGift'
 import { IconInbox } from '../../src/components/Icons/IconInbox'
 import { IconReceipt } from '../../src/components/Icons/IconReceipt'
 import { GroupedList } from '../../src/components/Lists/GroupedList'
@@ -263,6 +264,24 @@ export const section: ShowcaseSection = {
           <div style={{ width: 290, maxWidth: '100%' }}>
             <MenuTile name="Inventura" description="probíhá od 8:40" tone="accent" />
           </div>
+        </div>
+      ),
+    },
+    {
+      title: 'Akce Dárkový poukaz',
+      stack: true,
+      note: 'Ikona gift z návrhu (artboard 27) v hlavní i tiché akci obrazovky Dárkový poukaz — prodej poukazu a dotaz na zůstatek.',
+      render: () => (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center' }}>
+          <Button variant="primary" size="m" iconStart={<IconGift />}>
+            Vydat poukaz
+          </Button>
+          <Button variant="secondary" size="m" iconStart={<IconGift />}>
+            Zůstatek poukazu
+          </Button>
+          <Button variant="primary" size="m" iconStart={<IconGift />} disabled>
+            Vydat poukaz
+          </Button>
         </div>
       ),
     },
