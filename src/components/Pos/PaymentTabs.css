@@ -5,6 +5,7 @@
 .dg-payment-tabs {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   box-sizing: border-box;
   width: 100%;
   gap: calc(12px * var(--scale));
@@ -12,7 +13,9 @@
 
 .dg-payment-tabs__tab {
   display: flex;
-  flex: 1 1 0;
+  /* Na uzkem displeji se zalozky radeji zalomi, nez aby se stlacily pod
+     citelnou sirku a popisky si lezly pres sebe (mereno na 375 px). */
+  flex: 1 1 calc(132px * var(--scale));
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
