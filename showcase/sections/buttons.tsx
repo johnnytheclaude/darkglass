@@ -38,6 +38,7 @@ export const section: ShowcaseSection = {
           <Button variant="contrast">Naskladnit</Button>
           <Button variant="danger">Odepsat</Button>
           <Button variant="dangerSoft">Smazat</Button>
+          <Button variant="warning">Zadat ručně</Button>
           <Button variant="success">Potvrdit</Button>
         </>
       ),

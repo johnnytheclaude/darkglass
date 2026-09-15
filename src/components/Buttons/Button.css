@@ -143,6 +143,13 @@
   color: var(--danger-text);
 }
 
+/* Btn / Warning — plná výplň ladění „pozor" (artboard 39: „Zadat ručně").
+   Hlavní akce dialogu, který varuje, ale nic nemaže — proto ne danger. */
+.dg-button--warning {
+  background-color: var(--warning-fill);
+  color: var(--on-warning);
+}
+
 .dg-button--success {
   background-color: var(--success-fill);
   color: var(--on-success);

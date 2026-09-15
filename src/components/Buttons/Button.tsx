@@ -8,6 +8,7 @@ export type ButtonVariant =
   | 'contrast'
   | 'danger'
   | 'dangerSoft'
+  | 'warning'
   | 'success'
   | 'back'
 
@@ -38,6 +39,7 @@ const VARIANT_CLASS: Record<ButtonVariant, string> = {
   contrast: 'dg-button--contrast',
   danger: 'dg-button--danger',
   dangerSoft: 'dg-button--danger-soft',
+  warning: 'dg-button--warning',
   success: 'dg-button--success',
   back: 'dg-button--back',
 }
