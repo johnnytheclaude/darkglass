@@ -10,6 +10,13 @@
 @import "./tokens/tokens.css";
 @import "./components/Buttons/Button.css";
 @import "./components/Buttons/IconButton.css";
+@import "./components/Pos/CartCard.css";
+@import "./components/Pos/CategoryChip.css";
+@import "./components/Pos/PosSearch.css";
+@import "./components/Pos/ProductTile.css";
+@import "./components/Pos/StatusBar.css";
+@import "./components/Pos/TotalCard.css";
+@import "./components/Pos/VariantRow.css";
 
 /* Tři velikosti UI Pokladny jedou přes --scale, který nastavuje aplikace na
    kořeni (:root[data-size='small'|'large'], poměry 0,85 a 1,18 z artboardu 16).

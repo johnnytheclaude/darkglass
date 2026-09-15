@@ -1,0 +1,86 @@
+/* Karta / Součet — § Pokladna · prodej.
+   Návrh: rádius 24, odsazení 14/18/18, řádek 10 px svisle, popis 15 px,
+   čára 1 px, částka 44 px / 700 / -1,8 px, poznámka 13,5 px. */
+
+.dg-total-card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(14px * var(--scale)) calc(18px * var(--scale)) calc(18px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  /* Kvůli částce, která se přizpůsobuje šířce karty (cqw níž). */
+  container-type: inline-size;
+}
+
+.dg-total-card__row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: calc(10px * var(--scale)) 0;
+  gap: calc(12px * var(--scale));
+  font-size: calc(15px * var(--scale));
+}
+
+.dg-total-card__label {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-2);
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-total-card__value {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--text-1);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.dg-total-card__rule {
+  width: 100%;
+  height: 1px;
+  margin-top: auto;
+  background-color: var(--border);
+}
+
+.dg-total-card__total {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: calc(16px * var(--scale));
+  gap: calc(2px * var(--scale));
+}
+
+.dg-total-card__total-label {
+  color: var(--text-2);
+  font-size: calc(15px * var(--scale));
+  font-weight: 400;
+}
+
+/* Částka je největší prvek karty; u dlouhých čísel se zmenší, místo aby
+   přetekla ven z karty (clamp drží spodní hranici čitelnou). */
+.dg-total-card__amount {
+  color: var(--text-1);
+  font-size: clamp(
+    calc(28px * var(--scale)),
+    calc(7.5cqw + 10px),
+    calc(44px * var(--scale))
+  );
+  font-weight: 700;
+  letter-spacing: -1.8px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.dg-total-card__note {
+  color: var(--text-3);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 400;
+  line-height: 1.3;
+}

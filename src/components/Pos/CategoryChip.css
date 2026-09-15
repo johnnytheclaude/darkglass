@@ -1,0 +1,54 @@
+/* Chip / Kategorie — § Pokladna · prodej.
+   Návrh: výška 48 px, odsazení 0 22, rádius pill, popisek 16 px / 600;
+   vybraná na plném akcentu s bílým textem. */
+
+.dg-category-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: calc(48px * var(--scale));
+  padding: 0 calc(22px * var(--scale));
+  border: 0;
+  border-radius: var(--r-pill);
+  background-color: var(--surface-05);
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(16px * var(--scale));
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dg-category-chip.is-selected {
+  background-color: var(--accent);
+  color: var(--text-on-color);
+}
+
+@media (hover: hover) {
+  .dg-category-chip:hover:not(:disabled) {
+    background-image: linear-gradient(var(--surface-15), var(--surface-15));
+  }
+}
+
+.dg-category-chip:active:not(:disabled) {
+  background-image: linear-gradient(var(--surface-3), var(--surface-3));
+}
+
+.dg-category-chip:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.dg-category-chip:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dg-category-chip {
+    transition: background-color 120ms ease, background-image 120ms ease;
+  }
+}

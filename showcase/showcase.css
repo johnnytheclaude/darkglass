@@ -175,6 +175,12 @@ body {
   border-radius: var(--r-md);
 }
 
+/* Široká ukázka zabere celý řádek mřížky — komponenta jako stavová lišta nebo
+   košík má v návrhu 900, resp. 580 px a ve sloupci 340 px by přetekla. */
+.sc-demo.is-wide {
+  grid-column: 1 / -1;
+}
+
 .sc-demo__title {
   margin: 0;
   font-size: 13px;

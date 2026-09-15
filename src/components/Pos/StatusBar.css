@@ -1,0 +1,203 @@
+/* Nav / Stavová lišta a Pruh SANDBOX — § Pokladna · provoz a doklady
+   (docs/navrh/html/knihovna-light.html, artboard „Pokladna · Prodej v režimu
+   Sandbox“). Geometrie z návrhu: lišta odsazení 11/16 px, rádius 16, mezera
+   10 px, text 14 px; pilulky 5/11 px, rádius pill, popisek 12 px / 600.
+   Sandbox pruh: výška 58 px, rádius 14, odsazení 0 10 0 18, mezera 12 px. */
+
+.dg-status-bar-stack {
+  display: flex;
+  flex-direction: column;
+  gap: calc(16px * var(--scale));
+  width: 100%;
+}
+
+.dg-status-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(11px * var(--scale)) calc(16px * var(--scale));
+  border-radius: var(--r-md);
+  background-color: var(--surface);
+  column-gap: calc(10px * var(--scale));
+  row-gap: calc(8px * var(--scale));
+  font-size: calc(14px * var(--scale));
+  line-height: 1.25;
+}
+
+/* Identita se zkracuje, aby stavy vpravo měly vždy místo — bez min-width: 0
+   by flexový prvek odmítl zmenšit a lišta by přetekla. */
+.dg-status-bar__identity {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  align-items: center;
+  column-gap: calc(10px * var(--scale));
+  row-gap: calc(4px * var(--scale));
+  flex-wrap: wrap;
+}
+
+.dg-status-bar__operator {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-1);
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-status-bar__meta {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-3);
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Stavů může nastat pět naráz; zalomí se na další řádek, nikdy nepřetečou. */
+.dg-status-bar__badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: auto;
+  gap: calc(8px * var(--scale));
+}
+
+.dg-status-bar__badge {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: calc(5px * var(--scale)) calc(11px * var(--scale));
+  border: 0;
+  border-radius: var(--r-pill);
+  background-color: var(--surface-15);
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: calc(12px * var(--scale));
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.dg-status-bar__badge--neutral {
+  background-color: var(--surface-15);
+  color: var(--text-2);
+}
+
+.dg-status-bar__badge--accent {
+  background-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+.dg-status-bar__badge--success {
+  background-color: var(--success-soft);
+  color: var(--success);
+}
+
+.dg-status-bar__badge--warning {
+  background-color: var(--warning-soft);
+  color: var(--warning);
+}
+
+.dg-status-bar__badge--danger {
+  background-color: var(--danger-soft);
+  color: var(--danger);
+}
+
+/* Kliknutelný odznak otevírá detail stavu — dotykový cíl 44 px doplní ::after,
+   viditelná pilulka zůstává podle návrhu. */
+.dg-status-bar__badge--action {
+  position: relative;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dg-status-bar__badge--action::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(-1 * max(0px, (44px - 22px * var(--scale)) / 2));
+  bottom: calc(-1 * max(0px, (44px - 22px * var(--scale)) / 2));
+}
+
+@media (hover: hover) {
+  .dg-status-bar__badge--action:hover {
+    background-image: linear-gradient(var(--surface-15), var(--surface-15));
+  }
+}
+
+.dg-status-bar__badge--action:active {
+  background-image: linear-gradient(var(--surface-3), var(--surface-3));
+}
+
+.dg-status-bar__badge--action:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.dg-status-bar__time {
+  flex-shrink: 0;
+  color: var(--text-3);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Pruh SANDBOX — zkušební režim, fialová z tokenů (white-label akcent zůstává
+   vyhrazený ostrému provozu, ať se režimy nepletou). */
+.dg-sandbox-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(58px * var(--scale));
+  padding: calc(6px * var(--scale)) calc(10px * var(--scale)) calc(6px * var(--scale))
+    calc(18px * var(--scale));
+  border-radius: calc(14px * var(--scale));
+  background-color: var(--purple-soft);
+  gap: calc(12px * var(--scale));
+}
+
+.dg-sandbox-strip__text {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--purple);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.dg-sandbox-strip__action {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: calc(36px * var(--scale));
+  padding: 0 calc(16px * var(--scale));
+  border: 0;
+  border-radius: var(--r-pill);
+  background-color: var(--fill-orange);
+  color: var(--text-on-color);
+  font-family: inherit;
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .dg-sandbox-strip__action:hover {
+    background-image: linear-gradient(var(--surface-15), var(--surface-15));
+  }
+}
+
+.dg-sandbox-strip__action:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}

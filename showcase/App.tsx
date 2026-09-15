@@ -121,7 +121,10 @@ export function App() {
 
               <div className="sc-demos">
                 {section.demos.map((demo) => (
-                  <article key={demo.title} className="sc-demo">
+                  <article
+                    key={demo.title}
+                    className={demo.wide ? 'sc-demo is-wide' : 'sc-demo'}
+                  >
                     <h3 className="sc-demo__title">{demo.title}</h3>
                     {demo.note ? <p className="sc-demo__note">{demo.note}</p> : null}
                     <div className={demo.stack ? 'sc-demo__stage is-stacked' : 'sc-demo__stage'}>

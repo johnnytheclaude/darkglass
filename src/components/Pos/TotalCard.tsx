@@ -1,0 +1,55 @@
+import type { HTMLAttributes, ReactNode, Ref } from 'react'
+
+export interface TotalCardRow {
+  key: string
+  label: ReactNode
+  value: ReactNode
+}
+
+export interface TotalCardProps extends HTMLAttributes<HTMLDivElement> {
+  /** Řádky nad čarou (mezisoučet, sleva, záloha…). */
+  rows?: TotalCardRow[]
+  /** Popisek nad částkou („Celkem“). */
+  totalLabel?: ReactNode
+  /** Výsledná částka — největší číslo na obrazovce. */
+  total: ReactNode
+  /** Řádek pod částkou (přepočet na eura a kurz). */
+  note?: ReactNode
+  /** Obsah pod kartou (tlačítka) nebo vlastní řádky navíc. */
+  children?: ReactNode
+  ref?: Ref<HTMLDivElement>
+}
+
+/**
+ * Karta / Součet — souhrn účtu vedle košíku.
+ * Částka se nezalamuje ani u statisíců: nevejde-li se, zmenší se řez písma.
+ */
+export function TotalCard({
+  rows = [],
+  totalLabel,
+  total,
+  note,
+  className,
+  children,
+  ...rest
+}: TotalCardProps) {
+  return (
+    <div className={['dg-total-card', className].filter(Boolean).join(' ')} {...rest}>
+      {rows.map((row) => (
+        <div key={row.key} className="dg-total-card__row">
+          <span className="dg-total-card__label">{row.label}</span>
+          <span className="dg-total-card__value">{row.value}</span>
+        </div>
+      ))}
+      {children}
+      <div className="dg-total-card__rule" />
+      <div className="dg-total-card__total">
+        {totalLabel != null ? (
+          <span className="dg-total-card__total-label">{totalLabel}</span>
+        ) : null}
+        <span className="dg-total-card__amount">{total}</span>
+        {note != null ? <span className="dg-total-card__note">{note}</span> : null}
+      </div>
+    </div>
+  )
+}

@@ -1,0 +1,72 @@
+/* POS Search — § Pokladna · prodej.
+   Návrh: výška 62 px, rádius 16, odsazení 0 20, mezera 12 px, text 17 px;
+   zkratka F3 v akcentu, 12 px / 700, rádius 6, výška 22 px. */
+
+.dg-pos-search {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(62px * var(--scale));
+  padding: 0 calc(20px * var(--scale));
+  border-radius: var(--r-md);
+  background-color: var(--surface);
+  gap: calc(12px * var(--scale));
+}
+
+.dg-pos-search__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-3);
+}
+
+.dg-pos-search__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  background: none;
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(17px * var(--scale));
+  font-weight: 400;
+  outline: none;
+  appearance: none;
+}
+
+.dg-pos-search__input::placeholder {
+  color: var(--text-3);
+  opacity: 1;
+}
+
+/* Vlastní křížek prohlížeče u type="search" by se bil s rozvržením návrhu. */
+.dg-pos-search__input::-webkit-search-decoration,
+.dg-pos-search__input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.dg-pos-search:focus-within {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.dg-pos-search__key {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: calc(22px * var(--scale));
+  padding: 0 calc(7px * var(--scale));
+  border-radius: var(--r-xs);
+  background-color: var(--accent-soft);
+  color: var(--accent);
+  font-family: inherit;
+  font-size: calc(12px * var(--scale));
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  line-height: 1;
+  white-space: nowrap;
+}

@@ -1,0 +1,177 @@
+/* Cart Lines — § Pokladna · prodej.
+   Návrh: karta rádius 24, odsazení 18 px, mezera 10 px; řádek rádius 12,
+   odsazení 12/16, mezera 14 px, název 15 px / 600, poznámka 13 px;
+   krokovač 44 × 44 px, rádius 12, počet 17 px / 700 v šířce 34 px. */
+
+.dg-cart-card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(18px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  gap: calc(10px * var(--scale));
+}
+
+.dg-cart-card__head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: calc(10px * var(--scale));
+}
+
+.dg-cart-card__title {
+  color: var(--text-1);
+  font-size: calc(17px * var(--scale));
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.dg-cart-card__count {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-3);
+  font-size: calc(14px * var(--scale));
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-cart-card__action {
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-3);
+  font-family: inherit;
+  font-size: calc(14px * var(--scale));
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .dg-cart-card__action:hover {
+    color: var(--text-1);
+  }
+}
+
+.dg-cart-card__action:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--r-xs);
+}
+
+/* Řádky rolují uvnitř karty — účet o dvaceti položkách kartu neroztáhne. */
+.dg-cart-card__lines {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  gap: calc(10px * var(--scale));
+}
+
+.dg-cart-card__footer {
+  flex-shrink: 0;
+}
+
+.dg-cart-line {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(12px * var(--scale)) calc(16px * var(--scale));
+  border-radius: var(--r-sm);
+  background-color: var(--surface-05);
+  gap: calc(14px * var(--scale));
+}
+
+.dg-cart-line__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(2px * var(--scale));
+}
+
+.dg-cart-line__name {
+  overflow: hidden;
+  color: var(--text-1);
+  font-size: calc(15px * var(--scale));
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-cart-line__note {
+  overflow: hidden;
+  color: var(--text-3);
+  font-size: calc(13px * var(--scale));
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-cart-line__price {
+  flex-shrink: 0;
+  color: var(--text-1);
+  font-size: calc(15px * var(--scale));
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.dg-cart-line__stepper {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: calc(8px * var(--scale));
+}
+
+.dg-cart-line__step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: calc(44px * var(--scale));
+  height: calc(44px * var(--scale));
+  min-width: 44px;
+  min-height: 44px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background-color: var(--surface-15);
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: calc(18px * var(--scale));
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+  .dg-cart-line__step:hover:not(:disabled) {
+    background-image: linear-gradient(var(--surface-15), var(--surface-15));
+  }
+}
+
+.dg-cart-line__step:active:not(:disabled) {
+  background-image: linear-gradient(var(--surface-3), var(--surface-3));
+}
+
+.dg-cart-line__step:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.dg-cart-line__quantity {
+  min-width: calc(34px * var(--scale));
+  color: var(--text-1);
+  font-size: calc(17px * var(--scale));
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}

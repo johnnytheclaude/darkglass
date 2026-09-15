@@ -7,6 +7,9 @@ export interface ShowcaseDemo {
   note?: string
   /** Svisle místo vedle sebe (hodí se u prvků na celou šířku). */
   stack?: boolean
+  /** Přes celou šířku rejstříku — pro široké prvky (stavová lišta, košík),
+      které by se do sloupce mřížky nevešly a přetekly by přes sousedy. */
+  wide?: boolean
   render: () => ReactNode
 }
 

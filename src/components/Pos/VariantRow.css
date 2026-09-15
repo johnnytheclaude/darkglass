@@ -1,0 +1,59 @@
+/* Row / Varianta a Row / Varianta Aktivní — § Pokladna · prodej.
+   Návrh: výška 58 px, rádius 12, odsazení 0 16, mezera 12 px, text 16 px;
+   běžná ztlumená (--text-muted), aktivní na akcentu a tučná. */
+
+.dg-variant-row {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(58px * var(--scale));
+  padding: calc(6px * var(--scale)) calc(16px * var(--scale));
+  border-radius: var(--r-sm);
+  background-color: var(--surface-05);
+  gap: calc(12px * var(--scale));
+  font-size: calc(16px * var(--scale));
+  line-height: 1.25;
+}
+
+.dg-variant-row__variant {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-variant-row__note {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--accent);
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Počet drží vpravo a nikdy se nezlomí — na dotykovém displeji se čte první. */
+.dg-variant-row__count {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.dg-variant-row.is-active {
+  background-color: var(--accent-soft);
+}
+
+.dg-variant-row.is-active .dg-variant-row__variant {
+  color: var(--text-1);
+  font-weight: 700;
+}
+
+.dg-variant-row.is-active .dg-variant-row__count {
+  color: var(--text-1);
+}

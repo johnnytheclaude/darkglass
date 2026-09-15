@@ -1,0 +1,110 @@
+/* Tile / Product — § Pokladna · prodej.
+   Návrh: 190 × 150 px, rádius 16, odsazení 16 px, název 17 px / 600 / -0,2 px,
+   cena 16 px, akce 12 px / 700 v akcentu, stará cena 15 px ztlumená.
+   Šířka je výchozí, ne vynucená — mřížka prodejní obrazovky si dlaždici
+   roztáhne, aby na širokém displeji nezbývalo prázdno. */
+
+.dg-product-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: calc(190px * var(--scale));
+  max-width: 100%;
+  min-height: calc(150px * var(--scale));
+  padding: calc(16px * var(--scale));
+  border: 0;
+  border-radius: var(--r-md);
+  background-color: var(--surface-05);
+  color: var(--text-1);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dg-product-tile__name {
+  display: -webkit-box;
+  width: 100%;
+  overflow: hidden;
+  color: var(--text-1);
+  font-size: calc(17px * var(--scale));
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  line-height: 1.25;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* Cena sedí u dolní hrany dlaždice bez ohledu na délku názvu. */
+.dg-product-tile__sale {
+  width: 100%;
+  margin-top: auto;
+  overflow: hidden;
+  color: var(--accent);
+  font-size: calc(12px * var(--scale));
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-product-tile__price {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: calc(8px * var(--scale));
+  flex-wrap: wrap;
+}
+
+.dg-product-tile__name + .dg-product-tile__price {
+  margin-top: auto;
+  padding-top: calc(8px * var(--scale));
+}
+
+.dg-product-tile__old {
+  color: var(--text-3);
+  font-size: calc(15px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-product-tile__value {
+  color: var(--text-2);
+  font-size: calc(16px * var(--scale));
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* V akci je zvýrazněná cena — návrh ji dává tučně vedle přeškrtnuté staré. */
+.dg-product-tile__old + .dg-product-tile__value {
+  font-weight: 600;
+}
+
+.dg-product-tile.is-selected {
+  background-color: var(--accent-soft);
+}
+
+@media (hover: hover) {
+  .dg-product-tile:hover:not(:disabled) {
+    background-image: linear-gradient(var(--surface-15), var(--surface-15));
+  }
+}
+
+.dg-product-tile:active:not(:disabled) {
+  background-image: linear-gradient(var(--surface-3), var(--surface-3));
+}
+
+.dg-product-tile:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.dg-product-tile:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dg-product-tile {
+    transition: background-color 120ms ease, background-image 120ms ease;
+  }
+}
