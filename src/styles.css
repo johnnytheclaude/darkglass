@@ -207,3 +207,83 @@
     --neutral-text: color-mix(in srgb, var(--neutral) 85%, #ffffff);
   }
 }
+
+/* Text na PLNÉ výplni ladění (task #513). Bílý popisek (--text-on-color) drží
+   4,5:1 jen na dost tmavé výplni — na zelené vychází 2,0:1 a na oranžové
+   2,1:1 v tmavém motivu, tedy hluboko pod hranicí. Zelená, oranžová a oranžová
+   Sandboxu jsou v návrhu světlé barvy a zesvětlit text nejde, proto nesou tmavý
+   inkoust; modrá, červená, fialová a šedá si bílý popisek nechávají a tam, kde
+   na 4,5:1 nedosáhly, se výplň jen o kousek prohloubí — odstín ladění zůstává,
+   mění se pouze světlost.
+
+   Komponenta proto barvu textu na výplni neurčuje sama: bere dvojici
+   --<ladění>-fill (čím se vyplňuje) + --on-<ladění> (čím se na tom píše).
+   Hodnoty hlídá scratch/t510-check.cjs — měří složený podklad přes celý
+   showcase v obou motivech. Patří to sem, ne do generovaného tokens.css. */
+:root,
+[data-theme="light"] {
+  --on-color-ink: #14171c;
+
+  --accent-fill: var(--accent);
+  --on-accent: var(--text-on-color);
+  --success-fill: var(--success);
+  --on-success: var(--on-color-ink);
+  --warning-fill: var(--warning);
+  --on-warning: var(--on-color-ink);
+  --danger-fill: var(--danger);
+  --on-danger: var(--text-on-color);
+  --purple-fill: var(--purple);
+  --on-purple: var(--text-on-color);
+  --neutral-fill: color-mix(in srgb, var(--neutral) 90%, #000000);
+  --on-neutral: var(--text-on-color);
+  --orange-fill: var(--fill-orange);
+  --on-orange: var(--on-color-ink);
+
+  /* Paleta avatarů je ve světlém motivu na bílé iniciály moc světlá
+     (nejsvětlejší z pětice 3,2:1); prohlubuje se celá, ať drží pohromadě. */
+  --avatar-1-fill: color-mix(in srgb, var(--avatar-1) 78%, #000000);
+  --avatar-2-fill: color-mix(in srgb, var(--avatar-2) 78%, #000000);
+  --avatar-3-fill: color-mix(in srgb, var(--avatar-3) 78%, #000000);
+  --avatar-4-fill: color-mix(in srgb, var(--avatar-4) 78%, #000000);
+  --avatar-5-fill: color-mix(in srgb, var(--avatar-5) 78%, #000000);
+}
+
+[data-theme="dark"] {
+  --accent-fill: color-mix(in srgb, var(--accent) 84%, #000000);
+  --on-accent: var(--text-on-color);
+  --success-fill: var(--success);
+  --on-success: var(--on-color-ink);
+  --warning-fill: var(--warning);
+  --on-warning: var(--on-color-ink);
+  --danger-fill: color-mix(in srgb, var(--danger) 82%, #000000);
+  --on-danger: var(--text-on-color);
+  --purple-fill: color-mix(in srgb, var(--purple) 83%, #000000);
+  --on-purple: var(--text-on-color);
+  --neutral-fill: color-mix(in srgb, var(--neutral) 79%, #000000);
+  --on-neutral: var(--text-on-color);
+  --orange-fill: var(--fill-orange);
+  --on-orange: var(--on-color-ink);
+
+  /* V tmavém motivu je paleta avatarů tmavá sama o sobě (nejhorší 5,7:1). */
+  --avatar-1-fill: var(--avatar-1);
+  --avatar-2-fill: var(--avatar-2);
+  --avatar-3-fill: var(--avatar-3);
+  --avatar-4-fill: var(--avatar-4);
+  --avatar-5-fill: var(--avatar-5);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --accent-fill: color-mix(in srgb, var(--accent) 84%, #000000);
+    --success-fill: var(--success);
+    --warning-fill: var(--warning);
+    --danger-fill: color-mix(in srgb, var(--danger) 82%, #000000);
+    --purple-fill: color-mix(in srgb, var(--purple) 83%, #000000);
+    --neutral-fill: color-mix(in srgb, var(--neutral) 79%, #000000);
+    --avatar-1-fill: var(--avatar-1);
+    --avatar-2-fill: var(--avatar-2);
+    --avatar-3-fill: var(--avatar-3);
+    --avatar-4-fill: var(--avatar-4);
+    --avatar-5-fill: var(--avatar-5);
+  }
+}

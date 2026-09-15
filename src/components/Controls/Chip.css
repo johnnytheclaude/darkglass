@@ -4,8 +4,11 @@
    surface-3, počítadlo s odznakem v akcentu (12,5/700). */
 
 .dg-chip {
-  --chip-fill: var(--accent);
+  --chip-fill: var(--accent-fill);
+  --chip-on: var(--on-accent);
+  --chip-inset: #00000029;
   --chip-soft: var(--accent-soft);
+  --chip-tone-text: var(--accent-text);
   --chip-text: var(--text-2);
 
   display: inline-flex;
@@ -30,28 +33,40 @@
 }
 
 .dg-chip--accent {
-  --chip-fill: var(--accent);
+  --chip-fill: var(--accent-fill);
+  --chip-on: var(--on-accent);
   --chip-soft: var(--accent-soft);
+  --chip-tone-text: var(--accent-text);
 }
 
 .dg-chip--purple {
-  --chip-fill: var(--purple);
+  --chip-fill: var(--purple-fill);
+  --chip-on: var(--on-purple);
   --chip-soft: var(--purple-soft);
+  --chip-tone-text: var(--purple-text);
 }
 
 .dg-chip--success {
-  --chip-fill: var(--success);
+  --chip-fill: var(--success-fill);
+  --chip-on: var(--on-success);
+  --chip-inset: #ffffff5c;
   --chip-soft: var(--success-soft);
+  --chip-tone-text: var(--success-text);
 }
 
 .dg-chip--warning {
-  --chip-fill: var(--warning);
+  --chip-fill: var(--warning-fill);
+  --chip-on: var(--on-warning);
+  --chip-inset: #ffffff5c;
   --chip-soft: var(--warning-soft);
+  --chip-tone-text: var(--warning-text);
 }
 
 .dg-chip--danger {
-  --chip-fill: var(--danger);
+  --chip-fill: var(--danger-fill);
+  --chip-on: var(--on-danger);
   --chip-soft: var(--danger-soft);
+  --chip-tone-text: var(--danger-text);
 }
 
 .dg-chip__label {
@@ -69,7 +84,7 @@
 
 .dg-chip.is-selected {
   background-color: var(--chip-fill);
-  color: var(--text-on-color);
+  color: var(--chip-on);
 }
 
 .dg-chip:disabled {
@@ -105,14 +120,17 @@
   padding: 0 calc(9px * var(--scale));
   border-radius: var(--r-pill);
   background-color: var(--chip-fill);
-  color: var(--text-on-color);
+  color: var(--chip-on);
   font-size: calc(12.5px * var(--scale));
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
 
+/* Odznak ve vybraném štítku je vrstva nad výplní: u ladění s bílým popiskem
+   ztmavuje (jinak by bílá čtyřka spadla na 3,8:1), u ladění s tmavým popiskem
+   naopak prosvětluje. --surface-3 by v tmavém motivu prosvětloval vždycky. */
 .dg-chip.is-selected .dg-chip__count {
-  background-color: var(--surface-3);
+  background-color: var(--chip-inset);
 }
 
 /* Odstranitelný — statická pilulka v měkkém tónu, křížek je vlastní tlačítko. */
@@ -123,7 +141,7 @@
 .dg-chip--removable {
   padding: 0 calc(8px * var(--scale)) 0 calc(14px * var(--scale));
   background-color: var(--chip-soft);
-  color: var(--chip-fill);
+  color: var(--chip-tone-text);
 }
 
 .dg-chip__remove {

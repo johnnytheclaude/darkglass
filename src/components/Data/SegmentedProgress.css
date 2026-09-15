@@ -27,23 +27,23 @@
   display: block;
   flex: 0 0 auto;
   height: 100%;
-  background: var(--accent);
+  background: var(--accent-fill);
 }
 
 .dg-segmented-progress__seg--success {
-  background: var(--success);
+  background: var(--success-fill);
 }
 
 .dg-segmented-progress__seg--warning {
-  background: var(--warning);
+  background: var(--warning-fill);
 }
 
 .dg-segmented-progress__seg--danger {
-  background: var(--danger);
+  background: var(--danger-fill);
 }
 
 .dg-segmented-progress__seg--neutral {
-  background: var(--neutral);
+  background: var(--neutral-fill);
 }
 
 .dg-segmented-progress__legend {
@@ -67,23 +67,23 @@
   width: calc(10px * var(--scale));
   height: calc(10px * var(--scale));
   border-radius: calc(3px * var(--scale));
-  background: var(--accent);
+  background: var(--accent-fill);
 }
 
 .dg-segmented-progress__swatch--success {
-  background: var(--success);
+  background: var(--success-fill);
 }
 
 .dg-segmented-progress__swatch--warning {
-  background: var(--warning);
+  background: var(--warning-fill);
 }
 
 .dg-segmented-progress__swatch--danger {
-  background: var(--danger);
+  background: var(--danger-fill);
 }
 
 .dg-segmented-progress__swatch--neutral {
-  background: var(--neutral);
+  background: var(--neutral-fill);
 }
 
 .dg-segmented-progress__label {

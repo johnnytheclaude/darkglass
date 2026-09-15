@@ -39,7 +39,7 @@
 }
 
 .dg-action-tile--primary {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
   color: var(--text-on-color);
 }
 

@@ -47,24 +47,28 @@
   width: calc(30px * var(--scale));
   height: calc(30px * var(--scale));
   border-radius: var(--r-pill);
-  background: var(--neutral);
-  color: var(--text-on-color);
+  background: var(--neutral-fill);
+  color: var(--on-neutral);
 }
 
 .dg-timeline__event--accent .dg-timeline__dot {
-  background: var(--accent);
+  background: var(--accent-fill);
+  color: var(--on-accent);
 }
 
 .dg-timeline__event--success .dg-timeline__dot {
-  background: var(--success);
+  background: var(--success-fill);
+  color: var(--on-success);
 }
 
 .dg-timeline__event--warning .dg-timeline__dot {
-  background: var(--warning);
+  background: var(--warning-fill);
+  color: var(--on-warning);
 }
 
 .dg-timeline__event--danger .dg-timeline__dot {
-  background: var(--danger);
+  background: var(--danger-fill);
+  color: var(--on-danger);
 }
 
 .dg-timeline__line {

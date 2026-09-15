@@ -178,7 +178,7 @@
   width: calc(36px * var(--scale));
   height: calc(36px * var(--scale));
   border-radius: var(--r-pill);
-  background-color: var(--avatar-1);
+  background-color: var(--avatar-1-fill);
   color: var(--text-on-color);
   font-size: calc(13.5px * var(--scale));
   font-weight: 600;

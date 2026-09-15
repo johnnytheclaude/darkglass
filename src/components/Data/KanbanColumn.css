@@ -97,23 +97,23 @@
   width: calc(7px * var(--scale));
   height: calc(7px * var(--scale));
   border-radius: var(--r-pill);
-  background: var(--neutral);
+  background: var(--neutral-fill);
 }
 
 .dg-kanban-card__badge--accent .dg-kanban-card__dot {
-  background: var(--accent);
+  background: var(--accent-fill);
 }
 
 .dg-kanban-card__badge--success .dg-kanban-card__dot {
-  background: var(--success);
+  background: var(--success-fill);
 }
 
 .dg-kanban-card__badge--warning .dg-kanban-card__dot {
-  background: var(--warning);
+  background: var(--warning-fill);
 }
 
 .dg-kanban-card__badge--danger .dg-kanban-card__dot {
-  background: var(--danger);
+  background: var(--danger-fill);
 }
 
 .dg-kanban-card__trailing {

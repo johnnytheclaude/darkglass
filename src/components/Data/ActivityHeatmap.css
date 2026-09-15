@@ -53,7 +53,7 @@
 }
 
 .dg-heatmap__cell--l2 {
-  background: var(--accent);
+  background: var(--accent-fill);
 }
 
 .dg-heatmap__legend {
@@ -84,5 +84,5 @@
 }
 
 .dg-heatmap__swatch--l2 {
-  background: var(--accent);
+  background: var(--accent-fill);
 }

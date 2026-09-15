@@ -25,7 +25,7 @@
 }
 
 .dg-category-chip.is-selected {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
   color: var(--text-on-color);
 }
 

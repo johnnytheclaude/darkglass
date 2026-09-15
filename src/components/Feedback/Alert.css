@@ -89,7 +89,8 @@
 
 .dg-alert--info .dg-alert__tile,
 .dg-alert--info .dg-alert__action {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
+  color: var(--on-accent);
 }
 
 .dg-alert--success {
@@ -100,7 +101,8 @@
 
 .dg-alert--success .dg-alert__tile,
 .dg-alert--success .dg-alert__action {
-  background-color: var(--success);
+  background-color: var(--success-fill);
+  color: var(--on-success);
 }
 
 .dg-alert--warning {
@@ -111,7 +113,8 @@
 
 .dg-alert--warning .dg-alert__tile,
 .dg-alert--warning .dg-alert__action {
-  background-color: var(--warning);
+  background-color: var(--warning-fill);
+  color: var(--on-warning);
 }
 
 .dg-alert--danger {
@@ -122,5 +125,6 @@
 
 .dg-alert--danger .dg-alert__tile,
 .dg-alert--danger .dg-alert__action {
-  background-color: var(--danger);
+  background-color: var(--danger-fill);
+  color: var(--on-danger);
 }

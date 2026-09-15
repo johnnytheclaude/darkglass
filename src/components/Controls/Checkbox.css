@@ -52,7 +52,7 @@
 }
 
 .dg-check__input:checked ~ .dg-check__box {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
 }
 
 .dg-check__input:checked ~ .dg-check__box > svg {

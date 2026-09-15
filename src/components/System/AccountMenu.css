@@ -35,7 +35,7 @@
   width: calc(40px * var(--scale));
   height: calc(40px * var(--scale));
   border-radius: var(--r-pill);
-  background-color: var(--avatar-1);
+  background-color: var(--avatar-1-fill);
   color: var(--text-on-color);
   font-size: calc(14px * var(--scale));
   font-weight: 600;

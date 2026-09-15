@@ -24,7 +24,7 @@
   width: calc(48px * var(--scale));
   height: calc(48px * var(--scale));
   border-radius: calc(14px * var(--scale));
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
   color: var(--text-on-color);
   font-size: calc(18px * var(--scale));
   font-weight: 700;

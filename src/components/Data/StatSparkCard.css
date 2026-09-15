@@ -52,5 +52,5 @@
 }
 
 .dg-stat-spark__bar--on {
-  background: var(--accent);
+  background: var(--accent-fill);
 }

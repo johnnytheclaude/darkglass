@@ -54,7 +54,7 @@
 }
 
 .dg-daily-bars__bar--on {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
 }
 
 .dg-daily-bars__label {

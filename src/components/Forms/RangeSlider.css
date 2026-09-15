@@ -61,7 +61,7 @@
   top: 50%;
   height: calc(8px * var(--scale));
   border-radius: var(--r-pill);
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
   transform: translateY(-50%);
 }
 

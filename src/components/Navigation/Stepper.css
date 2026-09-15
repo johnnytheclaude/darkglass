@@ -40,7 +40,7 @@
 
 .dg-stepper__step.is-done .dg-stepper__line,
 .dg-stepper__step.is-current .dg-stepper__line {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
 }
 
 .dg-stepper__body {
@@ -89,7 +89,7 @@ button.dg-stepper__body:focus-visible {
 }
 
 .dg-stepper__step.is-done .dg-stepper__circle {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
   color: var(--text-on-color);
 }
 

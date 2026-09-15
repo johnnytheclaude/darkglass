@@ -45,7 +45,7 @@
 }
 
 .dg-list-row__check.is-selected {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
 }
 
 .dg-list-row__tile {
@@ -60,23 +60,28 @@
 }
 
 .dg-list-row__tile--danger {
-  background-color: var(--danger);
+  background-color: var(--danger-fill);
+  color: var(--on-danger);
 }
 
 .dg-list-row__tile--warning {
-  background-color: var(--warning);
+  background-color: var(--warning-fill);
+  color: var(--on-warning);
 }
 
 .dg-list-row__tile--info {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
+  color: var(--on-accent);
 }
 
 .dg-list-row__tile--success {
-  background-color: var(--success);
+  background-color: var(--success-fill);
+  color: var(--on-success);
 }
 
 .dg-list-row__tile--purple {
-  background-color: var(--purple);
+  background-color: var(--purple-fill);
+  color: var(--on-purple);
 }
 
 .dg-list-row__tile--neutral {

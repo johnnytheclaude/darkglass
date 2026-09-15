@@ -56,5 +56,5 @@
   min-width: calc(8px * var(--scale));
   height: calc(26px * var(--scale));
   border-radius: var(--r-xs);
-  background: var(--accent);
+  background: var(--accent-fill);
 }

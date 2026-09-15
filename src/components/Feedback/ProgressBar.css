@@ -47,17 +47,17 @@
 .dg-progress__fill {
   height: 100%;
   border-radius: var(--r-pill);
-  background-color: var(--success);
+  background-color: var(--success-fill);
 }
 
 .dg-progress--accent .dg-progress__fill {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
 }
 
 .dg-progress--warning .dg-progress__fill {
-  background-color: var(--warning);
+  background-color: var(--warning-fill);
 }
 
 .dg-progress--danger .dg-progress__fill {
-  background-color: var(--danger);
+  background-color: var(--danger-fill);
 }

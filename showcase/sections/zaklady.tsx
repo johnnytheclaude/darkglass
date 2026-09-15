@@ -203,7 +203,7 @@ export const section: ShowcaseSection = {
                 width: 44,
                 height: 44,
                 borderRadius: 'var(--r-pill)',
-                backgroundColor: `var(${a.token})`,
+                backgroundColor: `var(${a.token}-fill)`,
                 color: 'var(--text-on-color)',
                 display: 'grid',
                 placeItems: 'center',

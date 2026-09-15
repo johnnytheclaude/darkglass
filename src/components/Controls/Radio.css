@@ -52,7 +52,7 @@
 }
 
 .dg-radio__input:checked ~ .dg-radio__box {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
 }
 
 .dg-radio__input:checked ~ .dg-radio__box .dg-radio__dot {

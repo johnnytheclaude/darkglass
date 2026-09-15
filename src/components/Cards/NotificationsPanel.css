@@ -157,19 +157,23 @@ button.dg-notification__row:focus-visible {
 }
 
 .dg-notification__tile--danger {
-  background-color: var(--danger);
+  background-color: var(--danger-fill);
+  color: var(--on-danger);
 }
 
 .dg-notification__tile--warning {
-  background-color: var(--warning);
+  background-color: var(--warning-fill);
+  color: var(--on-warning);
 }
 
 .dg-notification__tile--accent {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
+  color: var(--on-accent);
 }
 
 .dg-notification__tile--success {
-  background-color: var(--success);
+  background-color: var(--success-fill);
+  color: var(--on-success);
 }
 
 .dg-notification__tile--neutral {

@@ -94,8 +94,8 @@
 
 /* Varianty */
 .dg-button--primary {
-  background-color: var(--accent);
-  color: var(--text-on-color);
+  background-color: var(--accent-fill);
+  color: var(--on-accent);
 }
 
 .dg-button--secondary {
@@ -125,8 +125,8 @@
 }
 
 .dg-button--danger {
-  background-color: var(--danger);
-  color: var(--text-on-color);
+  background-color: var(--danger-fill);
+  color: var(--on-danger);
 }
 
 .dg-button--danger-soft {
@@ -135,8 +135,8 @@
 }
 
 .dg-button--success {
-  background-color: var(--success);
-  color: var(--text-on-color);
+  background-color: var(--success-fill);
+  color: var(--on-success);
 }
 
 /* Btn / Back (§ Pokladna · provoz a doklady) — jediná varianta, která není

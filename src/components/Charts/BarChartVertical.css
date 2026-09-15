@@ -80,7 +80,7 @@
 }
 
 .dg-bars-v__bar--on {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
 }
 
 .dg-bars-v__label {

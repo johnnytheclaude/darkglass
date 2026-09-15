@@ -45,8 +45,8 @@
   padding: 0 calc(20px * var(--scale));
   border: 0;
   border-radius: var(--r-pill);
-  background-color: var(--accent);
-  color: var(--text-on-color);
+  background-color: var(--accent-fill);
+  color: var(--on-accent);
   font-family: inherit;
   font-size: calc(13px * var(--scale));
   font-weight: 600;
@@ -101,19 +101,19 @@
 }
 
 .dg-progress-row__fill--accent {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
 }
 
 .dg-progress-row__fill--success {
-  background-color: var(--success);
+  background-color: var(--success-fill);
 }
 
 .dg-progress-row__fill--warning {
-  background-color: var(--warning);
+  background-color: var(--warning-fill);
 }
 
 .dg-progress-row__fill--danger {
-  background-color: var(--danger);
+  background-color: var(--danger-fill);
 }
 
 .dg-progress-row__fill--neutral {

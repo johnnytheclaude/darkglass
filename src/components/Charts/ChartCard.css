@@ -48,23 +48,23 @@
 
 /* Ladění série — sdílené všemi grafy sekce. */
 .dg-series--accent {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
 }
 
 .dg-series--purple {
-  background-color: var(--purple);
+  background-color: var(--purple-fill);
 }
 
 .dg-series--success {
-  background-color: var(--success);
+  background-color: var(--success-fill);
 }
 
 .dg-series--warning {
-  background-color: var(--warning);
+  background-color: var(--warning-fill);
 }
 
 .dg-series--danger {
-  background-color: var(--danger);
+  background-color: var(--danger-fill);
 }
 
 .dg-series--neutral {

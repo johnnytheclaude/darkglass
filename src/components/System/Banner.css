@@ -79,7 +79,8 @@
 }
 
 .dg-banner--warning .dg-banner__action {
-  background-color: var(--warning);
+  background-color: var(--warning-fill);
+  color: var(--on-warning);
 }
 
 .dg-banner--danger {
@@ -94,7 +95,8 @@
 }
 
 .dg-banner--danger .dg-banner__action {
-  background-color: var(--danger);
+  background-color: var(--danger-fill);
+  color: var(--on-danger);
 }
 
 .dg-banner--success {
@@ -109,7 +111,8 @@
 }
 
 .dg-banner--success .dg-banner__action {
-  background-color: var(--success);
+  background-color: var(--success-fill);
+  color: var(--on-success);
 }
 
 .dg-banner--accent {
@@ -124,5 +127,6 @@
 }
 
 .dg-banner--accent .dg-banner__action {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
+  color: var(--on-accent);
 }

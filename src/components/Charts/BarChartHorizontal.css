@@ -60,5 +60,5 @@
 }
 
 .dg-bars-h__fill--on {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
 }

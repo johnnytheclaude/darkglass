@@ -17,23 +17,23 @@
 }
 
 .dg-avatar--1 {
-  background-color: var(--avatar-1);
+  background-color: var(--avatar-1-fill);
 }
 
 .dg-avatar--2 {
-  background-color: var(--avatar-2);
+  background-color: var(--avatar-2-fill);
 }
 
 .dg-avatar--3 {
-  background-color: var(--avatar-3);
+  background-color: var(--avatar-3-fill);
 }
 
 .dg-avatar--4 {
-  background-color: var(--avatar-4);
+  background-color: var(--avatar-4-fill);
 }
 
 .dg-avatar--5 {
-  background-color: var(--avatar-5);
+  background-color: var(--avatar-5-fill);
 }
 
 /* Tečka stavu sedí v pravém dolním rohu a má prstenec v barvě plochy,
@@ -52,17 +52,17 @@
 }
 
 .dg-avatar__dot--online {
-  background-color: var(--success);
+  background-color: var(--success-fill);
 }
 
 .dg-avatar__dot--busy {
-  background-color: var(--danger);
+  background-color: var(--danger-fill);
 }
 
 .dg-avatar__dot--away {
-  background-color: var(--warning);
+  background-color: var(--warning-fill);
 }
 
 .dg-avatar__dot--offline {
-  background-color: var(--neutral);
+  background-color: var(--neutral-fill);
 }

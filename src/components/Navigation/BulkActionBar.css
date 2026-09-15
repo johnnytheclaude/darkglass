@@ -29,7 +29,7 @@
   padding: 0 calc(12px * var(--scale));
   min-height: calc(30px * var(--scale));
   border-radius: var(--r-pill);
-  background: var(--accent);
+  background: var(--accent-fill);
   color: var(--text-on-color);
   font-size: calc(13px * var(--scale));
   font-weight: 700;

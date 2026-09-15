@@ -155,7 +155,7 @@
 }
 
 .dg-table__check.is-selected {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
 }
 
 .dg-table__name {

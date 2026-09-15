@@ -52,7 +52,7 @@
 }
 
 .dg-switch__input:checked ~ .dg-switch__track {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
 }
 
 .dg-switch__input:checked ~ .dg-switch__track .dg-switch__knob {

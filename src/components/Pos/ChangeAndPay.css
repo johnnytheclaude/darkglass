@@ -48,7 +48,7 @@
   padding: 0 calc(16px * var(--scale));
   border: 0;
   border-radius: calc(18px * var(--scale));
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
   color: var(--text-on-color);
   font-family: inherit;
   font-size: calc(22px * var(--scale));

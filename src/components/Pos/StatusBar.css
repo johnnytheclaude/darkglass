@@ -181,8 +181,8 @@
   padding: 0 calc(16px * var(--scale));
   border: 0;
   border-radius: var(--r-pill);
-  background-color: var(--fill-orange);
-  color: var(--text-on-color);
+  background-color: var(--orange-fill);
+  color: var(--on-orange);
   font-family: inherit;
   font-size: calc(13.5px * var(--scale));
   font-weight: 600;

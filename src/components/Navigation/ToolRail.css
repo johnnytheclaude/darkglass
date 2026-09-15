@@ -66,8 +66,8 @@
 
 .dg-tool-rail__tool.is-primary .dg-tool-rail__btn,
 .dg-tool-rail__tool.is-primary:hover .dg-tool-rail__btn {
-  background-color: var(--accent);
-  color: var(--text-on-color);
+  background-color: var(--accent-fill);
+  color: var(--on-accent);
 }
 
 .dg-tool-rail__tool.is-primary .dg-tool-rail__label {
@@ -91,5 +91,5 @@
   width: calc(11px * var(--scale));
   height: calc(11px * var(--scale));
   border-radius: var(--r-pill);
-  background-color: var(--danger);
+  background-color: var(--danger-fill);
 }

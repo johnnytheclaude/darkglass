@@ -127,7 +127,7 @@
 .dg-calendar__day--selected,
 .dg-calendar__day--selected:hover:not(:disabled) {
   border-radius: var(--r-pill);
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
   color: var(--text-on-color);
   font-weight: 700;
 }

@@ -60,5 +60,5 @@
 }
 
 .dg-tabs-underline__tab.is-active .dg-tabs-underline__rule {
-  background-color: var(--accent);
+  background-color: var(--accent-fill);
 }
