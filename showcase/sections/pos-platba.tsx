@@ -160,6 +160,51 @@ function Pin() {
   )
 }
 
+/* Cena ruční položky (obrazovka Neznámý kód): nízká kalkulačková klávesnice
+   s desetinnou čárkou a vlastní dolní řadou — smazat vše, smazat znak a
+   přepočet ceny bez DPH na cenu s DPH. */
+function CenaPolozky() {
+  const [zadano, setZadano] = useState('199')
+  const cena = Number(zadano.replace(',', '.')) || 0
+  const bezDph = cena / 1.21
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 14, width: '100%', maxWidth: 430 }}>
+      <AmountDisplay label="Cena za kus" value={`${zadano === '' ? '0' : zadano} Kč`} />
+      <Numpad
+        variant="price"
+        keyboard={false}
+        onDigit={(znak) =>
+          setZadano((stav) => {
+            if (znak === ',' && stav.includes(',')) return stav
+            return (stav === '0' && znak !== ',' ? znak : stav + znak).slice(0, 9)
+          })
+        }
+        onDelete={() => setZadano((stav) => stav.slice(0, -1))}
+        actions={[
+          { key: 'C', label: 'C', tone: 'danger', ariaLabel: 'Smazat celou částku', onPress: () => setZadano('') },
+          { key: 'del', label: '⌫', ariaLabel: 'Smazat znak', onPress: () => setZadano((stav) => stav.slice(0, -1)) },
+          {
+            key: 'dph',
+            label: '+21 %',
+            tone: 'quiet',
+            ariaLabel: 'Přičíst DPH 21 %',
+            onPress: () => setZadano(String(Math.round(cena * 1.21 * 100) / 100).replace('.', ',')),
+          },
+        ]}
+      />
+      <PaymentBreakdown
+        label="Celkem"
+        total={castka(Math.round(cena))}
+        lines={[
+          { key: 'bez', label: 'Cena bez DPH', value: castka(Math.round(bezDph)) },
+          { key: 'dph', label: 'DPH 21 %', value: castka(Math.round(cena - bezDph)) },
+        ]}
+      />
+    </div>
+  )
+}
+
 const ZPUSOBY = [
   { key: 'hotove', label: 'Hotově' },
   { key: 'kartou', label: 'Kartou' },
@@ -243,6 +288,12 @@ export const section: ShowcaseSection = {
       stack: true,
       note: 'Menší klávesnice (88 × 80 px) pro přihlášení. Tečky ukazují jen počet zadaných číslic, nikdy PIN; čtečka přečte „Zadáno 2 ze 4 číslic“.',
       render: () => <Pin />,
+    },
+    {
+      title: 'Cena ruční položky — kalkulačková klávesnice',
+      stack: true,
+      note: 'Varianta `price`: nízké klávesy v kalkulačkovém pořadí (7 nahoře), desetinná čárka a vlastní dolní řada akcí. „C" maže celou částku, „⌫" znak, „+21 %" dopočítá cenu s DPH. Fyzickou klávesnici tahle ukázka schválně neposlouchá — patří klávesnicím výš.',
+      render: () => <CenaPolozky />,
     },
     {
       title: 'Způsoby platby',

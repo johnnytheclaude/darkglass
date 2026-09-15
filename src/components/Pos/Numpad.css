@@ -8,6 +8,8 @@
   --dg-numpad-h: 120px;
   --dg-numpad-fs: 34px;
   --dg-numpad-delete-fs: 15.3px;
+  --dg-numpad-radius: 18px;
+  --dg-numpad-gap: 12px;
 
   display: flex;
   flex-direction: column;
@@ -16,7 +18,7 @@
   /* Na úzké obrazovce se klávesnice vejde do šířky místo přetečení ven —
      klávesy se zúží (viz min-width u klávesy), řádky zůstanou po třech. */
   max-width: 100%;
-  gap: calc(12px * var(--scale));
+  gap: calc(var(--dg-numpad-gap) * var(--scale));
 }
 
 .dg-numpad--pin {
@@ -26,11 +28,29 @@
   --dg-numpad-delete-fs: 11.7px;
 }
 
+/* Cena do formuláře — klávesnice stojí vedle polí, takže je nízká a roztáhne
+   se do šířky panelu. Návrh: klávesa 56 px / písmo 22 px, rádius 16, mezera 10. */
+.dg-numpad--price {
+  --dg-numpad-w: 100px;
+  --dg-numpad-h: 56px;
+  --dg-numpad-fs: 22px;
+  --dg-numpad-radius: 16px;
+  --dg-numpad-gap: 10px;
+
+  width: 100%;
+}
+
+.dg-numpad--price .dg-numpad__key {
+  flex: 1 1 0;
+  width: auto;
+  background-color: var(--surface-15);
+}
+
 .dg-numpad__row {
   display: flex;
   flex-direction: row;
   width: 100%;
-  gap: calc(12px * var(--scale));
+  gap: calc(var(--dg-numpad-gap) * var(--scale));
 }
 
 .dg-numpad__key {
@@ -45,7 +65,7 @@
   min-width: 44px;
   height: calc(var(--dg-numpad-h) * var(--scale));
   border: 1px solid var(--border);
-  border-radius: calc(18px * var(--scale));
+  border-radius: calc(var(--dg-numpad-radius) * var(--scale));
   background-color: var(--surface-05);
   color: var(--text-1);
   font-family: inherit;
@@ -59,6 +79,20 @@
   transition: background-color 90ms ease-out;
   outline: 1px solid var(--border);
   outline-offset: -0.5px;
+}
+
+/* Pomocná klávesa dolní řady — tišší výplň než číslice, aby se do ní
+   obsluha netrefovala místo číslice. */
+.dg-numpad .dg-numpad__key--action {
+  background-color: var(--surface-05);
+}
+
+.dg-numpad .dg-numpad__key--quiet {
+  color: var(--text-2);
+}
+
+.dg-numpad .dg-numpad__key--danger {
+  color: var(--danger-text);
 }
 
 .dg-numpad__key--delete {

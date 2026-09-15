@@ -1,10 +1,25 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { HTMLAttributes, ReactNode, Ref } from 'react'
 
-export type NumpadVariant = 'payment' | 'pin'
+export type NumpadVariant = 'payment' | 'pin' | 'price'
+
+/** Klávesa v dolní řadě, kterou si obrazovka dodá sama (Smazat vše, DPH). */
+export interface NumpadAction {
+  key: string
+  label: ReactNode
+  /** `danger` maže vše, `quiet` je tichá pomocná klávesa. */
+  tone?: 'danger' | 'quiet'
+  ariaLabel?: string
+  disabled?: boolean
+  onPress: () => void
+}
 
 export interface NumpadProps extends HTMLAttributes<HTMLDivElement> {
-  /** `payment` = klávesy 120 px se `00`, `pin` = 88 px s prázdným místem. */
+  /**
+   * `payment` = klávesy 120 px se `00`, `pin` = 88 px s prázdným místem,
+   * `price` = nízká kalkulačková klávesnice (7 nahoře) s `00` a desetinnou
+   * čárkou pro zadání ceny do formuláře.
+   */
   variant?: NumpadVariant
   /** Stisk číslice (i z fyzické klávesnice). */
   onDigit?: (digit: string) => void
@@ -19,6 +34,12 @@ export interface NumpadProps extends HTMLAttributes<HTMLDivElement> {
    */
   keyboard?: boolean
   disabled?: boolean
+  /**
+   * Dolní řada vlastních kláves (nejvýš tři) — patří sem akce, které nejsou
+   * číslice: smazání celé částky, mazání znaku, přepočet DPH. Bez nich se
+   * řada nekreslí.
+   */
+  actions?: NumpadAction[]
   ref?: Ref<HTMLDivElement>
 }
 
@@ -37,6 +58,14 @@ const ROWS: Record<NumpadVariant, string[][]> = {
     ['4', '5', '6'],
     ['7', '8', '9'],
     [EMPTY, '0', DELETE],
+  ],
+  // Cena se píše kalkulačkovým pořadím (7 nahoře) — tak ji kreslí návrh
+  // obrazovky Neznámý kód a tak ji má obsluha v ruce z kalkulačky.
+  price: [
+    ['7', '8', '9'],
+    ['4', '5', '6'],
+    ['1', '2', '3'],
+    ['0', '00', ','],
   ],
 }
 
@@ -78,6 +107,7 @@ export function Numpad({
   deleteLabel = 'Smazat',
   keyboard = true,
   disabled = false,
+  actions,
   className,
   ...rest
 }: NumpadProps) {
@@ -162,6 +192,32 @@ export function Numpad({
           })}
         </div>
       ))}
+      {actions?.length ? (
+        <div className="dg-numpad__row">
+          {actions.map((action) => (
+            <button
+              key={action.key}
+              type="button"
+              className={[
+                'dg-numpad__key',
+                'dg-numpad__key--action',
+                action.tone ? 'dg-numpad__key--' + action.tone : null,
+                pressed === action.key ? 'is-pressed' : null,
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              disabled={disabled || action.disabled}
+              aria-label={action.ariaLabel}
+              onClick={() => {
+                flash(action.key)
+                action.onPress()
+              }}
+            >
+              {action.label}
+            </button>
+          ))}
+        </div>
+      ) : null}
     </div>
   )
 }

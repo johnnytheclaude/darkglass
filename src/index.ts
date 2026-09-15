@@ -210,7 +210,7 @@ export type { MenuTileProps, MenuTileTone } from './components/Pos/MenuTile'
 export { NoteRow } from './components/Pos/NoteRow'
 export type { NoteRowProps } from './components/Pos/NoteRow'
 export { Numpad } from './components/Pos/Numpad'
-export type { NumpadProps, NumpadVariant } from './components/Pos/Numpad'
+export type { NumpadAction, NumpadProps, NumpadVariant } from './components/Pos/Numpad'
 export { PaymentBreakdown } from './components/Pos/PaymentBreakdown'
 export type {
   PaymentBreakdownProps,
