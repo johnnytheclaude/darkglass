@@ -40,6 +40,11 @@ export interface StatusBarProps extends HTMLAttributes<HTMLDivElement> {
   onIdentityClick?: () => void
   /** Popis identity pro čtečku, když je z ní tlačítko („otevřít menu“). */
   identityLabel?: string
+  /**
+   * Lišta ztichne — obsah zprůhlední, místo zůstane. Používá se, když přes
+   * lištu leží hlášení (toast) a text by se s ním křížil.
+   */
+  quiet?: boolean
   ref?: Ref<HTMLDivElement>
 }
 
@@ -66,6 +71,7 @@ export function StatusBar({
   sandbox,
   onIdentityClick,
   identityLabel,
+  quiet = false,
   className,
   children,
   ...rest
@@ -79,7 +85,10 @@ export function StatusBar({
   )
 
   const bar = (
-    <div className={['dg-status-bar', className].filter(Boolean).join(' ')} {...rest}>
+    <div
+      className={['dg-status-bar', quiet ? 'is-quiet' : null, className].filter(Boolean).join(' ')}
+      {...rest}
+    >
       {onIdentityClick ? (
         <button
           type="button"

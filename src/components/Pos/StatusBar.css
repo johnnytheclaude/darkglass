@@ -26,6 +26,11 @@
   line-height: 1.25;
 }
 
+/* Ztichlá lišta drží své místo — jen text zmizí, aby se nekřížil s hlášením. */
+.dg-status-bar.is-quiet > * {
+  visibility: hidden;
+}
+
 /* Identita se zkracuje, aby stavy vpravo měly vždy místo — bez min-width: 0
    by flexový prvek odmítl zmenšit a lišta by přetekla. */
 .dg-status-bar__identity {
