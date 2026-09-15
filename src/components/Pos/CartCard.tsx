@@ -68,7 +68,9 @@ export interface CartLineProps extends HTMLAttributes<HTMLDivElement> {
 
 /**
  * Řádek účtu v Cart Lines — název s poznámkou, cena a krokovač množství.
- * Tlačítka krokovače mají 44 px, aby se trefila prstem.
+ * Tlačítka krokovače mají 44 px, aby se trefila prstem. Klik na ně se dál
+ * nešíří — řádek bývá sám klikatelný (detail položky) a krokovač by ho
+ * otevíral při každé změně množství.
  */
 export function CartLine({
   name,
@@ -95,7 +97,10 @@ export function CartLine({
             <button
               type="button"
               className="dg-cart-line__step"
-              onClick={onDecrease}
+              onClick={(event) => {
+                event.stopPropagation()
+                onDecrease()
+              }}
               aria-label={decreaseLabel}
             >
               −
@@ -106,7 +111,10 @@ export function CartLine({
             <button
               type="button"
               className="dg-cart-line__step"
-              onClick={onIncrease}
+              onClick={(event) => {
+                event.stopPropagation()
+                onIncrease()
+              }}
               aria-label={increaseLabel}
             >
               +
