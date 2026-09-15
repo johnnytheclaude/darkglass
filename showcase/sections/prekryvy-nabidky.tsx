@@ -274,6 +274,13 @@ export const section: ShowcaseSection = {
       render: () => <UkazkaDialogu />,
     },
     {
+      title: 'Potvrzovací dialog s volbou',
+      note: 'Když se potvrzení musí ještě na něco zeptat (důvod), stojí volba v těle dialogu a potvrzení je zakázané, dokud není vybraná.',
+      stack: true,
+      wide: true,
+      render: () => <UkazkaDialoguSVolbou />,
+    },
+    {
       title: 'Dialog s formulářem a nevratnou akcí',
       note: 'Odstranit stojí samo vlevo, Uložit vpravo — mezi nimi je Zrušit. Klik na Odstranit se ještě zeptá; Escape dialog zavře.',
       stack: true,
