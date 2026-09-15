@@ -53,11 +53,16 @@ a.dg-sidebar__item {
   text-decoration: none;
 }
 
-/* Druhá úroveň: návrh ji kreslí nižší (34) s rádiusem 10 a písmem 13,5. */
+/* Druhá úroveň: návrh ji kreslí nižší (34) s rádiusem 9, písmem 13,5 a
+   odsazenou pod popisek hlavní položky (41 = 10 padding + 18 ikona + 11 mezera),
+   takže podpoložky stojí v jedné ose s texty sekcí. */
 .dg-sidebar__item--sub {
+  padding-left: calc(41px * var(--scale));
   min-height: calc(34px * var(--scale));
-  border-radius: calc(10px * var(--scale));
+  border-radius: calc(9px * var(--scale));
+  color: var(--text-2);
   font-size: calc(13.5px * var(--scale));
+  font-weight: 400;
   gap: calc(10px * var(--scale));
 }
 
@@ -108,6 +113,104 @@ a.dg-sidebar__item {
   color: var(--text-1);
   font-size: calc(11.5px * var(--scale));
   font-weight: 700;
+}
+
+/* Akcent patří sekci, ve které člověk je; otevřená podpoložka se jen ztiší
+   podkladem, jinak by v panelu svítily dvě modré položky nad sebou. */
+.dg-sidebar__item--sub.is-active,
+.dg-sidebar__item--sub.is-active:hover {
+  background: var(--surface-15);
+  color: var(--text-1);
+  font-weight: 600;
+}
+
+/* Sekce i její podpoložky stojí přímo v panelu — obal jen drží pohromadě,
+   mezery mezi položkami dělá `gap` panelu. */
+.dg-sidebar__section,
+.dg-sidebar__subitems {
+  display: contents;
+}
+
+/* Výplň mezi položkami a patou panelu. */
+.dg-sidebar__spacer {
+  flex: 1 1 auto;
+}
+
+/* Karta firmy — znak 34 px s rádiusem 10, název 14,5/600 a pod ním aplikace. */
+.dg-sidebar__brand {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: calc(6px * var(--scale)) calc(6px * var(--scale)) calc(14px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  gap: calc(10px * var(--scale));
+}
+
+.dg-sidebar__brand-mark {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: calc(34px * var(--scale));
+  height: calc(34px * var(--scale));
+  border-radius: calc(10px * var(--scale));
+  background: var(--surface-3);
+  color: var(--text-1);
+}
+
+.dg-sidebar__brand-mark img,
+.dg-sidebar__brand-mark svg {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.dg-sidebar__brand-texts {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 1px;
+}
+
+.dg-sidebar__brand-name {
+  overflow: hidden;
+  color: var(--text-1);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-sidebar__brand-app {
+  color: var(--text-3);
+  font-size: calc(11.5px * var(--scale));
+  font-weight: 400;
+}
+
+/* Pata panelu — v jakém režimu aplikace běží. */
+.dg-sidebar__note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  box-sizing: border-box;
+  padding: calc(13px * var(--scale)) calc(16px * var(--scale));
+  width: 100%;
+  border-radius: var(--r-sm);
+  background: var(--surface-05);
+  font-size: calc(12.5px * var(--scale));
+  gap: calc(8px * var(--scale));
+}
+
+.dg-sidebar__note-label {
+  flex: 0 0 auto;
+  color: var(--text-2);
+  font-weight: 700;
+}
+
+.dg-sidebar__note-text {
+  color: var(--text-3);
+  font-weight: 400;
 }
 
 /* Na aktivní položce by odznak v jemné šedi zmizel v akcentu. */

@@ -7,7 +7,21 @@ import {
   CommandPalette,
 } from '../../src/components/Navigation/CommandPalette'
 import { PageHeader } from '../../src/components/Navigation/PageHeader'
-import { Sidebar, SidebarGroup, SidebarItem } from '../../src/components/Navigation/Sidebar'
+import {
+  Sidebar,
+  SidebarBrand,
+  SidebarGroup,
+  SidebarItem,
+  SidebarNote,
+  SidebarSection,
+  SidebarSpacer,
+} from '../../src/components/Navigation/Sidebar'
+import { IconBoxes } from '../../src/components/Icons/IconBoxes'
+import { IconDashboard } from '../../src/components/Icons/IconDashboard'
+import { IconReceipt } from '../../src/components/Icons/IconReceipt'
+import { IconSettings } from '../../src/components/Icons/IconSettings'
+import { IconStore } from '../../src/components/Icons/IconStore'
+import { IconUsers } from '../../src/components/Icons/IconUsers'
 import { TabsPill } from '../../src/components/Navigation/TabsPill'
 import { TreeItem, TreeView } from '../../src/components/Navigation/TreeView'
 import { Button } from '../../src/components/Buttons/Button'
@@ -51,6 +65,54 @@ function SidebarDemo() {
       >
         Integrace
       </SidebarItem>
+    </Sidebar>
+  )
+}
+
+/* Druhá podoba panelu: karta firmy, sekce s ikonou a podpoložky rozbalené jen
+   u sekce, ve které člověk právě je (akordeon), a pata s režimem provozu. */
+function SidebarSectionsDemo() {
+  const [open, setOpen] = useState('prodej')
+  const [sub, setSub] = useState('zaznamy')
+  const sekce = [
+    { key: 'prehled', label: 'Přehled', icon: <IconDashboard />, items: [] as string[] },
+    { key: 'prodej', label: 'Prodej', icon: <IconReceipt />, items: ['Záznamy', 'Vratky', 'Uzávěrky'] },
+    { key: 'zbozi', label: 'Zboží', icon: <IconBoxes />, items: ['Katalog', 'Sklad'] },
+    { key: 'lide', label: 'Lidé', icon: <IconUsers />, items: ['Uživatelé', 'Zákazníci'] },
+    { key: 'nastaveni', label: 'Nastavení', icon: <IconSettings />, items: [] as string[] },
+  ]
+
+  return (
+    <Sidebar aria-label="Ukázka dvouúrovňové navigace" style={{ maxWidth: 260 }}>
+      <SidebarBrand icon={<IconStore size={17} />} name="Vzorová firma" app="Admin" />
+      {sekce.map((s) => (
+        <SidebarSection
+          key={s.key}
+          icon={s.icon}
+          label={s.label}
+          active={open === s.key}
+          expanded={open === s.key}
+          itemProps={{
+            onClick: () => {
+              setOpen(s.key)
+              if (s.items[0]) setSub(s.items[0].toLowerCase())
+            },
+          }}
+        >
+          {s.items.map((item) => (
+            <SidebarItem
+              key={item}
+              level="sub"
+              active={sub === item.toLowerCase()}
+              onClick={() => setSub(item.toLowerCase())}
+            >
+              {item}
+            </SidebarItem>
+          ))}
+        </SidebarSection>
+      ))}
+      <SidebarSpacer />
+      <SidebarNote label="Ostrý provoz">· bez zkušebního režimu</SidebarNote>
     </Sidebar>
   )
 }
@@ -168,6 +230,11 @@ export const section: ShowcaseSection = {
       title: 'Boční menu',
       note: 'Skupiny a položky s počty; aktivní položka nese i aria-current, ne jen barvu.',
       render: () => <SidebarDemo />,
+    },
+    {
+      title: 'Boční menu · dvouúrovňové',
+      note: 'Karta firmy, sekce s ikonou a podpoložky rozbalené jen u sekce, ve které člověk je; dole režim provozu.',
+      render: () => <SidebarSectionsDemo />,
     },
     {
       title: 'Záložky · pilulky',

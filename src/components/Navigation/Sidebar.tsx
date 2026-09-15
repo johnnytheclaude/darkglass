@@ -98,6 +98,116 @@ export function SidebarGroup({ children, className, ...rest }: SidebarGroupProps
   )
 }
 
+export interface SidebarBrandProps extends HTMLAttributes<HTMLDivElement> {
+  /** Znak firmy — ikona nebo nahrané logo. */
+  icon?: ReactNode
+  /** Název firmy. */
+  name: ReactNode
+  /** Která aplikace to je („Admin", „Pokladna"). */
+  app?: ReactNode
+  ref?: Ref<HTMLDivElement>
+}
+
+/** Karta firmy nad položkami — znak, název firmy a jméno aplikace. */
+export function SidebarBrand({ icon, name, app, className, ...rest }: SidebarBrandProps) {
+  const classes = ['dg-sidebar__brand', className].filter(Boolean).join(' ')
+
+  return (
+    <div className={classes} {...rest}>
+      {icon != null ? (
+        <span className="dg-sidebar__brand-mark" aria-hidden="true">
+          {icon}
+        </span>
+      ) : null}
+      <span className="dg-sidebar__brand-texts">
+        <span className="dg-sidebar__brand-name">{name}</span>
+        {app != null ? <span className="dg-sidebar__brand-app">{app}</span> : null}
+      </span>
+    </div>
+  )
+}
+
+export interface SidebarNoteProps extends HTMLAttributes<HTMLDivElement> {
+  /** Co to je („Ostrý provoz", „Sandbox") — čte se jako první. */
+  label?: ReactNode
+  children?: ReactNode
+  ref?: Ref<HTMLDivElement>
+}
+
+/** Pata panelu — v jakém režimu aplikace běží. */
+export function SidebarNote({ label, children, className, ...rest }: SidebarNoteProps) {
+  const classes = ['dg-sidebar__note', className].filter(Boolean).join(' ')
+
+  return (
+    <div className={classes} {...rest}>
+      {label != null ? <span className="dg-sidebar__note-label">{label}</span> : null}
+      {children != null ? <span className="dg-sidebar__note-text">{children}</span> : null}
+    </div>
+  )
+}
+
+export interface SidebarSpacerProps extends HTMLAttributes<HTMLDivElement> {
+  ref?: Ref<HTMLDivElement>
+}
+
+/** Výplň, která odsune patu panelu na spodní hranu. */
+export function SidebarSpacer({ className, ...rest }: SidebarSpacerProps) {
+  const classes = ['dg-sidebar__spacer', className].filter(Boolean).join(' ')
+
+  return <div className={classes} aria-hidden="true" {...rest} />
+}
+
+export interface SidebarSectionProps {
+  icon?: ReactNode
+  /** Popisek hlavní položky sekce. */
+  label: ReactNode
+  /** Kam vede hlavní položka — typicky první obrazovka sekce. */
+  href?: string
+  /** Sekce, ve které člověk právě je: hlavní položka svítí akcentem. */
+  active?: boolean
+  /**
+   * Podpoložky se ukazují jen u rozbalené sekce (akordeon podle návrhu).
+   * Bez `expanded` je sekce sbalená a v panelu je vidět jen hlavní položka.
+   */
+  expanded?: boolean
+  /** Props hlavní položky navíc — `onClick` aplikace s vlastním routerem. */
+  itemProps?: Omit<SidebarItemProps, 'icon' | 'href' | 'active' | 'level' | 'children'>
+  /** Podpoložky — `SidebarItem` s `level="sub"`. */
+  children?: ReactNode
+}
+
+/**
+ * Sekce bočního menu — hlavní položka s ikonou a pod ní podpoložky, které se
+ * kreslí jen u rozbalené sekce. Sekce bez `children` je obyčejná položka.
+ */
+export function SidebarSection({
+  icon,
+  label,
+  href,
+  active = false,
+  expanded = false,
+  itemProps,
+  children,
+}: SidebarSectionProps) {
+  const hasChildren = children != null && children !== false
+  const open = hasChildren && expanded
+
+  return (
+    <div className="dg-sidebar__section">
+      <SidebarItem
+        icon={icon}
+        href={href}
+        active={active}
+        aria-expanded={hasChildren ? open : undefined}
+        {...itemProps}
+      >
+        {label}
+      </SidebarItem>
+      {open ? <div className="dg-sidebar__subitems">{children}</div> : null}
+    </div>
+  )
+}
+
 export interface SidebarProps extends HTMLAttributes<HTMLElement> {
   children?: ReactNode
   ref?: Ref<HTMLElement>
