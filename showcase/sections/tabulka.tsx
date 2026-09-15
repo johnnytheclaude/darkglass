@@ -3,8 +3,10 @@ import { Button } from '../../src/components/Buttons/Button'
 import { Chip } from '../../src/components/Controls/Chip'
 import { IconCheck } from '../../src/components/Icons/IconCheck'
 import { IconFile } from '../../src/components/Icons/IconFile'
+import { IconFolderTree } from '../../src/components/Icons/IconFolderTree'
 import { IconMinus } from '../../src/components/Icons/IconMinus'
 import { IconPlus } from '../../src/components/Icons/IconPlus'
+import { IconPrinter } from '../../src/components/Icons/IconPrinter'
 import { IconSearch } from '../../src/components/Icons/IconSearch'
 import { TableEmpty } from '../../src/components/Data/TableEmpty'
 import { TableLoading } from '../../src/components/Data/TableLoading'
@@ -99,9 +101,17 @@ function UkazkaPanelu() {
       }
       count="4 položky · celkem 37 585 Kč"
       actions={
-        <Button variant="secondary" size="s" iconStart={<IconFile size={16} />}>
-          Vytisknout
-        </Button>
+        <>
+          <Button variant="secondary" size="s" iconStart={<IconFolderTree size={16} />}>
+            Kategorie
+          </Button>
+          <Button variant="secondary" size="s" iconStart={<IconPrinter size={16} />}>
+            Tisk štítků
+          </Button>
+          <Button variant="secondary" size="s" iconStart={<IconFile size={16} />}>
+            Vytisknout
+          </Button>
+        </>
       }
     />
   )
