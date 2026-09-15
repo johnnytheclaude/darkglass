@@ -28,6 +28,18 @@
   cursor: pointer;
 }
 
+.dg-list-row--interactive:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: -2px;
+}
+
+/* Nedostupná akce: čitelná, ale bez dotykové odezvy — obsluha vidí, že to jde,
+   až bude splněná podmínka (otevřená směna, neprázdný košík). */
+.dg-list-row.is-disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
 .dg-list-row__check {
   display: inline-flex;
   flex: 0 0 auto;

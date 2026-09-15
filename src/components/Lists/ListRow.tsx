@@ -1,4 +1,4 @@
-import type { HTMLAttributes, ReactNode, Ref } from 'react'
+import type { HTMLAttributes, KeyboardEvent, MouseEvent, ReactNode, Ref } from 'react'
 import { IconCheck } from '../Icons/IconCheck'
 import { IconChevronRight } from '../Icons/IconChevronRight'
 
@@ -32,6 +32,8 @@ export interface ListRowProps extends Omit<HTMLAttributes<HTMLDivElement>, 'titl
   chevron?: boolean
   /** Řádek uvnitř seskupeného seznamu — bez vlastní výplně a rádiusu. */
   inset?: boolean
+  /** Nedostupná akce — řádek zůstane čitelný, ale nereaguje a neostří se. */
+  disabled?: boolean
   ref?: Ref<HTMLDivElement>
 }
 
@@ -56,22 +58,44 @@ export function ListRow({
   action,
   chevron,
   inset = false,
+  disabled = false,
   className,
   onClick,
+  onKeyDown,
   ...rest
 }: ListRowProps) {
+  const interactive = onClick != null && !disabled
   const showChevron = chevron ?? onClick != null
   const classes = [
     'dg-list-row',
     inset ? 'dg-list-row--inset' : null,
-    onClick ? 'dg-list-row--interactive' : null,
+    interactive ? 'dg-list-row--interactive' : null,
+    disabled ? 'is-disabled' : null,
     className,
   ]
     .filter(Boolean)
     .join(' ')
 
+  /* Řádek je div, ale klikatelný řádek je akce: musí jít i z klávesnice. */
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    onKeyDown?.(event)
+    if (!interactive || event.defaultPrevented) return
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      onClick?.(event as unknown as MouseEvent<HTMLDivElement>)
+    }
+  }
+
   return (
-    <div className={classes} onClick={onClick} {...rest}>
+    <div
+      className={classes}
+      onClick={interactive ? onClick : undefined}
+      onKeyDown={handleKeyDown}
+      role={interactive ? 'button' : undefined}
+      tabIndex={interactive ? 0 : undefined}
+      aria-disabled={disabled ? true : undefined}
+      {...rest}
+    >
       {selectable ? (
         <button
           type="button"
