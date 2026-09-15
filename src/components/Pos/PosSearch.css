@@ -10,6 +10,8 @@
   height: calc(62px * var(--scale));
   padding: 0 calc(20px * var(--scale));
   border-radius: var(--r-md);
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
   background-color: var(--surface);
   gap: calc(12px * var(--scale));
 }
@@ -47,9 +49,12 @@
   appearance: none;
 }
 
+/* Stejné zaostření jako u polí formuláře — na Pokladně je to jediný signál,
+   že čtečka píše do pole a ne do košíku. */
 .dg-pos-search:focus-within {
-  outline: 3px solid var(--focus-ring);
-  outline-offset: 2px;
+  outline: calc(2px * var(--scale)) solid var(--accent);
+  outline-offset: -1px;
+  box-shadow: 0 0 0 calc(4px * var(--scale)) var(--focus-ring);
 }
 
 .dg-pos-search__key {

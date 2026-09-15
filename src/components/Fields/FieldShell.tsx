@@ -14,6 +14,10 @@ export interface FieldShellProps extends HTMLAttributes<HTMLDivElement> {
   disabled?: boolean
   /** Id prvku, na který popisek ukazuje. */
   htmlFor?: string
+  /** Id popisku — pro prvky, které popisek nesvazují přes `htmlFor` (OTP). */
+  labelId?: string
+  /** Id nápovědy/chyby; ovládací prvek si ho vezme do `aria-describedby`. */
+  noteId?: string
   children?: ReactNode
   ref?: Ref<HTMLDivElement>
 }
@@ -30,6 +34,8 @@ export function FieldShell({
   error,
   disabled = false,
   htmlFor,
+  labelId,
+  noteId,
   className,
   children,
   ...rest
@@ -40,7 +46,7 @@ export function FieldShell({
   return (
     <div className={classes} {...rest}>
       {label != null ? (
-        <label className="dg-field__label" htmlFor={htmlFor}>
+        <label className="dg-field__label" id={labelId} htmlFor={htmlFor}>
           <span className="dg-field__label-text">{label}</span>
           {required ? (
             <span className="dg-field__req" aria-hidden="true">
@@ -51,7 +57,10 @@ export function FieldShell({
       ) : null}
       {children}
       {note != null ? (
-        <p className={error != null ? 'dg-field__help dg-field__help--error' : 'dg-field__help'}>
+        <p
+          id={noteId}
+          className={error != null ? 'dg-field__help dg-field__help--error' : 'dg-field__help'}
+        >
           {error != null ? <IconAlert size={14} className="dg-field__help-icon" /> : null}
           <span>{note}</span>
         </p>

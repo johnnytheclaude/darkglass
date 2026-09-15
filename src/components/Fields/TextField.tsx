@@ -41,6 +41,8 @@ export function TextField({
 }: TextFieldProps) {
   const autoId = useId()
   const inputId = id ?? autoId
+  const note = error ?? help
+  const noteId = note != null ? `${inputId}-note` : undefined
 
   return (
     <FieldShell
@@ -50,6 +52,7 @@ export function TextField({
       error={error}
       disabled={disabled}
       htmlFor={inputId}
+      noteId={noteId}
       className={wrapperClassName}
       style={style}
     >
@@ -68,6 +71,7 @@ export function TextField({
           className={['dg-textfield__input', className].filter(Boolean).join(' ')}
           disabled={disabled}
           aria-invalid={error != null ? true : undefined}
+          aria-describedby={noteId}
           {...rest}
         />
         {suffix != null ? <span className="dg-textfield__suffix">{suffix}</span> : null}

@@ -19,6 +19,8 @@
   padding: 0;
   border: 0;
   border-radius: calc(13px * var(--scale));
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
   background-color: var(--surface);
   color: var(--text-1);
   font-family: var(--font), system-ui, sans-serif;
@@ -29,6 +31,12 @@
 }
 
 .dg-otp__digit:focus-visible {
-  outline: none;
+  outline: calc(2px * var(--scale)) solid var(--accent);
+  outline-offset: -1px;
   box-shadow: 0 0 0 calc(4px * var(--scale)) var(--focus-ring);
+}
+
+.dg-otp__digit[aria-invalid='true'] {
+  outline: calc(2px * var(--scale)) solid var(--danger);
+  outline-offset: -1px;
 }

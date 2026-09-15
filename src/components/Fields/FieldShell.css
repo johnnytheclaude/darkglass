@@ -63,6 +63,8 @@
   padding: 0 calc(15px * var(--scale));
   border: 0;
   border-radius: calc(14px * var(--scale));
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
   background-color: var(--surface);
   gap: calc(10px * var(--scale));
   color: var(--text-1);
@@ -70,14 +72,21 @@
   text-align: left;
 }
 
+/* Zaostření: rámeček zesílí na 2 px v akcentu a kolem přibude kroužek 4 px —
+   obojí uvnitř plochy pole, takže se obsah formuláře neposune. */
 .dg-field__box:focus-within,
 .dg-field__box:focus-visible {
-  outline: none;
+  outline: calc(2px * var(--scale)) solid var(--accent);
+  outline-offset: -1px;
   box-shadow: 0 0 0 calc(4px * var(--scale)) var(--focus-ring);
 }
 
-.dg-field__box--error {
-  box-shadow: inset 0 0 0 calc(1.5px * var(--scale)) var(--danger);
+/* Chyba přebíjí i zaostření — červený rámeček musí zůstat vidět, když se do
+   pole vrátíš opravit hodnotu. */
+.dg-field__box--error,
+.dg-field__box--error:focus-within {
+  outline: calc(2px * var(--scale)) solid var(--danger);
+  outline-offset: -1px;
 }
 
 .dg-field__icon {

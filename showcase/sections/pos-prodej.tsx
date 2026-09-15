@@ -10,6 +10,23 @@ import type { ShowcaseSection } from '../registry'
 
 const KATEGORIE = ['Saka', 'Obleky', 'Košile', 'Kalhoty', 'Doplňky']
 
+function UkazkaHledani() {
+  const [posledni, setPosledni] = useState('zatím nic')
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: 520, width: '100%' }}>
+      <PosSearch
+        placeholder="Hledat název nebo kód…"
+        shortcut="F3"
+        icon={<IconSearch />}
+        onScan={(kod) => setPosledni(`sken: ${kod}`)}
+        onSubmitText={(text) => setPosledni(`hledání: ${text || '(prázdné)'}`)}
+      />
+      <span style={{ color: 'var(--text-3)', fontSize: 13 }}>Poslední vstup — {posledni}</span>
+    </div>
+  )
+}
+
 function Kategorie() {
   const [vybrana, setVybrana] = useState('Saka')
 
@@ -114,9 +131,15 @@ export const section: ShowcaseSection = {
       note: 'Zkratka F3 je vidět pořád. Pole je skutečný input — klikni a piš, zaostření obtáhne celý rámeček.',
       render: () => (
         <div style={{ width: '100%', maxWidth: 520 }}>
-          <PosSearch placeholder="Hledat název nebo kód…" shortcut="F3" icon={<IconSearch />} />
+          <PosSearch placeholder="Hledat název nebo kód…" shortcut="F3" />
         </div>
       ),
+    },
+    {
+      title: 'Hledání zboží · čtečka i člověk',
+      stack: true,
+      note: 'Do pole píše obojí. Znaky ze čtečky dorazí rychleji, než člověk stihne psát, a končí Enterem — pole je pozná a ohlásí jako sken (neřízené pole se samo vyprázdní na další pípnutí). Ruční dotaz potvrzený Enterem je hledání. Varianta s lupou je vlevo.',
+      render: () => <UkazkaHledani />,
     },
     {
       title: 'Košík a součet',

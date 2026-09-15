@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useId, useRef } from 'react'
 import type { HTMLAttributes, ReactNode, Ref } from 'react'
 import { FieldShell } from '../Fields/FieldShell'
 
@@ -32,11 +32,27 @@ export function OtpField({
   ...rest
 }: OtpFieldProps) {
   const boxes = useRef<(HTMLInputElement | null)[]>([])
+  const autoId = useId()
+  const labelId = label != null ? `${autoId}-label` : undefined
+  const note = error ?? help
+  const noteId = note != null ? `${autoId}-note` : undefined
+
+  /** Mezera uvnitř hodnoty je prázdné políčko, ne znak k zobrazení. */
+  const cislice = (index: number) => {
+    const znak = value[index]
+    return znak && znak !== ' ' ? znak : ''
+  }
 
   const write = (index: number, digits: string) => {
     const clean = digits.replace(/\D/g, '')
-    if (!clean) return
     const next = value.padEnd(length, ' ').split('')
+    // Prázdný vstup = smazání číslice (Backspace nad vyplněným políčkem);
+    // bez tohohle nešel kód opravit jinak než přepsáním.
+    if (!clean) {
+      next[index] = ' '
+      onChange?.(next.join('').trimEnd())
+      return
+    }
     for (let i = 0; i < clean.length && index + i < length; i += 1) {
       next[index + i] = clean[i]
     }
@@ -51,10 +67,19 @@ export function OtpField({
       help={help}
       error={error}
       disabled={disabled}
+      labelId={labelId}
+      noteId={noteId}
       className={['dg-otp', className].filter(Boolean).join(' ')}
       {...rest}
     >
-      <div className="dg-otp__boxes">
+      {/* Skupina drží popisek i hlášku nad všemi políčky — čtečka obrazovky
+          jinak u každé číslice zvlášť neřekne, o jaký kód jde. */}
+      <div
+        className="dg-otp__boxes"
+        role="group"
+        aria-labelledby={labelId}
+        aria-describedby={noteId}
+      >
         {Array.from({ length }, (_, index) => (
           <input
             key={index}
@@ -69,10 +94,10 @@ export function OtpField({
             disabled={disabled}
             aria-label={`${index + 1}. číslice kódu`}
             aria-invalid={error != null ? true : undefined}
-            value={value[index] ?? ''}
+            value={cislice(index)}
             onChange={(event) => write(index, event.target.value)}
             onKeyDown={(event) => {
-              if (event.key === 'Backspace' && !value[index]) {
+              if (event.key === 'Backspace' && !cislice(index)) {
                 boxes.current[Math.max(0, index - 1)]?.focus()
               }
               if (event.key === 'ArrowLeft') boxes.current[Math.max(0, index - 1)]?.focus()

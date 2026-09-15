@@ -21,6 +21,8 @@
   min-width: 0;
   padding: calc(12px * var(--scale));
   border-radius: calc(14px * var(--scale));
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
   background-color: var(--surface);
   gap: calc(11px * var(--scale));
   font-family: var(--font), system-ui, sans-serif;
@@ -102,4 +104,13 @@
   background-color: var(--surface-15);
   color: var(--text-2);
   cursor: pointer;
+}
+
+.dg-filerow__remove:hover {
+  background-color: var(--surface-3);
+}
+
+.dg-filerow__remove:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 calc(3px * var(--scale)) var(--focus-ring);
 }

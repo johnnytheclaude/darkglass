@@ -12,6 +12,8 @@
   min-height: calc(154px * var(--scale));
   padding: calc(20px * var(--scale));
   border-radius: calc(18px * var(--scale));
+  outline: calc(2px * var(--scale)) solid var(--border-strong);
+  outline-offset: -1px;
   background-color: var(--surface-05);
   gap: calc(10px * var(--scale));
   font-family: var(--font), system-ui, sans-serif;

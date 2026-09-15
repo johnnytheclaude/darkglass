@@ -31,6 +31,8 @@ export function TextArea({
 }: TextAreaProps) {
   const autoId = useId()
   const fieldId = id ?? autoId
+  const note = error ?? help
+  const noteId = note != null ? `${fieldId}-note` : undefined
 
   return (
     <FieldShell
@@ -40,6 +42,7 @@ export function TextArea({
       error={error}
       disabled={disabled}
       htmlFor={fieldId}
+      noteId={noteId}
       className={wrapperClassName}
       style={style}
     >
@@ -58,6 +61,7 @@ export function TextArea({
           className={['dg-textarea__input', className].filter(Boolean).join(' ')}
           disabled={disabled}
           aria-invalid={error != null ? true : undefined}
+          aria-describedby={noteId}
           {...rest}
         />
       </div>
