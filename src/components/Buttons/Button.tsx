@@ -9,13 +9,15 @@ export type ButtonVariant =
   | 'danger'
   | 'dangerSoft'
   | 'success'
+  | 'back'
 
 export type ButtonSize = 's' | 'm' | 'l'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Varianta z návrhu (§ Tlačítka). */
   variant?: ButtonVariant
-  /** Výška podle návrhu: s 34, m 42, l 52 px (škáluje se přes --scale). */
+  /** Výška podle návrhu: s 34, m 42, l 52 px (škáluje se přes --scale).
+      Varianta `back` má vlastní geometrii z návrhu a velikost neřeší. */
   size?: ButtonSize
   /** Ikona před popiskem — komponenta z components/Icons. */
   iconStart?: ReactNode
@@ -37,6 +39,7 @@ const VARIANT_CLASS: Record<ButtonVariant, string> = {
   danger: 'dg-button--danger',
   dangerSoft: 'dg-button--danger-soft',
   success: 'dg-button--success',
+  back: 'dg-button--back',
 }
 
 export function Button({

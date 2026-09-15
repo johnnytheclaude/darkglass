@@ -7,6 +7,7 @@
   --dg-button-h: 42px;
   --dg-button-px: 20px;
   --dg-button-fs: 14.5px;
+  --dg-button-icon: 17px;
 
   position: relative;
   display: inline-flex;
@@ -54,6 +55,13 @@
   flex-shrink: 0;
 }
 
+/* Ikona má velikost z návrhu podle velikosti tlačítka (15 / 17 / 19 px), ať ji
+   volající nemusí u každého tlačítka nastavovat propem size. */
+.dg-button__icon > svg {
+  width: calc(var(--dg-button-icon) * var(--scale));
+  height: calc(var(--dg-button-icon) * var(--scale));
+}
+
 .dg-button__label {
   display: inline-block;
 }
@@ -62,19 +70,22 @@
 .dg-button--s {
   --dg-button-h: 34px;
   --dg-button-px: 16px;
-  --dg-button-fs: 13.5px;
+  --dg-button-fs: 13px;
+  --dg-button-icon: 15px;
 }
 
 .dg-button--m {
   --dg-button-h: 42px;
   --dg-button-px: 20px;
   --dg-button-fs: 14.5px;
+  --dg-button-icon: 17px;
 }
 
 .dg-button--l {
   --dg-button-h: 52px;
   --dg-button-px: 26px;
-  --dg-button-fs: 16px;
+  --dg-button-fs: 16.5px;
+  --dg-button-icon: 19px;
 }
 
 .dg-button--block {
@@ -92,9 +103,11 @@
   color: var(--text-1);
 }
 
+/* Ghost nese podle návrhu tlumený text (--text-2), ne hlavní — je to odkaz
+   vedle hlavní akce („Zobrazit vše ›“), ne druhá rovnocenná akce. */
 .dg-button--ghost {
   background-color: var(--transparent);
-  color: var(--text-1);
+  color: var(--text-2);
 }
 
 .dg-button--outline {
@@ -122,6 +135,32 @@
 .dg-button--success {
   background-color: var(--success);
   color: var(--text-on-color);
+}
+
+/* Btn / Back (§ Pokladna · provoz a doklady) — jediná varianta, která není
+   pilulka: rádius 16 px, obrys, odsazení 12/18, popisek 15 px bez prostrkání
+   a obsah zarovnaný doleva. Velikost tlačítka (s/m/l) na ni nemá vliv, výška
+   vychází z odsazení; dotykový cíl drží min-height + ::after ze základu. */
+.dg-button--back {
+  --dg-button-h: 42px;
+  --dg-button-fs: 15px;
+  --dg-button-icon: 16px;
+
+  height: auto;
+  min-height: calc(var(--dg-button-h) * var(--scale));
+  padding: calc(12px * var(--scale)) calc(18px * var(--scale));
+  justify-content: flex-start;
+  border-radius: var(--r-md);
+  background-color: var(--surface-15);
+  color: var(--text-1);
+  letter-spacing: 0;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
+}
+
+.dg-button--back:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 0;
 }
 
 /* Stavy. Překryv jde přes průhledné tokeny --surface-*, které jsou ve světlém

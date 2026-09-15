@@ -1,11 +1,24 @@
 import { Button } from '../../src/components/Buttons/Button'
+import type { ButtonProps } from '../../src/components/Buttons/Button'
 import { IconButton } from '../../src/components/Buttons/IconButton'
+import { IconChevronLeft } from '../../src/components/Icons/IconChevronLeft'
 import { IconEllipsis } from '../../src/components/Icons/IconEllipsis'
 import { IconPencil } from '../../src/components/Icons/IconPencil'
 import { IconPlus } from '../../src/components/Icons/IconPlus'
 import { IconSearch } from '../../src/components/Icons/IconSearch'
 import { IconX } from '../../src/components/Icons/IconX'
 import type { ShowcaseSection } from '../registry'
+
+/** Sedm variant z návrhu (§ Tlačítka + Btn / Back), každá se svým popiskem z návrhu. */
+const STATE_VARIANTS: { variant: ButtonProps['variant']; label: string }[] = [
+  { variant: 'primary', label: 'Uložit změny' },
+  { variant: 'secondary', label: 'Zrušit' },
+  { variant: 'ghost', label: 'Zobrazit vše' },
+  { variant: 'outline', label: 'Exportovat' },
+  { variant: 'contrast', label: 'Vytisknout' },
+  { variant: 'danger', label: 'Smazat' },
+  { variant: 'back', label: 'Prodej' },
+]
 
 export const section: ShowcaseSection = {
   id: 'tlacitka',
@@ -26,6 +39,23 @@ export const section: ShowcaseSection = {
           <Button variant="danger">Odepsat</Button>
           <Button variant="dangerSoft">Smazat</Button>
           <Button variant="success">Potvrdit</Button>
+        </>
+      ),
+    },
+    {
+      title: 'Zpět',
+      note: 'Btn / Back — jediná varianta mimo pilulku: rádius 16 px, obrys, popisek 15 px. Vede o úroveň zpět, proto nese název místa, kam se vrací.',
+      render: () => (
+        <>
+          <Button variant="back" iconStart={<IconChevronLeft />}>
+            Prodej
+          </Button>
+          <Button variant="back" iconStart={<IconChevronLeft />} disabled>
+            Prodej
+          </Button>
+          <Button variant="back" iconStart={<IconChevronLeft />} loading>
+            Prodej
+          </Button>
         </>
       ),
     },
@@ -68,22 +98,22 @@ export const section: ShowcaseSection = {
       ),
     },
     {
-      title: 'Stavy',
-      note: 'Neaktivní je skutečný disabled (nejde doklepnout). Načítání obsah překryje, rozměr se nemění.',
+      title: 'Stavy — každá varianta',
+      note: 'Trojice běžný / neaktivní / načítání pro všech sedm variant. Hover a stisk jsou živé: najeď myší a klikni, zaměření projdi tabulátorem. Neaktivní je skutečný disabled (nejde doklepnout), načítání obsah překryje a rozměr se nemění.',
+      stack: true,
       render: () => (
         <>
-          <Button>Běžné</Button>
-          <Button disabled>Neaktivní</Button>
-          <Button loading>Ukládám</Button>
-          <Button variant="secondary" disabled>
-            Neaktivní
-          </Button>
-          <Button variant="secondary" loading>
-            Načítám
-          </Button>
-          <Button variant="danger" loading>
-            Odepisuji
-          </Button>
+          {STATE_VARIANTS.map(({ variant, label }) => (
+            <div key={variant} style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
+              <Button variant={variant}>{label}</Button>
+              <Button variant={variant} disabled>
+                {label}
+              </Button>
+              <Button variant={variant} loading>
+                {label}
+              </Button>
+            </div>
+          ))}
         </>
       ),
     },
