@@ -36,6 +36,17 @@ modrá). Komponenta nikdy nesmí mít barvu natvrdo.
 4. Verze se pinují. Aplikace se povyšuje vědomě, ne plovoucí větví — jeden
    push do knihovny jinak mění tři produkty naráz.
 
+## Konvence
+
+Jak se v balíku píšou komponenty — struktura složek, CSS a tokeny, povinné
+stavy, dotykové cíle a tři velikosti UI, přístupnost, ověřování proti návrhu
+a verzování — je v Knowledge projektu CashRegister:
+**Engineering / Konvence knihovny darkglass — jak se v balíku píšou komponenty**
+(`konvence-knihovny-darkglass-jak-se-v-baliku-pisou-komponenty`).
+
+Přečti ji dřív, než v balíku napíšeš první řádek. Co v ní chybí, se doplní
+tam — ne jako vlastní konvence v jedné komponentě.
+
 ## Ukázka
 
 `showcase/` — jedna stránka se všemi komponentami ve všech stavech, v obou
