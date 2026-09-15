@@ -1,4 +1,4 @@
-import { useId, useRef } from 'react'
+import { Fragment, useId, useRef } from 'react'
 import type { HTMLAttributes, ReactNode, Ref } from 'react'
 import { FieldShell } from '../Fields/FieldShell'
 
@@ -7,8 +7,16 @@ export interface OtpFieldProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onC
   help?: ReactNode
   error?: ReactNode
   disabled?: boolean
-  /** Kolik číslic kód má; návrh ukazuje šest. */
+  /** Kolik políček kód má; návrh ukazuje šest. */
   length?: number
+  /**
+   * Z čeho se kód skládá. `digits` je ověřovací kód z SMS podle návrhu,
+   * `alnum` je kód s písmeny (párovací kód pokladny `ABCD-2345`) — píše se
+   * velkými písmeny a číslicemi.
+   */
+  alphabet?: 'digits' | 'alnum'
+  /** Za kolikátým políčkem stojí oddělovač `–`; bez něj se nekreslí. */
+  separatorAfter?: number
   /** Zadané číslice jako řetězec — kratší než `length` znamená rozepsaný kód. */
   value: string
   onChange?: (value: string) => void
@@ -26,6 +34,8 @@ export function OtpField({
   error,
   disabled = false,
   length = 6,
+  alphabet = 'digits',
+  separatorAfter,
   value,
   onChange,
   className,
@@ -44,20 +54,21 @@ export function OtpField({
   }
 
   const write = (index: number, digits: string) => {
-    const clean = digits.replace(/\D/g, '')
+    const clean = digits.replace(alphabet === 'alnum' ? /[^0-9A-Za-z]/g : /\D/g, '')
+    const psane = alphabet === 'alnum' ? clean.toUpperCase() : clean
     const next = value.padEnd(length, ' ').split('')
     // Prázdný vstup = smazání číslice (Backspace nad vyplněným políčkem);
     // bez tohohle nešel kód opravit jinak než přepsáním.
-    if (!clean) {
+    if (!psane) {
       next[index] = ' '
       onChange?.(next.join('').trimEnd())
       return
     }
-    for (let i = 0; i < clean.length && index + i < length; i += 1) {
-      next[index + i] = clean[i]
+    for (let i = 0; i < psane.length && index + i < length; i += 1) {
+      next[index + i] = psane[i]
     }
     onChange?.(next.join('').trimEnd())
-    const focus = Math.min(index + clean.length, length - 1)
+    const focus = Math.min(index + psane.length, length - 1)
     boxes.current[focus]?.focus()
   }
 
@@ -81,18 +92,20 @@ export function OtpField({
         aria-describedby={noteId}
       >
         {Array.from({ length }, (_, index) => (
+          <Fragment key={index}>
           <input
-            key={index}
             ref={(node) => {
               boxes.current[index] = node
             }}
             className="dg-otp__digit"
             type="text"
-            inputMode="numeric"
-            autoComplete="one-time-code"
+            inputMode={alphabet === 'alnum' ? 'text' : 'numeric'}
+            autoComplete={alphabet === 'alnum' ? 'off' : 'one-time-code'}
+            autoCapitalize={alphabet === 'alnum' ? 'characters' : undefined}
+            spellCheck={alphabet === 'alnum' ? false : undefined}
             maxLength={1}
             disabled={disabled}
-            aria-label={`${index + 1}. číslice kódu`}
+            aria-label={`${index + 1}. ${alphabet === 'alnum' ? 'znak' : 'číslice'} kódu`}
             aria-invalid={error != null ? true : undefined}
             value={cislice(index)}
             onChange={(event) => write(index, event.target.value)}
@@ -110,6 +123,12 @@ export function OtpField({
               write(index, event.clipboardData.getData('text'))
             }}
           />
+            {separatorAfter === index + 1 ? (
+              <span className="dg-otp__separator" aria-hidden="true">
+                –
+              </span>
+            ) : null}
+          </Fragment>
         ))}
       </div>
     </FieldShell>

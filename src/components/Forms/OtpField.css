@@ -40,3 +40,12 @@
   outline: calc(2px * var(--scale)) solid var(--danger);
   outline-offset: -1px;
 }
+
+/* Oddělovač uvnitř kódu (párovací kód pokladny `ABCD-2345`). */
+.dg-otp__separator {
+  color: var(--text-3);
+  font-family: var(--font), system-ui, sans-serif;
+  font-size: calc(22px * var(--scale));
+  font-weight: 600;
+  line-height: 1;
+}

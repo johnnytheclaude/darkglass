@@ -103,7 +103,22 @@ function UkazkaHesla() {
 
 function UkazkaKodu() {
   const [kod, setKod] = useState('492')
-  return <OtpField label="Kód z SMS" value={kod} onChange={setKod} />
+  const [parovaci, setParovaci] = useState('AB3')
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <OtpField label="Kód z SMS" value={kod} onChange={setKod} />
+      {/* Párovací kód pokladny má písmena i oddělovač — proto varianta alnum. */}
+      <OtpField
+        label="Párovací kód z Adminu"
+        alphabet="alnum"
+        length={8}
+        separatorAfter={4}
+        value={parovaci}
+        onChange={setParovaci}
+        help="Platí 15 minut a použije se jednou"
+      />
+    </div>
+  )
 }
 
 function UkazkaHodnoceni() {
