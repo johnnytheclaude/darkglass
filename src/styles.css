@@ -110,6 +110,7 @@
 @import "./components/Pos/CountRow.css";
 @import "./components/Pos/CustomerBar.css";
 @import "./components/Pos/DenominationRow.css";
+@import "./components/Pos/GroupCaption.css";
 @import "./components/Pos/GroupHeader.css";
 @import "./components/Pos/InlineActions.css";
 @import "./components/Pos/InlineNotice.css";

@@ -2,6 +2,9 @@ import { useState } from 'react'
 import { Button } from '../../src/components/Buttons/Button'
 import { IconBell } from '../../src/components/Icons/IconBell'
 import { IconChevronLeft } from '../../src/components/Icons/IconChevronLeft'
+import { IconReceipt } from '../../src/components/Icons/IconReceipt'
+import { GroupedList } from '../../src/components/Lists/GroupedList'
+import { ListRow } from '../../src/components/Lists/ListRow'
 import { AccentCard } from '../../src/components/Pos/AccentCard'
 import { ActionPanel } from '../../src/components/Pos/ActionPanel'
 import { CaptionButton } from '../../src/components/Pos/CaptionButton'
@@ -9,6 +12,7 @@ import { ChoiceCard } from '../../src/components/Pos/ChoiceCard'
 import { ChoiceGroup } from '../../src/components/Pos/ChoiceGroup'
 import { ConfirmSheet } from '../../src/components/Pos/ConfirmSheet'
 import { CountRow } from '../../src/components/Pos/CountRow'
+import { GroupCaption } from '../../src/components/Pos/GroupCaption'
 import { GroupHeader } from '../../src/components/Pos/GroupHeader'
 import { InlineActions } from '../../src/components/Pos/InlineActions'
 import { InlineNotice } from '../../src/components/Pos/InlineNotice'
@@ -228,6 +232,20 @@ export const section: ShowcaseSection = {
       stack: true,
       note: 'Row / Úloha — dlouhá úloha (párování dodacího listu) se stavem v odznaku.',
       render: () => <TaskRow name="Řádky zboží · 14 z 22" badge="probíhá" tone="accent" />,
+    },
+    {
+      title: 'Skupina',
+      stack: true,
+      note: 'Skupina — tichý popisek nad blokem řádků menu. Nemá výplň ani verzálky, jen pojmenuje, co pod ním následuje.',
+      render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: '100%' }}>
+          <GroupCaption>Peníze a směna</GroupCaption>
+          <GroupedList>
+            <ListRow icon={<IconReceipt />} title="Vklad a výběr hotovosti" sub="S důvodem z číselníku" chevron />
+            <ListRow icon={<IconReceipt />} title="Uzávěrka směny" sub="Slepé počítání kasy, terminál, Z-report" chevron />
+          </GroupedList>
+        </div>
+      ),
     },
     {
       title: 'Dlaždice menu',
