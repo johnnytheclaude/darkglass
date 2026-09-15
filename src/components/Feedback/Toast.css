@@ -1,5 +1,5 @@
 /* Toast (Plovoucí oznámení) — § Stavy a zpětná vazba.
-   Návrh: rádius 16, stín 0 8 28, odsazení 12 12 12 14, mezera 12,
+   Návrh: šířka 440, rádius 16, stín 0 8 28, odsazení 12 12 12 14, mezera 12,
    dlaždice 32 kolečko v tiché barvě ladění, nadpis 14,5/600, podřádek 12,5. */
 
 .dg-toast {
@@ -7,7 +7,7 @@
   align-items: center;
   box-sizing: border-box;
   width: 100%;
-  max-width: calc(400px * var(--scale));
+  max-width: calc(440px * var(--scale));
   padding: calc(12px * var(--scale)) calc(12px * var(--scale)) calc(12px * var(--scale))
     calc(14px * var(--scale));
   border-radius: calc(16px * var(--scale));
