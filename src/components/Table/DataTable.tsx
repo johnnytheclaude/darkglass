@@ -1,7 +1,9 @@
+import { Fragment } from 'react'
 import type { HTMLAttributes, ReactNode, Ref } from 'react'
 import { IconCheck } from '../Icons/IconCheck'
 import { IconChevronRight } from '../Icons/IconChevronRight'
 import { IconSort } from '../Icons/IconSort'
+import { GroupHeader } from '../Pos/GroupHeader'
 
 export interface DataTableColumn {
   label: ReactNode
@@ -25,7 +27,10 @@ export interface DataTableRow {
    * co se stalo, musí říct i obsah buňky (znaménko, slovo, odznak).
    */
   tone?: 'ok' | 'danger' | 'info'
+  /** Vybraný řádek (hromadný výběr) — zaškrtnuté políčko a tichý akcentový podklad. */
   selected?: boolean
+  /** Mezitulek skupiny (Table / Group Header) nad tímto řádkem. */
+  group?: { label: ReactNode; count?: number }
 }
 
 export interface DataTableProps extends HTMLAttributes<HTMLDivElement> {
@@ -75,16 +80,24 @@ export function DataTable({
         {onRowClick ? <span className="dg-table__action-col" /> : null}
       </div>
       {rows.map((row) => (
+        <Fragment key={row.id}>
+        {row.group ? (
+          <GroupHeader
+            className="dg-table__group"
+            label={row.group.label}
+            count={row.group.count}
+          />
+        ) : null}
         <div
           className={[
             'dg-table__tr',
             row.tone ? `dg-table__tr--${row.tone}` : null,
+            row.selected ? 'dg-table__tr--selected' : null,
             onRowClick ? 'dg-table__tr--interactive' : null,
           ]
             .filter(Boolean)
             .join(' ')}
           role="row"
-          key={row.id}
           onClick={onRowClick ? () => onRowClick(row.id) : undefined}
         >
           {selectable ? (
@@ -125,6 +138,7 @@ export function DataTable({
             </span>
           ) : null}
         </div>
+        </Fragment>
       ))}
     </div>
   )

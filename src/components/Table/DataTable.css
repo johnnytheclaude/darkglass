@@ -81,6 +81,22 @@
   background-color: color-mix(in srgb, var(--accent-soft) 50%, transparent);
 }
 
+/* Vybraný řádek — silnější akcentový podklad než tint, aby se výběr poznal
+   i na řádku, který už podbarvení nese. Podklad drží i za pravou hranou při
+   vodorovném posouvání (min-width: max-content na `.dg-table__tr`). */
+.dg-table__tr--selected {
+  background-color: var(--accent-soft);
+}
+
+/* Table / Group Header uvnitř tabulky — pruh přes celou šíři obsahu,
+   ne jen přes viditelný výřez. */
+.dg-table__group {
+  min-width: max-content;
+}
+
+/* Návrh nemá ani jeden monospace řez — kódy a čísla drží pod sebou přes
+   tabulkové číslice, ne přes jiné písmo. Bez toho se sloupec s kódy a
+   částkami rozjede, i když je zarovnaný doprava. */
 .dg-table__td {
   flex: 1 1 auto;
   min-width: 0;
@@ -88,6 +104,7 @@
   color: var(--text-1);
   font-size: calc(14px * var(--scale));
   font-weight: 600;
+  font-variant-numeric: tabular-nums;
   text-overflow: ellipsis;
   white-space: nowrap;
 }

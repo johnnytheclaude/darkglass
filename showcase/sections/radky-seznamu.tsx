@@ -21,7 +21,7 @@ export const section: ShowcaseSection = {
   id: 'radky-seznamu',
   title: '§ Řádky seznamů',
   order: 55,
-  note: 'Nejpoužívanější prvek aplikace. Vysoký 74 px, aby se dal pohodlně trefit i prstem.',
+  note: 'Nejpoužívanější prvek aplikace. Vysoký 74 px, aby se dal pohodlně trefit i prstem. Řádek s množstvím (ListRow / Množství) je řádek košíku — má vlastní ukázku v § Pokladna · prodej, časová osa je v § Data · rozšíření.',
   demos: [
     {
       title: 'S ikonou a šipkou',

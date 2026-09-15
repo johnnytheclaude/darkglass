@@ -5,6 +5,9 @@ import { IconCheck } from '../../src/components/Icons/IconCheck'
 import { IconFile } from '../../src/components/Icons/IconFile'
 import { IconMinus } from '../../src/components/Icons/IconMinus'
 import { IconPlus } from '../../src/components/Icons/IconPlus'
+import { IconSearch } from '../../src/components/Icons/IconSearch'
+import { TableEmpty } from '../../src/components/Data/TableEmpty'
+import { TableLoading } from '../../src/components/Data/TableLoading'
 import { DataTable, TableName, TableNumber } from '../../src/components/Table/DataTable'
 import { Pagination } from '../../src/components/Table/Pagination'
 import { TableSearch, TableToolbar } from '../../src/components/Table/TableToolbar'
@@ -105,7 +108,8 @@ function UkazkaPanelu() {
 }
 
 function UkazkaTabulky() {
-  const [vybrane, setVybrane] = useState<string[]>([])
+  /* Jeden řádek je vybraný rovnou, ať je stav vidět i bez kliknutí. */
+  const [vybrane, setVybrane] = useState<string[]>(['a240'])
 
   return (
     <DataTable
@@ -170,6 +174,52 @@ const RADKY_TINT: DataTableRow[] = [
   },
 ]
 
+const SLOUPCE_STAVY = [
+  { label: 'NÁZEV' },
+  { label: 'STAV', width: 120 },
+  { label: 'DATUM', width: 120 },
+]
+
+/* Skupina v tabulce — mezitulek patří k řádku, který skupinu otevírá. */
+const RADKY_SKUPINY: DataTableRow[] = [
+  {
+    id: 'sk-1',
+    group: { label: 'Nepípnuté', count: 2 },
+    cells: [
+      <TableName thumb={false}>Položka A-230</TableName>,
+      'ks',
+      <TableNumber>5</TableNumber>,
+      '11 995 Kč',
+    ],
+  },
+  {
+    id: 'sk-2',
+    cells: [
+      <TableName thumb={false}>Položka A-240</TableName>,
+      'ks',
+      <TableNumber>9</TableNumber>,
+      '21 591 Kč',
+    ],
+  },
+  {
+    id: 'sk-3',
+    group: { label: 'Spočítané', count: 1 },
+    cells: [
+      <TableName thumb={false}>Položka B-500</TableName>,
+      'ks',
+      <TableNumber negative>−16</TableNumber>,
+      '3 999 Kč',
+    ],
+  },
+]
+
+const SLOUPCE_SKUPINY: DataTableColumn[] = [
+  { label: 'POLOŽKA' },
+  { label: 'JEDN.', width: 70, muted: true },
+  { label: 'MNOŽSTVÍ', width: 110, align: 'right' },
+  { label: 'HODNOTA', width: 130, align: 'right' },
+]
+
 function UkazkaStrankovani() {
   const [strana, setStrana] = useState(1)
 
@@ -209,6 +259,35 @@ export const section: ShowcaseSection = {
       stack: true,
       wide: true,
       render: () => <DataTable columns={SLOUPCE_TINT} rows={RADKY_TINT} />,
+    },
+    {
+      title: 'Skupina v tabulce (Table / Group Header)',
+      note: 'Mezitulek se vkládá k řádku, kterým skupina začíná — nemá rádius a navazuje na řádky pod sebou, takže mezi skupinami není potřeba další linka. Pruh drží přes celou šíři obsahu i při vodorovném posouvání.',
+      stack: true,
+      wide: true,
+      render: () => <DataTable columns={SLOUPCE_SKUPINY} rows={RADKY_SKUPINY} />,
+    },
+    {
+      title: 'Prázdná tabulka',
+      note: 'Hlavička sloupců zůstane stát, aby bylo vidět, v čem se hledalo. Komponenta je společná s § Data · rozšíření.',
+      stack: true,
+      wide: true,
+      render: () => (
+        <TableEmpty
+          columns={SLOUPCE_STAVY}
+          icon={<IconSearch />}
+          title="Nic neodpovídá filtru"
+          description="Zkuste zrušit některý filtr nebo hledat jinak."
+          style={{ maxWidth: 520 }}
+        />
+      ),
+    },
+    {
+      title: 'Načítání tabulky',
+      note: 'Zástupné pruhy v rozměru skutečných řádků — po načtení obsah nepřeskočí. Komponenta je společná s § Data · rozšíření.',
+      stack: true,
+      wide: true,
+      render: () => <TableLoading columns={SLOUPCE_STAVY} rows={4} style={{ maxWidth: 520 }} />,
     },
     {
       title: 'Stránkování',
