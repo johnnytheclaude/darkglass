@@ -1,4 +1,4 @@
-import type { HTMLAttributes, ReactNode, Ref } from 'react'
+import type { ElementType, HTMLAttributes, ReactNode, Ref } from 'react'
 import { IconArrowLeft } from '../Icons/IconArrowLeft'
 
 export interface PageHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
@@ -9,6 +9,11 @@ export interface PageHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 't
    * komu předat `onBack`. Vykreslí `<a>`, takže funguje i bez JavaScriptu.
    */
   backHref?: string
+  /**
+   * Čím se šipka zpět vykreslí, je-li `backHref`. Výchozí `a`; aplikace
+   * s routerem sem předá svůj `Link`.
+   */
+  backAs?: ElementType
   backLabel?: string
   title?: ReactNode
   /** Kde jsme a co se stalo naposledy. */
@@ -31,6 +36,7 @@ export interface PageHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 't
 export function PageHeader({
   onBack,
   backHref,
+  backAs,
   backLabel = 'Zpět',
   title,
   subtitle,
@@ -40,13 +46,14 @@ export function PageHeader({
   ...rest
 }: PageHeaderProps) {
   const classes = ['dg-page-header', className].filter(Boolean).join(' ')
+  const BackLink: ElementType = backAs ?? 'a'
 
   return (
     <div className={classes} {...rest}>
       {backHref != null ? (
-        <a className="dg-page-header__back" href={backHref} aria-label={backLabel}>
+        <BackLink className="dg-page-header__back" href={backHref} aria-label={backLabel}>
           <IconArrowLeft />
-        </a>
+        </BackLink>
       ) : onBack ? (
         <button className="dg-page-header__back" type="button" aria-label={backLabel} onClick={onBack}>
           <IconArrowLeft />

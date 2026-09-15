@@ -1,4 +1,12 @@
-import type { AnchorHTMLAttributes, HTMLAttributes, KeyboardEvent, MouseEvent, ReactNode, Ref } from 'react'
+import type {
+  AnchorHTMLAttributes,
+  ElementType,
+  HTMLAttributes,
+  KeyboardEvent,
+  MouseEvent,
+  ReactNode,
+  Ref,
+} from 'react'
 import { IconCheck } from '../Icons/IconCheck'
 import { IconChevronRight } from '../Icons/IconChevronRight'
 
@@ -38,6 +46,11 @@ export interface ListRowProps extends Omit<HTMLAttributes<HTMLDivElement>, 'titl
    * ne tlačítko. Nedostupný řádek odkaz nekreslí.
    */
   href?: string
+  /**
+   * Čím se odkaz vykreslí. Výchozí `a`; aplikace s routerem sem předá svůj
+   * `Link`, aby klepnutí nepřenačítalo celou stránku. Bez `href` se neuplatní.
+   */
+  linkAs?: ElementType
   /** Řádek uvnitř seskupeného seznamu — bez vlastní výplně a rádiusu. */
   inset?: boolean
   /** Nedostupná akce — řádek zůstane čitelný, ale nereaguje a neostří se. */
@@ -66,6 +79,7 @@ export function ListRow({
   action,
   chevron,
   href,
+  linkAs,
   inset = false,
   disabled = false,
   className,
@@ -136,8 +150,9 @@ export function ListRow({
   )
 
   if (asLink) {
+    const Link: ElementType = linkAs ?? 'a'
     return (
-      <a
+      <Link
         className={classes}
         href={href}
         onClick={onClick as unknown as AnchorProps['onClick']}
@@ -145,7 +160,7 @@ export function ListRow({
         {...(rest as AnchorProps)}
       >
         {content}
-      </a>
+      </Link>
     )
   }
 
