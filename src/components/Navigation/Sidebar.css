@@ -48,6 +48,19 @@
   gap: calc(11px * var(--scale));
 }
 
+/* Položka jako odkaz — vzhled se od tlačítka nesmí lišit. */
+a.dg-sidebar__item {
+  text-decoration: none;
+}
+
+/* Druhá úroveň: návrh ji kreslí nižší (34) s rádiusem 10 a písmem 13,5. */
+.dg-sidebar__item--sub {
+  min-height: calc(34px * var(--scale));
+  border-radius: calc(10px * var(--scale));
+  font-size: calc(13.5px * var(--scale));
+  gap: calc(10px * var(--scale));
+}
+
 .dg-sidebar__item:hover {
   background: var(--surface-15);
 }

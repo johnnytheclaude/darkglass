@@ -107,7 +107,7 @@ export type { CommandGroupProps, CommandItemProps, CommandPaletteProps } from '.
 export { PageHeader } from './components/Navigation/PageHeader'
 export type { PageHeaderProps } from './components/Navigation/PageHeader'
 export { Sidebar, SidebarGroup, SidebarItem } from './components/Navigation/Sidebar'
-export type { SidebarGroupProps, SidebarItemProps, SidebarProps } from './components/Navigation/Sidebar'
+export type { SidebarGroupProps, SidebarItemLevel, SidebarItemProps, SidebarProps } from './components/Navigation/Sidebar'
 export { Stepper } from './components/Navigation/Stepper'
 export type { StepperProps, StepperStep } from './components/Navigation/Stepper'
 export { TabsPill } from './components/Navigation/TabsPill'
