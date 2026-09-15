@@ -5,12 +5,18 @@ export interface KeyValueRowProps extends HTMLAttributes<HTMLDivElement> {
   label: ReactNode
   /** Hodnota údaje; vždy výraznější než popisek. */
   value: ReactNode
+  /**
+   * Hlavní údaj seznamu (návrh: zůstatek poukazu, artboard 27) — hodnota je
+   * o stupeň větší a těžší, popisek zůstává stejný. Na řádek v seznamu jich
+   * patří jen jeden, jinak se zvýraznění ztratí.
+   */
+  strong?: boolean
   ref?: Ref<HTMLDivElement>
 }
 
 /** KeyValueRow — jeden řádek dvojice popisek – hodnota. */
-export function KeyValueRow({ label, value, className, ...rest }: KeyValueRowProps) {
-  const classes = ['dg-kv', className].filter(Boolean).join(' ')
+export function KeyValueRow({ label, value, strong, className, ...rest }: KeyValueRowProps) {
+  const classes = ['dg-kv', strong ? 'is-strong' : null, className].filter(Boolean).join(' ')
 
   return (
     <div className={classes} {...rest}>

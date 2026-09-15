@@ -146,5 +146,20 @@ export const section: ShowcaseSection = {
         </div>
       ),
     },
+    {
+      title: 'Seznam údajů s hlavním údajem',
+      note: 'Jeden řádek nese hlavní číslo seznamu (zůstatek poukazu, artboard 27) — hodnota je o stupeň větší a těžší, popisek zůstává stejný.',
+      stack: true,
+      render: () => (
+        <div style={{ width: 420, maxWidth: '100%' }}>
+          <KeyValueList>
+            <KeyValueRow label="Původní hodnota" value="2 000 Kč" />
+            <KeyValueRow label="Už vyčerpáno" value="− 640 Kč" />
+            <KeyValueRow strong label="Zůstatek" value="1 360 Kč" />
+            <KeyValueRow label="Platnost do" value="12. 9. 2028" />
+          </KeyValueList>
+        </div>
+      ),
+    },
   ],
 }
