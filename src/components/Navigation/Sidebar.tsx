@@ -209,7 +209,9 @@ export function SidebarSection({
   itemProps,
   children,
 }: SidebarSectionProps) {
-  const hasChildren = children != null && children !== false
+  const hasChildren = Array.isArray(children)
+    ? children.length > 0
+    : children != null && children !== false
   const open = hasChildren && expanded
 
   return (

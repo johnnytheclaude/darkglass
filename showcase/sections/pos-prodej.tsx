@@ -107,7 +107,7 @@ export const section: ShowcaseSection = {
   demos: [
     {
       title: 'Dlaždice zboží',
-      note: 'Běžná, vybraná (akcent) a v akci. Dlouhý název se láme do tří řádků a cena zůstává u dolní hrany.',
+      note: 'Běžná, vybraná (akcent), v akci a se zbožím ve variantách. Dlouhý název se láme do tří řádků a cena zůstává u dolní hrany.',
       render: () => (
         <>
           <ProductTile name="Sako tmavě modré slim" price="9 990 Kč" />

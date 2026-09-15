@@ -38,6 +38,19 @@
   -webkit-line-clamp: 3;
 }
 
+/* Podtitulek varianty stojí hned pod názvem, cena zůstává u dolní hrany. */
+.dg-product-tile__note {
+  width: 100%;
+  margin-top: calc(3px * var(--scale));
+  overflow: hidden;
+  color: var(--text-3);
+  font-size: calc(13px * var(--scale));
+  font-weight: 400;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* Cena sedí u dolní hrany dlaždice bez ohledu na délku názvu. */
 .dg-product-tile__sale {
   width: 100%;
@@ -58,7 +71,8 @@
   flex-wrap: wrap;
 }
 
-.dg-product-tile__name + .dg-product-tile__price {
+.dg-product-tile__name + .dg-product-tile__price,
+.dg-product-tile__note + .dg-product-tile__price {
   margin-top: auto;
   padding-top: calc(8px * var(--scale));
 }
