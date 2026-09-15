@@ -1,0 +1,25 @@
+/* Rozbalovací výběr — § Textová pole (zavřený) a § Formuláře · pokročilé (rozbalený). */
+
+.dg-select__box {
+  cursor: pointer;
+}
+
+.dg-select__box:disabled {
+  cursor: not-allowed;
+}
+
+.dg-select__value {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-1);
+  font-size: calc(15px * var(--scale));
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-select__value.is-placeholder {
+  color: var(--text-3);
+  font-weight: 400;
+}

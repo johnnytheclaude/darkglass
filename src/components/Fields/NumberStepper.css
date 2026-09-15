@@ -1,0 +1,46 @@
+/* Počítadlo — § Textová pole. Návrh: rámeček 48 s odsazením 4, tlačítka 40×40
+   s rádiusem 12, hodnota 18/600 v poli širokém 78. */
+
+.dg-stepper {
+  width: fit-content;
+}
+
+.dg-stepper__box {
+  width: fit-content;
+  padding: calc(4px * var(--scale));
+  gap: calc(4px * var(--scale));
+}
+
+.dg-stepper__btn {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: calc(40px * var(--scale));
+  height: calc(40px * var(--scale));
+  padding: 0;
+  border: 0;
+  border-radius: calc(12px * var(--scale));
+  background-color: var(--surface-2);
+  color: var(--text-1);
+  cursor: pointer;
+}
+
+.dg-stepper__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.dg-stepper__value {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-width: calc(78px * var(--scale));
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(18px * var(--scale));
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}

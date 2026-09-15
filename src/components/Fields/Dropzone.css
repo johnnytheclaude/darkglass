@@ -1,0 +1,69 @@
+/* Nahrání souboru — § Textová pole. Návrh: výška 154, rádius 18, odsazení 20,
+   kolečko 52 v tlumeném akcentu, nadpis 15,5/600, druhý řádek 12,5/400. */
+
+.dg-dropzone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(154px * var(--scale));
+  padding: calc(20px * var(--scale));
+  border-radius: calc(18px * var(--scale));
+  background-color: var(--surface-05);
+  gap: calc(10px * var(--scale));
+  font-family: var(--font), system-ui, sans-serif;
+  text-align: center;
+  cursor: pointer;
+}
+
+.dg-dropzone.is-over {
+  background-color: var(--accent-soft);
+  box-shadow: inset 0 0 0 calc(2px * var(--scale)) var(--accent);
+}
+
+.dg-dropzone.is-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Vstup zůstává v DOM kvůli klávesnici a čtečce, jen není vidět. */
+.dg-dropzone__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.dg-dropzone__input:focus-visible ~ .dg-dropzone__icon {
+  box-shadow: 0 0 0 calc(4px * var(--scale)) var(--focus-ring);
+}
+
+.dg-dropzone__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: calc(52px * var(--scale));
+  height: calc(52px * var(--scale));
+  border-radius: var(--r-pill);
+  background-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+.dg-dropzone__title {
+  color: var(--text-1);
+  font-size: calc(15.5px * var(--scale));
+  font-weight: 600;
+}
+
+.dg-dropzone__hint {
+  color: var(--text-3);
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 400;
+  line-height: 1.3;
+}

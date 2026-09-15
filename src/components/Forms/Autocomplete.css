@@ -1,0 +1,8 @@
+/* Našeptávač — § Formuláře · pokročilé. Pole je textové pole s lupou,
+   nabídka má řádek 44 s miniaturou (návrh) místo 42 u prostého výběru. */
+
+.dg-autocomplete .dg-fieldmenu__opt {
+  min-height: calc(44px * var(--scale));
+  padding-right: calc(10px * var(--scale));
+  padding-left: calc(10px * var(--scale));
+}

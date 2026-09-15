@@ -1,0 +1,87 @@
+/* Rozbalená nabídka pole — § Formuláře · pokročilé.
+   Návrh: plocha rádius 16, odsazení 6, stín 0 16 48, řádek 42 s rádiusem 11,
+   vybraný řádek v tlumeném akcentu s fajfkou. Našeptávač má řádek 44 s miniaturou. */
+
+.dg-fieldmenu {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: calc(6px * var(--scale));
+  border-radius: calc(16px * var(--scale));
+  background-color: var(--surface-solid);
+  box-shadow: 0 calc(16px * var(--scale)) calc(48px * var(--scale)) var(--shadow);
+  gap: calc(1px * var(--scale));
+  font-family: var(--font), system-ui, sans-serif;
+  list-style: none;
+}
+
+.dg-fieldmenu__hint {
+  padding: calc(6px * var(--scale)) calc(12px * var(--scale)) calc(4px * var(--scale));
+  color: var(--text-3);
+  font-size: calc(10.5px * var(--scale));
+  font-weight: 700;
+  letter-spacing: calc(0.7px * var(--scale));
+  text-transform: uppercase;
+}
+
+.dg-fieldmenu__opt {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(42px * var(--scale));
+  padding: calc(4px * var(--scale)) calc(12px * var(--scale));
+  border: 0;
+  border-radius: calc(11px * var(--scale));
+  background: none;
+  gap: calc(10px * var(--scale));
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(14px * var(--scale));
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dg-fieldmenu__opt.is-active {
+  background-color: var(--surface-15);
+}
+
+.dg-fieldmenu__opt.is-selected {
+  background-color: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.dg-fieldmenu__opt:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.dg-fieldmenu__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-fieldmenu__check {
+  flex: 0 0 auto;
+}
+
+.dg-fieldmenu__thumb {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: calc(28px * var(--scale));
+  height: calc(28px * var(--scale));
+  border-radius: calc(8px * var(--scale));
+  background-color: var(--surface-3);
+  overflow: hidden;
+}

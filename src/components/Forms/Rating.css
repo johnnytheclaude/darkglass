@@ -1,0 +1,43 @@
+/* Hodnocení — § Formuláře · pokročilé. Návrh: hvězdy 24 s mezerou 6,
+   číslo 14/600. Vyplněná hvězda je ve varovné (zlaté) barvě, prázdná tlumená. */
+
+.dg-rating {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(6px * var(--scale));
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-rating__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-xs);
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.dg-rating__btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 calc(3px * var(--scale)) var(--focus-ring);
+}
+
+.dg-rating__star {
+  color: var(--track-off);
+}
+
+.dg-rating__star[fill='currentColor'] {
+  color: var(--warning);
+}
+
+.dg-rating__value {
+  margin-left: calc(2px * var(--scale));
+  color: var(--text-1);
+  font-size: calc(14px * var(--scale));
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}

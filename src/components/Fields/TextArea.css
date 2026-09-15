@@ -1,0 +1,32 @@
+/* Víceřádkové pole — § Textová pole. Návrh: výška 110, odsazení 14 15. */
+
+.dg-textarea__box {
+  align-items: flex-start;
+  min-height: calc(110px * var(--scale));
+  padding: calc(14px * var(--scale)) calc(15px * var(--scale));
+}
+
+.dg-textarea__input {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(15px * var(--scale));
+  font-weight: 500;
+  line-height: 1.4;
+  resize: vertical;
+}
+
+.dg-textarea__input:focus {
+  outline: none;
+}
+
+.dg-textarea__input::placeholder {
+  color: var(--text-3);
+  font-weight: 400;
+  opacity: 1;
+}
