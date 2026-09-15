@@ -24,6 +24,14 @@ import { ParkedTile } from '../../src/components/Pos/ParkedTile'
 import { PlaceholderTile } from '../../src/components/Pos/PlaceholderTile'
 import { QuantityRow } from '../../src/components/Pos/QuantityRow'
 import { RequestCard } from '../../src/components/Pos/RequestCard'
+import { ResultPanel } from '../../src/components/Pos/ResultPanel'
+import { StatusTile } from '../../src/components/Pos/StatusTile'
+import { TotalCard } from '../../src/components/Pos/TotalCard'
+import { QrCard } from '../../src/components/Cards/QrCard'
+import { IconCheck } from '../../src/components/Icons/IconCheck'
+import { IconAlert } from '../../src/components/Icons/IconAlert'
+import { IconPrinter } from '../../src/components/Icons/IconPrinter'
+import { UkazkaQr } from '../ukazka-qr'
 import { StatusList } from '../../src/components/Pos/StatusList'
 import { StatusModal, StatusModalLine } from '../../src/components/Pos/StatusModal'
 import { StepsCompact } from '../../src/components/Pos/StepsCompact'
@@ -465,6 +473,53 @@ export const section: ShowcaseSection = {
               error
             />
           </StatusModal>
+        </div>
+      ),
+    },
+      {
+      title: 'Panel / Výsledek · konec prodeje',
+      note:
+        'Konec úlohy na celou plochu (artboardy 07 a 08 Pokladny): kolečko se znakem, nadpis jako ' +
+        'největší text obrazovky a pod ním jen to, o čem se ještě rozhoduje — kolik vrátit, jak ' +
+        'dopadl tisk a případně účtenka jako kód na displeji. Velká varianta karty součtu (size="l") ' +
+        'nese jediné číslo, které obsluha čte přes pult; Row / Stav zařízení vždy říká, co se děje ' +
+        'a na čem, protože tiskárna na portu 9100 výsledek sama nehlásí.',
+      stack: true,
+      render: () => (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 32 }}>
+          <ResultPanel
+            icon={<IconCheck />}
+            title="Zaplaceno"
+            meta="P01-2026-000042 · zjednodušený daňový doklad · hotově"
+          >
+            <TotalCard size="l" totalLabel="Vrátit zákazníkovi" total="1 540 Kč" />
+            <StatusTile
+              tone="accent"
+              icon={<IconPrinter />}
+              title="Účtenka se tiskne"
+              sub="Epson TM-m30III · odesláno 10:18"
+            />
+          </ResultPanel>
+          <ResultPanel
+            tone="danger"
+            icon={<IconAlert />}
+            title="Účtenka nevyjela"
+            meta="Prodej je hotový · doklad P01-2026-000042 uložen"
+          >
+            <StatusTile
+              tone="danger"
+              icon={<IconPrinter />}
+              title="Tiskárna neodpověděla"
+              sub="Tisk na portu 9100 se nepotvrzuje — zkontrolujte, jestli papír vyjel"
+            />
+            <QrCard
+              layout="row"
+              size="m"
+              title="Otočte displej k zákazníkovi"
+              note="QR nese celý text účtenky, načte se i bez internetu."
+              code={<UkazkaQr />}
+            />
+          </ResultPanel>
         </div>
       ),
     },

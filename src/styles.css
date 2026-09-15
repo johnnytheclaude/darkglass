@@ -132,7 +132,9 @@
 @import "./components/Pos/RequestCard.css";
 @import "./components/Pos/StatusBar.css";
 @import "./components/Pos/NoteRow.css";
+@import "./components/Pos/ResultPanel.css";
 @import "./components/Pos/StatusList.css";
+@import "./components/Pos/StatusTile.css";
 @import "./components/Pos/StockTile.css";
 @import "./components/Pos/StatusModal.css";
 @import "./components/Pos/StepsCompact.css";

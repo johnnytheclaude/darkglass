@@ -87,3 +87,41 @@
   font-weight: 400;
   line-height: 1.35;
 }
+
+/* Kód vedle textu: v panelu potvrzení stojí karta v řadě s ostatními bloky,
+   takže se text čte zleva doprava a kód zůstává vlevo u okraje displeje,
+   kam ho obsluha otáčí k zákazníkovi. Fyzická velikost kódu se nemění. */
+.dg-qr-card--row {
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  gap: calc(18px * var(--scale));
+  text-align: left;
+}
+
+.dg-qr-card--row .dg-qr-card__texts {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(4px * var(--scale));
+}
+
+.dg-qr-card--row .dg-qr-card__head {
+  align-items: flex-start;
+  gap: calc(2px * var(--scale));
+}
+
+/* V řadě je titulek vedoucí věta („Otočte displej k zákazníkovi“), ne popisek
+   nad částkou — proto plná barva textu a tučný řez. */
+.dg-qr-card--row .dg-qr-card__title {
+  color: var(--text-1);
+  font-size: calc(18px * var(--scale));
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.dg-qr-card--row .dg-qr-card__note {
+  max-width: none;
+  font-size: calc(14px * var(--scale));
+}

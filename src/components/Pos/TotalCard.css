@@ -88,3 +88,27 @@
   font-weight: 400;
   line-height: 1.3;
 }
+
+/* Velká varianta — jediné číslo obrazovky (kolik vrátit hotově, artboard 07).
+   Návrh: odsazení 22/28, popisek 17/400, částka 72/700 s prostrkáním −2,8 px. */
+.dg-total-card--l {
+  padding: calc(22px * var(--scale)) calc(28px * var(--scale));
+}
+
+.dg-total-card--l .dg-total-card__total {
+  padding-top: 0;
+  gap: calc(4px * var(--scale));
+}
+
+.dg-total-card--l .dg-total-card__total-label {
+  font-size: calc(17px * var(--scale));
+}
+
+.dg-total-card--l .dg-total-card__amount {
+  font-size: clamp(
+    calc(40px * var(--scale)),
+    calc(11cqw + 10px),
+    calc(72px * var(--scale))
+  );
+  letter-spacing: -2.8px;
+}

@@ -6,7 +6,12 @@ export interface TotalCardRow {
   value: ReactNode
 }
 
+/** `m` = součet vedle košíku, `l` = jediné číslo na obrazovce (vrátit hotově). */
+export type TotalCardSize = 'm' | 'l'
+
 export interface TotalCardProps extends HTMLAttributes<HTMLDivElement> {
+  /** Velikost částky; `l` se čte přes pult, a proto nesnese nic kolem sebe. */
+  size?: TotalCardSize
   /** Řádky nad čarou (mezisoučet, sleva, záloha…). */
   rows?: TotalCardRow[]
   /** Popisek nad částkou („Celkem“). */
@@ -28,13 +33,14 @@ export function TotalCard({
   rows = [],
   totalLabel,
   total,
+  size = 'm',
   note,
   className,
   children,
   ...rest
 }: TotalCardProps) {
   return (
-    <div className={['dg-total-card', className].filter(Boolean).join(' ')} {...rest}>
+    <div className={['dg-total-card', `dg-total-card--${size}`, className].filter(Boolean).join(' ')} {...rest}>
       {rows.map((row) => (
         <div key={row.key} className="dg-total-card__row">
           <span className="dg-total-card__label">{row.label}</span>
@@ -42,7 +48,9 @@ export function TotalCard({
         </div>
       ))}
       {children}
-      <div className="dg-total-card__rule" />
+      {/* Čára odděluje rozpis od součtu — nad kartou s jediným číslem by
+          oddělovala částku od ničeho, proto se bez rozpisu nekreslí. */}
+      {rows.length > 0 || children != null ? <div className="dg-total-card__rule" /> : null}
       <div className="dg-total-card__total">
         {totalLabel != null ? (
           <span className="dg-total-card__total-label">{totalLabel}</span>

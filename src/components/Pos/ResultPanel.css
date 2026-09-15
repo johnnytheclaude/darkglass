@@ -1,0 +1,87 @@
+/* Panel / Výsledek — § Pokladna · provoz (artboardy 07 a 08 Pokladny).
+   Návrh: sloupec 640 px, kolečko 88 px se znakem 44 px, mezera 18 px,
+   nadpis 40/700 s prostrkáním −1,4 px, meta 15/400, mezera 26 px nad obsahem,
+   obsah po 22 px. */
+
+.dg-result-panel {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: calc(640px * var(--scale));
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(18px * var(--scale));
+}
+
+.dg-result-panel__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: calc(88px * var(--scale));
+  height: calc(88px * var(--scale));
+  border-radius: var(--r-pill);
+}
+
+.dg-result-panel__icon > * {
+  width: calc(44px * var(--scale));
+  height: calc(44px * var(--scale));
+}
+
+.dg-result-panel__head {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(4px * var(--scale));
+}
+
+.dg-result-panel__title {
+  color: var(--text-1);
+  font-size: calc(40px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -1.4px;
+  line-height: 1.1;
+}
+
+.dg-result-panel__meta {
+  color: var(--text-3);
+  font-size: calc(15px * var(--scale));
+  font-weight: 400;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+/* Obsah začíná dál od hlavičky, než jsou mezery uvnitř — nadpis a meta patří
+   k sobě, částka a stav tisku jsou samostatné bloky. */
+.dg-result-panel__body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: calc(8px * var(--scale));
+  gap: calc(22px * var(--scale));
+}
+
+.dg-result-panel--success .dg-result-panel__icon {
+  background-color: var(--success-soft);
+  color: var(--success-text);
+}
+
+.dg-result-panel--danger .dg-result-panel__icon {
+  background-color: var(--danger-soft);
+  color: var(--danger-text);
+}
+
+.dg-result-panel--warning .dg-result-panel__icon {
+  background-color: var(--warning-soft);
+  color: var(--warning-text);
+}
+
+.dg-result-panel--accent .dg-result-panel__icon {
+  background-color: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+.dg-result-panel--neutral .dg-result-panel__icon {
+  background-color: var(--surface-2);
+  color: var(--text-2);
+}

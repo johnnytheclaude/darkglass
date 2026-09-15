@@ -1,0 +1,84 @@
+/* Row / Stav zařízení — § Pokladna · provoz (artboardy 07 a 08 Pokladny).
+   Návrh: rádius 16, odsazení 12/12/12/14, mezera 12, dlaždice 32 px se
+   znakem 17 px, nadpis 14,5/600, podřádek 12,5/400. */
+
+.dg-status-tile {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(12px * var(--scale)) calc(12px * var(--scale)) calc(12px * var(--scale)) calc(14px * var(--scale));
+  border-radius: var(--r-md);
+  background-color: var(--surface-2);
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-status-tile__tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: calc(32px * var(--scale));
+  height: calc(32px * var(--scale));
+  border-radius: var(--r-pill);
+}
+
+.dg-status-tile__tile > * {
+  width: calc(17px * var(--scale));
+  height: calc(17px * var(--scale));
+}
+
+.dg-status-tile__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(2px * var(--scale));
+}
+
+.dg-status-tile__title {
+  color: var(--text-1);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.dg-status-tile__sub {
+  color: var(--text-3);
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 400;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.dg-status-tile__action {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dg-status-tile--accent .dg-status-tile__tile {
+  background-color: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+.dg-status-tile--success .dg-status-tile__tile {
+  background-color: var(--success-soft);
+  color: var(--success-text);
+}
+
+.dg-status-tile--warning .dg-status-tile__tile {
+  background-color: var(--warning-soft);
+  color: var(--warning-text);
+}
+
+.dg-status-tile--danger .dg-status-tile__tile {
+  background-color: var(--danger-soft);
+  color: var(--danger-text);
+}
+
+.dg-status-tile--neutral .dg-status-tile__tile {
+  background-color: var(--surface-3);
+  color: var(--text-2);
+}
