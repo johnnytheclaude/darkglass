@@ -177,34 +177,95 @@
   --glass-blur-sm: 10px;
 }
 
+/* KONEC PŘECHODU = PODKLAD S NULOVOU ALFOU, ne `transparent` (task #606,
+   rework ownera). `transparent` je v CSS `rgba(0,0,0,0)`, tedy průhledná
+   ČERNÁ: přechod pak po cestě míří k černé, ne k podkladu obrazovky, a v tak
+   nízkém kontrastu z toho vzniknou viditelné pruhy. Export návrhu má na tom
+   místě `--bg` s alfou 00 (`#0D101400` v tmavém, `#EEF0F500` ve světlém) —
+   proto token. Změnit ho samotné `--bg` nejde, CSS neumí „vezmi barvu a dej
+   jí alfu 0" bez relativních barev; a `color-mix(… transparent)` má tutéž
+   vadu. Až budou relativní barvy všude, je to `rgb(from var(--bg) r g b / 0)`. */
+:root,
+[data-theme="light"] {
+  --bg-fade: #EEF0F500;
+}
+
+[data-theme="dark"] {
+  --bg-fade: #0D101400;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-fade: #0D101400;
+  }
+}
+
+/* ROZPTYL (dithering). Jemný tmavý přechod přes velkou plochu se v 8bitové
+   barvě kvantuje do pruhů na každém displeji — samotná oprava konce přechodu
+   to nespraví, je to fyzika, ne chyba hodnoty. Přebíjí se to šumem o síle
+   menší než jeden krok kvantování: pixely na hraně pruhu se rozhodí a oko
+   místo hrany vidí plynulý přechod.
+
+   Šum je SVG feTurbulence v data: URI (žádný soubor, žádný request),
+   odbarvené (`feColorMatrix saturate 0`), dlaždice 180×180 se `stitchTiles`,
+   ať na spoji nevzniká mřížka. `numOctaves='1'` schválně: víc oktáv dělá
+   měkké chuchvalce, které jsou při zvětšení znát jako tkanina — na rozptyl
+   je potřeba zrno velké jeden pixel. Krytí 5 % je na spodní hranici
+   viditelnosti; silnější šum už je znát jako zrno na plochách nad ním.
+   Leží nad přechodem, ale pod obsahem — je to pozadí plochy, takže text ani
+   karty neruší; sklo nad ním ho rozostří stejně jako přechod. */
+:root {
+  --screen-bg-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
 /* PŘECHOD POZADÍ OBRAZOVKY. Dvě elipsy nad --bg, 1:1 podle exportu návrhu:
-   radial-gradient(ellipse 45% 20% at 88% 45%, <tint-b>, průhledná),
-   radial-gradient(ellipse 55% 25% at 18% 6%, <tint-a>, průhledná).
-   Geometrie je v obou motivech stejná, liší se jen odstíny — a ty jsou
-   v tokenech (--bg-tint-a/b), takže jedna definice stačí na oba motivy.
+   radial-gradient(ellipse 45% 20% at 88% 45%, <tint-b>, <bg s alfou 0>),
+   radial-gradient(ellipse 55% 25% at 18% 6%, <tint-a>, <bg s alfou 0>),
+   a nad nimi vrstva rozptylu (viz výš). Geometrie je v obou motivech stejná,
+   liší se jen odstíny — a ty jsou v tokenech (--bg-tint-a/b, --bg-fade),
+   takže jedna definice stačí na oba motivy.
+
+   Vrstvy mají různé chování (přechod se roztahuje přes viewport, šum se
+   dlaždicuje), takže ke `--screen-bg-image` patří i `--screen-bg-size`
+   a `--screen-bg-repeat` — jednohodnotové `background-size: 100% 100%`
+   by šum roztáhlo přes celou plochu a zrno by z něj udělalo mapu.
 
    Aplikace ho zapne na své ploše (proto token, ne jen komponenta):
 
      body {                                  nebo kořen aplikace
        background-color: var(--bg);
        background-image: var(--screen-bg-image);
-       background-repeat: no-repeat;
-       background-size: 100% 100%;
+       background-repeat: var(--screen-bg-repeat);
+       background-size: var(--screen-bg-size);
        background-attachment: fixed;         ať přechod při scrollu stojí
      }
 
    Bez pozadí není sklo vidět — rozostřovat plochou barvu nemá co. */
 :root {
-  --screen-bg-image: radial-gradient(
+  --screen-bg-image: var(--screen-bg-noise),
+    radial-gradient(
       ellipse 45% 20% at 88% 45%,
       var(--bg-tint-b) 0%,
-      transparent 100%
+      var(--bg-fade) 100%
     ),
     radial-gradient(
       ellipse 55% 25% at 18% 6%,
       var(--bg-tint-a) 0%,
-      transparent 100%
+      var(--bg-fade) 100%
     );
+  --screen-bg-size: 180px 180px, 100% 100%, 100% 100%;
+  --screen-bg-repeat: repeat, no-repeat, no-repeat;
+}
+
+/* Na displeji s dvojnásobnou hustotou (Mac ownera, dotykový tablet) by se
+   dlaždice šumu roztáhla na dvojnásobek a jedno zrno by padlo na 2×2 fyzické
+   pixely — rozptyl pak pruh nerozbije, jen ho zamlží. Půlka velikosti vrátí
+   zrno na jeden fyzický pixel; sama SVG dlaždice se překreslí v rozlišení
+   displeje, takže se nerozmaže. */
+@media (min-resolution: 2dppx) {
+  :root {
+    --screen-bg-size: 90px 90px, 100% 100%, 100% 100%;
+  }
 }
 
 /* Tokeny, které Pen vygeneroval jako JEDINOU hodnotu (tokens.css blok :root,

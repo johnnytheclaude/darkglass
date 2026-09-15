@@ -16,8 +16,8 @@
   min-height: calc(120px * var(--scale));
   background-color: var(--bg);
   background-image: var(--screen-bg-image);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-repeat: var(--screen-bg-repeat);
+  background-size: var(--screen-bg-size);
 }
 
 .dg-screen-bg--rounded {
