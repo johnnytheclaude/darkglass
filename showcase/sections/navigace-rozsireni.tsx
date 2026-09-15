@@ -67,6 +67,7 @@ function TabsDemo() {
         { key: 'aktivni', label: 'Aktivní', count: 8 },
         { key: 'archiv', label: 'Archiv' },
         { key: 'koncepty', label: 'Koncepty', count: 3 },
+        { key: 'smazane', label: 'Smazané', disabled: true },
       ]}
     />
   )
@@ -170,7 +171,8 @@ export const section: ShowcaseSection = {
     },
     {
       title: 'Záložky · pilulky',
-      note: 'Přepínač pohledů na jeden seznam. Klikací — vybraná záložka je plná.',
+      note: 'Přepínač pohledů na jeden seznam — myší i šipkami; vybraná záložka je plná, neaktivní se přeskočí.',
+      wide: true,
       render: () => <TabsDemo />,
     },
     {

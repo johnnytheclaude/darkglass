@@ -39,6 +39,11 @@ function UkazkaVolby() {
         selected={volba === 'penize'}
         onClick={() => setVolba('penize')}
       />
+      <ChoiceCard
+        title="Vrátit na kartu"
+        description="terminál je v ručním režimu — peníze musí vrátit obsluha"
+        disabled
+      />
     </div>
   )
 }

@@ -82,6 +82,8 @@ function UkazkaSegmentovanych() {
   const [dve, setDve] = useState('souhrn')
   const [tri, setTri] = useState('dnes')
   const [ctyri, setCtyri] = useState('vse')
+  const [sNeaktivni, setSNeaktivni] = useState('prodejna')
+  const [naSirku, setNaSirku] = useState('uctenka')
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-start' }}>
       <SegmentedControl
@@ -114,6 +116,27 @@ function UkazkaSegmentovanych() {
         value={ctyri}
         onChange={setCtyri}
       />
+      <SegmentedControl
+        label="Sklad"
+        options={[
+          { value: 'prodejna', label: 'Prodejna' },
+          { value: 'centralni', label: 'Centrální' },
+          { value: 'archiv', label: 'Archiv', disabled: true },
+        ]}
+        value={sNeaktivni}
+        onChange={setSNeaktivni}
+      />
+      <SegmentedControl
+        block
+        label="Doklad"
+        options={[
+          { value: 'uctenka', label: 'Účtenka' },
+          { value: 'faktura', label: 'Faktura' },
+        ]}
+        value={naSirku}
+        onChange={setNaSirku}
+        style={{ maxWidth: 420 }}
+      />
     </div>
   )
 }
@@ -128,6 +151,19 @@ function UkazkaStitku() {
       </Chip>
       <Chip>Jen skladem</Chip>
       <Chip count={4}>Ve frontě</Chip>
+      <Chip selected count={12} tone="accent">
+        Čeká na tisk
+      </Chip>
+      <Chip tone="success" selected>
+        Zaplaceno
+      </Chip>
+      <Chip tone="warning" selected>
+        Chybí cena
+      </Chip>
+      <Chip tone="danger" selected>
+        Manko
+      </Chip>
+      <Chip disabled>Nedostupné</Chip>
       {stitky.map((stitek) => (
         <RemovableChip
           key={stitek}
@@ -178,7 +214,7 @@ export const section: ShowcaseSection = {
     },
     {
       title: 'Segmentované přepínače',
-      note: 'Dvě až čtyři volby; delší popisky se nezalomí, pilulka se natáhne.',
+      note: 'Dvě až čtyři volby, šipkami i dotykem; neaktivní volba se přeskočí, varianta na šířku dělí místo rovným dílem.',
       stack: true,
       wide: true,
       render: () => <UkazkaSegmentovanych />,

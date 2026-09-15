@@ -1,4 +1,5 @@
-import type { HTMLAttributes, ReactNode, Ref } from 'react'
+import { useRef } from 'react'
+import type { HTMLAttributes, KeyboardEvent, ReactNode, Ref } from 'react'
 
 export interface SegmentedOption {
   value: string
@@ -19,8 +20,11 @@ export interface SegmentedControlProps extends Omit<HTMLAttributes<HTMLDivElemen
 }
 
 /**
- * Segmentovaný přepínač (Souhrn/Detail, Dnes/Týden/Měsíc…). Volby jsou
- * tlačítka, takže se dají procházet klávesnicí; vybraná nese `aria-pressed`.
+ * Segmentovaný přepínač (Souhrn/Detail, Dnes/Týden/Měsíc…). Nahrazuje většinu
+ * nativních selectů, takže se musí ovládat i klávesnicí: je to skupina voleb
+ * (`radiogroup`), do které se vstoupí jedním tabulátorem a pak se prochází
+ * šipkami — vlevo/vpravo i nahoru/dolů, Home/End na kraje. Výběr jde za
+ * ostřením jako u nativních přepínačů; neaktivní volby se přeskakují.
  */
 export function SegmentedControl({
   options,
@@ -29,27 +33,81 @@ export function SegmentedControl({
   block = false,
   label,
   className,
+  onKeyDown,
   ...rest
 }: SegmentedControlProps) {
+  const itemsRef = useRef<Array<HTMLButtonElement | null>>([])
+
+  const enabled = options
+    .map((option, index) => ({ option, index }))
+    .filter((item) => !item.option.disabled)
+
+  const selectedIndex = options.findIndex((option) => option.value === value)
+  /** Kam vede tabulátor, když žádná volba není vybraná — na první použitelnou. */
+  const stopIndex = selectedIndex >= 0 ? selectedIndex : (enabled[0]?.index ?? -1)
+
+  function prepni(cil: { option: SegmentedOption; index: number }) {
+    onChange?.(cil.option.value)
+    itemsRef.current[cil.index]?.focus()
+  }
+
+  function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+    onKeyDown?.(event)
+    if (event.defaultPrevented || enabled.length === 0) return
+
+    const zde = enabled.findIndex((item) => item.option.value === value)
+    const odkud = zde >= 0 ? zde : 0
+    let cil: { option: SegmentedOption; index: number } | undefined
+
+    switch (event.key) {
+      case 'ArrowRight':
+      case 'ArrowDown':
+        cil = enabled[(odkud + 1) % enabled.length]
+        break
+      case 'ArrowLeft':
+      case 'ArrowUp':
+        cil = enabled[(odkud - 1 + enabled.length) % enabled.length]
+        break
+      case 'Home':
+        cil = enabled[0]
+        break
+      case 'End':
+        cil = enabled[enabled.length - 1]
+        break
+      default:
+        return
+    }
+
+    if (!cil) return
+    event.preventDefault()
+    prepni(cil)
+  }
+
   return (
     <div
       className={['dg-segmented', block ? 'dg-segmented--block' : null, className]
         .filter(Boolean)
         .join(' ')}
-      role="group"
+      role="radiogroup"
       aria-label={label}
+      onKeyDown={handleKeyDown}
       {...rest}
     >
-      {options.map((option) => {
+      {options.map((option, index) => {
         const selected = option.value === value
         return (
           <button
             key={option.value}
+            ref={(el) => {
+              itemsRef.current[index] = el
+            }}
             type="button"
             className={['dg-segmented__item', selected ? 'is-selected' : null]
               .filter(Boolean)
               .join(' ')}
-            aria-pressed={selected}
+            role="radio"
+            aria-checked={selected}
+            tabIndex={index === stopIndex ? 0 : -1}
             disabled={option.disabled}
             onClick={() => onChange?.(option.value)}
           >
