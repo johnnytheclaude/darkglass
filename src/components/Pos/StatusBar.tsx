@@ -14,6 +14,8 @@ export interface StatusBadge {
   onClick?: () => void
 }
 
+import { SandboxBar } from '../System/SandboxBar'
+
 export interface SandboxStrip {
   text: ReactNode
   actionLabel?: ReactNode
@@ -139,14 +141,7 @@ export function StatusBar({
 
   return (
     <div className="dg-status-bar-stack">
-      <div className="dg-sandbox-strip">
-        <span className="dg-sandbox-strip__text">{sandbox.text}</span>
-        {sandbox.actionLabel != null ? (
-          <button type="button" className="dg-sandbox-strip__action" onClick={sandbox.onAction}>
-            {sandbox.actionLabel}
-          </button>
-        ) : null}
-      </div>
+      <SandboxBar text={sandbox.text} actionLabel={sandbox.actionLabel} onAction={sandbox.onAction} />
       {bar}
     </div>
   )

@@ -135,6 +135,7 @@
 @import "./components/Pos/VariantRow.css";
 
 @import "./components/System/AccountMenu.css";
+@import "./components/System/SandboxBar.css";
 @import "./components/System/Banner.css";
 @import "./components/System/Divider.css";
 @import "./components/System/Footnote.css";

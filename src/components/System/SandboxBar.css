@@ -1,0 +1,56 @@
+/* SandboxBar (Pruh SANDBOX) — zkušební režim. Nese ho stavová lišta Pokladny
+   i obrazovky bez lišty (telefon, Admin), proto stojí samostatně. */
+
+.dg-sandbox-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(58px * var(--scale));
+  padding: calc(6px * var(--scale)) calc(10px * var(--scale)) calc(6px * var(--scale))
+    calc(18px * var(--scale));
+  border-radius: calc(14px * var(--scale));
+  background-color: var(--purple-soft);
+  gap: calc(12px * var(--scale));
+}
+
+.dg-sandbox-strip__text {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--purple-text);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.dg-sandbox-strip__action {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: calc(36px * var(--scale));
+  padding: 0 calc(16px * var(--scale));
+  border: 0;
+  border-radius: var(--r-pill);
+  background-color: var(--orange-fill);
+  color: var(--on-orange);
+  font-family: inherit;
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .dg-sandbox-strip__action:hover {
+    background-image: linear-gradient(var(--surface-15), var(--surface-15));
+  }
+}
+
+.dg-sandbox-strip__action:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
