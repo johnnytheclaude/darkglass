@@ -32,6 +32,9 @@
 
 /* světlý motiv je výchozí */
 :root, [data-theme="light"] {
+  /* Bez color-scheme kresli prohlizec posuvniky a systemova pole vzdy svetle —
+     v tmavem motivu pak svitil bily posuvnik pres celou tabulku. */
+  color-scheme: light;
   --text-1: #14171C;
   --text-2: #575F6B;
   --text-3: #5D646E;
@@ -85,6 +88,7 @@
 }
 
 [data-theme="dark"] {
+  color-scheme: dark;
   --text-1: #FFFFFF;
   --text-2: #A7B0BE;
   --text-3: #9CA5B3;
@@ -139,6 +143,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
+    color-scheme: dark;
     --text-1: #FFFFFF;
     --text-2: #A7B0BE;
     --text-3: #9CA5B3;
