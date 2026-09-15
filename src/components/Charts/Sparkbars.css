@@ -1,0 +1,25 @@
+/* Chart / Sparkbars — § Grafy.
+   Návrh: plocha 140 px, sloupce mezera 5, rádius 6, nejmenší sloupec 5 px,
+   špičky v akcentu. */
+
+.dg-sparkbars__bars {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: flex-end;
+  width: 100%;
+  min-width: 0;
+  height: calc(140px * var(--scale));
+  gap: calc(5px * var(--scale));
+}
+
+.dg-sparkbars__bar {
+  flex: 1 1 0;
+  min-width: calc(4px * var(--scale));
+  min-height: calc(5px * var(--scale));
+  border-radius: calc(6px * var(--scale));
+  background-color: var(--surface-2, var(--surface-15));
+}
+
+.dg-sparkbars__bar--on {
+  background-color: var(--accent);
+}

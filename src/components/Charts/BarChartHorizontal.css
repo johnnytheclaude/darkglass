@@ -1,0 +1,64 @@
+/* Chart / Bars Horizontal — § Grafy.
+   Návrh: řádky s mezerou 14, název 13,5/500 a hodnota 13,5/600 nad pruhem,
+   dráha 10 px / pilulka, výplň v akcentu u vyzdviženého řádku. */
+
+.dg-bars-h__rows {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  gap: calc(14px * var(--scale));
+}
+
+.dg-bars-h__row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  gap: calc(7px * var(--scale));
+}
+
+.dg-bars-h__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 0;
+  gap: calc(8px * var(--scale));
+}
+
+.dg-bars-h__name {
+  min-width: 0;
+  color: var(--text-1);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 500;
+}
+
+.dg-bars-h__value {
+  color: var(--text-1);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.dg-bars-h__track {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(10px * var(--scale));
+  border-radius: var(--r-pill);
+  background-color: var(--surface-15);
+}
+
+.dg-bars-h__fill {
+  height: 100%;
+  border-radius: var(--r-pill);
+  background-color: var(--surface-2, var(--surface-15));
+}
+
+.dg-bars-h__fill--on {
+  background-color: var(--accent);
+}

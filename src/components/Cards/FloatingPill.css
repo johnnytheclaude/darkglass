@@ -1,0 +1,52 @@
+/* Pill / Glass a Pill / Live — § Složené bloky.
+   Návrh: výška 38, rádius 19, odsazení 0 14 (živě 0 16), mezera 7 (živě 8),
+   popisek 13,5/500 (živě 14/600), tečka 9 px v červené. */
+
+.dg-floating-pill {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 100%;
+  min-height: calc(38px * var(--scale));
+  padding: 0 calc(14px * var(--scale));
+  border-radius: calc(19px * var(--scale));
+  background-color: var(--pill-fill);
+  box-shadow: 0 2px 10px var(--shadow-pill, var(--shadow-soft));
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(7px * var(--scale));
+}
+
+.dg-floating-pill__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  color: var(--pill-text-2);
+}
+
+.dg-floating-pill__label {
+  overflow: hidden;
+  color: var(--pill-text);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-floating-pill--live {
+  padding: 0 calc(16px * var(--scale));
+  gap: calc(8px * var(--scale));
+}
+
+.dg-floating-pill--live .dg-floating-pill__label {
+  font-size: calc(14px * var(--scale));
+  font-weight: 600;
+}
+
+.dg-floating-pill__dot {
+  flex: 0 0 auto;
+  width: calc(9px * var(--scale));
+  height: calc(9px * var(--scale));
+  border-radius: 50%;
+  background-color: var(--red);
+}

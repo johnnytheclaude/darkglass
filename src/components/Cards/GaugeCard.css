@@ -1,0 +1,177 @@
+/* Card / Gauge — § Složené bloky.
+   Návrh: rádius 24, odsazení 20, nadpis 18/600, odznak pilulka 30 px,
+   podtitul 14/400, ukazatel 200 px (kolečko 22 px na konci),
+   číslo 42/600 (-1,6), jednotka 14/400, údaje 13/400 + 17/600 s linkou. */
+
+.dg-gauge-card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(20px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-gauge-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  gap: calc(9px * var(--scale));
+}
+
+.dg-gauge-card__title {
+  min-width: 0;
+  color: var(--text-1);
+  font-size: calc(18px * var(--scale));
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.dg-gauge-card__status {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  box-sizing: border-box;
+  height: calc(30px * var(--scale));
+  padding: 0 calc(12px * var(--scale));
+  border-radius: var(--r-pill);
+  font-size: calc(13px * var(--scale));
+  font-weight: 600;
+  gap: calc(7px * var(--scale));
+}
+
+.dg-gauge-card__dot {
+  width: calc(8px * var(--scale));
+  height: calc(8px * var(--scale));
+  border-radius: 50%;
+  background-color: currentcolor;
+}
+
+.dg-gauge-card__status--success {
+  background-color: var(--success-soft);
+  color: var(--success);
+}
+
+.dg-gauge-card__status--warning {
+  background-color: var(--warning-soft);
+  color: var(--warning);
+}
+
+.dg-gauge-card__status--danger {
+  background-color: var(--danger-soft);
+  color: var(--danger-text);
+}
+
+.dg-gauge-card__status--accent {
+  background-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+.dg-gauge-card__status--neutral {
+  background-color: var(--surface-15);
+  color: var(--text-2);
+}
+
+.dg-gauge-card__sub {
+  padding-top: calc(4px * var(--scale));
+  color: var(--text-2);
+  font-size: calc(14px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-gauge-card__wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: calc(16px * var(--scale));
+}
+
+.dg-gauge-card__gauge {
+  position: relative;
+  flex: 0 1 auto;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.dg-gauge-card__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.dg-gauge-card__track {
+  stroke: var(--surface-2, var(--surface-15));
+}
+
+.dg-gauge-card__value {
+  stroke: var(--accent);
+}
+
+.dg-gauge-card__knob {
+  fill: var(--accent);
+}
+
+.dg-gauge-card__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 76%;
+  transform: translate(-50%, -50%);
+}
+
+.dg-gauge-card__amount {
+  color: var(--text-1);
+  font-size: calc(42px * var(--scale));
+  font-weight: 600;
+  letter-spacing: -1.6px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.dg-gauge-card__unit {
+  color: var(--text-2);
+  font-size: calc(14px * var(--scale));
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.dg-gauge-card__stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: calc(16px * var(--scale)) 0 calc(4px * var(--scale)) 0;
+  gap: calc(22px * var(--scale));
+}
+
+.dg-gauge-card__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(2px * var(--scale));
+}
+
+.dg-gauge-card__stat + .dg-gauge-card__stat {
+  border-left: 1px solid var(--sep);
+  padding-left: calc(22px * var(--scale));
+}
+
+.dg-gauge-card__stat-label {
+  color: var(--text-3);
+  font-size: calc(13px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-gauge-card__stat-value {
+  color: var(--text-1);
+  font-size: calc(17px * var(--scale));
+  font-weight: 600;
+}

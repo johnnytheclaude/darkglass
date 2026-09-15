@@ -1,0 +1,69 @@
+/* Card / QR — § Složené bloky (náhled štítku 29 × 90 mm).
+   Návrh: bílá plocha, rádius 14, výška 120, odsazení 14, mezera 12,
+   název 15/700, varianta 12/400, cena 22/700 (-0,6), kód 72 px / rádius 8.
+   Barvy štítku jsou tiskové, proto papír a inkoust, ne motiv aplikace. */
+
+.dg-label-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: calc(120px * var(--scale));
+  padding: calc(14px * var(--scale));
+  border: 1px solid var(--sep);
+  border-radius: calc(14px * var(--scale));
+  background-color: #ffffff;
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-label-preview__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(5px * var(--scale));
+}
+
+.dg-label-preview__name {
+  overflow: hidden;
+  color: #14171c;
+  font-size: calc(15px * var(--scale));
+  font-weight: 700;
+  text-overflow: ellipsis;
+}
+
+.dg-label-preview__variant {
+  overflow: hidden;
+  color: #6e7480;
+  font-size: calc(12px * var(--scale));
+  font-weight: 400;
+  text-overflow: ellipsis;
+}
+
+.dg-label-preview__price {
+  color: #14171c;
+  font-size: calc(22px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -0.6px;
+}
+
+.dg-label-preview__code {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: calc(72px * var(--scale));
+  height: calc(72px * var(--scale));
+  border-radius: calc(8px * var(--scale));
+  background-color: #14171c;
+}
+
+.dg-label-preview__code > * {
+  max-width: 100%;
+  max-height: 100%;
+}

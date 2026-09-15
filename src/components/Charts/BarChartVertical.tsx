@@ -1,0 +1,78 @@
+import type { HTMLAttributes, ReactNode, Ref } from 'react'
+import { ChartCard } from './ChartCard'
+
+export interface BarChartVerticalBar {
+  /** Popisek pod sloupcem (měsíc, den, hodina). */
+  label: ReactNode
+  value: number
+  /** Hodnota v bublině nad sloupcem; ukáže se jen u vyzdviženého sloupce. */
+  valueLabel?: ReactNode
+  /** Vyzdvižený sloupec — v návrhu poslední (aktuální) období. */
+  highlight?: boolean
+}
+
+export interface BarChartVerticalProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+  title?: ReactNode
+  subtitle?: ReactNode
+  bars: BarChartVerticalBar[]
+  /** Popisky osy odshora dolů; bez nich se osa nevykreslí. */
+  ticks?: ReactNode[]
+  /** Horní hranice osy. Bez ní se bere největší hodnota v datech. */
+  max?: number
+  ref?: Ref<HTMLDivElement>
+}
+
+/**
+ * Chart / Bars Vertical — svislé sloupce s osou. Sloupce se dělí o dostupnou
+ * šířku, takže se graf vejde i do úzké karty; osa drží vlevo.
+ */
+export function BarChartVertical({
+  title,
+  subtitle,
+  bars,
+  ticks,
+  max,
+  className,
+  ...rest
+}: BarChartVerticalProps) {
+  const top = max ?? Math.max(1, ...bars.map((b) => b.value))
+  const classes = ['dg-bars-v', className].filter(Boolean).join(' ')
+
+  return (
+    <ChartCard className={classes} title={title} subtitle={subtitle} {...rest}>
+      <div className="dg-bars-v__plot">
+        {ticks && ticks.length > 0 ? (
+          <div className="dg-bars-v__axis" aria-hidden="true">
+            {ticks.map((tick, i) => (
+              <span key={i} className="dg-bars-v__tick">
+                {tick}
+              </span>
+            ))}
+          </div>
+        ) : null}
+        <div className="dg-bars-v__bars">
+          {bars.map((bar, i) => (
+            <div key={i} className="dg-bars-v__col">
+              {bar.highlight && bar.valueLabel != null ? (
+                <span className="dg-bars-v__tooltip">{bar.valueLabel}</span>
+              ) : null}
+              <span
+                className={
+                  bar.highlight ? 'dg-bars-v__bar dg-bars-v__bar--on' : 'dg-bars-v__bar'
+                }
+                style={{ height: `${Math.max(0, Math.min(100, (bar.value / top) * 100))}%` }}
+              />
+              <span
+                className={
+                  bar.highlight ? 'dg-bars-v__label dg-bars-v__label--on' : 'dg-bars-v__label'
+                }
+              >
+                {bar.label}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </ChartCard>
+  )
+}

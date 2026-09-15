@@ -1,0 +1,102 @@
+/* Card / Media — § Složené bloky.
+   Návrh: rádius 24, odsazení 16, fotka rádius 16 na celou šířku,
+   nadpis 17/600 (-0,3), podtitul 13,5/400, pilulka 46 px / rádius 23
+   s popiskem 13,5/500 a tmavým odznakem 34 px / rádius 17. */
+
+.dg-media-card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(16px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-media-card__photo {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+  min-height: calc(180px * var(--scale));
+  border-radius: var(--r-md);
+  background-color: var(--surface-15);
+}
+
+.dg-media-card__photo > * {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dg-media-card__titles {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  padding: calc(14px * var(--scale)) calc(2px * var(--scale)) calc(12px * var(--scale))
+    calc(2px * var(--scale));
+  gap: calc(2px * var(--scale));
+}
+
+.dg-media-card__title {
+  overflow: hidden;
+  color: var(--text-1);
+  font-size: calc(17px * var(--scale));
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  text-overflow: ellipsis;
+}
+
+.dg-media-card__sub {
+  overflow: hidden;
+  color: var(--text-2);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 400;
+  text-overflow: ellipsis;
+}
+
+.dg-media-card__pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: calc(46px * var(--scale));
+  padding: calc(6px * var(--scale)) calc(6px * var(--scale)) calc(6px * var(--scale))
+    calc(16px * var(--scale));
+  border-radius: calc(23px * var(--scale));
+  background-color: var(--surface-solid);
+  box-shadow: 0 1px 3px var(--shadow-soft);
+  gap: calc(8px * var(--scale));
+}
+
+.dg-media-card__pill-label {
+  overflow: hidden;
+  min-width: 0;
+  color: var(--text-2);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-media-card__count {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: calc(34px * var(--scale));
+  padding: 0 calc(14px * var(--scale));
+  border-radius: calc(17px * var(--scale));
+  background-color: var(--contrast-fill);
+  color: var(--contrast-text);
+  font-size: calc(14px * var(--scale));
+  font-weight: 600;
+  white-space: nowrap;
+}

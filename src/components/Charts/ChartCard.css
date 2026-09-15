@@ -1,0 +1,70 @@
+/* ChartCard — rám sekce § Grafy.
+   Návrh: rádius 24, odsazení 20, hlavička nadpis 17/600 (-0,3) + podtitul 13/400,
+   plocha grafu odsazená 18 px odshora. Ladění sérií je tady, ať ho sdílí
+   všechny grafy (prstenec, skládané sloupce, legendy). */
+
+.dg-chart-card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(20px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-chart-card__head {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  gap: calc(2px * var(--scale));
+}
+
+.dg-chart-card__title {
+  color: var(--text-1);
+  font-size: calc(17px * var(--scale));
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.dg-chart-card__sub {
+  color: var(--text-3);
+  font-size: calc(13px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-chart-card__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  padding-top: calc(18px * var(--scale));
+}
+
+/* Ladění série — sdílené všemi grafy sekce. */
+.dg-series--accent {
+  background-color: var(--accent);
+}
+
+.dg-series--purple {
+  background-color: var(--purple);
+}
+
+.dg-series--success {
+  background-color: var(--success);
+}
+
+.dg-series--warning {
+  background-color: var(--warning);
+}
+
+.dg-series--danger {
+  background-color: var(--danger);
+}
+
+.dg-series--neutral {
+  background-color: var(--surface-15);
+}

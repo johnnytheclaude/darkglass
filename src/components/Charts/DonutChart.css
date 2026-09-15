@@ -1,0 +1,123 @@
+/* Chart / Donut — § Grafy.
+   Návrh: prstenec 150 px, střed 22/700 (-0,8) + jednotka 12/400,
+   legenda mezera 14, vzorník 11 px / rádius 3, popisek 13,5/400,
+   podíl 13,5/600. Prstenec je SVG, aby nenafukoval rodiče. */
+
+.dg-donut__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  gap: calc(22px * var(--scale));
+}
+
+.dg-donut__ring {
+  position: relative;
+  flex: 0 0 auto;
+  aspect-ratio: 1 / 1;
+}
+
+.dg-donut__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.dg-donut__track {
+  stroke: var(--surface-2, var(--surface-15));
+}
+
+.dg-donut__seg--accent {
+  stroke: var(--accent);
+}
+
+.dg-donut__seg--purple {
+  stroke: var(--purple);
+}
+
+.dg-donut__seg--success {
+  stroke: var(--success);
+}
+
+.dg-donut__seg--warning {
+  stroke: var(--warning);
+}
+
+.dg-donut__seg--danger {
+  stroke: var(--danger);
+}
+
+.dg-donut__seg--neutral {
+  stroke: var(--surface-2, var(--surface-15));
+}
+
+.dg-donut__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 70%;
+  transform: translate(-50%, -50%);
+}
+
+.dg-donut__center-value {
+  color: var(--text-1);
+  font-size: calc(22px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  white-space: nowrap;
+}
+
+.dg-donut__center-unit {
+  color: var(--text-3);
+  font-size: calc(12px * var(--scale));
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.dg-donut__legend {
+  display: flex;
+  flex: 1 1 calc(150px * var(--scale));
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  gap: calc(14px * var(--scale));
+  list-style: none;
+}
+
+.dg-donut__legend-row {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: calc(9px * var(--scale));
+}
+
+.dg-donut__swatch {
+  flex: 0 0 auto;
+  width: calc(11px * var(--scale));
+  height: calc(11px * var(--scale));
+  border-radius: var(--r-xs);
+}
+
+.dg-donut__legend-label {
+  overflow: hidden;
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--text-2);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-donut__legend-value {
+  flex: 0 0 auto;
+  color: var(--text-1);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 600;
+}

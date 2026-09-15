@@ -1,0 +1,131 @@
+/* Calendar / Single a Range — § Kalendář a čas.
+   Návrh: rádius 24, odsazení 14, mezera 10, měsíc 16/700 (-0,3),
+   šipky 32 px kolečka, zkratky dnů 11,5/600, políčko dne 38 px / 14 px,
+   vybraný den plný akcent (pilulka), dny v rozsahu jemný akcent. */
+
+.dg-calendar {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: calc(260px * var(--scale));
+  padding: calc(14px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(10px * var(--scale));
+}
+
+.dg-calendar__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 0;
+  padding: calc(2px * var(--scale)) calc(4px * var(--scale)) 0 calc(4px * var(--scale));
+  gap: calc(8px * var(--scale));
+}
+
+.dg-calendar__month {
+  overflow: hidden;
+  min-width: 0;
+  color: var(--text-1);
+  font-size: calc(16px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-calendar__nav {
+  display: flex;
+  flex: 0 0 auto;
+  gap: calc(8px * var(--scale));
+}
+
+.dg-calendar__nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: calc(32px * var(--scale));
+  height: calc(32px * var(--scale));
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-pill);
+  background-color: var(--surface-15);
+  color: var(--text-1);
+  cursor: pointer;
+}
+
+.dg-calendar__weekdays,
+.dg-calendar__week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 100%;
+  gap: calc(2px * var(--scale));
+}
+
+.dg-calendar__weekday {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(26px * var(--scale));
+  color: var(--text-3);
+  font-size: calc(11.5px * var(--scale));
+  font-weight: 600;
+}
+
+.dg-calendar__grid {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: calc(2px * var(--scale));
+}
+
+.dg-calendar__day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 0;
+  height: calc(38px * var(--scale));
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-pill);
+  background-color: transparent;
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(14px * var(--scale));
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.dg-calendar__day:hover:not(:disabled) {
+  background-color: var(--surface-15);
+}
+
+.dg-calendar__day:disabled {
+  color: var(--text-3);
+  cursor: default;
+  opacity: 0.5;
+}
+
+.dg-calendar__day--outside {
+  color: var(--text-muted);
+}
+
+.dg-calendar__day--in-range,
+.dg-calendar__day--in-range:hover:not(:disabled) {
+  border-radius: 0;
+  background-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+.dg-calendar__day--selected,
+.dg-calendar__day--selected:hover:not(:disabled) {
+  border-radius: var(--r-pill);
+  background-color: var(--accent);
+  color: var(--text-on-color);
+  font-weight: 700;
+}

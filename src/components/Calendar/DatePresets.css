@@ -1,0 +1,44 @@
+/* Date Presets — § Kalendář a čas.
+   Návrh: rádius 24, odsazení 6, řádek 40 px / rádius 11 / odsazení 0 12,
+   popisek 14/400, zvolená položka jemná výplň a 600. */
+
+.dg-date-presets {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: calc(150px * var(--scale));
+  padding: calc(6px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+  gap: 1px;
+}
+
+.dg-date-presets__row {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(40px * var(--scale));
+  padding: calc(6px * var(--scale)) calc(12px * var(--scale));
+  border: 0;
+  border-radius: calc(11px * var(--scale));
+  background-color: transparent;
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(14px * var(--scale));
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dg-date-presets__row:hover {
+  background-color: var(--surface-05);
+}
+
+.dg-date-presets__row--on,
+.dg-date-presets__row--on:hover {
+  background-color: var(--surface-15);
+  font-weight: 600;
+}

@@ -1,0 +1,173 @@
+/* Panel / Notifications — § Složené bloky.
+   Návrh: rádius 24, odsazení 20 18 14, nadpis 21/700 (-0,6),
+   odznak pilulka 32 px s popiskem 13/700, položka 88 px, kolečko 44 px,
+   nadpis položky 15/600, podtitul 12,5/400, datum 11,5/400,
+   linka mezi položkami odsazená 56 px zleva (pod ikonou). */
+
+.dg-notifications {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(20px * var(--scale)) calc(18px * var(--scale)) calc(14px * var(--scale))
+    calc(18px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-notifications__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  gap: calc(8px * var(--scale));
+}
+
+.dg-notifications__title {
+  min-width: 0;
+  color: var(--text-1);
+  font-size: calc(21px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -0.6px;
+}
+
+.dg-notifications__count {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: calc(32px * var(--scale));
+  padding: 0 calc(13px * var(--scale));
+  border-radius: var(--r-pill);
+  font-size: calc(13px * var(--scale));
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dg-notifications__count--danger {
+  background-color: var(--danger-soft);
+  color: var(--danger-text);
+}
+
+.dg-notifications__count--warning {
+  background-color: var(--warning-soft);
+  color: var(--warning);
+}
+
+.dg-notifications__count--accent {
+  background-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+.dg-notifications__count--success {
+  background-color: var(--success-soft);
+  color: var(--success);
+}
+
+.dg-notifications__count--neutral {
+  background-color: var(--surface-15);
+  color: var(--text-2);
+}
+
+.dg-notifications__empty {
+  padding-top: calc(10px * var(--scale));
+  color: var(--text-2);
+  font-size: calc(14px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-notifications__list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: calc(8px * var(--scale)) 0 0 0;
+  width: 100%;
+  list-style: none;
+}
+
+.dg-notification {
+  display: flex;
+  position: relative;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: calc(88px * var(--scale));
+  padding: calc(10px * var(--scale)) 0;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-notification + .dg-notification::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: calc(56px * var(--scale));
+  height: 1px;
+  background-color: var(--surface-15);
+}
+
+.dg-notification__tile {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: calc(44px * var(--scale));
+  height: calc(44px * var(--scale));
+  border-radius: var(--r-pill);
+  color: var(--text-on-color);
+}
+
+.dg-notification__tile--danger {
+  background-color: var(--danger);
+}
+
+.dg-notification__tile--warning {
+  background-color: var(--warning);
+}
+
+.dg-notification__tile--accent {
+  background-color: var(--accent);
+}
+
+.dg-notification__tile--success {
+  background-color: var(--success);
+}
+
+.dg-notification__tile--neutral {
+  background-color: var(--surface-15);
+  color: var(--text-2);
+}
+
+.dg-notification__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(3px * var(--scale));
+}
+
+.dg-notification__title {
+  color: var(--text-1);
+  font-size: calc(15px * var(--scale));
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.dg-notification__sub {
+  color: var(--text-2);
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-notification__date {
+  flex: 0 0 auto;
+  color: var(--text-3);
+  font-size: calc(11.5px * var(--scale));
+  font-weight: 400;
+  white-space: nowrap;
+}

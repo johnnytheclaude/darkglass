@@ -1,0 +1,51 @@
+/* Time Picker — § Kalendář a čas.
+   Návrh: rádius 24, odsazení 6, řádek 40 px / rádius 11 / odsazení 0 14,
+   čas 14,5/500, vybraný plný akcent a 700. */
+
+.dg-time-picker {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: calc(120px * var(--scale));
+  padding: calc(6px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+  gap: 1px;
+}
+
+.dg-time-picker__row {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(40px * var(--scale));
+  padding: 0 calc(14px * var(--scale));
+  border: 0;
+  border-radius: calc(11px * var(--scale));
+  background-color: transparent;
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dg-time-picker__row:hover:not(:disabled) {
+  background-color: var(--surface-15);
+}
+
+.dg-time-picker__row:disabled {
+  color: var(--text-3);
+  cursor: default;
+  opacity: 0.5;
+}
+
+.dg-time-picker__row--on,
+.dg-time-picker__row--on:hover:not(:disabled) {
+  background-color: var(--accent);
+  color: var(--text-on-color);
+  font-weight: 700;
+}

@@ -1,0 +1,100 @@
+/* Chart / Bars Vertical — § Grafy.
+   Návrh: plocha 218 px, osa 11,5/400 vpravo zarovnaná, mezera 12,
+   sloupec rádius 11, výchozí výplň jemná, vyzdvižený v akcentu,
+   bublina s hodnotou 26 px / rádius 13, popisek 12/500. */
+
+.dg-bars-v .dg-chart-card__body {
+  padding-top: 0;
+}
+
+.dg-bars-v__plot {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: calc(218px * var(--scale));
+  padding-top: calc(18px * var(--scale));
+  gap: calc(12px * var(--scale));
+}
+
+.dg-bars-v__axis {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.dg-bars-v__tick {
+  color: var(--text-3);
+  font-size: calc(11.5px * var(--scale));
+  font-weight: 400;
+  line-height: 1;
+}
+
+.dg-bars-v__bars {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: flex-end;
+  min-width: 0;
+  height: 100%;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-bars-v__col {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+  height: 100%;
+  gap: calc(9px * var(--scale));
+}
+
+.dg-bars-v__tooltip {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  max-width: 100%;
+  height: calc(26px * var(--scale));
+  padding: 0 calc(10px * var(--scale));
+  border-radius: calc(13px * var(--scale));
+  background-color: var(--pill-fill);
+  box-shadow: 0 2px 8px var(--shadow-soft);
+  color: var(--pill-text);
+  font-size: calc(12px * var(--scale));
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dg-bars-v__bar {
+  flex: 0 0 auto;
+  width: 100%;
+  min-height: calc(4px * var(--scale));
+  border-radius: calc(11px * var(--scale));
+  background-color: var(--surface-15);
+}
+
+.dg-bars-v__bar--on {
+  background-color: var(--accent);
+}
+
+.dg-bars-v__label {
+  flex: 0 0 auto;
+  overflow: hidden;
+  max-width: 100%;
+  color: var(--text-3);
+  font-size: calc(12px * var(--scale));
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-bars-v__label--on {
+  color: var(--text-1);
+  font-weight: 600;
+}
