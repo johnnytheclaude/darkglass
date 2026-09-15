@@ -1,5 +1,6 @@
 import { useState, useSyncExternalStore } from 'react'
 import { AmountDisplay } from '../../src/components/Pos/AmountDisplay'
+import { AttemptLog } from '../../src/components/Pos/AttemptLog'
 import { ChangeAndPay } from '../../src/components/Pos/ChangeAndPay'
 import { CountedTotal } from '../../src/components/Pos/CountedTotal'
 import { FactCard } from '../../src/components/Pos/FactCard'
@@ -333,6 +334,22 @@ export const section: ShowcaseSection = {
             value="Daňový doklad"
             note="Na firmu · doplnit odběratele podle IČO"
             noteAccent
+          />
+        </div>
+      ),
+    },
+    {
+      title: 'Výpis pokusů — zamítnutá karta',
+      stack: true,
+      note: 'Historie pokusů z artboardu 37: vlevo čas a částka, vpravo odpověď terminálu. Obsluha z ní pozná, že pokus nebyl první a že všechny dopadly stejně — z poslední hlášky to vidět není.',
+      render: () => (
+        <div style={{ width: '100%', maxWidth: 612 }}>
+          <AttemptLog
+            items={[
+              { key: '1', label: 'Pokus 1 · 16:02 · 8 460 Kč', result: 'DECLINED · nedostatek prostředků' },
+              { key: '2', label: 'Pokus 2 · 16:03 · 8 460 Kč', result: 'DECLINED · nedostatek prostředků' },
+              { key: '3', label: 'Pokus 3 · 16:05 · 8 460 Kč', result: 'schváleno ručně', tone: 'success' },
+            ]}
           />
         </div>
       ),

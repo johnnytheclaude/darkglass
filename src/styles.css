@@ -114,6 +114,7 @@
 @import "./components/Pos/GroupHeader.css";
 @import "./components/Pos/InlineActions.css";
 @import "./components/Pos/InlineNotice.css";
+@import "./components/Pos/AttemptLog.css";
 @import "./components/Pos/Ledger.css";
 @import "./components/Pos/MenuTile.css";
 @import "./components/Pos/Numpad.css";

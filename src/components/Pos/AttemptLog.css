@@ -1,0 +1,56 @@
+/* Attempt log / Výpis pokusů — § Pokladna · provoz a doklady.
+   Návrh (artboardy 37 a 38): řádek 11 px nad i pod, vlasová linka pod každým
+   řádkem, popis 13,5/400 tlumeně, výsledek 13,5/600 v barvě ladění. */
+
+.dg-attempt-log {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-attempt-log__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(11px * var(--scale)) 0;
+  gap: calc(12px * var(--scale));
+  border-bottom: 1px solid var(--sep);
+}
+
+.dg-attempt-log__label {
+  min-width: 0;
+  color: var(--text-2);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.dg-attempt-log__result {
+  margin-left: auto;
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: right;
+}
+
+.dg-attempt-log__result--danger {
+  color: var(--danger-text);
+}
+
+.dg-attempt-log__result--warning {
+  color: var(--warning-text);
+}
+
+.dg-attempt-log__result--success {
+  color: var(--success-text);
+}
+
+.dg-attempt-log__result--quiet {
+  color: var(--text-2);
+}
