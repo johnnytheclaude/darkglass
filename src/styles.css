@@ -123,6 +123,8 @@
 @import "./components/Pos/PinDots.css";
 @import "./components/Pos/PayButton.css";
 @import "./components/Pos/PosSearch.css";
+@import "./components/Pos/ParkedTile.css";
+@import "./components/Pos/PlaceholderTile.css";
 @import "./components/Pos/ProductTile.css";
 @import "./components/Pos/QuantityRow.css";
 @import "./components/Pos/QuickCash.css";

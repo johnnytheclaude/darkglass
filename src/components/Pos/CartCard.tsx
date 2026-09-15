@@ -4,6 +4,8 @@ import type { HTMLAttributes, ReactNode, Ref } from 'react'
 export interface CartCardProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   /** Titulek karty; výchozí nechává aplikace na sobě (knihovna texty nenese). */
   title?: ReactNode
+  /** Řádek pod titulkem — kdy a kdo účet odložil, na které pokladně. */
+  subtitle?: ReactNode
   /** Počet položek a kusů („3 položky · 4 ks“). */
   count?: ReactNode
   /** Textová akce vpravo v hlavičce („Zrušit účet“). */
@@ -22,6 +24,7 @@ export interface CartCardProps extends Omit<HTMLAttributes<HTMLDivElement>, 'tit
  */
 export function CartCard({
   title,
+  subtitle,
   count,
   actionLabel,
   onAction,
@@ -43,6 +46,7 @@ export function CartCard({
           ) : null}
         </div>
       ) : null}
+      {subtitle != null ? <div className="dg-cart-card__subtitle">{subtitle}</div> : null}
       <div className="dg-cart-card__lines">{children}</div>
       {footer != null ? <div className="dg-cart-card__footer">{footer}</div> : null}
     </div>

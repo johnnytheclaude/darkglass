@@ -1,0 +1,66 @@
+/* Tile / Prázdné místo — § Pokladna · provoz.
+   Návrh (artboard 14): čárkovaný obrys v rádiusu 24, obsah na střed, ikona
+   28 px a popisek 14,5 px / 600 v tiché barvě. Bez výplně — místo má působit
+   prázdně, ne jako další dlaždice. */
+
+.dg-placeholder-tile {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(190px * var(--scale));
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(10px * var(--scale));
+  padding: calc(18px * var(--scale));
+  border: 1.5px dashed var(--border-strong);
+  border-radius: var(--r-lg);
+  background-color: transparent;
+  color: var(--text-3);
+  font-family: inherit;
+  text-align: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dg-placeholder-tile__icon {
+  display: inline-flex;
+  width: calc(28px * var(--scale));
+  height: calc(28px * var(--scale));
+  align-items: center;
+  justify-content: center;
+  color: var(--text-3);
+}
+
+.dg-placeholder-tile__icon > svg {
+  width: 100%;
+  height: 100%;
+}
+
+.dg-placeholder-tile__label {
+  color: var(--text-3);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+@media (hover: hover) {
+  .dg-placeholder-tile:hover:not(:disabled) {
+    border-color: var(--accent);
+  }
+
+  .dg-placeholder-tile:hover:not(:disabled) .dg-placeholder-tile__label,
+  .dg-placeholder-tile:hover:not(:disabled) .dg-placeholder-tile__icon {
+    color: var(--accent-text);
+  }
+}
+
+.dg-placeholder-tile:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.dg-placeholder-tile:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

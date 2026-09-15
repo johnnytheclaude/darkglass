@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Button } from '../../src/components/Buttons/Button'
 import { IconBell } from '../../src/components/Icons/IconBell'
 import { IconChevronLeft } from '../../src/components/Icons/IconChevronLeft'
+import { IconInbox } from '../../src/components/Icons/IconInbox'
 import { IconReceipt } from '../../src/components/Icons/IconReceipt'
 import { GroupedList } from '../../src/components/Lists/GroupedList'
 import { ListRow } from '../../src/components/Lists/ListRow'
@@ -18,6 +19,8 @@ import { InlineActions } from '../../src/components/Pos/InlineActions'
 import { InlineNotice } from '../../src/components/Pos/InlineNotice'
 import { Ledger } from '../../src/components/Pos/Ledger'
 import { MenuTile } from '../../src/components/Pos/MenuTile'
+import { ParkedTile } from '../../src/components/Pos/ParkedTile'
+import { PlaceholderTile } from '../../src/components/Pos/PlaceholderTile'
 import { QuantityRow } from '../../src/components/Pos/QuantityRow'
 import { RequestCard } from '../../src/components/Pos/RequestCard'
 import { StatusList } from '../../src/components/Pos/StatusList'
@@ -260,6 +263,51 @@ export const section: ShowcaseSection = {
           <div style={{ width: 290, maxWidth: '100%' }}>
             <MenuTile name="Inventura" description="probíhá od 8:40" tone="accent" />
           </div>
+        </div>
+      ),
+    },
+    {
+      title: 'Dlaždice odloženého účtu',
+      stack: true,
+      wide: true,
+      note: 'Tile / Odložený účet z obrazovky Odložené prodeje. Vybraná dlaždice nese akcent, odznak stáří se s časem mění z tichého na oranžový a červený — ale říká to textem, ne jen barvou. Poslední pole je prázdné místo, které zve odložit rozdělaný košík.',
+      render: () => (
+        <div
+          style={{
+            display: 'grid',
+            gap: 14,
+            width: '100%',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          }}
+        >
+          <ParkedTile
+            name="Zkušební kabina 3"
+            age="před 22 min"
+            ageTone="warning"
+            count="4 položky"
+            meta="Pan Dvořák · 10:12"
+            content="Oblek CITY 52, košile 41 bílá, pásek"
+            amount="14 780 Kč"
+            selected
+          />
+          <ParkedTile
+            name="Kabina 1"
+            age="před 5 min"
+            count="2 položky"
+            meta="bez zákazníka · 10:29"
+            content="Sako PREMIUM 54, kravata vzor 12"
+            amount="9 340 Kč"
+          />
+          <ParkedTile
+            name="Objednávka na míru"
+            age="před 46 min"
+            ageTone="danger"
+            count="3 položky"
+            meta="Ing. Marešová · 9:48"
+            content="Kalhoty společenské ×2, úprava délky"
+            amount="6 480 Kč"
+          />
+          <PlaceholderTile icon={<IconInbox />}>Odložit aktuální košík · F6</PlaceholderTile>
         </div>
       ),
     },

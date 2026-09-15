@@ -34,6 +34,14 @@
   letter-spacing: -0.3px;
 }
 
+/* Meta řádek pod titulkem — návrh 13,5 px v tiché barvě, těsně pod nadpisem. */
+.dg-cart-card__subtitle {
+  margin-top: calc(-4px * var(--scale));
+  color: var(--text-3);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 400;
+}
+
 .dg-cart-card__count {
   min-width: 0;
   overflow: hidden;

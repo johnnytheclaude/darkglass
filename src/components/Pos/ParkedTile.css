@@ -1,0 +1,145 @@
+/* Tile / Odložený účet — § Pokladna · provoz.
+   Návrh (artboard 14): rádius 24, odsazení 18, mezera 8 px; odznak stáří
+   12,5 px / 600 na tiché pilulce, název 19 px / 700 / -0,3 px, meta 13,5 px,
+   obsah 14 px s řádkováním 20 px, částka 26 px / 700 / -0,8 px u dolní hrany.
+   Vybraná dlaždice má akcentní výplň a silnější obrys. */
+
+.dg-parked-tile {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(190px * var(--scale));
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(8px * var(--scale));
+  padding: calc(18px * var(--scale));
+  border: 0;
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  color: var(--text-1);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dg-parked-tile__head {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: calc(10px * var(--scale));
+  flex-shrink: 0;
+}
+
+.dg-parked-tile__age {
+  border-radius: var(--r-pill);
+  background-color: var(--surface-15);
+  padding: calc(5px * var(--scale)) calc(11px * var(--scale));
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.dg-parked-tile__age--neutral {
+  color: var(--text-3);
+}
+
+.dg-parked-tile__age--warning {
+  color: var(--warning);
+}
+
+.dg-parked-tile__age--danger {
+  color: var(--danger);
+}
+
+/* Počet položek stojí u pravé hrany, mezi ním a odznakem je volné místo. */
+.dg-parked-tile__count {
+  margin-left: auto;
+  color: var(--text-3);
+  font-size: calc(13px * var(--scale));
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.dg-parked-tile__name {
+  display: -webkit-box;
+  width: 100%;
+  overflow: hidden;
+  color: var(--text-1);
+  font-size: calc(19px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  line-height: 1.25;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.dg-parked-tile__meta {
+  width: 100%;
+  overflow: hidden;
+  color: var(--text-3);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-parked-tile__content {
+  display: -webkit-box;
+  width: 100%;
+  overflow: hidden;
+  color: var(--text-2);
+  font-size: calc(14px * var(--scale));
+  font-weight: 400;
+  line-height: calc(20px * var(--scale));
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* Částka drží u dolní hrany bez ohledu na to, kolik řádků zabral název. */
+.dg-parked-tile__amount {
+  width: 100%;
+  margin-top: auto;
+  padding-top: calc(8px * var(--scale));
+  color: var(--text-1);
+  font-size: calc(26px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  white-space: nowrap;
+}
+
+.dg-parked-tile.is-selected {
+  background-color: var(--accent-soft);
+  outline: 1.5px solid var(--accent);
+  outline-offset: -0.75px;
+}
+
+@media (hover: hover) {
+  .dg-parked-tile:hover:not(:disabled) {
+    background-image: linear-gradient(var(--surface-05), var(--surface-05));
+  }
+}
+
+.dg-parked-tile:active:not(:disabled) {
+  background-image: linear-gradient(var(--surface-15), var(--surface-15));
+}
+
+.dg-parked-tile:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.dg-parked-tile:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dg-parked-tile {
+    transition: background-color 120ms ease, background-image 120ms ease;
+  }
+}
