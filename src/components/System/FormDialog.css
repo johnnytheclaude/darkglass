@@ -97,6 +97,13 @@
   gap: calc(14px * var(--scale));
 }
 
+/* Ve scrollovaném sloupci si každý blok drží svou výšku. Bez toho se blok
+   se seznamem výsledků na nízkém okně smrskne na nulu a vypadá to, jako by
+   hledání nic nenašlo (pokladna 375 px, task #550). */
+.dg-form-dialog__fields > * {
+  flex-shrink: 0;
+}
+
 .dg-form-dialog__footer {
   display: flex;
   flex-wrap: wrap;
