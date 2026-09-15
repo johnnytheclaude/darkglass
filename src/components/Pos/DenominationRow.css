@@ -84,3 +84,20 @@
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
+
+/* Počet jako pole: vypadá stejně jako text podle návrhu, jen do něj jde psát.
+   Krokovač zůstává hlavní cestou, tohle je zkratka pro patnáct bankovek. */
+.dg-denomination-row__count--input {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  font-family: inherit;
+  line-height: 1;
+  -moz-appearance: textfield;
+}
+
+.dg-denomination-row__count--input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: calc(8px * var(--scale));
+}

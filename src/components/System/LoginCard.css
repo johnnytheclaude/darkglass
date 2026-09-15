@@ -57,3 +57,19 @@
   flex: 1 1 auto;
   min-width: 0;
 }
+
+/* Řádek nad nadpisem (název firmy) a tichá věta pod obsahem — zamčená
+   obrazovka Pokladny říká obojí dřív, než obsluha sáhne na klávesy. */
+.dg-login-card__eyebrow {
+  color: var(--text-3);
+  font-size: calc(13px * var(--scale));
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+.dg-login-card__hint {
+  width: 100%;
+  color: var(--text-3);
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 400;
+}

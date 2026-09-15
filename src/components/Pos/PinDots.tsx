@@ -7,6 +7,11 @@ export interface PinDotsProps extends HTMLAttributes<HTMLDivElement> {
   filled?: number
   /** Popis pro čtečku; bez něj se složí z počtu zadaných číslic. */
   label?: string
+  /**
+   * Od kolikáté číslice je PIN nepovinný — pokladna bere čtyři až šest číslic
+   * a obsluha musí poznat, kde smí přestat. Tečky za touhle hranicí jsou tišší.
+   */
+  optionalFrom?: number
   ref?: Ref<HTMLDivElement>
 }
 
@@ -14,7 +19,7 @@ export interface PinDotsProps extends HTMLAttributes<HTMLDivElement> {
  * Tečky PIN — § Pokladna · platba.
  * Ukazují počet zadaných číslic, nikdy ne samotný PIN.
  */
-export function PinDots({ length = 4, filled = 0, label, className, ...rest }: PinDotsProps) {
+export function PinDots({ length = 4, filled = 0, label, optionalFrom, className, ...rest }: PinDotsProps) {
   const zadano = Math.max(0, Math.min(filled, length))
 
   return (
@@ -27,7 +32,11 @@ export function PinDots({ length = 4, filled = 0, label, className, ...rest }: P
       {Array.from({ length }, (_, index) => (
         <span
           key={index}
-          className={['dg-pin-dots__dot', index < zadano ? 'is-filled' : null]
+          className={[
+            'dg-pin-dots__dot',
+            index < zadano ? 'is-filled' : null,
+            optionalFrom != null && index >= optionalFrom ? 'is-optional' : null,
+          ]
             .filter(Boolean)
             .join(' ')}
         />

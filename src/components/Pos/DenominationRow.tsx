@@ -9,6 +9,14 @@ export interface DenominationRowProps extends HTMLAttributes<HTMLDivElement> {
   sum?: ReactNode
   onDecrease?: () => void
   onIncrease?: () => void
+  /**
+   * Přepsání počtu číslicemi. Krokovač je na pár kusů, ale patnáct bankovek
+   * se klepáním nepočítá — s tímhle propem je počet pole, do kterého jde
+   * číslo rovnou napsat. Bez něj zůstane počet jen text.
+   */
+  onCountChange?: (count: number) => void
+  /** Popisek pole počtu pro čtečku; doplň nominál („5 000 Kč — počet kusů“). */
+  countLabel?: string
   /** Popisky pro čtečku; doplň nominál, počítá-li obsluha poslepu. */
   decreaseLabel?: string
   increaseLabel?: string
@@ -26,6 +34,8 @@ export function DenominationRow({
   sum,
   onDecrease,
   onIncrease,
+  onCountChange,
+  countLabel,
   decreaseLabel = 'Ubrat',
   increaseLabel = 'Přidat',
   className,
@@ -44,7 +54,21 @@ export function DenominationRow({
           −
         </button>
       ) : null}
-      <span className="dg-denomination-row__count">{count}</span>
+      {onCountChange ? (
+        <input
+          className="dg-denomination-row__count dg-denomination-row__count--input"
+          inputMode="numeric"
+          value={String(count ?? '')}
+          aria-label={countLabel}
+          onFocus={(event) => event.currentTarget.select()}
+          onChange={(event) => {
+            const cislice = event.target.value.replace(/\D/g, '').slice(0, 4)
+            onCountChange(cislice === '' ? 0 : Number(cislice))
+          }}
+        />
+      ) : (
+        <span className="dg-denomination-row__count">{count}</span>
+      )}
       {onIncrease ? (
         <button
           type="button"
