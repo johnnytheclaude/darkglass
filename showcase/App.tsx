@@ -10,7 +10,7 @@ const THEMES = [
     komponenta nemá barvu natvrdo — po přepnutí se musí přebarvit všechno. */
 const ACCENTS = [
   { key: 'modra', label: 'Modrá (návrh)', light: '#0071E3', dark: '#0A84FF' },
-  { key: 'fialova', label: 'Fialová (Hochman)', light: '#8E30BE', dark: '#BF5AF2' },
+  { key: 'fialova', label: 'Fialová (druhá barva)', light: '#8E30BE', dark: '#BF5AF2' },
 ] as const
 
 /** Poměry z artboardu 16 — velikost UI Pokladny. */
