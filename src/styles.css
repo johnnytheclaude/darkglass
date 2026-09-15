@@ -18,6 +18,7 @@
 @import "./components/Cards/GaugeCard.css";
 @import "./components/Cards/KeyValueList.css";
 @import "./components/Cards/LabelPreview.css";
+@import "./components/Cards/QrCard.css";
 @import "./components/Cards/StatCard.css";
 @import "./components/Cards/MediaCard.css";
 @import "./components/Cards/NotificationsPanel.css";

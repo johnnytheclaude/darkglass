@@ -40,3 +40,28 @@
   background-color: var(--accent);
   color: var(--text-on-color);
 }
+
+/* Stavy: překryv jde přes průhledný --surface-15, který je ve světlém motivu
+   tmavý a v tmavém světlý — jedno pravidlo tak platí pro oba. */
+.dg-action-tile:hover:not(:disabled) {
+  filter: brightness(0.97);
+}
+
+.dg-action-tile--default:hover:not(:disabled) {
+  background-color: var(--surface-3);
+  filter: none;
+}
+
+.dg-action-tile:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.dg-action-tile:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.dg-action-tile:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

@@ -5,14 +5,20 @@ import { IconButton } from '../../src/components/Buttons/IconButton'
 import { IconPencil } from '../../src/components/Icons/IconPencil'
 import { Avatar } from '../../src/components/Overview/Avatar'
 import { AvatarStack } from '../../src/components/Overview/AvatarStack'
+import { QrCard } from '../../src/components/Cards/QrCard'
+import { UkazkaQr } from '../ukazka-qr'
 import type { ShowcaseSection } from '../registry'
 
-/* Data jsou zástupná — knihovna doménu nezná. */
+/* Data jsou zástupná — knihovna doménu nezná.
+   Částky se píšou tak, jak je kreslí návrh: tisíce oddělené pevnou mezerou
+   (U+00A0) a měna za číslem, taky po pevné mezeře — číslo se tím nikdy
+   nezalomí mezi řádem a jednotkou ani mezi číslem a „Kč“. */
 
 const UDAJE = [
   { label: 'IČO', value: '19873212' },
   { label: 'Zasílat upozornění', value: 'Ano' },
   { label: 'Počet položek', value: '4' },
+  { label: 'Tržba za den', value: '42 580 Kč' },
   { label: 'Poslední změna', value: '7. 9. 2026' },
 ]
 
@@ -20,7 +26,11 @@ export const section: ShowcaseSection = {
   id: 'karty-udaje',
   title: '§ Karty a údaje',
   order: 50,
-  note: 'Skleněná karta je základní stavební kámen. Číslo je vždy větší než jeho popisek.',
+  note:
+    'Skleněná karta je základní stavební kámen. Číslo je vždy větší než jeho popisek. ' +
+    'Zbytek skupiny žije u svých obrazovek: Stat / Dvojice a Tile / Akce v § Přehled · doplňky, ' +
+    'Karta / Součet v § Pokladna · prodej, Pill / Glass a Pill / Live v § Složené bloky, ' +
+    'Settings List v § Systémové prvky.',
   demos: [
     {
       title: 'Základní karta',
@@ -48,7 +58,7 @@ export const section: ShowcaseSection = {
           <div style={{ width: 260, maxWidth: '100%' }}>
             <StatCard
               label="Obrat dnes"
-              value="42 580 Kč"
+              value="42 580 Kč"
               delta="o 18 % víc než včera"
               deltaDirection="up"
             />
@@ -56,7 +66,7 @@ export const section: ShowcaseSection = {
           <div style={{ width: 260, maxWidth: '100%' }}>
             <StatCard
               label="Průměrná hodnota"
-              value="8 018 Kč"
+              value="8 018 Kč"
               delta="o 6 % méně než včera"
               deltaDirection="down"
             />
@@ -93,6 +103,31 @@ export const section: ShowcaseSection = {
               { initials: 'ML', tone: 4 },
               { initials: 'TV', tone: 5 },
             ]}
+          />
+        </div>
+      ),
+    },
+    {
+      title: 'Card / QR · účtenka na displeji',
+      note:
+        'Když nevyjede tisk, účtenka se ukáže jako kód na displeji. Plocha kódu zůstává bílá ' +
+        'i v tmavém motivu a je velká v milimetrech, ne v pixelech: strana kódu má být aspoň ' +
+        'desetina vzdálenosti čtení, tedy 50 mm na půl metru (velikost „m“); výchozí „l“ má 64 mm.',
+      stack: true,
+      render: () => (
+        <div style={{ display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap', gap: 20 }}>
+          <QrCard
+            title="Účtenka"
+            amount="8 460 Kč"
+            note="Namiřte na kód foťák telefonu."
+            code={<UkazkaQr />}
+          />
+          <QrCard
+            size="m"
+            title="Účtenka"
+            amount="8 460 Kč"
+            note="Menší varianta — 50 mm, spodní mez pro čtení z půl metru."
+            code={<UkazkaQr />}
           />
         </div>
       ),

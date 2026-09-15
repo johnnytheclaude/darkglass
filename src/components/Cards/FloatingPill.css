@@ -1,6 +1,11 @@
 /* Pill / Glass a Pill / Live — § Složené bloky.
    Návrh: výška 38, rádius 19, odsazení 0 14 (živě 0 16), mezera 7 (živě 8),
-   popisek 13,5/500 (živě 14/600), tečka 9 px v červené. */
+   popisek 13,5/500 (živě 14/600), tečka 9 px v červené.
+
+   Obě varianty se v tmavém motivu chovají jinak a návrh to tak chce:
+   Glass je průsvitná (#FFFFFF1A) s bílým popiskem, tedy --surface-2/--text-1,
+   kdežto Live zůstává bílá s tmavým popiskem i na tmavém pozadí — na to jsou
+   tokeny --pill-fill/--pill-text, které mají v obou motivech tutéž hodnotu. */
 
 .dg-floating-pill {
   display: inline-flex;
@@ -11,7 +16,7 @@
   min-height: calc(38px * var(--scale));
   padding: 0 calc(14px * var(--scale));
   border-radius: calc(19px * var(--scale));
-  background-color: var(--pill-fill);
+  background-color: var(--surface-2);
   box-shadow: 0 2px 10px var(--shadow-pill, var(--shadow-soft));
   font-family: var(--font), system-ui, sans-serif;
   gap: calc(7px * var(--scale));
@@ -21,13 +26,14 @@
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
-  color: var(--pill-text-2);
+  color: var(--text-3);
 }
 
 .dg-floating-pill__label {
   overflow: hidden;
-  color: var(--pill-text);
+  color: var(--text-1);
   font-size: calc(13.5px * var(--scale));
+  font-variant-numeric: tabular-nums;
   font-weight: 500;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -35,10 +41,12 @@
 
 .dg-floating-pill--live {
   padding: 0 calc(16px * var(--scale));
+  background-color: var(--pill-fill);
   gap: calc(8px * var(--scale));
 }
 
 .dg-floating-pill--live .dg-floating-pill__label {
+  color: var(--pill-text);
   font-size: calc(14px * var(--scale));
   font-weight: 600;
 }
@@ -48,5 +56,6 @@
   width: calc(9px * var(--scale));
   height: calc(9px * var(--scale));
   border-radius: 50%;
-  background-color: var(--red);
+  /* Návrh: #D32F23 ve světlém, #FF453A v tmavém — to je --danger, ne --red. */
+  background-color: var(--danger);
 }

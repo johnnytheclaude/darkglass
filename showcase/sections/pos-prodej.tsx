@@ -52,7 +52,7 @@ function Kosik() {
     'Košile slim fit · vel. 41 · bílá',
     'Kravata hedvábí · vzor 77',
   ]
-  const poznamky = ['kód 2000000118', '1 290 Kč / ks', 'kód 2000000342']
+  const poznamky = ['kód 2000000118', '1 290 Kč / ks', 'kód 2000000342']
   const uprav = (i: number, o: number) =>
     setKusy((stav) => stav.map((ks, j) => (i === j ? Math.max(0, ks + o) : ks)))
   const castka = (hodnota: number) => `${hodnota.toLocaleString('cs-CZ')} Kč`
@@ -82,7 +82,7 @@ function Kosik() {
         <TotalCard
           rows={[
             { key: 'mezisoucet', label: 'Mezisoučet', value: castka(mezisoucet) },
-            { key: 'sleva', label: 'Sleva', value: '0 Kč' },
+            { key: 'sleva', label: 'Sleva', value: '0 Kč' },
           ]}
           totalLabel="Celkem"
           total={castka(mezisoucet)}
@@ -104,19 +104,19 @@ export const section: ShowcaseSection = {
       note: 'Běžná, vybraná (akcent) a v akci. Dlouhý název se láme do tří řádků a cena zůstává u dolní hrany.',
       render: () => (
         <>
-          <ProductTile name="Sako tmavě modré slim" price="9 990 Kč" />
-          <ProductTile name="Černé sako PREMIUM" price="12 990 Kč" selected />
+          <ProductTile name="Sako tmavě modré slim" price="9 990 Kč" />
+          <ProductTile name="Černé sako PREMIUM" price="12 990 Kč" selected />
           <ProductTile
             name="Sako vlněné hnědé"
             saleLabel="AKCE do 15. 9."
-            oldPrice="10 990"
-            price="8 990 Kč"
+            oldPrice="10 990"
+            price="8 990 Kč"
           />
           <ProductTile
             name="Oblek trojdílný CITY CLASSIC · vel. 52 · tmavě šedá melír"
-            price="18 490 Kč"
+            price="18 490 Kč"
           />
-          <ProductTile name="Kravata hedvábí" price="890 Kč" disabled />
+          <ProductTile name="Kravata hedvábí" price="890 Kč" disabled />
         </>
       ),
     },

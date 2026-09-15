@@ -21,9 +21,24 @@
   gap: calc(2px * var(--scale));
 }
 
+/* Předěl je podle návrhu vlas 1 × 30 px mezi údaji, ne linka přes celou
+   výšku sloupce — proto pseudoprvek, ne border. Barva jde přes --border
+   (světlý #00000017, tmavý #FFFFFF1F); --sep má jen světlou hodnotu a
+   v tmavém motivu by svítil skoro bíle. */
 .dg-stat-pair__item + .dg-stat-pair__item {
-  border-left: 1px solid var(--sep);
+  position: relative;
   padding-left: calc(18px * var(--scale));
+}
+
+.dg-stat-pair__item + .dg-stat-pair__item::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 1px;
+  height: calc(30px * var(--scale));
+  background-color: var(--border);
+  content: '';
+  transform: translateY(-50%);
 }
 
 .dg-stat-pair__label {
@@ -36,4 +51,5 @@
   color: var(--text-1);
   font-size: calc(16px * var(--scale));
   font-weight: 600;
+  font-variant-numeric: tabular-nums;
 }
