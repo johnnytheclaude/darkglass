@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
 import type { HTMLAttributes, ReactNode, Ref } from 'react'
 import { IconCheck } from '../Icons/IconCheck'
 import { IconChevronRight } from '../Icons/IconChevronRight'
@@ -41,6 +41,11 @@ export interface DataTableProps extends HTMLAttributes<HTMLDivElement> {
   onSelectedChange?: (id: string, selected: boolean) => void
   /** Kliknutí na řádek — na konci se pak kreslí šipka. */
   onRowClick?: (id: string) => void
+  /**
+   * Řádek vybraný klávesnicí (šipky nahoru/dolů). Nese akcentový podklad a
+   * sám se nascrolluje do výřezu — tabulku pak jde obsloužit bez myši.
+   */
+  activeId?: string | null
   ref?: Ref<HTMLDivElement>
 }
 
@@ -57,13 +62,22 @@ export function DataTable({
   selectable = false,
   onSelectedChange,
   onRowClick,
+  activeId = null,
   className,
   ...rest
 }: DataTableProps) {
   const classes = ['dg-table', className].filter(Boolean).join(' ')
+  const wrap = useRef<HTMLDivElement | null>(null)
+
+  // Klávesnicí vybraný řádek musí být vidět i v dlouhém seznamu.
+  useEffect(() => {
+    if (activeId == null) return
+    const row = wrap.current?.querySelector('[data-dg-active="true"]')
+    row?.scrollIntoView({ block: 'nearest' })
+  }, [activeId])
 
   return (
-    <div className={classes} role="table" {...rest}>
+    <div className={classes} role="table" ref={wrap} {...rest}>
       <div className="dg-table__header" role="row">
         {selectable ? <span className="dg-table__check-col" /> : null}
         {columns.map((column, i) => (
@@ -93,11 +107,14 @@ export function DataTable({
             'dg-table__tr',
             row.tone ? `dg-table__tr--${row.tone}` : null,
             row.selected ? 'dg-table__tr--selected' : null,
+            row.id === activeId ? 'dg-table__tr--active' : null,
             onRowClick ? 'dg-table__tr--interactive' : null,
           ]
             .filter(Boolean)
             .join(' ')}
           role="row"
+          aria-selected={row.id === activeId ? true : undefined}
+          data-dg-active={row.id === activeId ? 'true' : undefined}
           onClick={onRowClick ? () => onRowClick(row.id) : undefined}
         >
           {selectable ? (

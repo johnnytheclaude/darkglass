@@ -17,6 +17,8 @@ export interface PosSearchProps extends InputHTMLAttributes<HTMLInputElement> {
   scanGapMs?: number
   /** Kratší kód než tohle se nikdy nepovažuje za sken. */
   scanMinLength?: number
+  /** Doplněk vpravo v poli před zkratkou — typicky odznak s počtem nálezů. */
+  trailing?: ReactNode
   /** Třída obalu; `className` míří na samotné pole. */
   wrapperClassName?: string
   ref?: Ref<HTMLInputElement>
@@ -40,6 +42,7 @@ export function PosSearch({
   onSubmitText,
   scanGapMs = 40,
   scanMinLength = 4,
+  trailing,
   wrapperClassName,
   className,
   onKeyDown,
@@ -102,6 +105,7 @@ export function PosSearch({
         onKeyDown={handleKeyDown}
         {...rest}
       />
+      {trailing != null ? <span className="dg-pos-search__trailing">{trailing}</span> : null}
       {shortcut != null ? <kbd className="dg-pos-search__key">{shortcut}</kbd> : null}
     </div>
   )

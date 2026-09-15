@@ -7,6 +7,7 @@ import { CategoryChip } from '../../src/components/Pos/CategoryChip'
 import { PosSearch } from '../../src/components/Pos/PosSearch'
 import { ProductTile } from '../../src/components/Pos/ProductTile'
 import { TotalCard } from '../../src/components/Pos/TotalCard'
+import { StockTile } from '../../src/components/Pos/StockTile'
 import { VariantRow } from '../../src/components/Pos/VariantRow'
 import { IconScanBarcode } from '../../src/components/Icons/IconScanBarcode'
 import { IconSearch } from '../../src/components/Icons/IconSearch'
@@ -176,6 +177,22 @@ export const section: ShowcaseSection = {
             note="objednáno"
             count="12 ks"
           />
+        </div>
+      ),
+    },
+    {
+      title: 'Dostupnost velikostí',
+      stack: true,
+      note: 'Dlaždice velikostí z obrazovky hledání zboží. Barva počtu je jen doplněk — co je a co není skladem, říká text. Vyprodaná velikost zůstává vidět a jen ztmavne.',
+      render: () => (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+          <StockTile label="XS" count="3 ks" tone="warning" />
+          <StockTile label="S" count="5 ks" tone="warning" />
+          <StockTile label="M" count="14 ks" tone="ok" selected />
+          <StockTile label="L" count="0 ks" tone="danger" />
+          <StockTile label="XL" count="2 ks" tone="warning" />
+          <StockTile label="XXL" count="0 ks" tone="danger" />
+          <StockTile label="128" count="sklad neevidován" />
         </div>
       ),
     },

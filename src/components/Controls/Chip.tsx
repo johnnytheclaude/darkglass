@@ -11,6 +11,8 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   count?: ReactNode
   /** Ikona před popiskem. */
   icon?: ReactNode
+  /** Ikona za popiskem — rozbalovací šipka u chipu, který otevírá nabídku. */
+  iconEnd?: ReactNode
   ref?: Ref<HTMLButtonElement>
 }
 
@@ -23,6 +25,7 @@ export function Chip({
   tone = 'neutral',
   count,
   icon,
+  iconEnd,
   type = 'button',
   className,
   children,
@@ -50,6 +53,11 @@ export function Chip({
       ) : null}
       <span className="dg-chip__label">{children}</span>
       {count != null ? <span className="dg-chip__count">{count}</span> : null}
+      {iconEnd ? (
+        <span className="dg-chip__icon dg-chip__icon--end" aria-hidden="true">
+          {iconEnd}
+        </span>
+      ) : null}
     </button>
   )
 }

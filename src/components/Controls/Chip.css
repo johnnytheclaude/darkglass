@@ -170,3 +170,9 @@
   outline: calc(2px * var(--scale)) solid var(--focus-ring);
   outline-offset: calc(1px * var(--scale));
 }
+
+/* Ikona za popiskem — chip, který otevírá nabídku (řazení). */
+.dg-chip__icon--end {
+  margin-left: calc(-2px * var(--scale));
+  color: var(--text-3);
+}

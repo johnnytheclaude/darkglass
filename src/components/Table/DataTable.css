@@ -190,3 +190,11 @@
 .dg-table__number--negative {
   color: var(--danger-text);
 }
+
+/* Řádek vybraný klávesnicí — stejný akcentový podklad jako vybraný řádek,
+   navíc vlasový rámeček, aby se výběr poznal i na podbarveném řádku. */
+.dg-table__tr--active {
+  background-color: var(--accent-soft);
+  outline: 1px solid var(--accent);
+  outline-offset: -1px;
+}

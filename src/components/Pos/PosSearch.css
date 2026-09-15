@@ -75,3 +75,10 @@
   line-height: 1;
   white-space: nowrap;
 }
+
+/* Doplněk vpravo v poli — odznak s počtem nálezů stojí před zkratkou. */
+.dg-pos-search__trailing {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+}

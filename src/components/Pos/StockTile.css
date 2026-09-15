@@ -1,0 +1,88 @@
+/* Stock Tile — § Pokladna · prodej, artboard „Hledání zboží“.
+   Návrh: výška 62 px, rádius 12, sloupec s mezerou 3 px, velikost 14 px / 700,
+   počet 11 px; vybraná na tichém akcentu, vyprodaná se ztlumeným popiskem. */
+
+.dg-stock-tile {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: calc(58px * var(--scale));
+  min-height: calc(62px * var(--scale));
+  padding: 0 calc(10px * var(--scale));
+  border: 0;
+  border-radius: var(--r-sm);
+  background-color: var(--surface-05);
+  gap: calc(3px * var(--scale));
+  font-family: inherit;
+  line-height: 1.2;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dg-stock-tile__label {
+  color: var(--text-1);
+  font-size: calc(14px * var(--scale));
+  font-weight: 700;
+}
+
+.dg-stock-tile__count {
+  font-size: calc(11px * var(--scale));
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.dg-stock-tile__count--neutral {
+  color: var(--text-3);
+}
+
+.dg-stock-tile__count--ok {
+  color: var(--success);
+}
+
+.dg-stock-tile__count--warning {
+  color: var(--warning);
+}
+
+/* Vyprodaná velikost: ztlumí se i popisek, ať se očima přeskočí. */
+.dg-stock-tile__count--danger {
+  color: var(--danger-text);
+}
+
+.dg-stock-tile__count--danger ~ .dg-stock-tile__label,
+.dg-stock-tile:has(.dg-stock-tile__count--danger) .dg-stock-tile__label {
+  color: var(--text-3);
+}
+
+.dg-stock-tile.is-selected {
+  background-color: var(--accent-soft);
+  outline: 1px solid var(--accent);
+  outline-offset: -0.5px;
+}
+
+.dg-stock-tile.is-selected .dg-stock-tile__label {
+  color: var(--text-1);
+}
+
+@media (hover: hover) {
+  .dg-stock-tile:hover:not(:disabled) {
+    background-image: linear-gradient(var(--surface-15), var(--surface-15));
+  }
+}
+
+.dg-stock-tile:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.dg-stock-tile:disabled {
+  cursor: default;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dg-stock-tile {
+    transition: background-color 120ms ease, background-image 120ms ease;
+  }
+}
