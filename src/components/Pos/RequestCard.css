@@ -78,13 +78,13 @@
 .dg-request-card--accent .dg-request-card__icon,
 .dg-request-card--accent .dg-request-card__badge {
   background-color: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .dg-request-card--warning .dg-request-card__icon,
 .dg-request-card--warning .dg-request-card__badge {
   background-color: var(--warning-soft);
-  color: var(--warning);
+  color: var(--warning-text);
 }
 
 .dg-request-card--danger .dg-request-card__icon,
@@ -96,5 +96,5 @@
 .dg-request-card--success .dg-request-card__icon,
 .dg-request-card--success .dg-request-card__badge {
   background-color: var(--success-soft);
-  color: var(--success);
+  color: var(--success-text);
 }

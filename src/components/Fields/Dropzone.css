@@ -54,7 +54,7 @@
   height: calc(52px * var(--scale));
   border-radius: var(--r-pill);
   background-color: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .dg-dropzone__title {

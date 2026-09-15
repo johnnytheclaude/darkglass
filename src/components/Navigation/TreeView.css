@@ -49,7 +49,7 @@
 
 .dg-tree__item.is-selected {
   background: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-text);
   font-weight: 600;
 }
 

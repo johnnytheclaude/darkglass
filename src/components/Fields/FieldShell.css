@@ -27,7 +27,7 @@
 }
 
 .dg-field__req {
-  color: var(--danger);
+  color: var(--danger-text);
   font-weight: 700;
 }
 
@@ -43,7 +43,7 @@
 }
 
 .dg-field__help--error {
-  color: var(--danger);
+  color: var(--danger-text);
 }
 
 .dg-field__help-icon {

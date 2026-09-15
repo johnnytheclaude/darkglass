@@ -31,7 +31,7 @@
 }
 
 .dg-rating__star[fill='currentColor'] {
-  color: var(--warning);
+  color: var(--warning-text);
 }
 
 .dg-rating__value {

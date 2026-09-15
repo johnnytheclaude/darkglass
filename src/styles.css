@@ -157,7 +157,13 @@
    3,4:1, tedy pod hranicí 4,5:1 pro běžný text. Návrh na to má jediný token
    (--danger-text), pro ostatní ladění se odvozuje tady — hodnoty jsou spočítané
    tak, aby text na svém tintu držel aspoň 4,5:1 v obou motivech.
-   Patří to sem, ne do generovaného tokens.css. */
+   Patří to sem, ne do generovaného tokens.css.
+
+   V tmavém motivu je tint hustší (alfa 2E, tedy 18 %), takže se na něm topí
+   i plná barva ladění: zelená 4,1:1, modrá po 73% ředění 4,1:1 a i návrhový
+   --danger-text 4,5:1 jen o vlas. Proto se v tmavém motivu barvy ředí bílou víc
+   a --danger-text se tu jako jediný token návrhu přebíjí — jen o 8 % bílé,
+   odstín zůstává. Hodnoty hlídá scratch/t510-check.cjs (měří složený podklad). */
 :root,
 [data-theme="light"] {
   --success-text: color-mix(in srgb, var(--success) 70%, #000000);
@@ -168,11 +174,12 @@
 }
 
 [data-theme="dark"] {
-  --success-text: var(--success);
+  --success-text: color-mix(in srgb, var(--success) 80%, #ffffff);
   --warning-text: var(--warning);
-  --accent-text: color-mix(in srgb, var(--accent) 73%, #ffffff);
+  --accent-text: color-mix(in srgb, var(--accent) 62%, #ffffff);
   --purple-text: color-mix(in srgb, var(--purple) 75%, #ffffff);
   --neutral-text: color-mix(in srgb, var(--neutral) 85%, #ffffff);
+  --danger-text: color-mix(in srgb, #ff8079 92%, #ffffff);
 }
 
 @media (prefers-color-scheme: dark) {

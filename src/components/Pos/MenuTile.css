@@ -50,17 +50,17 @@
 }
 
 .dg-menu-tile__desc--accent {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .dg-menu-tile__desc--warning {
-  color: var(--warning);
+  color: var(--warning-text);
 }
 
 .dg-menu-tile__desc--danger {
-  color: var(--danger);
+  color: var(--danger-text);
 }
 
 .dg-menu-tile__desc--success {
-  color: var(--success);
+  color: var(--success-text);
 }

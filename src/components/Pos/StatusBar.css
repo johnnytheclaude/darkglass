@@ -88,22 +88,22 @@
 
 .dg-status-bar__badge--accent {
   background-color: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .dg-status-bar__badge--success {
   background-color: var(--success-soft);
-  color: var(--success);
+  color: var(--success-text);
 }
 
 .dg-status-bar__badge--warning {
   background-color: var(--warning-soft);
-  color: var(--warning);
+  color: var(--warning-text);
 }
 
 .dg-status-bar__badge--danger {
   background-color: var(--danger-soft);
-  color: var(--danger);
+  color: var(--danger-text);
 }
 
 /* Kliknutelný odznak otevírá detail stavu — dotykový cíl 44 px doplní ::after,
@@ -165,7 +165,7 @@
 .dg-sandbox-strip__text {
   flex: 1 1 auto;
   min-width: 0;
-  color: var(--purple);
+  color: var(--purple-text);
   font-size: calc(14.5px * var(--scale));
   font-weight: 500;
   line-height: 1.3;

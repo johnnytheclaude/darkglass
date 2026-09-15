@@ -77,20 +77,20 @@
 
 .dg-toast--success .dg-toast__tile {
   background-color: var(--success-soft);
-  color: var(--success);
+  color: var(--success-text);
 }
 
 .dg-toast--info .dg-toast__tile {
   background-color: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .dg-toast--warning .dg-toast__tile {
   background-color: var(--warning-soft);
-  color: var(--warning);
+  color: var(--warning-text);
 }
 
 .dg-toast--danger .dg-toast__tile {
   background-color: var(--danger-soft);
-  color: var(--danger);
+  color: var(--danger-text);
 }

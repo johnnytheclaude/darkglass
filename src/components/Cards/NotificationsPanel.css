@@ -56,17 +56,17 @@
 
 .dg-notifications__count--warning {
   background-color: var(--warning-soft);
-  color: var(--warning);
+  color: var(--warning-text);
 }
 
 .dg-notifications__count--accent {
   background-color: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .dg-notifications__count--success {
   background-color: var(--success-soft);
-  color: var(--success);
+  color: var(--success-text);
 }
 
 .dg-notifications__count--neutral {

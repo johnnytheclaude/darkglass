@@ -76,7 +76,7 @@
 
 .dg-tool-rail__tool.is-active .dg-tool-rail__btn {
   background-color: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .dg-tool-rail__tool.is-active .dg-tool-rail__label {

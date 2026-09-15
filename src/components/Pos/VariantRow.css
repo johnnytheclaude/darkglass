@@ -28,7 +28,7 @@
 .dg-variant-row__note {
   min-width: 0;
   overflow: hidden;
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: calc(12.5px * var(--scale));
   font-weight: 400;
   text-overflow: ellipsis;

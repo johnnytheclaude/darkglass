@@ -104,7 +104,7 @@
 }
 
 .dg-account-menu__item.is-danger {
-  color: var(--danger);
+  color: var(--danger-text);
 }
 
 .dg-account-menu__icon {

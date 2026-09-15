@@ -30,17 +30,17 @@
 
 .dg-error-page--danger .dg-error-page__icon {
   background-color: var(--danger-soft);
-  color: var(--danger);
+  color: var(--danger-text);
 }
 
 .dg-error-page--warning .dg-error-page__icon {
   background-color: var(--warning-soft);
-  color: var(--warning);
+  color: var(--warning-text);
 }
 
 .dg-error-page--accent .dg-error-page__icon {
   background-color: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .dg-error-page__code {

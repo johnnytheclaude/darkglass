@@ -109,7 +109,7 @@
 }
 
 .dg-status-modal__line-status.is-error {
-  color: var(--danger);
+  color: var(--danger-text);
 }
 
 .dg-status-modal__hint {
@@ -130,12 +130,12 @@
 
 .dg-status-modal--accent .dg-status-modal__tile {
   background-color: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .dg-status-modal--warning .dg-status-modal__tile {
   background-color: var(--warning-soft);
-  color: var(--warning);
+  color: var(--warning-text);
 }
 
 .dg-status-modal--danger .dg-status-modal__tile {
@@ -145,7 +145,7 @@
 
 .dg-status-modal--success .dg-status-modal__tile {
   background-color: var(--success-soft);
-  color: var(--success);
+  color: var(--success-text);
 }
 
 .dg-status-modal--neutral .dg-status-modal__tile {

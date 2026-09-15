@@ -55,12 +55,12 @@
 
 .dg-gauge-card__status--success {
   background-color: var(--success-soft);
-  color: var(--success);
+  color: var(--success-text);
 }
 
 .dg-gauge-card__status--warning {
   background-color: var(--warning-soft);
-  color: var(--warning);
+  color: var(--warning-text);
 }
 
 .dg-gauge-card__status--danger {
@@ -70,7 +70,7 @@
 
 .dg-gauge-card__status--accent {
   background-color: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .dg-gauge-card__status--neutral {

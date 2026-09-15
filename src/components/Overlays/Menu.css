@@ -60,7 +60,7 @@
 }
 
 .dg-menu__item--danger {
-  color: var(--danger);
+  color: var(--danger-text);
 }
 
 .dg-menu__icon {

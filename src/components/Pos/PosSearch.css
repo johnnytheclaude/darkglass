@@ -67,7 +67,7 @@
   padding: 0 calc(7px * var(--scale));
   border-radius: var(--r-xs);
   background-color: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-text);
   font-family: inherit;
   font-size: calc(12px * var(--scale));
   font-weight: 700;

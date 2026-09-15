@@ -55,11 +55,11 @@
 }
 
 .dg-stat-card__delta--up {
-  color: var(--success);
+  color: var(--success-text);
 }
 
 .dg-stat-card__delta--down {
-  color: var(--danger);
+  color: var(--danger-text);
 }
 
 .dg-stat-card__delta--none {

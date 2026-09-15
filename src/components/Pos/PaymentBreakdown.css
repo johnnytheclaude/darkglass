@@ -72,7 +72,7 @@
 
 .dg-payment-breakdown__line--success .dg-payment-breakdown__line-label,
 .dg-payment-breakdown__line--success .dg-payment-breakdown__line-value {
-  color: var(--success);
+  color: var(--success-text);
   font-weight: 600;
 }
 
@@ -82,7 +82,7 @@
 
 .dg-payment-breakdown__line--warning .dg-payment-breakdown__line-label,
 .dg-payment-breakdown__line--warning .dg-payment-breakdown__line-value {
-  color: var(--warning);
+  color: var(--warning-text);
   font-weight: 600;
 }
 

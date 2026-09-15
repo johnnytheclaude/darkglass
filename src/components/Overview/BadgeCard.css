@@ -55,12 +55,12 @@
 
 .dg-badge-card__badge--success {
   background-color: var(--success-soft);
-  color: var(--success);
+  color: var(--success-text);
 }
 
 .dg-badge-card__badge--warning {
   background-color: var(--warning-soft);
-  color: var(--warning);
+  color: var(--warning-text);
 }
 
 .dg-badge-card__badge--danger {
@@ -70,7 +70,7 @@
 
 .dg-badge-card__badge--accent {
   background-color: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .dg-badge-card__badge--neutral {

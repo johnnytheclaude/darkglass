@@ -39,7 +39,7 @@
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: calc(14.5px * var(--scale));
   font-weight: 600;
 }

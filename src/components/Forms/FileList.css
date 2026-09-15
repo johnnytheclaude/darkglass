@@ -38,7 +38,7 @@
   height: calc(36px * var(--scale));
   border-radius: calc(10px * var(--scale));
   background-color: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .dg-filerow__text {
