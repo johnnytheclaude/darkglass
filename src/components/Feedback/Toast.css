@@ -47,14 +47,17 @@
   white-space: nowrap;
 }
 
+/* Podřádek nese větu, ne popisek: na širokém displeji je na jeden řádek jako
+   v návrhu, na úzkém se radši zalomí do dvou, než aby zmizel konec věty. */
 .dg-toast__sub {
+  display: -webkit-box;
   overflow: hidden;
   color: var(--text-3);
   font-size: calc(12.5px * var(--scale));
   font-weight: 400;
   line-height: 1.25;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .dg-toast__action {
