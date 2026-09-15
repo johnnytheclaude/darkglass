@@ -194,6 +194,10 @@ export const section: ShowcaseSection = {
           <StockTile label="XL" count="2 ks" tone="warning" />
           <StockTile label="XXL" count="0 ks" tone="danger" />
           <StockTile label="128" count="sklad neevidován" />
+        </div>
+      ),
+    },
+    {
       title: 'Poznámka pod seznamem',
       stack: true,
       note: 'Popisek vlevo drží pevnou šířku, text doplňuje, co seznam neukazuje. Vpravo se vejde akce; na úzkém displeji se řádek zalomí pod popisek.',
