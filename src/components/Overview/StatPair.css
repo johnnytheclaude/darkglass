@@ -1,0 +1,39 @@
+/* Stat / Dvojice — § Přehled · doplňky.
+   Návrh: mezera 18, odsazení 10 0 2, popisek 12,5/400, hodnota 16/600,
+   předěl 1 × 30 px mezi údaji. */
+
+.dg-stat-pair {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: calc(10px * var(--scale)) 0 calc(2px * var(--scale)) 0;
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(18px * var(--scale));
+}
+
+.dg-stat-pair__item {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(2px * var(--scale));
+}
+
+.dg-stat-pair__item + .dg-stat-pair__item {
+  border-left: 1px solid var(--sep);
+  padding-left: calc(18px * var(--scale));
+}
+
+.dg-stat-pair__label {
+  color: var(--text-3);
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-stat-pair__value {
+  color: var(--text-1);
+  font-size: calc(16px * var(--scale));
+  font-weight: 600;
+}

@@ -1,0 +1,119 @@
+/* Card / S akcí a ProgressRow — § Přehled · doplňky.
+   Návrh: karta rádius 24 / odsazení 18 / mezera 14, titulek 17/600 (-0,3),
+   akce pilulka 34 px v akcentu, řádek: popisek 13,5/400 + hodnota 13,5/600,
+   dráha 8 px / pilulka, výplň podle ladění. */
+
+.dg-header-action-card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(18px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(14px * var(--scale));
+}
+
+.dg-header-action-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 0;
+  gap: calc(10px * var(--scale));
+}
+
+.dg-header-action-card__title {
+  min-width: 0;
+  color: var(--text-1);
+  font-size: calc(17px * var(--scale));
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.dg-header-action-card__action {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: calc(34px * var(--scale));
+  padding: 0 calc(20px * var(--scale));
+  border: 0;
+  border-radius: var(--r-pill);
+  background-color: var(--accent);
+  color: var(--text-on-color);
+  font-family: inherit;
+  font-size: calc(13px * var(--scale));
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  cursor: pointer;
+}
+
+.dg-progress-row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  gap: calc(9px * var(--scale));
+}
+
+.dg-progress-row__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 0;
+  gap: calc(8px * var(--scale));
+}
+
+.dg-progress-row__label {
+  min-width: 0;
+  color: var(--text-2);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-progress-row__value {
+  flex: 0 0 auto;
+  color: var(--text-1);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 600;
+}
+
+.dg-progress-row__track {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(8px * var(--scale));
+  border-radius: var(--r-pill);
+  background-color: var(--surface-2, var(--surface-15));
+}
+
+.dg-progress-row__fill {
+  height: 100%;
+  border-radius: var(--r-pill);
+}
+
+.dg-progress-row__fill--accent {
+  background-color: var(--accent);
+}
+
+.dg-progress-row__fill--success {
+  background-color: var(--success);
+}
+
+.dg-progress-row__fill--warning {
+  background-color: var(--warning);
+}
+
+.dg-progress-row__fill--danger {
+  background-color: var(--danger);
+}
+
+.dg-progress-row__fill--neutral {
+  background-color: var(--text-3);
+}

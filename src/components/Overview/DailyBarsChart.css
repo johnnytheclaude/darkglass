@@ -1,0 +1,79 @@
+/* Chart / Denní sloupce — § Přehled · doplňky.
+   Návrh: karta rádius 24 / odsazení 20 / mezera 14, pilulky nad grafem
+   s mezerou 10, sloupce rádius 12 s mezerou 10, popisek 12/500,
+   vyzdvižený den v akcentu s popiskem 12/600. */
+
+.dg-daily-bars {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(20px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(14px * var(--scale));
+}
+
+.dg-daily-bars__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  gap: calc(10px * var(--scale));
+}
+
+.dg-daily-bars__plot {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  min-width: 0;
+  gap: calc(10px * var(--scale));
+}
+
+.dg-daily-bars__col {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+  height: 100%;
+  gap: calc(10px * var(--scale));
+}
+
+.dg-daily-bars__bar {
+  flex: 0 0 auto;
+  width: 100%;
+  min-height: calc(6px * var(--scale));
+  border-radius: calc(12px * var(--scale));
+  background-color: var(--surface-2, var(--surface-15));
+}
+
+.dg-daily-bars__bar--on {
+  background-color: var(--accent);
+}
+
+.dg-daily-bars__label {
+  overflow: hidden;
+  flex: 0 0 auto;
+  max-width: 100%;
+  color: var(--text-3);
+  font-size: calc(12px * var(--scale));
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-daily-bars__label--on {
+  color: var(--text-1);
+  font-weight: 600;
+}
+
+.dg-daily-bars__foot {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  min-width: 0;
+}

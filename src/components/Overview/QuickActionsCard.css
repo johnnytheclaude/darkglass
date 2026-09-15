@@ -1,0 +1,33 @@
+/* Card / Rychlé akce — § Přehled · doplňky.
+   Návrh: rádius 24, odsazení 18, mezera 12, nadpis 13/500 v tlumené barvě,
+   dlaždice v řádku s mezerou 8. */
+
+.dg-quick-actions {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(18px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-quick-actions__title {
+  color: var(--text-3);
+  font-size: calc(13px * var(--scale));
+  font-weight: 500;
+}
+
+.dg-quick-actions__row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: calc(8px * var(--scale));
+}
+
+.dg-quick-actions__row > .dg-action-tile {
+  flex: 1 1 calc(80px * var(--scale));
+  min-width: calc(80px * var(--scale));
+}

@@ -1,0 +1,40 @@
+/* Osoba — § Přehled · doplňky.
+   Návrh: řádek 56 px, mezera 14, jméno 15,5/600 (-0,2), poznámka 13/400. */
+
+.dg-person-row {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: calc(56px * var(--scale));
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(14px * var(--scale));
+}
+
+.dg-person-row__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(2px * var(--scale));
+}
+
+.dg-person-row__name {
+  color: var(--text-1);
+  font-size: calc(15.5px * var(--scale));
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.dg-person-row__note {
+  color: var(--text-2);
+  font-size: calc(13px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-person-row__trailing {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+}

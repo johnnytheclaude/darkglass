@@ -63,6 +63,33 @@ export type { ToolRailProps, ToolRailItem } from './components/Navigation/ToolRa
 export { TopBar } from './components/Navigation/TopBar'
 export type { TopBarProps, TopBarTab } from './components/Navigation/TopBar'
 
+export { ActionTile } from './components/Overview/ActionTile'
+export type { ActionTileProps } from './components/Overview/ActionTile'
+export { Avatar } from './components/Overview/Avatar'
+export type { AvatarProps } from './components/Overview/Avatar'
+export { BadgeCard } from './components/Overview/BadgeCard'
+export type { BadgeCardProps, BadgeCardTone } from './components/Overview/BadgeCard'
+export { DailyBarsChart } from './components/Overview/DailyBarsChart'
+export type { DailyBarsChartProps, DailyBar } from './components/Overview/DailyBarsChart'
+export { HeaderActionCard, ProgressRow } from './components/Overview/HeaderActionCard'
+export type {
+  HeaderActionCardProps,
+  ProgressRowProps,
+  ProgressTone,
+} from './components/Overview/HeaderActionCard'
+export { PeriodTabs } from './components/Overview/PeriodTabs'
+export type { PeriodTabsProps, PeriodTab } from './components/Overview/PeriodTabs'
+export { PersonRow } from './components/Overview/PersonRow'
+export type { PersonRowProps } from './components/Overview/PersonRow'
+export { QuickActionsCard } from './components/Overview/QuickActionsCard'
+export type { QuickActionsCardProps } from './components/Overview/QuickActionsCard'
+export { ScreenBackground } from './components/Overview/ScreenBackground'
+export type { ScreenBackgroundProps } from './components/Overview/ScreenBackground'
+export { SectionBox } from './components/Overview/SectionBox'
+export type { SectionBoxProps } from './components/Overview/SectionBox'
+export { StatPair } from './components/Overview/StatPair'
+export type { StatPairProps, StatPairItem } from './components/Overview/StatPair'
+
 export { AccentCard } from './components/Pos/AccentCard'
 export type { AccentCardProps } from './components/Pos/AccentCard'
 export { ActionPanel } from './components/Pos/ActionPanel'

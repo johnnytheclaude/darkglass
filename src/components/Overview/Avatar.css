@@ -1,0 +1,37 @@
+/* Avatar — § Přehled · doplňky.
+   Návrh: kolečko 40 px, iniciály 13,5/600 bílé. Paleta je v tokenech
+   (--avatar-1 … --avatar-5), aby se dva lidé vedle sebe nepletli. */
+
+.dg-avatar {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-radius: var(--r-pill);
+  color: var(--text-on-color);
+  font-family: var(--font), system-ui, sans-serif;
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.dg-avatar--1 {
+  background-color: var(--avatar-1);
+}
+
+.dg-avatar--2 {
+  background-color: var(--avatar-2);
+}
+
+.dg-avatar--3 {
+  background-color: var(--avatar-3);
+}
+
+.dg-avatar--4 {
+  background-color: var(--avatar-4);
+}
+
+.dg-avatar--5 {
+  background-color: var(--avatar-5);
+}

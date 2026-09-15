@@ -1,0 +1,42 @@
+/* Tile / Akce a Tile / Akce Primary — § Přehled · doplňky.
+   Návrh: 140 × 74, rádius 16, odsazení 14 10, mezera 8, popisek 12,5/600,
+   hlavní dlaždice v akcentu s bílým popiskem. */
+
+.dg-action-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: calc(140px * var(--scale));
+  min-height: calc(74px * var(--scale));
+  padding: calc(14px * var(--scale)) calc(10px * var(--scale));
+  border: 0;
+  border-radius: var(--r-md);
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(8px * var(--scale));
+  cursor: pointer;
+}
+
+.dg-action-tile__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dg-action-tile__label {
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.dg-action-tile--default {
+  background-color: var(--surface-15);
+  color: var(--text-1);
+}
+
+.dg-action-tile--primary {
+  background-color: var(--accent);
+  color: var(--text-on-color);
+}

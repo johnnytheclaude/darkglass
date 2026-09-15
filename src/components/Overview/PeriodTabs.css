@@ -1,0 +1,41 @@
+/* Období (Tab / Vše) — § Přehled · doplňky.
+   Návrh: skupina pilulka s jemnou výplní, odsazení 4, mezera 3,
+   záložka 38 px / odsazení 0 16 / popisek 14, aktivní plná kontrastní. */
+
+.dg-period-tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 100%;
+  padding: calc(4px * var(--scale));
+  border-radius: var(--r-pill);
+  background-color: var(--surface-15);
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(3px * var(--scale));
+}
+
+.dg-period-tabs__tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: calc(38px * var(--scale));
+  padding: 0 calc(16px * var(--scale));
+  border: 0;
+  border-radius: var(--r-pill);
+  background-color: transparent;
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: calc(14px * var(--scale));
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.dg-period-tabs__tab--on {
+  background-color: var(--contrast-fill);
+  color: var(--contrast-text);
+  font-weight: 600;
+}

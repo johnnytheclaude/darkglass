@@ -1,0 +1,19 @@
+/* Box / Sekce — § Přehled · doplňky.
+   Návrh: rádius 28, odsazení 18, mezera 16, velmi jemný podklad. */
+
+.dg-section-box {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: calc(18px * var(--scale));
+  border-radius: calc(28px * var(--scale));
+  background-color: var(--surface-05);
+  gap: calc(16px * var(--scale));
+}
+
+.dg-section-box--column {
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
