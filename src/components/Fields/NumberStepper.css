@@ -9,6 +9,8 @@
   width: fit-content;
   padding: calc(4px * var(--scale));
   gap: calc(4px * var(--scale));
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-stepper__btn {

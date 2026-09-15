@@ -23,4 +23,6 @@
   font-size: calc(13px * var(--scale));
   font-weight: 600;
   line-height: 1;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }

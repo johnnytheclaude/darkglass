@@ -2,6 +2,8 @@
 
 .dg-select__box {
   cursor: pointer;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-select__box:disabled {

@@ -12,6 +12,8 @@
   background-color: var(--surface);
   font-family: var(--font), system-ui, sans-serif;
   gap: calc(12px * var(--scale));
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-quick-actions__title {

@@ -14,11 +14,14 @@
   gap: calc(14px * var(--scale));
   background-color: var(--surface);
   font-family: var(--font), system-ui, sans-serif;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-list-row--inset {
   border-radius: 0;
   background-color: transparent;
+  outline: none;
 }
 
 .dg-list-row--interactive {

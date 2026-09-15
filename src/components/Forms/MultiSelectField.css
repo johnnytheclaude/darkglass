@@ -6,6 +6,8 @@
   flex-wrap: wrap;
   padding: calc(9px * var(--scale)) calc(10px * var(--scale));
   gap: calc(6px * var(--scale));
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-multiselect__placeholder {

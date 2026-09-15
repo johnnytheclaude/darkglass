@@ -74,6 +74,8 @@
   font-weight: 600;
   line-height: 1;
   cursor: pointer;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-quantity-row__step:focus-visible {

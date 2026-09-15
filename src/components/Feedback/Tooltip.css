@@ -16,6 +16,8 @@
   font-size: calc(13px * var(--scale));
   line-height: 1.2;
   white-space: nowrap;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-tooltip--value {

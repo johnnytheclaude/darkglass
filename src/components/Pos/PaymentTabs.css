@@ -30,6 +30,8 @@
   text-align: center;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-payment-tabs__tab.is-selected {

@@ -18,6 +18,8 @@
   font-family: inherit;
   text-align: left;
   cursor: pointer;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-menu-tile:focus-visible {

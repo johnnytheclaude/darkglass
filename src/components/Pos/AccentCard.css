@@ -12,6 +12,8 @@
   border-radius: var(--r-lg);
   background-color: var(--accent-soft);
   gap: calc(6px * var(--scale));
+  outline: 1px solid var(--accent);
+  outline-offset: -0.5px;
 }
 
 .dg-accent-card__title {

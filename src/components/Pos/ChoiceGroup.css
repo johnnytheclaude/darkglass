@@ -26,6 +26,8 @@
   line-height: 1.2;
   white-space: nowrap;
   cursor: pointer;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-choice-group__option:focus-visible {
@@ -34,6 +36,8 @@
 }
 
 .dg-choice-group__option.is-selected {
+  outline: 2px solid var(--contrast-fill);
+  outline-offset: -1px;
   background-color: var(--contrast-fill);
   color: var(--contrast-text);
   font-weight: 700;

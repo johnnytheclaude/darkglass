@@ -20,6 +20,8 @@
   white-space: nowrap;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-category-chip.is-selected {

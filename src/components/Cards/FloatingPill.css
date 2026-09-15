@@ -20,6 +20,8 @@
   box-shadow: 0 2px 10px var(--shadow-pill, var(--shadow-soft));
   font-family: var(--font), system-ui, sans-serif;
   gap: calc(7px * var(--scale));
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-floating-pill__icon {

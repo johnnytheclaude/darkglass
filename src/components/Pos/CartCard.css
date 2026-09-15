@@ -13,6 +13,8 @@
   border-radius: var(--r-lg);
   background-color: var(--surface);
   gap: calc(10px * var(--scale));
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-cart-card__head {
@@ -154,6 +156,8 @@
   line-height: 1;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 @media (hover: hover) {

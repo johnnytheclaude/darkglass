@@ -12,6 +12,8 @@
   border-radius: var(--r-lg);
   background-color: var(--surface-05);
   gap: calc(14px * var(--scale));
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-request-card__head {

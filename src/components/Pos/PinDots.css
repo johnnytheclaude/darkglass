@@ -17,6 +17,8 @@
   border: 1.5px solid var(--border-strong);
   border-radius: 50%;
   background-color: transparent;
+  outline: 1.5px solid var(--border-strong);
+  outline-offset: -0.75px;
 }
 
 .dg-pin-dots__dot.is-filled {

@@ -17,6 +17,8 @@
   font-family: inherit;
   text-align: left;
   cursor: pointer;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-choice-card:focus-visible {
@@ -40,6 +42,8 @@
 
 .dg-choice-card.is-selected {
   background-color: var(--accent-soft);
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
 }
 
 .dg-choice-card:disabled {

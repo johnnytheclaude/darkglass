@@ -13,6 +13,8 @@
   background-color: var(--surface);
   gap: calc(16px * var(--scale));
   font-family: var(--font), system-ui, sans-serif;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-login-card__mark {
@@ -46,6 +48,8 @@
 .dg-login-card__alt {
   display: flex;
   width: 100%;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-login-card__submit > *,

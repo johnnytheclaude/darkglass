@@ -4,6 +4,8 @@
   align-items: flex-start;
   min-height: calc(110px * var(--scale));
   padding: calc(14px * var(--scale)) calc(15px * var(--scale));
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-textarea__input {

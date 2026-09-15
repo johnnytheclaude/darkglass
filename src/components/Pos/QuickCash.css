@@ -36,11 +36,14 @@
   white-space: nowrap;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-quick-cash__option.is-selected {
-  border: 2px solid var(--accent);
   background-color: var(--accent-soft);
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
 }
 
 .dg-quick-cash__option:disabled {

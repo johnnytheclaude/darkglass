@@ -14,6 +14,8 @@
   background: var(--surface);
   list-style: none;
   font-family: var(--font), system-ui, sans-serif;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-timeline__event {

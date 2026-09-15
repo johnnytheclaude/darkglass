@@ -24,6 +24,8 @@
   border-radius: calc(20px * var(--scale));
   gap: calc(18px * var(--scale));
   background-color: var(--surface);
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-skeleton-list__row {

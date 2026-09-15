@@ -13,6 +13,8 @@
   background: var(--surface-05);
   font-family: var(--font), system-ui, sans-serif;
   gap: calc(10px * var(--scale));
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-kanban-column__head {
@@ -56,6 +58,8 @@
   background: var(--surface-solid);
   font-family: var(--font), system-ui, sans-serif;
   gap: calc(10px * var(--scale));
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-kanban-card__title {

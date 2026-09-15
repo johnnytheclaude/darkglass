@@ -14,6 +14,8 @@
   background-color: var(--surface);
   font-family: var(--font), system-ui, sans-serif;
   gap: calc(10px * var(--scale));
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-calendar__head {

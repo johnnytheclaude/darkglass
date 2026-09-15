@@ -19,6 +19,8 @@
   background-color: var(--surface-solid);
   box-shadow: 0 calc(16px * var(--scale)) calc(48px * var(--scale)) var(--shadow);
   font-family: var(--font), system-ui, sans-serif;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-confirm--accent {

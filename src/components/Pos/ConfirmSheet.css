@@ -13,6 +13,8 @@
   border-radius: var(--r-lg);
   background-color: var(--surface-solid);
   gap: calc(8px * var(--scale));
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-confirm-sheet__title {

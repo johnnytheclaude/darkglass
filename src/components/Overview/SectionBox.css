@@ -11,6 +11,8 @@
   border-radius: calc(28px * var(--scale));
   background-color: var(--surface-05);
   gap: calc(16px * var(--scale));
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-section-box--column {

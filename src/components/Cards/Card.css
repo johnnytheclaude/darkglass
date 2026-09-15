@@ -12,6 +12,8 @@
   gap: calc(14px * var(--scale));
   background-color: var(--surface);
   font-family: var(--font), system-ui, sans-serif;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-card__header {
@@ -65,4 +67,6 @@
   padding: calc(14px * var(--scale));
   border-radius: calc(14px * var(--scale));
   background-color: var(--surface-05);
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }

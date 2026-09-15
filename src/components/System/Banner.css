@@ -70,6 +70,8 @@
 .dg-banner--warning {
   border-color: var(--warning);
   background-color: var(--warning-soft);
+  outline: 1px solid var(--warning);
+  outline-offset: -0.5px;
 }
 
 .dg-banner--warning .dg-banner__icon {
@@ -83,6 +85,8 @@
 .dg-banner--danger {
   border-color: var(--danger);
   background-color: var(--danger-soft);
+  outline: 1px solid var(--danger);
+  outline-offset: -0.5px;
 }
 
 .dg-banner--danger .dg-banner__icon {
@@ -96,6 +100,8 @@
 .dg-banner--success {
   border-color: var(--success);
   background-color: var(--success-soft);
+  outline: 1px solid var(--success);
+  outline-offset: -0.5px;
 }
 
 .dg-banner--success .dg-banner__icon {
@@ -109,6 +115,8 @@
 .dg-banner--accent {
   border-color: var(--accent);
   background-color: var(--accent-soft);
+  outline: 1px solid var(--accent);
+  outline-offset: -0.5px;
 }
 
 .dg-banner--accent .dg-banner__icon {

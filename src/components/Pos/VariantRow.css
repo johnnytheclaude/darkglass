@@ -47,6 +47,8 @@
 
 .dg-variant-row.is-active {
   background-color: var(--accent-soft);
+  outline: 1px solid var(--accent);
+  outline-offset: -0.5px;
 }
 
 .dg-variant-row.is-active .dg-variant-row__variant {

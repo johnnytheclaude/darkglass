@@ -105,6 +105,7 @@ function Pruhy() {
         Doklady se nepodařilo odeslat do účetnictví.
       </Banner>
       <Banner tone="success">Katalog je srovnaný s Adminem.</Banner>
+      <Banner tone="accent">Nová verze Pokladny je připravená k instalaci.</Banner>
     </div>
   )
 }

@@ -43,6 +43,8 @@
   border-radius: calc(7px * var(--scale));
   background-color: var(--surface-05);
   color: var(--text-on-color);
+  outline: 1.5px solid var(--border-strong);
+  outline-offset: -0.75px;
 }
 
 .dg-check__box > svg {

@@ -57,6 +57,8 @@
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   transition: background-color 90ms ease-out;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-numpad__key--delete {

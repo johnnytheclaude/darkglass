@@ -39,6 +39,8 @@
   height: calc(24px * var(--scale));
   border-radius: var(--r-pill);
   background-color: var(--surface-05);
+  outline: 1.5px solid var(--border-strong);
+  outline-offset: -0.75px;
 }
 
 .dg-radio__dot {

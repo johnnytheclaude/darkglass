@@ -12,6 +12,8 @@
   background-color: var(--surface);
   /* Kvůli částce, která se přizpůsobuje šířce karty (cqw níž). */
   container-type: inline-size;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-total-card__row {

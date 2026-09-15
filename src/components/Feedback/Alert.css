@@ -83,6 +83,8 @@
 
 .dg-alert--info {
   background-color: var(--accent-soft);
+  outline: 1px solid var(--accent);
+  outline-offset: -0.5px;
 }
 
 .dg-alert--info .dg-alert__tile,
@@ -92,6 +94,8 @@
 
 .dg-alert--success {
   background-color: var(--success-soft);
+  outline: 1px solid var(--success);
+  outline-offset: -0.5px;
 }
 
 .dg-alert--success .dg-alert__tile,
@@ -101,6 +105,8 @@
 
 .dg-alert--warning {
   background-color: var(--warning-soft);
+  outline: 1px solid var(--warning);
+  outline-offset: -0.5px;
 }
 
 .dg-alert--warning .dg-alert__tile,
@@ -110,6 +116,8 @@
 
 .dg-alert--danger {
   background-color: var(--danger-soft);
+  outline: 1px solid var(--danger);
+  outline-offset: -0.5px;
 }
 
 .dg-alert--danger .dg-alert__tile,

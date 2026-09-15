@@ -101,6 +101,8 @@
 .dg-button--secondary {
   background-color: var(--surface-2);
   color: var(--text-1);
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 /* Ghost nese podle návrhu tlumený text (--text-2), ne hlavní — je to odkaz

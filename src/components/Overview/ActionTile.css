@@ -34,6 +34,8 @@
 .dg-action-tile--default {
   background-color: var(--surface-15);
   color: var(--text-1);
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-action-tile--primary {

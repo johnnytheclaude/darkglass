@@ -16,6 +16,8 @@
   gap: calc(1px * var(--scale));
   font-family: var(--font), system-ui, sans-serif;
   list-style: none;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
 }
 
 .dg-fieldmenu__hint {
