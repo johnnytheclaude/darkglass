@@ -136,6 +136,22 @@ a.dg-sidebar__item {
   flex: 1 1 auto;
 }
 
+/* Rolovací část panelu — jen položky. Karta firmy nad ní a pata pod ní drží
+   svoje místo i v nízkém okně. Záporný okraj s odpovídajícím odsazením nechá
+   podsvícení položky sáhnout až tam, kam sahá bez rolování. */
+.dg-sidebar__scroll {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin: 0 calc(-10px * var(--scale));
+  padding: 0 calc(10px * var(--scale));
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  gap: 2px;
+}
+
 /* Karta firmy — znak 34 px s rádiusem 10, název 14,5/600 a pod ním aplikace. */
 .dg-sidebar__brand {
   display: flex;

@@ -14,6 +14,7 @@ import {
   SidebarItem,
   SidebarNote,
   SidebarSection,
+  SidebarScroll,
   SidebarSpacer,
 } from '../../src/components/Navigation/Sidebar'
 import { IconBoxes } from '../../src/components/Icons/IconBoxes'
@@ -83,34 +84,37 @@ function SidebarSectionsDemo() {
   ]
 
   return (
-    <Sidebar aria-label="Ukázka dvouúrovňové navigace" style={{ maxWidth: 260 }}>
+    <Sidebar aria-label="Ukázka dvouúrovňové navigace" style={{ maxWidth: 260, height: 420 }}>
       <SidebarBrand icon={<IconStore size={17} />} name="Vzorová firma" app="Admin" />
-      {sekce.map((s) => (
-        <SidebarSection
-          key={s.key}
-          icon={s.icon}
-          label={s.label}
-          active={open === s.key}
-          expanded={open === s.key}
-          itemProps={{
-            onClick: () => {
-              setOpen(s.key)
-              if (s.items[0]) setSub(s.items[0].toLowerCase())
-            },
-          }}
-        >
-          {s.items.map((item) => (
-            <SidebarItem
-              key={item}
-              level="sub"
-              active={sub === item.toLowerCase()}
-              onClick={() => setSub(item.toLowerCase())}
-            >
-              {item}
-            </SidebarItem>
-          ))}
-        </SidebarSection>
-      ))}
+      {/* Roluje jen prostředek — karta firmy i pata zůstanou v dohledu. */}
+      <SidebarScroll>
+        {sekce.map((s) => (
+          <SidebarSection
+            key={s.key}
+            icon={s.icon}
+            label={s.label}
+            active={open === s.key}
+            expanded={open === s.key}
+            itemProps={{
+              onClick: () => {
+                setOpen(s.key)
+                if (s.items[0]) setSub(s.items[0].toLowerCase())
+              },
+            }}
+          >
+            {s.items.map((item) => (
+              <SidebarItem
+                key={item}
+                level="sub"
+                active={sub === item.toLowerCase()}
+                onClick={() => setSub(item.toLowerCase())}
+              >
+                {item}
+              </SidebarItem>
+            ))}
+          </SidebarSection>
+        ))}
+      </SidebarScroll>
       <SidebarSpacer />
       <SidebarNote label="Ostrý provoz">· bez zkušebního režimu</SidebarNote>
     </Sidebar>

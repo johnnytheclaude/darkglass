@@ -146,6 +146,26 @@ export function SidebarNote({ label, children, className, ...rest }: SidebarNote
   )
 }
 
+export interface SidebarScrollProps extends HTMLAttributes<HTMLDivElement> {
+  children?: ReactNode
+  ref?: Ref<HTMLDivElement>
+}
+
+/**
+ * Rolovací část panelu — položky. Karta firmy nad ní a pata pod ní zůstanou
+ * na svém místě i v nízkém okně; bez toho se pata odroluje mimo dohled a
+ * vypadá to, že tam žádná není.
+ */
+export function SidebarScroll({ children, className, ...rest }: SidebarScrollProps) {
+  const classes = ['dg-sidebar__scroll', className].filter(Boolean).join(' ')
+
+  return (
+    <div className={classes} {...rest}>
+      {children}
+    </div>
+  )
+}
+
 export interface SidebarSpacerProps extends HTMLAttributes<HTMLDivElement> {
   ref?: Ref<HTMLDivElement>
 }
