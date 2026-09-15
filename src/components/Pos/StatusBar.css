@@ -38,6 +38,26 @@
   flex-wrap: wrap;
 }
 
+/* Identita bývá zároveň cestou do menu (Pokladna, F9) — tlačítko si nesmí
+   přinést nativní vzhled ani jinou typografii než zbytek lišty. */
+.dg-status-bar__identity--action {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dg-status-bar__identity--action:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
 .dg-status-bar__operator {
   min-width: 0;
   overflow: hidden;

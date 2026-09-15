@@ -33,6 +33,13 @@ export interface StatusBarProps extends HTMLAttributes<HTMLDivElement> {
   badges?: StatusBadge[]
   /** Pruh SANDBOX nad lištou (zkušební režim). */
   sandbox?: SandboxStrip
+  /**
+   * Klepnutí do identity vlevo. Pokladna tím otevírá menu — odznaky si přitom
+   * dál otevírají vlastní detail, proto to nesmí být klik na celou lištu.
+   */
+  onIdentityClick?: () => void
+  /** Popis identity pro čtečku, když je z ní tlačítko („otevřít menu“). */
+  identityLabel?: string
   ref?: Ref<HTMLDivElement>
 }
 
@@ -57,17 +64,34 @@ export function StatusBar({
   time,
   badges = [],
   sandbox,
+  onIdentityClick,
+  identityLabel,
   className,
   children,
   ...rest
 }: StatusBarProps) {
+  const identityContent = (
+    <>
+      {operator != null ? <span className="dg-status-bar__operator">{operator}</span> : null}
+      {place != null ? <span className="dg-status-bar__meta">{place}</span> : null}
+      {shift != null ? <span className="dg-status-bar__meta">{shift}</span> : null}
+    </>
+  )
+
   const bar = (
     <div className={['dg-status-bar', className].filter(Boolean).join(' ')} {...rest}>
-      <div className="dg-status-bar__identity">
-        {operator != null ? <span className="dg-status-bar__operator">{operator}</span> : null}
-        {place != null ? <span className="dg-status-bar__meta">{place}</span> : null}
-        {shift != null ? <span className="dg-status-bar__meta">{shift}</span> : null}
-      </div>
+      {onIdentityClick ? (
+        <button
+          type="button"
+          className="dg-status-bar__identity dg-status-bar__identity--action"
+          onClick={onIdentityClick}
+          aria-label={identityLabel}
+        >
+          {identityContent}
+        </button>
+      ) : (
+        <div className="dg-status-bar__identity">{identityContent}</div>
+      )}
       {badges.length > 0 ? (
         <div className="dg-status-bar__badges">
           {badges.map((badge) => {
