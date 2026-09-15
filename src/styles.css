@@ -108,6 +108,7 @@
 @import "./components/Pos/ConfirmSheet.css";
 @import "./components/Pos/CountedTotal.css";
 @import "./components/Pos/CountRow.css";
+@import "./components/Pos/CustomerBar.css";
 @import "./components/Pos/DenominationRow.css";
 @import "./components/Pos/GroupHeader.css";
 @import "./components/Pos/InlineActions.css";
@@ -118,6 +119,7 @@
 @import "./components/Pos/PaymentBreakdown.css";
 @import "./components/Pos/PaymentTabs.css";
 @import "./components/Pos/PinDots.css";
+@import "./components/Pos/PayButton.css";
 @import "./components/Pos/PosSearch.css";
 @import "./components/Pos/ProductTile.css";
 @import "./components/Pos/QuantityRow.css";

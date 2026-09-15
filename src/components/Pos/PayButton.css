@@ -1,0 +1,61 @@
+/* Btn / Zaplatit — § Pokladna · prodej.
+   Návrh: výška 88, rádius 24, plná výplň akcentu, popisek 24 / 700 / -0,2 px.
+   Neaktivní: bez akcentu, tichá plocha s vlasovým rámečkem a tlumeným textem. */
+
+.dg-pay-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(88px * var(--scale));
+  padding: 0 calc(20px * var(--scale));
+  border: none;
+  border-radius: var(--r-lg);
+  background-color: var(--accent-fill);
+  color: var(--on-accent);
+  gap: calc(8px * var(--scale));
+  font-family: inherit;
+  font-size: calc(24px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  line-height: 1.1;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dg-pay-button__label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-pay-button__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+@media (hover: hover) {
+  .dg-pay-button:hover:not(:disabled) {
+    background-image: linear-gradient(var(--surface-05), var(--surface-05));
+  }
+}
+
+.dg-pay-button:active:not(:disabled) {
+  background-image: linear-gradient(var(--surface-15), var(--surface-15));
+}
+
+.dg-pay-button:focus-visible {
+  outline: calc(3px * var(--scale)) solid var(--focus-ring);
+  outline-offset: calc(2px * var(--scale));
+}
+
+.dg-pay-button:disabled {
+  background-color: var(--surface-05);
+  color: var(--text-muted);
+  cursor: default;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
+}

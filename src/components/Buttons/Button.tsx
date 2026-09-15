@@ -11,12 +11,12 @@ export type ButtonVariant =
   | 'success'
   | 'back'
 
-export type ButtonSize = 's' | 'm' | 'l'
+export type ButtonSize = 's' | 'm' | 'l' | 'xl'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Varianta z návrhu (§ Tlačítka). */
   variant?: ButtonVariant
-  /** Výška podle návrhu: s 34, m 42, l 52 px (škáluje se přes --scale).
+  /** Výška podle návrhu: s 34, m 42, l 52, xl 56 px (škáluje se přes --scale).
       Varianta `back` má vlastní geometrii z návrhu a velikost neřeší. */
   size?: ButtonSize
   /** Ikona před popiskem — komponenta z components/Icons. */

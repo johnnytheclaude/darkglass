@@ -1,11 +1,17 @@
 import { useState } from 'react'
+import { Button } from '../../src/components/Buttons/Button'
 import { CartCard, CartLine } from '../../src/components/Pos/CartCard'
+import { CustomerBar } from '../../src/components/Pos/CustomerBar'
+import { PayButton } from '../../src/components/Pos/PayButton'
 import { CategoryChip } from '../../src/components/Pos/CategoryChip'
 import { PosSearch } from '../../src/components/Pos/PosSearch'
 import { ProductTile } from '../../src/components/Pos/ProductTile'
 import { TotalCard } from '../../src/components/Pos/TotalCard'
 import { VariantRow } from '../../src/components/Pos/VariantRow'
+import { IconScanBarcode } from '../../src/components/Icons/IconScanBarcode'
 import { IconSearch } from '../../src/components/Icons/IconSearch'
+import { IconUserPlus } from '../../src/components/Icons/IconUserPlus'
+import { EmptyState } from '../../src/components/Feedback/EmptyState'
 import type { ShowcaseSection } from '../registry'
 
 const KATEGORIE = ['Saka', 'Obleky', 'Košile', 'Kalhoty', 'Doplňky']
@@ -170,6 +176,64 @@ export const section: ShowcaseSection = {
             note="objednáno"
             count="12 ks"
           />
+        </div>
+      ),
+    },
+    {
+      title: 'Zákazník na účtu',
+      stack: true,
+      note: 'Prázdný stav vyzývá se zkratkou, připnutý ukazuje jméno a pod ním úroveň se slevou. Vpravo se vejde druhá akce — odběratel.',
+      render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, width: '100%', maxWidth: 520 }}>
+          <CustomerBar
+            icon={<IconUserPlus size={20} />}
+            label="Připnout zákazníka"
+            shortcut="F7"
+            onSelect={() => {}}
+            action={<Button variant="secondary" size="s">Na firmu</Button>}
+          />
+          <CustomerBar
+            pinned
+            icon={<IconUserPlus size={20} />}
+            label="Stanislav Hochman"
+            meta="Zlatý · sleva 10 %"
+            shortcut="F7"
+            onSelect={() => {}}
+            action={<Button variant="secondary" size="s">Hochman Móda s.r.o.</Button>}
+          />
+        </div>
+      ),
+    },
+    {
+      title: 'Hlavní akce účtu',
+      stack: true,
+      note: 'Zaplatit je největší cíl obrazovky (88 px). Nad prázdným účtem ztrácí výplň akcentu, aby nevypadalo jako připravená platba. Pod ním řada akcí ve velikosti xl (56 px).',
+      render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, width: '100%', maxWidth: 520 }}>
+          <PayButton label="Zaplatit · F2" />
+          <PayButton label="Zaplatit · F2" disabled />
+          <div style={{ display: 'flex', gap: 10 }}>
+            <Button variant="secondary" size="xl" block>Sleva · F8</Button>
+            <Button variant="secondary" size="xl" block>Odložit · F6</Button>
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: 'Prázdný účet',
+      stack: true,
+      note: 'Plnohodnotný prázdný stav uvnitř košíku — ikona čtečky, výzva a druhá cesta ke zboží.',
+      render: () => (
+        <div style={{ width: '100%', maxWidth: 580, height: 320, display: 'flex' }}>
+          <CartCard title="Košík" count="prázdný">
+            <EmptyState
+              icon={<IconScanBarcode size={28} />}
+              title="Pípněte zboží"
+              style={{ margin: 'auto' }}
+            >
+              Nebo ho najděte podle názvu a kódu — F3.
+            </EmptyState>
+          </CartCard>
         </div>
       ),
     },

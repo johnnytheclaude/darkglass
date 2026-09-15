@@ -88,6 +88,15 @@
   --dg-button-icon: 19px;
 }
 
+/* Akce prodejní obrazovky (§ Pokladna · prodej) — řada tlačítek 56 px
+   pod součtem účtu; větší cíl pro prst na pokladně. */
+.dg-button--xl {
+  --dg-button-h: 56px;
+  --dg-button-px: 20px;
+  --dg-button-fs: 15.5px;
+  --dg-button-icon: 20px;
+}
+
 .dg-button--block {
   width: 100%;
 }
