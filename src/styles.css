@@ -24,6 +24,12 @@
 @import "./components/Charts/DonutChart.css";
 @import "./components/Charts/Sparkbars.css";
 @import "./components/Charts/StackedBarChart.css";
+@import "./components/Controls/Checkbox.css";
+@import "./components/Controls/Chip.css";
+@import "./components/Controls/Radio.css";
+@import "./components/Controls/SegmentedControl.css";
+@import "./components/Controls/Slider.css";
+@import "./components/Controls/Switch.css";
 @import "./components/Data/ActivityHeatmap.css";
 @import "./components/Data/FunnelChart.css";
 @import "./components/Data/KanbanColumn.css";
@@ -59,6 +65,10 @@
 @import "./components/Navigation/ToolRail.css";
 @import "./components/Navigation/TopBar.css";
 @import "./components/Navigation/TreeView.css";
+@import "./components/Overlays/ConfirmDialog.css";
+@import "./components/Overlays/Drawer.css";
+@import "./components/Overlays/Menu.css";
+@import "./components/Overlays/SectionHeader.css";
 @import "./components/Overview/ActionTile.css";
 @import "./components/Overview/Avatar.css";
 @import "./components/Overview/BadgeCard.css";

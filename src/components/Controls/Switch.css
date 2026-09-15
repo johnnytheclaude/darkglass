@@ -1,0 +1,79 @@
+/* Vypínač — § Přepínače a výběr. Návrh: dráha 50×29 s rádiusem pilulky,
+   vnitřní odsazení 3, knoflík 23 bílý, vypnuto na track-off, zapnuto v akcentu,
+   popisek 14,5/400 s mezerou 12, neaktivní na 45 % krytí. */
+
+.dg-switch {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  box-sizing: border-box;
+  gap: calc(12px * var(--scale));
+  font-family: var(--font), system-ui, sans-serif;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dg-switch.is-disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.dg-switch__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(50px * var(--scale));
+  height: calc(29px * var(--scale));
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.dg-switch__track {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  width: calc(50px * var(--scale));
+  height: calc(29px * var(--scale));
+  padding: 0 calc(3px * var(--scale));
+  border-radius: var(--r-pill);
+  background-color: var(--track-off);
+  transition: background-color 0.15s ease;
+}
+
+.dg-switch__knob {
+  width: calc(23px * var(--scale));
+  height: calc(23px * var(--scale));
+  border-radius: var(--r-pill);
+  background-color: var(--pill-fill);
+  transition: transform 0.15s ease;
+}
+
+.dg-switch__input:checked ~ .dg-switch__track {
+  background-color: var(--accent);
+}
+
+.dg-switch__input:checked ~ .dg-switch__track .dg-switch__knob {
+  transform: translateX(calc(21px * var(--scale)));
+}
+
+.dg-switch__input:focus-visible ~ .dg-switch__track {
+  outline: calc(2px * var(--scale)) solid var(--focus-ring);
+  outline-offset: calc(2px * var(--scale));
+}
+
+.dg-switch__label {
+  color: var(--text-1);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dg-switch__track,
+  .dg-switch__knob {
+    transition: none;
+  }
+}

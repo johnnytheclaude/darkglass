@@ -1,0 +1,124 @@
+/* Posuvník — § Přepínače a výběr. Návrh: dráha 8 s rádiusem pilulky,
+   výplň v akcentu, táhlo 22 bílé se stínem, popis 13,5/600 a hodnota vpravo.
+   Varianta s přechodem má místo výplně barevnou stupnici a šířka 300 je
+   ukázka v návrhu — komponenta se roztáhne podle místa, kam se vloží. */
+
+.dg-slider {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  gap: calc(10px * var(--scale));
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-slider.is-disabled {
+  opacity: 0.45;
+}
+
+.dg-slider__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(8px * var(--scale));
+}
+
+.dg-slider__label {
+  flex: 1 1 auto;
+  color: var(--text-2);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 600;
+}
+
+.dg-slider__value {
+  color: var(--text-1);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.dg-slider__track {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(22px * var(--scale));
+}
+
+.dg-slider__track::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: calc(8px * var(--scale));
+  border-radius: var(--r-pill);
+  background-color: var(--surface-3);
+  transform: translateY(-50%);
+  content: '';
+}
+
+.dg-slider--gradient .dg-slider__track::before {
+  background-image: linear-gradient(90deg, var(--accent) 0%, var(--red) 50%, var(--orange) 100%);
+}
+
+.dg-slider__fill {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: calc(8px * var(--scale));
+  border-radius: var(--r-pill);
+  background-color: var(--accent);
+  transform: translateY(-50%);
+}
+
+.dg-slider__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.dg-slider__input:focus {
+  outline: none;
+}
+
+.dg-slider__input::-webkit-slider-thumb {
+  width: calc(22px * var(--scale));
+  height: calc(22px * var(--scale));
+  border: 0;
+  border-radius: var(--r-pill);
+  background-color: var(--pill-fill);
+  box-shadow: 0 calc(2px * var(--scale)) calc(6px * var(--scale)) var(--shadow-soft);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.dg-slider__input::-moz-range-thumb {
+  width: calc(22px * var(--scale));
+  height: calc(22px * var(--scale));
+  border: 0;
+  border-radius: var(--r-pill);
+  background-color: var(--pill-fill);
+  box-shadow: 0 calc(2px * var(--scale)) calc(6px * var(--scale)) var(--shadow-soft);
+  cursor: pointer;
+}
+
+.dg-slider__input:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 calc(4px * var(--scale)) var(--focus-ring);
+}
+
+.dg-slider__input:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 calc(4px * var(--scale)) var(--focus-ring);
+}
+
+.dg-slider.is-disabled .dg-slider__input {
+  pointer-events: none;
+}

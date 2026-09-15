@@ -52,6 +52,19 @@ export type {
   StackedSegment,
 } from './components/Charts/StackedBarChart'
 
+export { Checkbox } from './components/Controls/Checkbox'
+export type { CheckboxProps } from './components/Controls/Checkbox'
+export { Chip, RemovableChip } from './components/Controls/Chip'
+export type { ChipProps, ChipTone, RemovableChipProps } from './components/Controls/Chip'
+export { Radio } from './components/Controls/Radio'
+export type { RadioProps } from './components/Controls/Radio'
+export { SegmentedControl } from './components/Controls/SegmentedControl'
+export type { SegmentedControlProps, SegmentedOption } from './components/Controls/SegmentedControl'
+export { Slider } from './components/Controls/Slider'
+export type { SliderProps } from './components/Controls/Slider'
+export { Switch } from './components/Controls/Switch'
+export type { SwitchProps } from './components/Controls/Switch'
+
 export { ActivityHeatmap } from './components/Data/ActivityHeatmap'
 export type { ActivityHeatmapProps } from './components/Data/ActivityHeatmap'
 export { FunnelChart } from './components/Data/FunnelChart'
@@ -95,6 +108,15 @@ export type { TopBarProps, TopBarTab } from './components/Navigation/TopBar'
 
 export { TreeItem, TreeView } from './components/Navigation/TreeView'
 export type { TreeItemProps, TreeViewProps } from './components/Navigation/TreeView'
+
+export { ConfirmDialog } from './components/Overlays/ConfirmDialog'
+export type { ConfirmDialogProps, ConfirmDialogTone } from './components/Overlays/ConfirmDialog'
+export { Drawer, DrawerRow } from './components/Overlays/Drawer'
+export type { DrawerProps, DrawerRowProps } from './components/Overlays/Drawer'
+export { Menu, MenuItem, MenuSeparator } from './components/Overlays/Menu'
+export type { MenuItemProps, MenuProps, MenuSeparatorProps } from './components/Overlays/Menu'
+export { SectionHeader } from './components/Overlays/SectionHeader'
+export type { SectionHeaderProps } from './components/Overlays/SectionHeader'
 
 export { ActionTile } from './components/Overview/ActionTile'
 export type { ActionTileProps } from './components/Overview/ActionTile'

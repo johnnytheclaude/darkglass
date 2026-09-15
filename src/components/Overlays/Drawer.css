@@ -1,0 +1,126 @@
+/* Boční panel s detailem — § Překryvy a nabídky. Návrh: panel 420 široký,
+   rádius 24, stín 0 16 48; hlavička s nadpisem 21/700 a křížkem 32,
+   řádky detailu 50 vysoké (název 14/400, hodnota 14,5/600), patička 16. */
+
+.dg-drawer {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: calc(420px * var(--scale));
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: calc(24px * var(--scale));
+  background-color: var(--surface-solid);
+  box-shadow: 0 calc(16px * var(--scale)) calc(48px * var(--scale)) var(--shadow);
+  font-family: var(--font), system-ui, sans-serif;
+  overflow: hidden;
+}
+
+.dg-drawer__head {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: calc(20px * var(--scale)) calc(20px * var(--scale)) calc(16px * var(--scale));
+  gap: calc(12px * var(--scale));
+}
+
+.dg-drawer__titles {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(3px * var(--scale));
+}
+
+.dg-drawer__eyebrow {
+  color: var(--text-3);
+  font-size: calc(10.5px * var(--scale));
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+.dg-drawer__title {
+  color: var(--text-1);
+  font-size: calc(21px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  line-height: 1.2;
+}
+
+.dg-drawer__close {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: calc(32px * var(--scale));
+  height: calc(32px * var(--scale));
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-pill);
+  background-color: var(--surface-15);
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .dg-drawer__close:hover {
+    color: var(--text-1);
+  }
+}
+
+.dg-drawer__close:focus-visible {
+  outline: calc(2px * var(--scale)) solid var(--focus-ring);
+  outline-offset: calc(2px * var(--scale));
+}
+
+.dg-drawer__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: calc(4px * var(--scale)) calc(20px * var(--scale));
+  overflow-y: auto;
+}
+
+.dg-drawer__row {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: calc(50px * var(--scale));
+  padding: calc(6px * var(--scale)) 0;
+  gap: calc(12px * var(--scale));
+  border-bottom: 1px solid var(--sep);
+}
+
+.dg-drawer__row:last-child {
+  border-bottom: 0;
+}
+
+.dg-drawer__key {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--text-2);
+  font-size: calc(14px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-drawer__value {
+  color: var(--text-1);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.dg-drawer__footer {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: calc(16px * var(--scale));
+  gap: calc(10px * var(--scale));
+  border-top: 1px solid var(--sep);
+}

@@ -1,0 +1,70 @@
+/* Zaškrtávátko — § Přepínače a výběr. Návrh: čtverec 24 s rádiusem 7,
+   nezaškrtnuté na surface-05, zaškrtnuté v akcentu s bílou fajfkou 15,
+   popisek 14,5/400, mezera 11, neaktivní na 45 % krytí.
+
+   Vlastní `input` se neschovává přes display:none — musí zůstat zaostřitelný,
+   jinak by prvek nešel ovládat klávesnicí ani přečíst čtečkou. */
+
+.dg-check {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  box-sizing: border-box;
+  gap: calc(11px * var(--scale));
+  font-family: var(--font), system-ui, sans-serif;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dg-check.is-disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.dg-check__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(24px * var(--scale));
+  height: calc(24px * var(--scale));
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.dg-check__box {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: calc(24px * var(--scale));
+  height: calc(24px * var(--scale));
+  border-radius: calc(7px * var(--scale));
+  background-color: var(--surface-05);
+  color: var(--text-on-color);
+}
+
+.dg-check__box > svg {
+  opacity: 0;
+}
+
+.dg-check__input:checked ~ .dg-check__box {
+  background-color: var(--accent);
+}
+
+.dg-check__input:checked ~ .dg-check__box > svg {
+  opacity: 1;
+}
+
+.dg-check__input:focus-visible ~ .dg-check__box {
+  outline: calc(2px * var(--scale)) solid var(--focus-ring);
+  outline-offset: calc(2px * var(--scale));
+}
+
+.dg-check__label {
+  color: var(--text-1);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 400;
+  line-height: 1.3;
+}

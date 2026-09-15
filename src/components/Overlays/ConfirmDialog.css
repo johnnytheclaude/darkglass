@@ -1,0 +1,113 @@
+/* Modal / Confirm — § Překryvy a nabídky. Návrh: karta 460 široká, rádius 24,
+   odsazení 24, mezera 16, stín 0 16 48; dlaždice 44 v měkkém tónu s ikonou 22,
+   nadpis 19/700, text 14/400, křížek 30 na surface-15, tlačítka vpravo dole.
+
+   Překryv je neprůhledný záměrně — sklo přes sklo se nedá číst. */
+
+.dg-confirm {
+  --confirm-tone: var(--danger);
+  --confirm-soft: var(--danger-soft);
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: calc(460px * var(--scale));
+  max-width: 100%;
+  padding: calc(24px * var(--scale));
+  gap: calc(16px * var(--scale));
+  border-radius: calc(24px * var(--scale));
+  background-color: var(--surface-solid);
+  box-shadow: 0 calc(16px * var(--scale)) calc(48px * var(--scale)) var(--shadow);
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-confirm--accent {
+  --confirm-tone: var(--accent);
+  --confirm-soft: var(--accent-soft);
+}
+
+.dg-confirm--warning {
+  --confirm-tone: var(--warning);
+  --confirm-soft: var(--warning-soft);
+}
+
+.dg-confirm--success {
+  --confirm-tone: var(--success);
+  --confirm-soft: var(--success-soft);
+}
+
+.dg-confirm__head {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(13px * var(--scale));
+}
+
+.dg-confirm__tile {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: calc(44px * var(--scale));
+  height: calc(44px * var(--scale));
+  border-radius: calc(13px * var(--scale));
+  background-color: var(--confirm-soft);
+  color: var(--confirm-tone);
+}
+
+.dg-confirm__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(5px * var(--scale));
+}
+
+.dg-confirm__title {
+  color: var(--text-1);
+  font-size: calc(19px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.25;
+}
+
+.dg-confirm__body {
+  color: var(--text-2);
+  font-size: calc(14px * var(--scale));
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.dg-confirm__close {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: calc(30px * var(--scale));
+  height: calc(30px * var(--scale));
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-pill);
+  background-color: var(--surface-15);
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .dg-confirm__close:hover {
+    color: var(--text-1);
+  }
+}
+
+.dg-confirm__close:focus-visible {
+  outline: calc(2px * var(--scale)) solid var(--focus-ring);
+  outline-offset: calc(2px * var(--scale));
+}
+
+.dg-confirm__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: calc(10px * var(--scale));
+}

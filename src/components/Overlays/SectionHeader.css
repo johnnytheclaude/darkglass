@@ -1,0 +1,62 @@
+/* Nadpis sekce s akcí — § Překryvy a nabídky. Návrh: nadpis 21/700,
+   upřesnění 13,5/400 v text-3, akce vpravo na účaří nadpisu, odsazení 6 2. */
+
+.dg-section-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(6px * var(--scale)) calc(2px * var(--scale));
+  gap: calc(12px * var(--scale));
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-section-header__titles {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(2px * var(--scale));
+}
+
+.dg-section-header__title {
+  color: var(--text-1);
+  font-size: calc(21px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.dg-section-header__sub {
+  color: var(--text-3);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-section-header__action {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  color: var(--accent);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 600;
+}
+
+.dg-section-header__action a,
+.dg-section-header__action button {
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.dg-section-header__action a:focus-visible,
+.dg-section-header__action button:focus-visible {
+  outline: calc(2px * var(--scale)) solid var(--focus-ring);
+  outline-offset: calc(2px * var(--scale));
+}
