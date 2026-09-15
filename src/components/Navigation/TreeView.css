@@ -1,0 +1,79 @@
+/* Stromová struktura — § Navigace · rozšíření.
+   Návrh: karta 24 px rádius s paddingem 8, uzel 36 px vysoký s rádiusem 9,
+   text 13,5/400, zanoření po 18 px (10 → 28 → 46). */
+
+.dg-tree {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: calc(8px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+  gap: 1px;
+}
+
+.dg-tree__item {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0;
+  padding-right: calc(10px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  min-height: calc(36px * var(--scale));
+  border: 0;
+  border-radius: calc(9px * var(--scale));
+  background: transparent;
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+  gap: calc(8px * var(--scale));
+}
+
+.dg-tree__item:hover:not(.is-selected) {
+  background: var(--surface-15);
+}
+
+.dg-tree__item:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
+}
+
+.dg-tree__item.is-selected {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.dg-tree__chevron {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  color: var(--chevron);
+  transition: transform 0.15s ease;
+}
+
+.dg-tree__chevron.is-open {
+  transform: rotate(90deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dg-tree__chevron {
+    transition: none;
+  }
+}
+
+.dg-tree__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

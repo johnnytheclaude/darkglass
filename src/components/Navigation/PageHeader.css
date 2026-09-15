@@ -1,0 +1,74 @@
+/* Hlavička stránky — § Navigace · rozšíření.
+   Návrh: řádek s mezerou 14, kolečko zpět 40 px, nadpis 26/700 (-0,8),
+   popisek 14/400, tlačítka vpravo 42 px vysoká. */
+
+.dg-page-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(14px * var(--scale));
+}
+
+.dg-page-header__back {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  width: calc(40px * var(--scale));
+  height: calc(40px * var(--scale));
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--surface-15);
+  color: var(--text-1);
+  cursor: pointer;
+}
+
+.dg-page-header__back:hover {
+  background: var(--surface-3);
+}
+
+.dg-page-header__back:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.dg-page-header__titles {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(3px * var(--scale));
+}
+
+.dg-page-header__title {
+  color: var(--text-1);
+  font-size: calc(26px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  overflow-wrap: anywhere;
+}
+
+.dg-page-header__sub {
+  color: var(--text-2);
+  font-size: calc(14px * var(--scale));
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+
+/* Akce se drží vpravo; na úzké šířce se zalomí pod nadpis, aby z hlavičky
+   nevytekly. */
+.dg-page-header__actions {
+  display: flex;
+  align-items: center;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  min-width: 0;
+  margin-left: auto;
+  gap: calc(10px * var(--scale));
+}

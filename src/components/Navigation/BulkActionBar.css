@@ -1,0 +1,54 @@
+/* Lišta hromadných akcí — § Navigace · rozšíření.
+   Návrh: plovoucí pruh 64 px s rádiusem 999, stín 0/16/48, padding 0/10/0/20,
+   počet v akcentové pilulce 30 px, otázka 14,5/400. */
+
+.dg-bulk-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: calc(8px * var(--scale)) calc(10px * var(--scale)) calc(8px * var(--scale))
+    calc(20px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  min-height: calc(64px * var(--scale));
+  border-radius: calc(32px * var(--scale));
+  background: var(--surface-solid);
+  box-shadow: 0 calc(16px * var(--scale)) calc(48px * var(--scale)) var(--shadow);
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-bulk-bar__count {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0 calc(12px * var(--scale));
+  min-height: calc(30px * var(--scale));
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  color: var(--text-on-color);
+  font-size: calc(13px * var(--scale));
+  font-weight: 700;
+}
+
+.dg-bulk-bar__hint {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--text-2);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 400;
+}
+
+/* `flex-shrink: 1` je tu nutnost: bez něj by skupina držela šířku všech
+   tlačítek vedle sebe a lišta by na úzké šířce přetekla místo zalomení. */
+.dg-bulk-bar__actions {
+  display: flex;
+  align-items: center;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  min-width: 0;
+  margin-left: auto;
+  gap: calc(8px * var(--scale));
+}

@@ -1,0 +1,140 @@
+/* Vyhledávací paleta — § Navigace · rozšíření.
+   Návrh: plovoucí karta 18 px rádius se stínem 0/16/48, padding 8;
+   pole 49,5 px, akce 44 px s rádiusem 11, klávesa v jemném čtverečku 24 px. */
+
+.dg-command {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: calc(8px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  border-radius: calc(18px * var(--scale));
+  background: var(--surface-solid);
+  box-shadow: 0 calc(16px * var(--scale)) calc(48px * var(--scale)) var(--shadow);
+  font-family: var(--font), system-ui, sans-serif;
+  gap: 2px;
+}
+
+.dg-command__input {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 calc(12px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  min-height: calc(49.5px * var(--scale));
+  gap: calc(10px * var(--scale));
+}
+
+.dg-command__search {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-3);
+}
+
+.dg-command__field {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(16px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-command__field::placeholder {
+  color: var(--text-muted);
+}
+
+.dg-command__field:focus {
+  outline: none;
+}
+
+.dg-command__esc {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0 calc(8px * var(--scale));
+  min-height: calc(24px * var(--scale));
+  border-radius: calc(7px * var(--scale));
+  background: var(--surface-15);
+  color: var(--text-3);
+  font-size: calc(11px * var(--scale));
+  font-weight: 600;
+}
+
+.dg-command__list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  gap: 2px;
+}
+
+.dg-command__group {
+  box-sizing: border-box;
+  padding: calc(8px * var(--scale)) calc(12px * var(--scale)) calc(4px * var(--scale));
+  width: 100%;
+  color: var(--text-3);
+  font-size: calc(10.5px * var(--scale));
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+.dg-command__item {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 calc(12px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  min-height: calc(44px * var(--scale));
+  border-radius: calc(11px * var(--scale));
+  color: var(--text-1);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 400;
+  cursor: pointer;
+  gap: calc(11px * var(--scale));
+}
+
+.dg-command__item:hover,
+.dg-command__item.is-active {
+  background: var(--surface-15);
+}
+
+.dg-command__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-3);
+}
+
+.dg-command__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-command__key {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0 calc(6px * var(--scale));
+  min-width: calc(24px * var(--scale));
+  min-height: calc(24px * var(--scale));
+  border-radius: calc(7px * var(--scale));
+  background: var(--surface-3);
+  color: var(--text-2);
+  font-size: calc(11.5px * var(--scale));
+  font-weight: 600;
+}

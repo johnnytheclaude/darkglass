@@ -1,0 +1,99 @@
+/* Vícesegmentový pruh — § Data · rozšíření.
+   Návrh: dráha 14 px vysoká s rádiusem 999, mezi segmenty 2 px,
+   legenda 13/400 s hodnotou 13/600 a čtverečkem 10 px. */
+
+.dg-segmented-progress {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-segmented-progress__bar {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  min-width: 0;
+  height: calc(14px * var(--scale));
+  border-radius: var(--r-pill);
+  background: var(--surface-3);
+  gap: 2px;
+}
+
+.dg-segmented-progress__seg {
+  display: block;
+  flex: 0 0 auto;
+  height: 100%;
+  background: var(--accent);
+}
+
+.dg-segmented-progress__seg--success {
+  background: var(--success);
+}
+
+.dg-segmented-progress__seg--warning {
+  background: var(--warning);
+}
+
+.dg-segmented-progress__seg--danger {
+  background: var(--danger);
+}
+
+.dg-segmented-progress__seg--neutral {
+  background: var(--neutral);
+}
+
+.dg-segmented-progress__legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  min-width: 0;
+  gap: calc(8px * var(--scale)) calc(18px * var(--scale));
+}
+
+.dg-segmented-progress__item {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  gap: calc(7px * var(--scale));
+}
+
+.dg-segmented-progress__swatch {
+  flex: 0 0 auto;
+  width: calc(10px * var(--scale));
+  height: calc(10px * var(--scale));
+  border-radius: calc(3px * var(--scale));
+  background: var(--accent);
+}
+
+.dg-segmented-progress__swatch--success {
+  background: var(--success);
+}
+
+.dg-segmented-progress__swatch--warning {
+  background: var(--warning);
+}
+
+.dg-segmented-progress__swatch--danger {
+  background: var(--danger);
+}
+
+.dg-segmented-progress__swatch--neutral {
+  background: var(--neutral);
+}
+
+.dg-segmented-progress__label {
+  color: var(--text-2);
+  font-size: calc(13px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-segmented-progress__value {
+  color: var(--text-1);
+  font-size: calc(13px * var(--scale));
+  font-weight: 600;
+}

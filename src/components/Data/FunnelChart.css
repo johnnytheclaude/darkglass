@@ -1,0 +1,58 @@
+/* Trychtýř — § Data · rozšíření.
+   Návrh: karta 24 px rádius, padding 20, mezera 14; pruh 26 px vysoký
+   s rádiusem 8, popisek 13,5/400 a hodnota 13,5/600. */
+
+.dg-funnel {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: calc(20px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(14px * var(--scale));
+}
+
+.dg-funnel__title {
+  color: var(--text-1);
+  font-size: calc(16px * var(--scale));
+  font-weight: 600;
+}
+
+.dg-funnel__step {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  gap: calc(6px * var(--scale));
+}
+
+.dg-funnel__top {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  min-width: 0;
+  gap: calc(8px * var(--scale));
+}
+
+.dg-funnel__label {
+  color: var(--text-2);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-funnel__value {
+  color: var(--text-1);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 600;
+}
+
+.dg-funnel__bar {
+  display: block;
+  min-width: calc(8px * var(--scale));
+  height: calc(26px * var(--scale));
+  border-radius: var(--r-xs);
+  background: var(--accent);
+}

@@ -1,0 +1,46 @@
+/* Prázdná tabulka — § Data · rozšíření.
+   Návrh: tělo padding 44/20, mezera 10, kolečko 52 px,
+   nadpis 16/600 a vysvětlení 13,5/400 na střed. */
+
+.dg-table-empty__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: calc(44px * var(--scale)) calc(20px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  gap: calc(10px * var(--scale));
+  text-align: center;
+}
+
+.dg-table-empty__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: calc(52px * var(--scale));
+  height: calc(52px * var(--scale));
+  border-radius: var(--r-pill);
+  background: var(--surface-15);
+  color: var(--text-3);
+}
+
+.dg-table-empty__title {
+  color: var(--text-1);
+  font-size: calc(16px * var(--scale));
+  font-weight: 600;
+}
+
+.dg-table-empty__text {
+  color: var(--text-2);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+
+.dg-table-empty__action {
+  display: inline-flex;
+  align-items: center;
+  margin-top: calc(4px * var(--scale));
+}

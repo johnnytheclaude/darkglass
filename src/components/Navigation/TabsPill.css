@@ -1,0 +1,83 @@
+/* Záložky · pilulky — § Navigace · rozšíření.
+   Návrh: dráha s rádiusem 999 a paddingem 4, záložka 38 px vysoká,
+   padding 0/16, vybraná v kontrastní barvě. */
+
+.dg-tabs-pill {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: calc(4px * var(--scale));
+  max-width: 100%;
+  border-radius: var(--r-pill);
+  background: var(--surface-15);
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(3px * var(--scale));
+}
+
+.dg-tabs-pill__tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 calc(16px * var(--scale));
+  min-width: 0;
+  min-height: calc(38px * var(--scale));
+  border: 0;
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: calc(14px * var(--scale));
+  font-weight: 500;
+  cursor: pointer;
+  gap: calc(7px * var(--scale));
+}
+
+.dg-tabs-pill__tab:hover:not(:disabled):not(.is-selected) {
+  background: var(--surface-15);
+}
+
+.dg-tabs-pill__tab:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.dg-tabs-pill__tab:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.dg-tabs-pill__tab.is-selected {
+  background: var(--contrast-fill);
+  color: var(--contrast-text);
+  font-weight: 600;
+}
+
+.dg-tabs-pill__label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-tabs-pill__count {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0 calc(7px * var(--scale));
+  min-height: calc(20px * var(--scale));
+  border-radius: var(--r-pill);
+  background: var(--surface-3);
+  color: var(--text-2);
+  font-size: calc(11px * var(--scale));
+  font-weight: 700;
+}
+
+/* Na vybrané záložce leží odznak na kontrastní ploše — jemná šeď by zmizela. */
+.dg-tabs-pill__tab.is-selected .dg-tabs-pill__count {
+  background: var(--pill-fill);
+  color: var(--pill-text);
+}

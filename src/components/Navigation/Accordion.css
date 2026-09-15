@@ -1,0 +1,79 @@
+/* Rozbalovací sekce — § Navigace · rozšíření.
+   Návrh: karta 24 px rádius, hlavička 56 px s paddingem 0/18, nadpis 15,5/600,
+   text 14/400, sekce oddělené linkou přes celou šířku. */
+
+.dg-accordion {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
+  min-width: 0;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-accordion__section + .dg-accordion__section {
+  border-top: 1px solid var(--border);
+}
+
+.dg-accordion__head {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 calc(18px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  min-height: calc(56px * var(--scale));
+  border: 0;
+  background: transparent;
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(15.5px * var(--scale));
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-accordion__head:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
+}
+
+.dg-accordion__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.dg-accordion__chevron {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  color: var(--chevron);
+  transition: transform 0.15s ease;
+}
+
+.dg-accordion__section.is-open .dg-accordion__chevron {
+  transform: rotate(90deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dg-accordion__chevron {
+    transition: none;
+  }
+}
+
+.dg-accordion__body {
+  box-sizing: border-box;
+  padding: 0 calc(18px * var(--scale)) calc(18px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  color: var(--text-2);
+  font-size: calc(14px * var(--scale));
+  font-weight: 400;
+}

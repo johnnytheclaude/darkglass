@@ -1,0 +1,86 @@
+/* Mapa aktivity — § Data · rozšíření.
+   Návrh: karta 24 px rádius, padding 20, buňka 20 px vysoká s rádiusem 5,
+   mezery 4 px. Šířka buňky se dopočítá, aby se mřížka vešla do karty —
+   v návrhu je 14 týdnů v kartě 420 px. */
+
+.dg-heatmap {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: calc(20px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-heatmap__title {
+  color: var(--text-1);
+  font-size: calc(16px * var(--scale));
+  font-weight: 600;
+}
+
+.dg-heatmap__grid {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  min-width: 0;
+  gap: calc(4px * var(--scale));
+}
+
+.dg-heatmap__week {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-width: calc(8px * var(--scale));
+  gap: calc(4px * var(--scale));
+}
+
+.dg-heatmap__cell {
+  display: block;
+  width: 100%;
+  height: calc(20px * var(--scale));
+  border-radius: calc(5px * var(--scale));
+  background: var(--surface-3);
+}
+
+.dg-heatmap__cell--l1 {
+  background: var(--accent-soft);
+}
+
+.dg-heatmap__cell--l2 {
+  background: var(--accent);
+}
+
+.dg-heatmap__legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  min-width: 0;
+  gap: calc(6px * var(--scale));
+}
+
+.dg-heatmap__legend-text {
+  color: var(--text-3);
+  font-size: calc(11.5px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-heatmap__swatch {
+  flex: 0 0 auto;
+  width: calc(16px * var(--scale));
+  height: calc(16px * var(--scale));
+  border-radius: calc(4px * var(--scale));
+  background: var(--surface-3);
+}
+
+.dg-heatmap__swatch--l1 {
+  background: var(--accent-soft);
+}
+
+.dg-heatmap__swatch--l2 {
+  background: var(--accent);
+}

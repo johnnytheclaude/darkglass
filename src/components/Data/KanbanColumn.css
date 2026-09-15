@@ -1,0 +1,120 @@
+/* Sloupec nástěnky — § Data · rozšíření.
+   Návrh: sloupec 24 px rádius na jemném podkladu, padding 12, mezera 10;
+   kartička 14 px rádius na plné ploše, padding 14. */
+
+.dg-kanban-column {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: calc(12px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  border-radius: var(--r-lg);
+  background: var(--surface-05);
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(10px * var(--scale));
+}
+
+.dg-kanban-column__head {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  padding: calc(4px * var(--scale)) calc(6px * var(--scale)) 0;
+  gap: calc(8px * var(--scale));
+}
+
+.dg-kanban-column__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--text-1);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 700;
+}
+
+.dg-kanban-column__count {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0 calc(8px * var(--scale));
+  min-height: calc(22px * var(--scale));
+  border-radius: var(--r-pill);
+  background: var(--surface-3);
+  color: var(--text-2);
+  font-size: calc(11.5px * var(--scale));
+  font-weight: 700;
+}
+
+.dg-kanban-card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: calc(14px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  border-radius: calc(14px * var(--scale));
+  background: var(--surface-solid);
+  font-family: var(--font), system-ui, sans-serif;
+  gap: calc(10px * var(--scale));
+}
+
+.dg-kanban-card__title {
+  color: var(--text-1);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.dg-kanban-card__foot {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: calc(8px * var(--scale));
+}
+
+.dg-kanban-card__badge {
+  display: inline-flex;
+  flex: 0 1 auto;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 calc(9px * var(--scale));
+  min-width: 0;
+  min-height: calc(24px * var(--scale));
+  border-radius: var(--r-pill);
+  background: var(--surface-15);
+  color: var(--text-2);
+  font-size: calc(11.5px * var(--scale));
+  font-weight: 600;
+  gap: calc(5px * var(--scale));
+}
+
+.dg-kanban-card__dot {
+  flex: 0 0 auto;
+  width: calc(7px * var(--scale));
+  height: calc(7px * var(--scale));
+  border-radius: var(--r-pill);
+  background: var(--neutral);
+}
+
+.dg-kanban-card__badge--accent .dg-kanban-card__dot {
+  background: var(--accent);
+}
+
+.dg-kanban-card__badge--success .dg-kanban-card__dot {
+  background: var(--success);
+}
+
+.dg-kanban-card__badge--warning .dg-kanban-card__dot {
+  background: var(--warning);
+}
+
+.dg-kanban-card__badge--danger .dg-kanban-card__dot {
+  background: var(--danger);
+}
+
+.dg-kanban-card__trailing {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  margin-left: auto;
+}

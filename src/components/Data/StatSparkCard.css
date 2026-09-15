@@ -1,0 +1,54 @@
+/* Statistika s grafem — § Data · rozšíření.
+   Návrh: karta 24 px rádius, padding 20, výška 170; popisek 14,5/400,
+   číslo 32/700 (-1), graf 46 px vysoký s mezerou 4 a rádiusem 4. */
+
+.dg-stat-spark {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: calc(20px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  min-height: calc(170px * var(--scale));
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-stat-spark__label {
+  color: var(--text-2);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-stat-spark__value {
+  color: var(--text-1);
+  font-size: calc(32px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+/* Graf sedí u dolní hrany karty — místo nad ním vyplní automatický margin,
+   aby karta držela výšku i s kratším popiskem. */
+.dg-stat-spark__bars {
+  display: flex;
+  align-items: flex-end;
+  margin-top: auto;
+  padding-top: calc(12px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  height: calc(46px * var(--scale));
+  gap: calc(4px * var(--scale));
+}
+
+.dg-stat-spark__bar {
+  display: block;
+  flex: 1 1 0;
+  min-width: calc(4px * var(--scale));
+  border-radius: calc(4px * var(--scale));
+  background: var(--surface-3);
+}
+
+.dg-stat-spark__bar--on {
+  background: var(--accent);
+}

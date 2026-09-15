@@ -1,0 +1,40 @@
+/* Stavy tabulky — § Data · rozšíření (společný rám pro prázdno i načítání).
+   Návrh: karta 24 px rádius, hlavička 46 px na jemném podkladu,
+   popisky sloupců 10,5/700 s prostrkáním 0,7 verzálkami. */
+
+.dg-table-state {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
+  min-width: 0;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-table-state__header {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 calc(16px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  min-height: calc(46px * var(--scale));
+  background: var(--surface-05);
+  gap: calc(14px * var(--scale));
+}
+
+.dg-table-state__th {
+  flex: 1 1 0;
+  min-width: 0;
+  color: var(--text-3);
+  font-size: calc(10.5px * var(--scale));
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

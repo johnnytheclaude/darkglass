@@ -1,0 +1,113 @@
+/* Časová osa — § Data · rozšíření.
+   Návrh: karta 24 px rádius, padding 20, kolečko 30 px, spojnice 2 px,
+   mezera mezi kolečkem a textem 14 px, nadpis 14,5/600, čas a jméno 13/12,5. */
+
+.dg-timeline {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin: 0;
+  padding: calc(20px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  list-style: none;
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-timeline__event {
+  display: flex;
+  align-items: stretch;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  gap: calc(14px * var(--scale));
+}
+
+.dg-timeline__event:not(:last-child) {
+  padding-bottom: calc(14px * var(--scale));
+}
+
+.dg-timeline__rail {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  width: calc(30px * var(--scale));
+}
+
+.dg-timeline__dot {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: calc(30px * var(--scale));
+  height: calc(30px * var(--scale));
+  border-radius: var(--r-pill);
+  background: var(--neutral);
+  color: var(--text-on-color);
+}
+
+.dg-timeline__event--accent .dg-timeline__dot {
+  background: var(--accent);
+}
+
+.dg-timeline__event--success .dg-timeline__dot {
+  background: var(--success);
+}
+
+.dg-timeline__event--warning .dg-timeline__dot {
+  background: var(--warning);
+}
+
+.dg-timeline__event--danger .dg-timeline__dot {
+  background: var(--danger);
+}
+
+.dg-timeline__line {
+  flex: 1 1 auto;
+  width: 2px;
+  min-height: calc(14px * var(--scale));
+  background: var(--border);
+}
+
+/* Poslední záznam osu neprodlužuje — spojnice by vedla do prázdna. */
+.dg-timeline__event:last-child .dg-timeline__line {
+  display: none;
+}
+
+.dg-timeline__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  padding-top: calc(3px * var(--scale));
+  gap: calc(3px * var(--scale));
+}
+
+.dg-timeline__top {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  min-width: 0;
+  gap: calc(8px * var(--scale));
+}
+
+.dg-timeline__title {
+  color: var(--text-1);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 600;
+}
+
+.dg-timeline__time {
+  color: var(--text-3);
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-timeline__who {
+  color: var(--text-2);
+  font-size: calc(13px * var(--scale));
+  font-weight: 400;
+}

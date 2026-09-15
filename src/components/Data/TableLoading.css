@@ -1,0 +1,62 @@
+/* Načítání tabulky — § Data · rozšíření.
+   Návrh: řádek 55,5 px, padding 0/16, mezera 14; čtvereček 30 px s rádiusem 8,
+   pruhy 11 px vysoké s rádiusem 999. */
+
+.dg-table-loading__row {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 calc(16px * var(--scale));
+  width: 100%;
+  min-width: 0;
+  min-height: calc(55.5px * var(--scale));
+  gap: calc(14px * var(--scale));
+}
+
+.dg-table-loading__cell {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  min-width: 0;
+  gap: calc(11px * var(--scale));
+}
+
+.dg-table-loading__square {
+  flex: 0 0 auto;
+  width: calc(30px * var(--scale));
+  height: calc(30px * var(--scale));
+  border-radius: var(--r-xs);
+  background: var(--surface-15);
+}
+
+.dg-table-loading__bar {
+  flex: 1 1 auto;
+  max-width: 100%;
+  height: calc(11px * var(--scale));
+  border-radius: var(--r-pill);
+  background: var(--surface-15);
+}
+
+/* Jemné probleskování říká, že se pořád čeká. */
+.dg-table-loading__square,
+.dg-table-loading__bar {
+  animation: dg-table-loading-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes dg-table-loading-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dg-table-loading__square,
+  .dg-table-loading__bar {
+    animation: none;
+  }
+}
