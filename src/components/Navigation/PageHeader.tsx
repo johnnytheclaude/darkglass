@@ -10,6 +10,12 @@ export interface PageHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 't
   subtitle?: ReactNode
   /** Tlačítka vpravo. */
   actions?: ReactNode
+  /**
+   * Prvek nadpisu. Hlavička stránky bývá jejím jediným nadpisem, takže
+   * výchozí `h1` — čtečka i osnova stránky ho potřebují. Uvnitř karty nebo
+   * panelu se předá `h2`, případně `span`, když nadpis stránky nese někdo jiný.
+   */
+  titleAs?: 'h1' | 'h2' | 'h3' | 'span'
   ref?: Ref<HTMLDivElement>
 }
 
@@ -23,6 +29,7 @@ export function PageHeader({
   title,
   subtitle,
   actions,
+  titleAs: TitleTag = 'h1',
   className,
   ...rest
 }: PageHeaderProps) {
@@ -36,7 +43,7 @@ export function PageHeader({
         </button>
       ) : null}
       <div className="dg-page-header__titles">
-        {title != null ? <span className="dg-page-header__title">{title}</span> : null}
+        {title != null ? <TitleTag className="dg-page-header__title">{title}</TitleTag> : null}
         {subtitle != null ? <span className="dg-page-header__sub">{subtitle}</span> : null}
       </div>
       {actions != null ? <div className="dg-page-header__actions">{actions}</div> : null}

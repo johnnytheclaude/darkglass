@@ -47,6 +47,7 @@
 }
 
 .dg-page-header__title {
+  margin: 0;
   color: var(--text-1);
   font-size: calc(26px * var(--scale));
   font-weight: 700;
