@@ -52,3 +52,40 @@ tam — ne jako vlastní konvence v jedné komponentě.
 `showcase/` — jedna stránka se všemi komponentami ve všech stavech, v obou
 motivech a ve dvou akcentech. Slouží k posouzení knihovny **dřív**, než se
 podle ní postaví obrazovky.
+
+```
+npm install
+npm run showcase       # http://localhost:5199, běží jen lokálně
+```
+
+Nahoře jsou tři přepínače: **motiv** (světlý / tmavý), **akcent** (modrá
+z návrhu / fialová Hochmana) a **velikost UI** (menší / běžná / větší, poměry
+0,85 a 1,18 z artboardu 16). Musí se projevit na všech komponentách — komponenta,
+která se po přepnutí nezmění, má barvu nebo rozměr natvrdo.
+
+### Jak přidat komponentu do ukázky
+
+Sekce se načítají samy ze složky `showcase/sections/`. Do kostry
+(`App.tsx`, `registry.ts`) se kvůli nové komponentě **nesahá**.
+
+1. Patří-li komponenta do skupiny, která už sekci má (např. `§ Tlačítka` =
+   `sections/buttons.tsx`), přidej do jejího pole `demos` další položku
+   `{ title, note?, stack?, render }`.
+2. Je-li to nová skupina z návrhu, založ `showcase/sections/<skupina>.tsx`:
+
+```tsx
+import type { ShowcaseSection } from '../registry'
+
+export const section: ShowcaseSection = {
+  id: 'textova-pole',     // kotva v adrese a v rejstříku vlevo
+  title: '§ Textová pole', // název sekce z návrhu
+  order: 30,               // pořadí podle návrhu
+  demos: [
+    { title: 'Stavy', render: () => <>…</> },
+  ],
+}
+```
+
+Pravidlo obsahu: **každá komponenta ve všech svých stavech** — běžný, hover,
+stisk, zaměření, vybraný, neaktivní, chyba, načítání, prázdný. Co se nedá
+ukázat staticky (hover, stisk, fokus), popiš v `note`, ať to člověk vyzkouší.

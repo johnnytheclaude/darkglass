@@ -1,0 +1,185 @@
+/* Tlačítka — § Tlačítka z návrhu (docs/navrh/html/knihovna-light.html).
+   Geometrie z návrhu: výšky 34 / 42 / 52 px, odsazení 16 / 20 / 26 px,
+   mezera 8 px, rádius pill, popisek 14,5 px / 600 / -0,2 px.
+   Barvy výhradně z tokenů — v komponentě není žádný hex ani tmavý motiv. */
+
+.dg-button {
+  --dg-button-h: 42px;
+  --dg-button-px: 20px;
+  --dg-button-fs: 14.5px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: calc(var(--dg-button-h) * var(--scale));
+  padding: 0 calc(var(--dg-button-px) * var(--scale));
+  border: 0;
+  border-radius: var(--r-pill);
+  background-color: var(--surface-2);
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(var(--dg-button-fs) * var(--scale));
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Dotykový cíl 44 px i tam, kde je návrhová výška menší (34 a 42 px):
+   viditelný prvek zůstává podle návrhu, plocha se rozšíří neviditelně. */
+.dg-button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(-1 * max(0px, (44px - var(--dg-button-h) * var(--scale)) / 2));
+  bottom: calc(-1 * max(0px, (44px - var(--dg-button-h) * var(--scale)) / 2));
+}
+
+.dg-button__content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(8px * var(--scale));
+}
+
+.dg-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dg-button__label {
+  display: inline-block;
+}
+
+/* Velikosti */
+.dg-button--s {
+  --dg-button-h: 34px;
+  --dg-button-px: 16px;
+  --dg-button-fs: 13.5px;
+}
+
+.dg-button--m {
+  --dg-button-h: 42px;
+  --dg-button-px: 20px;
+  --dg-button-fs: 14.5px;
+}
+
+.dg-button--l {
+  --dg-button-h: 52px;
+  --dg-button-px: 26px;
+  --dg-button-fs: 16px;
+}
+
+.dg-button--block {
+  width: 100%;
+}
+
+/* Varianty */
+.dg-button--primary {
+  background-color: var(--accent);
+  color: var(--text-on-color);
+}
+
+.dg-button--secondary {
+  background-color: var(--surface-2);
+  color: var(--text-1);
+}
+
+.dg-button--ghost {
+  background-color: var(--transparent);
+  color: var(--text-1);
+}
+
+.dg-button--outline {
+  background-color: var(--transparent);
+  color: var(--text-1);
+  outline: 1px solid var(--border-strong);
+  outline-offset: -0.5px;
+}
+
+.dg-button--contrast {
+  background-color: var(--contrast-fill);
+  color: var(--contrast-text);
+}
+
+.dg-button--danger {
+  background-color: var(--danger);
+  color: var(--text-on-color);
+}
+
+.dg-button--danger-soft {
+  background-color: var(--danger-soft);
+  color: var(--danger-text);
+}
+
+.dg-button--success {
+  background-color: var(--success);
+  color: var(--text-on-color);
+}
+
+/* Stavy. Překryv jde přes průhledné tokeny --surface-*, které jsou ve světlém
+   motivu tmavé a v tmavém světlé — jedno pravidlo tak platí pro oba. */
+@media (hover: hover) {
+  .dg-button:hover:not(:disabled) {
+    background-image: linear-gradient(var(--surface-15), var(--surface-15));
+  }
+}
+
+.dg-button:active:not(:disabled) {
+  background-image: linear-gradient(var(--surface-3), var(--surface-3));
+}
+
+.dg-button:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.dg-button--outline:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 0;
+}
+
+.dg-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Načítání: obsah se překryje, rozměr zůstává — tlačítko se pod prstem nehne. */
+.dg-button.is-loading .dg-button__content {
+  visibility: hidden;
+}
+
+.dg-button__spinner {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: calc(18px * var(--scale));
+  height: calc(18px * var(--scale));
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: var(--r-pill);
+  opacity: 0.9;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dg-button {
+    transition: background-color 120ms ease, background-image 120ms ease, opacity 120ms ease;
+  }
+
+  .dg-button__spinner {
+    animation: dg-button-spin 700ms linear infinite;
+  }
+}
+
+@keyframes dg-button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

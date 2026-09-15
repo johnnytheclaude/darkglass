@@ -1,0 +1,222 @@
+/* Styly kostry ukázky (prefix sc-). Do knihovny nepatří — tohle je aplikace,
+   která knihovnu jen vystavuje. Barvy bere ze stejných tokenů, ať je vidět,
+   že motiv drží i mimo komponenty. */
+
+/* Tři velikosti UI nastavuje aplikace, ne knihovna (poměry z artboardu 16). */
+:root[data-size='small'] {
+  --scale: 0.85;
+}
+
+:root[data-size='large'] {
+  --scale: 1.18;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-1);
+  font-family: Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sc-app {
+  min-height: 100vh;
+}
+
+.sc-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 24px;
+  background-color: var(--surface-solid);
+  border-bottom: 1px solid var(--border);
+}
+
+.sc-header__title {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 15px;
+}
+
+.sc-header__title span {
+  color: var(--text-3);
+  font-size: 13px;
+}
+
+.sc-header__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.sc-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sc-control__label {
+  color: var(--text-3);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.sc-segmented {
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  background-color: var(--surface-15);
+  border-radius: var(--r-pill);
+}
+
+.sc-segmented__item {
+  border: 0;
+  padding: 7px 14px;
+  border-radius: var(--r-pill);
+  background-color: transparent;
+  color: var(--text-2);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sc-segmented__item.is-selected {
+  background-color: var(--accent);
+  color: var(--text-on-color);
+}
+
+.sc-segmented__item:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 1px;
+}
+
+.sc-body {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  align-items: start;
+}
+
+.sc-nav {
+  position: sticky;
+  top: 69px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 24px 12px;
+}
+
+.sc-nav__item {
+  padding: 8px 12px;
+  border-radius: var(--r-xs);
+  color: var(--text-2);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.sc-nav__item:hover {
+  background-color: var(--surface-15);
+  color: var(--text-1);
+}
+
+.sc-main {
+  padding: 24px 24px 80px;
+  min-width: 0;
+}
+
+.sc-empty {
+  color: var(--text-3);
+}
+
+.sc-section {
+  margin-bottom: 40px;
+  scroll-margin-top: 90px;
+}
+
+.sc-section__title {
+  margin: 0 0 4px;
+  font-size: 20px;
+  letter-spacing: -0.4px;
+}
+
+.sc-section__note {
+  margin: 0 0 16px;
+  max-width: 70ch;
+  color: var(--text-3);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.sc-demos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+/* Karta ukázky je záměrně tónovaná, ne bílá: sekundární tlačítko má ve světlém
+   motivu bílou výplň a na bílém podkladu by nebylo poznat, že nějakou má. */
+.sc-demo {
+  padding: 16px 18px 20px;
+  background-color: var(--surface-05);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+
+.sc-demo__title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.sc-demo__note {
+  margin: 6px 0 0;
+  color: var(--text-3);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.sc-demo__stage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 14px;
+  margin-top: 14px;
+}
+
+.sc-demo__stage.is-stacked {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .sc-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sc-nav {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 12px 16px 0;
+  }
+
+  .sc-main {
+    padding: 16px 16px 60px;
+  }
+}

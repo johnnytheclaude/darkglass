@@ -1,0 +1,7 @@
+/* Ikonové tlačítko — Btn / Icon z návrhu: čtverec 34 / 42 / 52 px bez odsazení.
+   Vzhled variant i stavy dědí z .dg-button, tady je jen geometrie. */
+
+.dg-button.dg-icon-button {
+  width: calc(var(--dg-button-h) * var(--scale));
+  padding: 0;
+}

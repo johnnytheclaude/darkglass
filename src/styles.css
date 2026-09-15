@@ -1,9 +1,15 @@
 /* Agregátor stylů knihovny. Aplikace importuje jedině tenhle soubor
    (`@indracorp/darkglass/styles.css`), nikdy CSS jednotlivých komponent —
    jinak by pořadí pravidel záviselo na pořadí importů v aplikaci.
-   Konvence balíku: Knowledge „Konvence knihovny darkglass". */
+   Konvence balíku: Knowledge „Konvence knihovny darkglass".
+
+   Všechna @import musí stát na začátku souboru (CSS je tak vyžaduje a bundlery
+   jinak hlásí chybu) — teprve pod nimi smí být pravidla. Komponenty přidávej
+   abecedně podle skupiny. */
 
 @import "./tokens/tokens.css";
+@import "./components/Buttons/Button.css";
+@import "./components/Buttons/IconButton.css";
 
 /* Tři velikosti UI Pokladny jedou přes --scale, který nastavuje aplikace na
    kořeni (:root[data-size='small'|'large'], poměry 0,85 a 1,18 z artboardu 16).
@@ -12,6 +18,3 @@
 :root {
   --scale: 1;
 }
-
-/* Komponenty (přidávej abecedně podle skupiny):
-   @import "./components/Buttons/Button.css"; */
