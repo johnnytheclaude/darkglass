@@ -2,6 +2,7 @@ import { useState, useSyncExternalStore } from 'react'
 import { AmountDisplay } from '../../src/components/Pos/AmountDisplay'
 import { ChangeAndPay } from '../../src/components/Pos/ChangeAndPay'
 import { CountedTotal } from '../../src/components/Pos/CountedTotal'
+import { FactCard } from '../../src/components/Pos/FactCard'
 import { DenominationRow } from '../../src/components/Pos/DenominationRow'
 import { Numpad } from '../../src/components/Pos/Numpad'
 import { PaymentBreakdown } from '../../src/components/Pos/PaymentBreakdown'
@@ -265,6 +266,22 @@ export const section: ShowcaseSection = {
               { key: 'zaokrouhleni', label: 'Zaokrouhlení hotovosti', value: castka(0) },
               { key: 'zbyva', label: 'Zbývá zaplatit', value: castka(6372), strong: true },
             ]}
+          />
+        </div>
+      ),
+    },
+    {
+      title: 'Karta / Údaj — typ dokladu',
+      stack: true,
+      note: 'Tichý podklad pro údaj, který se za běhu mění, ale není to částka. Poznámka v akcentu říká, že se s tím dá něco udělat (doplnit odběratele).',
+      render: () => (
+        <div style={{ width: '100%', maxWidth: 420, display: 'grid', gap: 12 }}>
+          <FactCard label="Typ dokladu" value="Zjednodušený daňový doklad" />
+          <FactCard
+            label="Typ dokladu"
+            value="Daňový doklad"
+            note="Na firmu · doplnit odběratele podle IČO"
+            noteAccent
           />
         </div>
       ),

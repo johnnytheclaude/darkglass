@@ -117,6 +117,7 @@
 @import "./components/Pos/Ledger.css";
 @import "./components/Pos/MenuTile.css";
 @import "./components/Pos/Numpad.css";
+@import "./components/Pos/FactCard.css";
 @import "./components/Pos/PaymentBreakdown.css";
 @import "./components/Pos/PaymentTabs.css";
 @import "./components/Pos/PinDots.css";
