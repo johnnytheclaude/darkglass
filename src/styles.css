@@ -210,6 +210,25 @@
    --danger-text 4,5:1 jen o vlas. Proto se v tmavém motivu barvy ředí bílou víc
    a --danger-text se tu jako jediný token návrhu přebíjí — jen o 8 % bílé,
    odstín zůstává. Hodnoty hlídá scratch/t510-check.cjs (měří složený podklad). */
+/* Podklad pod modálem (task #594). Ztmavení je v obou motivech černé — pod
+   dialogem má zůstat vidět obrazovka, jen ztlumená; kdyby se v tmavém motivu
+   překlopilo na světlé, dialog by ve tmě svítil jako lampa. V tmavém motivu je
+   hustší, protože pod ním leží tmavá plocha a slabší závoj by nebyl znát. */
+:root,
+[data-theme="light"] {
+  --overlay: #00000073;
+}
+
+[data-theme="dark"] {
+  --overlay: #000000A6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --overlay: #000000A6;
+  }
+}
+
 :root,
 [data-theme="light"] {
   --success-text: color-mix(in srgb, var(--success) 70%, #000000);
