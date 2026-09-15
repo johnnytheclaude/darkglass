@@ -19,8 +19,12 @@ export interface DataTableRow {
   id: string
   /** Buňky v pořadí sloupců. */
   cells: ReactNode[]
-  /** Zvýraznění celého řádku (návrh: záporná hodnota). */
-  tone?: 'danger'
+  /**
+   * Podbarvení celého řádku (Row / Tint z návrhu): sedí (ok), chyba či záporná
+   * hodnota (danger), doplňující údaj (info). Podklad nese jen zvýraznění —
+   * co se stalo, musí říct i obsah buňky (znaménko, slovo, odznak).
+   */
+  tone?: 'ok' | 'danger' | 'info'
   selected?: boolean
 }
 
@@ -74,7 +78,7 @@ export function DataTable({
         <div
           className={[
             'dg-table__tr',
-            row.tone === 'danger' ? 'dg-table__tr--danger' : null,
+            row.tone ? `dg-table__tr--${row.tone}` : null,
             onRowClick ? 'dg-table__tr--interactive' : null,
           ]
             .filter(Boolean)

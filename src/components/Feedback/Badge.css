@@ -40,32 +40,35 @@
 
 .dg-badge--success {
   background-color: var(--success-soft);
-  color: var(--success);
+  color: var(--success-text);
 }
 
 .dg-badge--warning {
   background-color: var(--warning-soft);
-  color: var(--warning);
+  color: var(--warning-text);
 }
 
 .dg-badge--danger {
   background-color: var(--danger-soft);
-  color: var(--danger);
+  color: var(--danger-text);
 }
 
 .dg-badge--info {
   background-color: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .dg-badge--purple {
   background-color: var(--purple-soft);
-  color: var(--purple);
+  color: var(--purple-text);
 }
 
+/* Tichá ladění: návrh má u „Stornováno" popisek --text-3, ten ale na bílé kartě
+   drží jen 3,73:1. Bereme proto --text-2, tedy barvu sousedního odznaku
+   „Koncept" z téhož návrhu (5,4:1) — odstín zůstává, čitelnost stoupne. */
 .dg-badge--neutral {
   background-color: var(--surface-2);
-  color: var(--text-3);
+  color: var(--text-2);
 }
 
 .dg-badge--plain {

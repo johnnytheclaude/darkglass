@@ -27,7 +27,7 @@
 
 .dg-inline-notice--warning {
   background-color: var(--warning-soft);
-  color: var(--warning);
+  color: var(--warning-text);
 }
 
 .dg-inline-notice--danger {
@@ -37,10 +37,10 @@
 
 .dg-inline-notice--success {
   background-color: var(--success-soft);
-  color: var(--success);
+  color: var(--success-text);
 }
 
 .dg-inline-notice--accent {
   background-color: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-text);
 }

@@ -149,3 +149,36 @@
 :root {
   --scale: 1;
 }
+
+/* Text na tichém podkladu (--*-soft). Plná barva ladění je na svém 10% tintu
+   ve světlém motivu moc světlá — zelená vychází 2,6:1, oranžová 2,8:1, modrá
+   3,4:1, tedy pod hranicí 4,5:1 pro běžný text. Návrh na to má jediný token
+   (--danger-text), pro ostatní ladění se odvozuje tady — hodnoty jsou spočítané
+   tak, aby text na svém tintu držel aspoň 4,5:1 v obou motivech.
+   Patří to sem, ne do generovaného tokens.css. */
+:root,
+[data-theme="light"] {
+  --success-text: color-mix(in srgb, var(--success) 70%, #000000);
+  --warning-text: color-mix(in srgb, var(--warning) 74%, #000000);
+  --accent-text: color-mix(in srgb, var(--accent) 83%, #000000);
+  --purple-text: var(--purple);
+  --neutral-text: color-mix(in srgb, var(--neutral) 78%, #000000);
+}
+
+[data-theme="dark"] {
+  --success-text: var(--success);
+  --warning-text: var(--warning);
+  --accent-text: color-mix(in srgb, var(--accent) 73%, #ffffff);
+  --purple-text: color-mix(in srgb, var(--purple) 75%, #ffffff);
+  --neutral-text: color-mix(in srgb, var(--neutral) 85%, #ffffff);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --success-text: var(--success);
+    --warning-text: var(--warning);
+    --accent-text: color-mix(in srgb, var(--accent) 73%, #ffffff);
+    --purple-text: color-mix(in srgb, var(--purple) 75%, #ffffff);
+    --neutral-text: color-mix(in srgb, var(--neutral) 85%, #ffffff);
+  }
+}

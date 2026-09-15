@@ -64,8 +64,21 @@
   cursor: pointer;
 }
 
+/* Row / Tint — podbarvení nese celý řádek, ne buňka: podklad sedí na
+   `.dg-table__tr` (min-width: max-content), takže drží i za pravou hranou
+   při vodorovném posouvání. Buňky vlastní výplň nemají.
+   Tabulka je hustší než samostatný řádek inventury, proto je tint poloviční
+   než `--*-soft`; u chyby to přesně odpovídá tokenu `--danger-row` z návrhu. */
 .dg-table__tr--danger {
   background-color: var(--danger-row);
+}
+
+.dg-table__tr--ok {
+  background-color: color-mix(in srgb, var(--success-soft) 50%, transparent);
+}
+
+.dg-table__tr--info {
+  background-color: color-mix(in srgb, var(--accent-soft) 50%, transparent);
 }
 
 .dg-table__td {

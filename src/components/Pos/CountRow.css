@@ -40,7 +40,7 @@
 }
 
 .dg-count-row--ok .dg-count-row__diff {
-  color: var(--success);
+  color: var(--success-text);
 }
 
 .dg-count-row--error {
@@ -48,7 +48,7 @@
 }
 
 .dg-count-row--error .dg-count-row__diff {
-  color: var(--danger);
+  color: var(--danger-text);
 }
 
 .dg-count-row--info {
@@ -56,5 +56,5 @@
 }
 
 .dg-count-row--info .dg-count-row__diff {
-  color: var(--accent);
+  color: var(--accent-text);
 }

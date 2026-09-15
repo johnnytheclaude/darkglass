@@ -1,7 +1,10 @@
 import { useState } from 'react'
 import { Button } from '../../src/components/Buttons/Button'
 import { Chip } from '../../src/components/Controls/Chip'
+import { IconCheck } from '../../src/components/Icons/IconCheck'
 import { IconFile } from '../../src/components/Icons/IconFile'
+import { IconMinus } from '../../src/components/Icons/IconMinus'
+import { IconPlus } from '../../src/components/Icons/IconPlus'
 import { DataTable, TableName, TableNumber } from '../../src/components/Table/DataTable'
 import { Pagination } from '../../src/components/Table/Pagination'
 import { TableSearch, TableToolbar } from '../../src/components/Table/TableToolbar'
@@ -117,6 +120,56 @@ function UkazkaTabulky() {
   )
 }
 
+const SLOUPCE_TINT: DataTableColumn[] = [
+  { label: 'POLOŽKA' },
+  { label: 'OČEKÁVÁNO', width: 110, align: 'right', muted: true },
+  { label: 'SPOČÍTÁNO', width: 110, align: 'right', muted: true },
+  { label: 'ROZDÍL', width: 90, align: 'right' },
+  { label: 'STAV', width: 150 },
+]
+
+const RADKY_TINT: DataTableRow[] = [
+  {
+    id: 'tint-ok',
+    tone: 'ok',
+    cells: [
+      <TableName thumb={false}>Položka A-230</TableName>,
+      <TableNumber>2</TableNumber>,
+      <TableNumber>2</TableNumber>,
+      <TableNumber>0</TableNumber>,
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        <IconCheck size={13} /> Sedí
+      </span>,
+    ],
+  },
+  {
+    id: 'tint-danger',
+    tone: 'danger',
+    cells: [
+      <TableName thumb={false}>Položka A-240</TableName>,
+      <TableNumber>1</TableNumber>,
+      <TableNumber>0</TableNumber>,
+      <TableNumber negative>−1</TableNumber>,
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        <IconMinus size={13} /> Manko
+      </span>,
+    ],
+  },
+  {
+    id: 'tint-info',
+    tone: 'info',
+    cells: [
+      <TableName thumb={false}>Položka A-250</TableName>,
+      <TableNumber>0</TableNumber>,
+      <TableNumber>1</TableNumber>,
+      <TableNumber>+1</TableNumber>,
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        <IconPlus size={13} /> Přebytek
+      </span>,
+    ],
+  },
+]
+
 function UkazkaStrankovani() {
   const [strana, setStrana] = useState(1)
 
@@ -149,6 +202,13 @@ export const section: ShowcaseSection = {
       stack: true,
       wide: true,
       render: () => <UkazkaTabulky />,
+    },
+    {
+      title: 'Podbarvené řádky (Row / Tint)',
+      note: 'Tint sedí na celém řádku, ne na buňce — podklad jde od levé hrany až za poslední sloupec i při vodorovném posouvání. Co se stalo, říká znaménko rozdílu a slovo ve sloupci Stav, takže se stav pozná i bez barvy.',
+      stack: true,
+      wide: true,
+      render: () => <DataTable columns={SLOUPCE_TINT} rows={RADKY_TINT} />,
     },
     {
       title: 'Stránkování',
