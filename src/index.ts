@@ -305,6 +305,7 @@ export { Rating } from './components/Forms/Rating'
 export type { RatingProps } from './components/Forms/Rating'
 
 export { IconAlert } from './components/Icons/IconAlert'
+export { IconArchive } from './components/Icons/IconArchive'
 export { IconCamera } from './components/Icons/IconCamera'
 export { IconChartColumn } from './components/Icons/IconChartColumn'
 export { IconClipboardList } from './components/Icons/IconClipboardList'

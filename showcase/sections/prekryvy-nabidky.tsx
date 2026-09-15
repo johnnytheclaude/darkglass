@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Button } from '../../src/components/Buttons/Button'
 import { TextField } from '../../src/components/Fields/TextField'
 import { IconAlert } from '../../src/components/Icons/IconAlert'
+import { IconArchive } from '../../src/components/Icons/IconArchive'
 import { IconCheck } from '../../src/components/Icons/IconCheck'
 import { IconFile } from '../../src/components/Icons/IconFile'
 import { IconPencil } from '../../src/components/Icons/IconPencil'
@@ -13,6 +14,7 @@ import { DialogActions } from '../../src/components/Overlays/DialogActions'
 import { Drawer, DrawerRow } from '../../src/components/Overlays/Drawer'
 import { Menu, MenuItem, MenuSeparator } from '../../src/components/Overlays/Menu'
 import { SectionHeader } from '../../src/components/Overlays/SectionHeader'
+import { ChoiceGroup } from '../../src/components/Pos/ChoiceGroup'
 import { StatusModal, StatusModalLine } from '../../src/components/Pos/StatusModal'
 import { FormDialog } from '../../src/components/System/FormDialog'
 import type { ShowcaseSection } from '../registry'
@@ -44,6 +46,40 @@ function UkazkaDialogu() {
         </>
       }
     />
+  )
+}
+
+/* Potvrzeni, ktere se jeste musi na neco zeptat — volba stoji v tele dialogu. */
+function UkazkaDialoguSVolbou() {
+  const [duvod, setDuvod] = useState<string | null>(null)
+
+  return (
+    <ConfirmDialog
+      tone="accent"
+      icon={<IconArchive size={22} />}
+      title="Otevřít zásuvku?"
+      body="Otevření mimo prodej se zapíše do auditu. Vyberte důvod — rozměnit, oprava, kontrola."
+      onClose={() => {}}
+      footer={
+        <DialogActions>
+          <Button variant="secondary">Zrušit</Button>
+          <Button variant="primary" iconStart={<IconArchive size={16} />} disabled={duvod === null}>
+            Otevřít
+          </Button>
+        </DialogActions>
+      }
+    >
+      <ChoiceGroup
+        label="Důvod"
+        options={[
+          { value: 'rozmenit', label: 'Rozměnit' },
+          { value: 'oprava', label: 'Oprava' },
+          { value: 'kontrola', label: 'Kontrola' },
+        ]}
+        value={duvod}
+        onChange={setDuvod}
+      />
+    </ConfirmDialog>
   )
 }
 
