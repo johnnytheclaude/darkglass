@@ -48,6 +48,6 @@
 .dg-time-picker__row--on,
 .dg-time-picker__row--on:hover:not(:disabled) {
   background-color: var(--accent-fill);
-  color: var(--text-on-color);
+  color: var(--on-accent);
   font-weight: 700;
 }

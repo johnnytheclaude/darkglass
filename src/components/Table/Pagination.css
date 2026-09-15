@@ -53,5 +53,5 @@
 
 .dg-pagination__page.is-current {
   background-color: var(--accent-fill);
-  color: var(--text-on-color);
+  color: var(--on-accent);
 }

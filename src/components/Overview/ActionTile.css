@@ -40,7 +40,7 @@
 
 .dg-action-tile--primary {
   background-color: var(--accent-fill);
-  color: var(--text-on-color);
+  color: var(--on-accent);
 }
 
 /* Stavy: překryv jde přes průhledný --surface-15, který je ve světlém motivu

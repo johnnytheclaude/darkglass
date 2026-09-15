@@ -72,7 +72,7 @@ a.dg-sidebar__item {
 
 .dg-sidebar__item.is-active {
   background: var(--accent-fill);
-  color: var(--text-on-color);
+  color: var(--on-accent);
   font-weight: 600;
 }
 

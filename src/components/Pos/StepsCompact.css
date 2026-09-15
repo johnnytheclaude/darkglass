@@ -48,7 +48,7 @@
 .dg-steps-compact__step.is-done .dg-steps-compact__circle,
 .dg-steps-compact__step.is-current .dg-steps-compact__circle {
   background-color: var(--accent-fill);
-  color: var(--text-on-color);
+  color: var(--on-accent);
 }
 
 .dg-steps-compact__step.is-current .dg-steps-compact__label {

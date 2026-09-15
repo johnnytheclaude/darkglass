@@ -37,7 +37,7 @@
 .dg-payment-tabs__tab.is-selected {
   border-color: transparent;
   background-color: var(--accent-fill);
-  color: var(--text-on-color);
+  color: var(--on-accent);
 }
 
 .dg-payment-tabs__tab:disabled {

@@ -30,7 +30,7 @@
   min-height: calc(30px * var(--scale));
   border-radius: var(--r-pill);
   background: var(--accent-fill);
-  color: var(--text-on-color);
+  color: var(--on-accent);
   font-size: calc(13px * var(--scale));
   font-weight: 700;
 }

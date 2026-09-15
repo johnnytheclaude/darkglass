@@ -90,7 +90,7 @@ button.dg-stepper__body:focus-visible {
 
 .dg-stepper__step.is-done .dg-stepper__circle {
   background-color: var(--accent-fill);
-  color: var(--text-on-color);
+  color: var(--on-accent);
 }
 
 .dg-stepper__step.is-current .dg-stepper__circle {
