@@ -9,7 +9,7 @@
   --chip-inset: #00000029;
   --chip-soft: var(--accent-soft);
   --chip-tone-text: var(--accent-text);
-  --chip-text: var(--text-2);
+  --chip-text: var(--text-1);
 
   display: inline-flex;
   align-items: center;

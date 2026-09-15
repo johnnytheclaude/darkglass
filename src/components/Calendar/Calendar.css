@@ -114,7 +114,7 @@
 }
 
 .dg-calendar__day--outside {
-  color: var(--text-muted);
+  color: var(--text-3);
 }
 
 .dg-calendar__day--in-range,

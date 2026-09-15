@@ -42,7 +42,7 @@
   min-height: calc(22px * var(--scale));
   border-radius: var(--r-pill);
   background: var(--surface-3);
-  color: var(--text-2);
+  color: var(--text-1);
   font-size: calc(11.5px * var(--scale));
   font-weight: 700;
 }
@@ -86,7 +86,7 @@
   min-height: calc(24px * var(--scale));
   border-radius: var(--r-pill);
   background: var(--surface-15);
-  color: var(--text-2);
+  color: var(--text-1);
   font-size: calc(11.5px * var(--scale));
   font-weight: 600;
   gap: calc(5px * var(--scale));

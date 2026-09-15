@@ -68,7 +68,7 @@
   border: none;
   border-radius: var(--r-sm);
   background-color: var(--surface-15);
-  color: var(--text-2);
+  color: var(--text-1);
   font-family: inherit;
   font-size: calc(18px * var(--scale));
   font-weight: 600;
