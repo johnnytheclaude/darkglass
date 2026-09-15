@@ -1,0 +1,42 @@
+/* Skeleton a SkeletonList (Načítání) — § Stavy a zpětná vazba.
+   Návrh: karta rádius 20, odsazení 20, mezera 18; řádek kolečko 38,
+   dva pruhy 11 a 9, vpravo pruh 60. */
+
+.dg-skeleton {
+  display: block;
+  flex: 0 0 auto;
+  max-width: 100%;
+  border-radius: var(--r-pill);
+  background-color: var(--surface-15);
+}
+
+.dg-skeleton--circle {
+  border-radius: var(--r-pill);
+}
+
+.dg-skeleton-list {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: calc(420px * var(--scale));
+  padding: calc(20px * var(--scale));
+  border-radius: calc(20px * var(--scale));
+  gap: calc(18px * var(--scale));
+  background-color: var(--surface);
+}
+
+.dg-skeleton-list__row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: calc(13px * var(--scale));
+}
+
+.dg-skeleton-list__bars {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(7px * var(--scale));
+}

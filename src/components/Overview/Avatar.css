@@ -35,3 +35,34 @@
 .dg-avatar--5 {
   background-color: var(--avatar-5);
 }
+
+/* Tečka stavu sedí v pravém dolním rohu a má prstenec v barvě plochy,
+   aby byla poznat i proti tmavému kolečku. */
+.dg-avatar {
+  position: relative;
+}
+
+.dg-avatar__dot {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  border: calc(2px * var(--scale)) solid var(--surface-solid);
+  border-radius: var(--r-pill);
+}
+
+.dg-avatar__dot--online {
+  background-color: var(--success);
+}
+
+.dg-avatar__dot--busy {
+  background-color: var(--danger);
+}
+
+.dg-avatar__dot--away {
+  background-color: var(--warning);
+}
+
+.dg-avatar__dot--offline {
+  background-color: var(--neutral);
+}

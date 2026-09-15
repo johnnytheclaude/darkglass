@@ -1,0 +1,68 @@
+/* Card (Základní karta) — § Karty a údaje.
+   Návrh: rádius 24, odsazení 20, mezera 14, nadpis 17/600 (-0,3),
+   podtitul 13/400, akce 32 kolečko, tělo v tiché ploše rádius 14. */
+
+.dg-card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(20px * var(--scale));
+  border-radius: var(--r-lg);
+  gap: calc(14px * var(--scale));
+  background-color: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-card__header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: calc(10px * var(--scale));
+}
+
+.dg-card__titles {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(2px * var(--scale));
+}
+
+.dg-card__title {
+  color: var(--text-1);
+  font-size: calc(17px * var(--scale));
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  line-height: 1.25;
+}
+
+.dg-card__sub {
+  color: var(--text-3);
+  font-size: calc(13px * var(--scale));
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.dg-card__action {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.dg-card__body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.dg-card__body--framed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: calc(90px * var(--scale));
+  padding: calc(14px * var(--scale));
+  border-radius: calc(14px * var(--scale));
+  background-color: var(--surface-05);
+}

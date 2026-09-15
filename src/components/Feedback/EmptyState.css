@@ -1,0 +1,68 @@
+/* EmptyState (Prázdný stav) — § Stavy a zpětná vazba.
+   Návrh: rádius 20, odsazení 40 28, mezera 12, kolečko 64, nadpis 18/600,
+   tělo 14/400 na střed, akce 42 pilulka. */
+
+.dg-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: calc(420px * var(--scale));
+  padding: calc(40px * var(--scale)) calc(28px * var(--scale));
+  border-radius: calc(20px * var(--scale));
+  gap: calc(12px * var(--scale));
+  background-color: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+  text-align: center;
+}
+
+.dg-empty__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(64px * var(--scale));
+  height: calc(64px * var(--scale));
+  border-radius: var(--r-pill);
+  background-color: var(--surface-2);
+  color: var(--text-2);
+}
+
+.dg-empty__title {
+  color: var(--text-1);
+  font-size: calc(18px * var(--scale));
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  line-height: 1.25;
+}
+
+.dg-empty__body {
+  color: var(--text-2);
+  font-size: calc(14px * var(--scale));
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.dg-empty__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: calc(42px * var(--scale));
+  padding: 0 calc(20px * var(--scale));
+  border: 0;
+  border-radius: var(--r-pill);
+  gap: calc(8px * var(--scale));
+  background-color: var(--surface-2);
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(14px * var(--scale));
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dg-empty__action-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

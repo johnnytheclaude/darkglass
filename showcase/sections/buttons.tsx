@@ -1,5 +1,6 @@
 import { Button } from '../../src/components/Buttons/Button'
 import { IconButton } from '../../src/components/Buttons/IconButton'
+import { IconEllipsis } from '../../src/components/Icons/IconEllipsis'
 import { IconPencil } from '../../src/components/Icons/IconPencil'
 import { IconPlus } from '../../src/components/Icons/IconPlus'
 import { IconSearch } from '../../src/components/Icons/IconSearch'
@@ -115,6 +116,7 @@ export const section: ShowcaseSection = {
           <IconButton icon={<IconPlus />} label="Přidat" variant="primary" />
           <IconButton icon={<IconPencil />} label="Upravit" variant="ghost" />
           <IconButton icon={<IconX />} label="Smazat" variant="dangerSoft" />
+          <IconButton icon={<IconEllipsis />} label="Další akce" variant="ghost" />
         </>
       ),
     },

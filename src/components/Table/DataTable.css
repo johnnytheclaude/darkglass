@@ -1,0 +1,160 @@
+/* DataTable (Tabulka) — § Tabulka.
+   Návrh: rádius 24, hlavička 46 na tiché ploše, popisky 10,5/700 (0,7),
+   řádek 63,5, odsazení 0 16, mezera 14, hodnoty 14, miniatura 36 (rádius 9).
+   Vodorovné posouvání drží tabulku v kartě i na úzké obrazovce. */
+
+.dg-table {
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-table__header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  box-sizing: border-box;
+  min-width: max-content;
+  width: 100%;
+  min-height: calc(46px * var(--scale));
+  padding: 0 calc(16px * var(--scale));
+  gap: calc(14px * var(--scale));
+  background-color: var(--surface-05);
+}
+
+.dg-table__th {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-width: 0;
+  gap: calc(5px * var(--scale));
+  color: var(--text-3);
+  font-size: calc(10.5px * var(--scale));
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  white-space: nowrap;
+}
+
+.dg-table__th--right {
+  justify-content: flex-end;
+}
+
+.dg-table__sort {
+  flex: 0 0 auto;
+  color: var(--text-3);
+}
+
+.dg-table__tr {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-width: max-content;
+  width: 100%;
+  min-height: calc(63.5px * var(--scale));
+  padding: 0 calc(16px * var(--scale));
+  gap: calc(14px * var(--scale));
+}
+
+.dg-table__tr--interactive {
+  cursor: pointer;
+}
+
+.dg-table__tr--danger {
+  background-color: var(--danger-row);
+}
+
+.dg-table__td {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-1);
+  font-size: calc(14px * var(--scale));
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-table__td--right {
+  text-align: right;
+}
+
+.dg-table__td--muted {
+  color: var(--text-2);
+  font-weight: 400;
+}
+
+.dg-table__check-col {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  width: calc(48px * var(--scale));
+}
+
+.dg-table__action-col {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-end;
+  width: calc(44px * var(--scale));
+}
+
+.dg-table__chevron {
+  color: var(--chevron);
+}
+
+.dg-table__check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: calc(22px * var(--scale));
+  height: calc(22px * var(--scale));
+  padding: 0;
+  border: 0;
+  border-radius: calc(6px * var(--scale));
+  background-color: var(--surface-05);
+  color: var(--text-on-color);
+  cursor: pointer;
+}
+
+.dg-table__check.is-selected {
+  background-color: var(--accent);
+}
+
+.dg-table__name {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-table__thumb {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: calc(36px * var(--scale));
+  height: calc(36px * var(--scale));
+  border-radius: calc(9px * var(--scale));
+  background-color: var(--surface-15);
+}
+
+.dg-table__name-label {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-1);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-table__number--negative {
+  color: var(--danger-text);
+}

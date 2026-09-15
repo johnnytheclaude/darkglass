@@ -1,0 +1,57 @@
+/* Pagination (Stránkování) — § Tabulka.
+   Návrh: výška 56, odsazení 0 16, mezera 8, popis 13,5/400,
+   tlačítko 38 (rádius 11), aktuální stránka v barvě akcentu. */
+
+.dg-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(56px * var(--scale));
+  padding: calc(9px * var(--scale)) calc(16px * var(--scale));
+  gap: calc(8px * var(--scale));
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-pagination__info {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--text-3);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-pagination__page {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: calc(38px * var(--scale));
+  height: calc(38px * var(--scale));
+  padding: 0;
+  border: 0;
+  border-radius: calc(11px * var(--scale));
+  background-color: var(--surface-2);
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dg-pagination__page:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+.dg-pagination__page--gap {
+  background-color: transparent;
+  cursor: default;
+}
+
+.dg-pagination__page.is-current {
+  background-color: var(--accent);
+  color: var(--text-on-color);
+}

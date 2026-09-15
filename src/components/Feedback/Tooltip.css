@@ -1,0 +1,29 @@
+/* Tooltip (Bublina) — § Stavy a zpětná vazba.
+   Návrh: výška 34, rádius 10, odsazení 0 12, stín 0 3 10;
+   hodnota 13/700 v hlavní barvě textu, popisek 13/500 tišeji. */
+
+.dg-tooltip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: calc(34px * var(--scale));
+  padding: 0 calc(12px * var(--scale));
+  border-radius: calc(10px * var(--scale));
+  background-color: var(--surface-solid);
+  box-shadow: 0 calc(3px * var(--scale)) calc(10px * var(--scale)) var(--shadow-pill);
+  font-family: var(--font), system-ui, sans-serif;
+  font-size: calc(13px * var(--scale));
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.dg-tooltip--value {
+  color: var(--text-1);
+  font-weight: 700;
+}
+
+.dg-tooltip--label {
+  color: var(--text-2);
+  font-weight: 500;
+}

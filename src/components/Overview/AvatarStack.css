@@ -1,0 +1,20 @@
+/* AvatarStack (Skupina) — § Karty a údaje.
+   Návrh: kolečka 38 px s přesahem 10 px, přebytek jako „+N“. */
+
+.dg-avatar-stack {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+}
+
+.dg-avatar-stack > .dg-avatar + .dg-avatar {
+  margin-left: calc(-10px * var(--scale));
+}
+
+.dg-avatar-stack > .dg-avatar {
+  box-shadow: 0 0 0 calc(2px * var(--scale)) var(--surface-solid);
+}
+
+.dg-avatar-stack__more {
+  font-weight: 600;
+}

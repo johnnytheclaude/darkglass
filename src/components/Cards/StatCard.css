@@ -1,0 +1,63 @@
+/* StatCard (Velké číslo) — § Karty a údaje.
+   Návrh: rádius 24, odsazení 20, výška 150, popisek 14,5/400,
+   číslo 34/700 (-1,2), srovnání 12,5/500 s ikonou 14. */
+
+.dg-stat-card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(150px * var(--scale));
+  padding: calc(20px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-stat-card__label {
+  color: var(--text-2);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.dg-stat-card__value {
+  margin-top: auto;
+  overflow: hidden;
+  color: var(--text-1);
+  font-size: calc(34px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -1.2px;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-stat-card__delta {
+  display: flex;
+  align-items: center;
+  margin-top: calc(6px * var(--scale));
+  gap: calc(5px * var(--scale));
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.dg-stat-card__delta-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-stat-card__delta--up {
+  color: var(--success);
+}
+
+.dg-stat-card__delta--down {
+  color: var(--danger);
+}
+
+.dg-stat-card__delta--none {
+  color: var(--text-3);
+}

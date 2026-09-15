@@ -1,0 +1,82 @@
+/* TableToolbar a TableSearch (Panel nad tabulkou) — § Tabulka.
+   Návrh: panel 64, rádius 24, odsazení 0 16, mezera 10;
+   hledání pilulka 40 široká 300, souhrn 13,5/400 vpravo. */
+
+.dg-table-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(64px * var(--scale));
+  padding: calc(12px * var(--scale)) calc(16px * var(--scale));
+  border-radius: var(--r-lg);
+  gap: calc(10px * var(--scale));
+  background-color: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-table-toolbar__search {
+  display: inline-flex;
+  flex: 1 1 calc(240px * var(--scale));
+  max-width: calc(300px * var(--scale));
+}
+
+.dg-table-toolbar__filters {
+  display: inline-flex;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(8px * var(--scale));
+}
+
+.dg-table-toolbar__count {
+  flex: 0 1 auto;
+  margin-left: auto;
+  color: var(--text-3);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-table-toolbar__actions {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: calc(8px * var(--scale));
+}
+
+.dg-table-search {
+  display: inline-flex;
+  flex: 1 1 auto;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: calc(40px * var(--scale));
+  padding: 0 calc(14px * var(--scale));
+  border-radius: var(--r-pill);
+  gap: calc(9px * var(--scale));
+  background-color: var(--surface-2);
+}
+
+.dg-table-search__icon {
+  flex: 0 0 auto;
+  color: var(--text-3);
+}
+
+.dg-table-search__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(14px * var(--scale));
+  font-weight: 400;
+  outline: none;
+}
+
+.dg-table-search__input::placeholder {
+  color: var(--text-3);
+}

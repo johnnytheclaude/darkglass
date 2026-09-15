@@ -1,0 +1,27 @@
+/* GroupedList (Seskupený seznam · celý blok) — § Řádky seznamů.
+   Návrh: rádius 24, řádky bez vlastní výplně, linka odsazená o 70 px. */
+
+.dg-grouped-list {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+}
+
+.dg-grouped-list > .dg-list-row {
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.dg-grouped-list > .dg-list-row + .dg-list-row::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: calc(70px * var(--scale));
+  height: 1px;
+  background-color: var(--surface-15);
+  content: '';
+}

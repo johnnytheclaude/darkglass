@@ -1,0 +1,45 @@
+/* ProgressRing (Kroužek) — § Stavy a zpětná vazba.
+   Návrh: 92 px, dráha v tiché barvě, hodnota v barvě ladění, střed 18/700. */
+
+.dg-ring {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-ring__svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.dg-ring__track {
+  stroke: var(--surface-3);
+}
+
+.dg-ring__value {
+  stroke: var(--accent);
+}
+
+.dg-ring--success .dg-ring__value {
+  stroke: var(--success);
+}
+
+.dg-ring--warning .dg-ring__value {
+  stroke: var(--warning);
+}
+
+.dg-ring--danger .dg-ring__value {
+  stroke: var(--danger);
+}
+
+.dg-ring__center {
+  position: absolute;
+  color: var(--text-1);
+  font-size: calc(18px * var(--scale));
+  font-weight: 700;
+  line-height: 1;
+}

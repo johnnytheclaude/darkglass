@@ -1,0 +1,83 @@
+/* Badge (Odznak stavu) — § Stavy a zpětná vazba.
+   Návrh: výška 28, pilulka, odsazení 0 11, mezera 6 (s tečkou 7),
+   popisek 12,5/600, ikona 13, tečka 8. */
+
+.dg-badge {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: calc(28px * var(--scale));
+  padding: 0 calc(11px * var(--scale));
+  border-radius: var(--r-pill);
+  gap: calc(6px * var(--scale));
+  background-color: var(--surface-2);
+  color: var(--text-3);
+  font-family: var(--font), system-ui, sans-serif;
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.dg-badge__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.dg-badge__dot {
+  flex: 0 0 auto;
+  width: calc(8px * var(--scale));
+  height: calc(8px * var(--scale));
+  border-radius: var(--r-pill);
+  background-color: currentcolor;
+}
+
+.dg-badge--dot {
+  gap: calc(7px * var(--scale));
+}
+
+.dg-badge--success {
+  background-color: var(--success-soft);
+  color: var(--success);
+}
+
+.dg-badge--warning {
+  background-color: var(--warning-soft);
+  color: var(--warning);
+}
+
+.dg-badge--danger {
+  background-color: var(--danger-soft);
+  color: var(--danger);
+}
+
+.dg-badge--info {
+  background-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+.dg-badge--purple {
+  background-color: var(--purple-soft);
+  color: var(--purple);
+}
+
+.dg-badge--neutral {
+  background-color: var(--surface-2);
+  color: var(--text-3);
+}
+
+.dg-badge--plain {
+  background-color: var(--surface-2);
+  color: var(--text-2);
+}
+
+/* Tečka sedí na tiché výplni, barvu nese jen tečka a text. */
+.dg-badge--dot.dg-badge--success,
+.dg-badge--dot.dg-badge--warning,
+.dg-badge--dot.dg-badge--danger,
+.dg-badge--dot.dg-badge--info,
+.dg-badge--dot.dg-badge--purple {
+  background-color: var(--surface-2);
+}

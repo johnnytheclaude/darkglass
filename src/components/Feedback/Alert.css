@@ -1,0 +1,118 @@
+/* Alert (Upozornění) — § Stavy a zpětná vazba.
+   Návrh: rádius 18, odsazení 16, mezera 13, dlaždice 34 (rádius 10),
+   nadpis 15/600, tělo 13,5/400, akce 32 pilulka, zavření 26 kolečko. */
+
+.dg-alert {
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: calc(430px * var(--scale));
+  padding: calc(16px * var(--scale));
+  border-radius: calc(18px * var(--scale));
+  gap: calc(13px * var(--scale));
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-alert__tile {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: calc(34px * var(--scale));
+  height: calc(34px * var(--scale));
+  border-radius: calc(10px * var(--scale));
+  color: var(--text-on-color);
+}
+
+.dg-alert__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  gap: calc(4px * var(--scale));
+}
+
+.dg-alert__title {
+  color: var(--text-1);
+  font-size: calc(15px * var(--scale));
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.dg-alert__body {
+  color: var(--text-2);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.dg-alert__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: calc(32px * var(--scale));
+  margin-top: calc(4px * var(--scale));
+  padding: 0 calc(14px * var(--scale));
+  border: 0;
+  border-radius: var(--r-pill);
+  color: var(--text-on-color);
+  font-family: inherit;
+  font-size: calc(13px * var(--scale));
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dg-alert__close {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: calc(26px * var(--scale));
+  height: calc(26px * var(--scale));
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-pill);
+  background-color: var(--surface-15);
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.dg-alert--info {
+  background-color: var(--accent-soft);
+}
+
+.dg-alert--info .dg-alert__tile,
+.dg-alert--info .dg-alert__action {
+  background-color: var(--accent);
+}
+
+.dg-alert--success {
+  background-color: var(--success-soft);
+}
+
+.dg-alert--success .dg-alert__tile,
+.dg-alert--success .dg-alert__action {
+  background-color: var(--success);
+}
+
+.dg-alert--warning {
+  background-color: var(--warning-soft);
+}
+
+.dg-alert--warning .dg-alert__tile,
+.dg-alert--warning .dg-alert__action {
+  background-color: var(--warning);
+}
+
+.dg-alert--danger {
+  background-color: var(--danger-soft);
+}
+
+.dg-alert--danger .dg-alert__tile,
+.dg-alert--danger .dg-alert__action {
+  background-color: var(--danger);
+}

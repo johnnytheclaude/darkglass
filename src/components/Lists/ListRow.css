@@ -1,0 +1,157 @@
+/* ListRow (Řádek seznamu) — § Řádky seznamů.
+   Návrh: výška 74, rádius 24, odsazení 0 18, mezera 14, dlaždice 38 (rádius 11),
+   miniatura 44, nadpis 15,5/600 (-0,2), podřádek 13/400, datum 12,5, částka 16/600. */
+
+.dg-list-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(74px * var(--scale));
+  padding: 0 calc(18px * var(--scale));
+  border-radius: var(--r-lg);
+  gap: calc(14px * var(--scale));
+  background-color: var(--surface);
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-list-row--inset {
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.dg-list-row--interactive {
+  cursor: pointer;
+}
+
+.dg-list-row__check {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: calc(22px * var(--scale));
+  height: calc(22px * var(--scale));
+  padding: 0;
+  border: 0;
+  border-radius: calc(6px * var(--scale));
+  background-color: var(--surface-05);
+  color: var(--text-on-color);
+  cursor: pointer;
+}
+
+.dg-list-row__check.is-selected {
+  background-color: var(--accent);
+}
+
+.dg-list-row__tile {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: calc(38px * var(--scale));
+  height: calc(38px * var(--scale));
+  border-radius: calc(11px * var(--scale));
+  color: var(--text-on-color);
+}
+
+.dg-list-row__tile--danger {
+  background-color: var(--danger);
+}
+
+.dg-list-row__tile--warning {
+  background-color: var(--warning);
+}
+
+.dg-list-row__tile--info {
+  background-color: var(--accent);
+}
+
+.dg-list-row__tile--success {
+  background-color: var(--success);
+}
+
+.dg-list-row__tile--purple {
+  background-color: var(--purple);
+}
+
+.dg-list-row__tile--neutral {
+  background-color: var(--surface-2);
+  color: var(--text-1);
+}
+
+.dg-list-row__thumb {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: calc(44px * var(--scale));
+  height: calc(44px * var(--scale));
+  border-radius: calc(11px * var(--scale));
+  background-color: var(--surface-2);
+}
+
+.dg-list-row__avatar {
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.dg-list-row__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(2px * var(--scale));
+}
+
+.dg-list-row__title {
+  overflow: hidden;
+  color: var(--text-1);
+  font-size: calc(15.5px * var(--scale));
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-list-row__sub {
+  overflow: hidden;
+  color: var(--text-2);
+  font-size: calc(13px * var(--scale));
+  font-weight: 400;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-list-row__date {
+  flex: 0 0 auto;
+  color: var(--text-3);
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.dg-list-row__amount {
+  flex: 0 0 auto;
+  color: var(--text-1);
+  font-size: calc(16px * var(--scale));
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+
+.dg-list-row__badge,
+.dg-list-row__action {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+}
+
+.dg-list-row__chevron {
+  flex: 0 0 auto;
+  color: var(--chevron);
+}
