@@ -26,6 +26,39 @@ needituje se ručně; strojový zdroj je `tokens.json`.
 **`--accent` je white-label** — firma si ho přepisuje (Hochman fialová, návrh
 modrá). Komponenta nikdy nesmí mít barvu natvrdo.
 
+## Sklo a pozadí obrazovky
+
+Knihovna se jmenuje darkglass, a to sklo dělají dvě věci dohromady:
+**průsvitná plocha s rozostřeným podkladem** a **přechod pozadí pod ní**.
+Jedno bez druhého nefunguje — průsvitná plocha nad plochou barvou je jen
+šedý obdélník.
+
+**Rozostření** nese token `--glass-blur` (17 px) a `--glass-blur-sm` (10 px,
+pilulka Pill / Glass); komponenty ho mají v CSS samy
+(`backdrop-filter: blur(var(--glass-blur))` i s `-webkit-` variantou).
+Sklo má **kontejner** — karty, panely, navigace, rámy grafů, tabulek
+a kalendářů —, ne prvek uvnitř: řádky seznamu, pole, dlaždice, číslice,
+stavová lišta a tabulková lišta zůstávají ploché, přesně jako v návrhu.
+Aplikace do toho nesahá; jediné, co si smí přebít, je hodnota tokenu
+(`--glass-blur: 0px` sklo vypne, třeba na slabém stroji).
+
+**Přechod pozadí** je token `--screen-bg-image` (dvě elipsy z návrhu, odstíny
+`--bg-tint-a/b`, jedna definice pro oba motivy). Aplikace ho zapne na své
+ploše:
+
+```css
+body {                       /* nebo kořenový prvek aplikace */
+  background-color: var(--bg);
+  background-image: var(--screen-bg-image);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;   /* ať přechod při scrollování stojí */
+}
+```
+
+Kdo nechce sahat na `body`, obalí obrazovku komponentou `<ScreenBackground>`
+(tatáž hodnota, jen jako prvek). Nic jiného na obrazovce nemá vlastní pozadí.
+
 ## Pravidla
 
 1. Co je v návrhu, je v knihovně. Co v knihovně není, se do ní doplní —

@@ -17,8 +17,14 @@ body {
   padding: 0;
 }
 
+/* Ukázka zapíná přechod pozadí přesně tak, jak ho má zapnout aplikace
+   (viz styles.css, token --screen-bg-image) — bez něj by nebylo vidět sklo. */
 body {
   background-color: var(--bg);
+  background-image: var(--screen-bg-image);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;
   color: var(--text-1);
   font-family: Inter, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;

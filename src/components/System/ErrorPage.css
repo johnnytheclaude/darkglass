@@ -12,6 +12,8 @@
   padding: calc(48px * var(--scale)) calc(32px * var(--scale));
   border-radius: var(--r-lg);
   background-color: var(--surface);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
   gap: calc(14px * var(--scale));
   font-family: var(--font), system-ui, sans-serif;
   text-align: center;

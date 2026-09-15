@@ -10,6 +10,8 @@
   padding: calc(18px * var(--scale));
   border-radius: var(--r-lg);
   background-color: var(--surface);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
   font-family: var(--font), system-ui, sans-serif;
   gap: calc(12px * var(--scale));
   outline: 1px solid var(--border);

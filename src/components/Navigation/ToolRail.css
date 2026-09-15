@@ -11,6 +11,8 @@
   padding: calc(14px * var(--scale)) calc(7px * var(--scale));
   border-radius: calc(45px * var(--scale));
   background-color: var(--surface);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
   gap: calc(16px * var(--scale));
   font-family: var(--font), system-ui, sans-serif;
   outline: 1px solid var(--border);

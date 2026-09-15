@@ -157,6 +157,56 @@
   --scale: 1;
 }
 
+/* SKLO. Návrh má na průsvitných plochách backdrop-filter — bez něj je plocha
+   na --surface jen šedý obdélník (task #605). Hodnoty z exportů návrhu
+   (docs/navrh/html/{admin,pokladna,mobil,knihovna-dark,knihovna-light}.html):
+   blur(17px) na kontejnerech (karty, panely, navigace, rámy grafů a tabulek),
+   blur(10px) na drobné pilulce Pill / Glass. Platí v OBOU motivech — světlá
+   plocha --surface je taky průsvitná (#FFFFFFC7).
+
+   Sklo nese kontejner, ne prvek uvnitř: řádky seznamu, pole, dlaždice,
+   číslice, stavová lišta a tabulková lišta zůstávají ploché — v návrhu je na
+   nich tentýž odstín BEZ blur (226 takových uzlů v knihovna-dark.html; celý
+   výpis uzlů s blur i bez něj je v diskusi tasku #605).
+
+   Token je tady, ne v generovaném tokens.css — Pen ho jako token neposílá.
+   Aplikace si ho smí přebít (`--glass-blur: 0px` vypne sklo na slabém stroji,
+   aniž by se sáhlo na komponenty). */
+:root {
+  --glass-blur: 17px;
+  --glass-blur-sm: 10px;
+}
+
+/* PŘECHOD POZADÍ OBRAZOVKY. Dvě elipsy nad --bg, 1:1 podle exportu návrhu:
+   radial-gradient(ellipse 45% 20% at 88% 45%, <tint-b>, průhledná),
+   radial-gradient(ellipse 55% 25% at 18% 6%, <tint-a>, průhledná).
+   Geometrie je v obou motivech stejná, liší se jen odstíny — a ty jsou
+   v tokenech (--bg-tint-a/b), takže jedna definice stačí na oba motivy.
+
+   Aplikace ho zapne na své ploše (proto token, ne jen komponenta):
+
+     body {                                  nebo kořen aplikace
+       background-color: var(--bg);
+       background-image: var(--screen-bg-image);
+       background-repeat: no-repeat;
+       background-size: 100% 100%;
+       background-attachment: fixed;         ať přechod při scrollu stojí
+     }
+
+   Bez pozadí není sklo vidět — rozostřovat plochou barvu nemá co. */
+:root {
+  --screen-bg-image: radial-gradient(
+      ellipse 45% 20% at 88% 45%,
+      var(--bg-tint-b) 0%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 55% 25% at 18% 6%,
+      var(--bg-tint-a) 0%,
+      transparent 100%
+    );
+}
+
 /* Tokeny, které Pen vygeneroval jako JEDINOU hodnotu (tokens.css blok :root,
    řádky 15–25), takže nesou barvu ze světlého návrhu a v tmavém motivu se
    nezmění. Prošly jedním po druhém (task #512 = --sep, task #515 = zbytek):

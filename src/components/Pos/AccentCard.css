@@ -11,6 +11,8 @@
   padding: calc(20px * var(--scale));
   border-radius: var(--r-lg);
   background-color: var(--accent-soft);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
   gap: calc(6px * var(--scale));
   outline: 1px solid var(--accent);
   outline-offset: -0.5px;

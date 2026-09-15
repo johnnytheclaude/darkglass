@@ -11,6 +11,8 @@
   min-width: 0;
   border-radius: var(--r-lg);
   background: var(--surface);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
   font-family: var(--font), system-ui, sans-serif;
   outline: 1px solid var(--border);
   outline-offset: -0.5px;
