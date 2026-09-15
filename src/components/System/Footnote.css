@@ -1,0 +1,11 @@
+/* Patička — § Systémové prvky.
+   Návrh (zamčená obrazovka): 12,5 px / 400, tlumený text, přes celou šířku. */
+
+.dg-footnote {
+  box-sizing: border-box;
+  width: 100%;
+  color: var(--text-3);
+  font-family: var(--font), system-ui, sans-serif;
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 400;
+}
