@@ -133,6 +133,7 @@ export const section: ShowcaseSection = {
           <InlineNotice tone="warning" label="Nad limit obsluhy 1 000 Kč">
             · potvrzení vyžaduje PIN vedoucího
           </InlineNotice>
+          <InlineNotice tone="quiet" label="Bez internetu">· spárovat nejde, prodávat po spárování ano</InlineNotice>
           <InlineNotice tone="danger" label="Nad toleranci 100 Kč">
             · poznámka je povinná
           </InlineNotice>

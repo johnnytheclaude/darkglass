@@ -1,6 +1,6 @@
 import type { HTMLAttributes, ReactNode, Ref } from 'react'
 
-export type InlineNoticeTone = 'warning' | 'danger' | 'success' | 'accent'
+export type InlineNoticeTone = 'warning' | 'danger' | 'success' | 'accent' | 'quiet'
 
 export interface InlineNoticeProps extends HTMLAttributes<HTMLDivElement> {
   /** Ladění podle závažnosti; návrh má limit (warning), chybu a „v pořádku“. */

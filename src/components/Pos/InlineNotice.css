@@ -44,3 +44,14 @@
   background-color: var(--accent-soft);
   color: var(--accent-text);
 }
+
+/* Tichá varianta — poznámka, která nic nehlásí („Bez internetu · spárovat
+   nejde, prodávat po spárování ano"). Barvu nenese, jen tichý podklad. */
+.dg-inline-notice--quiet {
+  background-color: var(--surface-05);
+  color: var(--text-2);
+}
+
+.dg-inline-notice--quiet .dg-inline-notice__text {
+  color: var(--text-3);
+}
