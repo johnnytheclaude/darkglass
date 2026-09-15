@@ -18,6 +18,14 @@
   outline-offset: -0.5px;
 }
 
+/* Dlouhý formulář (hledání + výsledky + formulář nového záznamu) se musí vejít
+   i do nízkého okna: rám nikdy nepřeroste plochu, ve které stojí, a roluje se
+   uvnitř polí. Hlavička s nadpisem a patka s akcemi tak zůstanou vidět —
+   bez toho končí primární akce pod spodní hranou (pokladna na 375 px). */
+.dg-form-dialog {
+  max-height: 100%;
+}
+
 /* Panel / Dostupnost — týž dialog, jen širší rám pro seznam variant. */
 .dg-form-dialog--wide {
   width: calc(620px * var(--scale));
@@ -81,7 +89,10 @@
 
 .dg-form-dialog__fields {
   display: flex;
+  flex: 0 1 auto;
   flex-direction: column;
+  min-height: 0;
+  overflow: auto;
   width: 100%;
   gap: calc(14px * var(--scale));
 }
