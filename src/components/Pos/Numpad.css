@@ -105,6 +105,8 @@
    zmáčknout a čtečka ho přeskočí. */
 .dg-numpad__key--empty {
   border: 0;
+  /* I obrys je kresba klavesy - bez nej by prazdne misto vypadalo jako mrtve tlacitko. */
+  outline: 0;
   background-color: transparent;
   pointer-events: none;
 }
