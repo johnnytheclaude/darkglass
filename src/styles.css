@@ -152,6 +152,22 @@
   --scale: 1;
 }
 
+/* Oddělovač --sep přichází z Penu jako jediná hodnota (#E5E5EA), protože se
+   generoval ze světlého návrhu — v tmavém motivu proto svítil skoro bíle.
+   Návrh má v tmavém motivu oddělovač #FFFFFF1F, tedy tutéž hodnotu jako
+   --border. Dokud token nepřijde z Penu jako dvojice, dopočítává se tady;
+   do generovaného tokens.css nepatří. Světlý motiv zůstává na hodnotě
+   z návrhu. Hlídá to scratch/t512-check.cjs. */
+[data-theme="dark"] {
+  --sep: #FFFFFF1F;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --sep: #FFFFFF1F;
+  }
+}
+
 /* Text na tichém podkladu (--*-soft). Plná barva ladění je na svém 10% tintu
    ve světlém motivu moc světlá — zelená vychází 2,6:1, oranžová 2,8:1, modrá
    3,4:1, tedy pod hranicí 4,5:1 pro běžný text. Návrh na to má jediný token
