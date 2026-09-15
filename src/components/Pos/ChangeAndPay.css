@@ -1,0 +1,71 @@
+/* Vrátit a potvrdit — § Pokladna · platba.
+   Návrh: mezera 14 px, popisek 16 px / 400, částka 34 px / 700 / -1,2 px,
+   tlačítko 78 px, rádius 18 px, akcent, popisek 22 px / 700 / -0,4 px. */
+
+.dg-change-pay {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  gap: calc(14px * var(--scale));
+  /* Kvůli vrácené částce, která se přizpůsobuje šířce prvku (cqw níž). */
+  container-type: inline-size;
+}
+
+.dg-change-pay__change {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-change-pay__change-label {
+  flex-shrink: 0;
+  color: var(--text-2);
+  font-size: calc(16px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-change-pay__change-value {
+  min-width: 0;
+  color: var(--text-1);
+  font-size: clamp(calc(24px * var(--scale)), calc(7cqw + 6px), calc(34px * var(--scale)));
+  font-weight: 700;
+  letter-spacing: -1.2px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.dg-change-pay__pay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(78px * var(--scale));
+  padding: 0 calc(16px * var(--scale));
+  border: 0;
+  border-radius: calc(18px * var(--scale));
+  background-color: var(--accent);
+  color: var(--text-on-color);
+  font-family: inherit;
+  font-size: calc(22px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dg-change-pay__pay:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.dg-change-pay__pay:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

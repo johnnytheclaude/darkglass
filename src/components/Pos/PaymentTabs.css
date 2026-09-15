@@ -1,0 +1,49 @@
+/* Způsoby platby — § Pokladna · platba.
+   Návrh: záložka 72 px, rádius 16 px, mezera 12 px, popisek 17 px / 600,
+   vybraná plný akcent, nedostupná průhlednost 0,45. */
+
+.dg-payment-tabs {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  width: 100%;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-payment-tabs__tab {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 0;
+  height: calc(72px * var(--scale));
+  padding: 0 calc(12px * var(--scale));
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background-color: var(--surface-05);
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(17px * var(--scale));
+  font-weight: 600;
+  line-height: 1.15;
+  text-align: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dg-payment-tabs__tab.is-selected {
+  border-color: transparent;
+  background-color: var(--accent);
+  color: var(--text-on-color);
+}
+
+.dg-payment-tabs__tab:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.dg-payment-tabs__tab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

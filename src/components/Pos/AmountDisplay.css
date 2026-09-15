@@ -1,0 +1,33 @@
+/* Zadaná částka — § Pokladna · platba.
+   Návrh: popisek 17 px / 400, částka 44 px / 700 / -1,6 px, mezera 16 px. */
+
+.dg-amount-display {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  gap: calc(16px * var(--scale));
+  /* Kvůli částce, která se přizpůsobuje šířce prvku (cqw níž). */
+  container-type: inline-size;
+}
+
+.dg-amount-display__label {
+  flex-shrink: 0;
+  color: var(--text-2);
+  font-size: calc(17px * var(--scale));
+  font-weight: 400;
+}
+
+/* Spodní hranice 30 px drží čitelnost ze dvou metrů i v nejmenší velikosti UI
+   (0,85 → 25,5 px) a u statisícových částek. */
+.dg-amount-display__value {
+  min-width: 0;
+  color: var(--text-1);
+  font-size: clamp(calc(30px * var(--scale)), calc(9cqw + 6px), calc(44px * var(--scale)));
+  font-weight: 700;
+  letter-spacing: -1.6px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.05;
+  white-space: nowrap;
+}

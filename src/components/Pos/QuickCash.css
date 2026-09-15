@@ -1,0 +1,54 @@
+/* Rychlé bankovky — § Pokladna · platba.
+   Návrh: popisek 14,5 px / 400, tlačítko 64 px, rádius 16 px, mezera 12 px,
+   částka 18 px / 600; zvolená bankovka akcentované pozadí a obrys 2 px. */
+
+.dg-quick-cash {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-quick-cash__label {
+  color: var(--text-2);
+  font-size: calc(14.5px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-quick-cash__option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(64px * var(--scale));
+  padding: 0 calc(12px * var(--scale));
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background-color: var(--surface-05);
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(18px * var(--scale));
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dg-quick-cash__option.is-selected {
+  border: 2px solid var(--accent);
+  background-color: var(--accent-soft);
+}
+
+.dg-quick-cash__option:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.dg-quick-cash__option:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

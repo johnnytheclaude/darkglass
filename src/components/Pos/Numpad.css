@@ -1,0 +1,91 @@
+/* Numerická klávesnice — § Pokladna · platba.
+   Návrh: platební klávesa 120 × 120 px / písmo 34 px, PIN klávesa 88 × 80 px /
+   písmo 26 px, rádius 18 px, mezera 12 px, „Smazat“ 15,3 resp. 11,7 px / 500.
+   Barvy výhradně z tokenů — v komponentě není žádný hex ani tmavý motiv. */
+
+.dg-numpad {
+  --dg-numpad-w: 120px;
+  --dg-numpad-h: 120px;
+  --dg-numpad-fs: 34px;
+  --dg-numpad-delete-fs: 15.3px;
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: fit-content;
+  /* Na úzké obrazovce se klávesnice vejde do šířky místo přetečení ven —
+     klávesy se zúží (viz min-width u klávesy), řádky zůstanou po třech. */
+  max-width: 100%;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-numpad--pin {
+  --dg-numpad-w: 88px;
+  --dg-numpad-h: 80px;
+  --dg-numpad-fs: 26px;
+  --dg-numpad-delete-fs: 11.7px;
+}
+
+.dg-numpad__row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-numpad__key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  /* Návrhová šířka, která se v úzkém místě zúží — ale nikdy pod 44 px,
+     tedy pod dotykový cíl. */
+  flex: 0 1 calc(var(--dg-numpad-w) * var(--scale));
+  width: calc(var(--dg-numpad-w) * var(--scale));
+  min-width: 44px;
+  height: calc(var(--dg-numpad-h) * var(--scale));
+  border: 1px solid var(--border);
+  border-radius: calc(18px * var(--scale));
+  background-color: var(--surface-05);
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(var(--dg-numpad-fs) * var(--scale));
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 90ms ease-out;
+}
+
+.dg-numpad__key--delete {
+  color: var(--text-3);
+  font-size: calc(var(--dg-numpad-delete-fs) * var(--scale));
+  font-weight: 500;
+}
+
+/* Prázdné místo v posledním řádku PIN klávesnice — drží mřížku, nedá se
+   zmáčknout a čtečka ho přeskočí. */
+.dg-numpad__key--empty {
+  border: 0;
+  background-color: transparent;
+  pointer-events: none;
+}
+
+/* `is-pressed` zvýrazní klávesu i při psaní fyzickou klávesnicí, kde `:active`
+   nenastane — bez toho obsluha nepozná, že pokladna stisk přijala. */
+.dg-numpad__key:not(:disabled):active,
+.dg-numpad__key.is-pressed {
+  background-color: var(--surface-15);
+}
+
+.dg-numpad__key:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.dg-numpad__key:disabled {
+  opacity: 0.45;
+  cursor: default;
+}

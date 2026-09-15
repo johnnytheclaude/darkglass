@@ -7,10 +7,30 @@ export type { ButtonProps, ButtonSize, ButtonVariant } from './components/Button
 export { IconButton } from './components/Buttons/IconButton'
 export type { IconButtonProps } from './components/Buttons/IconButton'
 
+export { AmountDisplay } from './components/Pos/AmountDisplay'
+export type { AmountDisplayProps } from './components/Pos/AmountDisplay'
 export { CartCard, CartLine } from './components/Pos/CartCard'
 export type { CartCardProps, CartLineProps } from './components/Pos/CartCard'
 export { CategoryChip } from './components/Pos/CategoryChip'
 export type { CategoryChipProps } from './components/Pos/CategoryChip'
+export { ChangeAndPay } from './components/Pos/ChangeAndPay'
+export type { ChangeAndPayProps } from './components/Pos/ChangeAndPay'
+export { CountedTotal } from './components/Pos/CountedTotal'
+export type { CountedTotalProps } from './components/Pos/CountedTotal'
+export { DenominationRow } from './components/Pos/DenominationRow'
+export type { DenominationRowProps } from './components/Pos/DenominationRow'
+export { Numpad } from './components/Pos/Numpad'
+export type { NumpadProps, NumpadVariant } from './components/Pos/Numpad'
+export { PaymentBreakdown } from './components/Pos/PaymentBreakdown'
+export type {
+  PaymentBreakdownProps,
+  PaymentBreakdownLine,
+  PaymentBreakdownTone,
+} from './components/Pos/PaymentBreakdown'
+export { PaymentTabs } from './components/Pos/PaymentTabs'
+export type { PaymentTabsProps, PaymentTab } from './components/Pos/PaymentTabs'
+export { PinDots } from './components/Pos/PinDots'
+export type { PinDotsProps } from './components/Pos/PinDots'
 export { PosSearch } from './components/Pos/PosSearch'
 export type { PosSearchProps } from './components/Pos/PosSearch'
 export { ProductTile } from './components/Pos/ProductTile'

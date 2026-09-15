@@ -1,0 +1,97 @@
+/* Rozpis platby — § Pokladna · platba.
+   Návrh: popisek 15 px / 400, celkem 46 px / 700 / -1,8 px, řádek 56 px,
+   rádius 12 px, odsazení 16 px, popisek 15 px, částka 15,5 px / 600. */
+
+.dg-payment-breakdown {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  gap: calc(10px * var(--scale));
+  /* Kvůli celkové částce, která se přizpůsobuje šířce prvku (cqw níž). */
+  container-type: inline-size;
+}
+
+.dg-payment-breakdown__label {
+  color: var(--text-2);
+  font-size: calc(15px * var(--scale));
+  font-weight: 400;
+}
+
+.dg-payment-breakdown__total {
+  color: var(--text-1);
+  font-size: clamp(calc(30px * var(--scale)), calc(9cqw + 6px), calc(46px * var(--scale)));
+  font-weight: 700;
+  letter-spacing: -1.8px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.dg-payment-breakdown__line {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(56px * var(--scale));
+  padding: 0 calc(16px * var(--scale));
+  border-radius: var(--r-sm);
+  background-color: var(--surface-05);
+  gap: calc(12px * var(--scale));
+}
+
+.dg-payment-breakdown__line-label {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-2);
+  font-size: calc(15px * var(--scale));
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-payment-breakdown__line-value {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--text-1);
+  font-size: calc(15.5px * var(--scale));
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Zbývá zaplatit — popisek nese stejnou váhu jako částka. */
+.dg-payment-breakdown__line.is-strong .dg-payment-breakdown__line-label {
+  font-weight: 600;
+}
+
+.dg-payment-breakdown__line--success {
+  background-color: var(--success-soft);
+}
+
+.dg-payment-breakdown__line--success .dg-payment-breakdown__line-label,
+.dg-payment-breakdown__line--success .dg-payment-breakdown__line-value {
+  color: var(--success);
+  font-weight: 600;
+}
+
+.dg-payment-breakdown__line--warning {
+  background-color: var(--warning-soft);
+}
+
+.dg-payment-breakdown__line--warning .dg-payment-breakdown__line-label,
+.dg-payment-breakdown__line--warning .dg-payment-breakdown__line-value {
+  color: var(--warning);
+  font-weight: 600;
+}
+
+.dg-payment-breakdown__line--danger {
+  background-color: var(--danger-soft);
+}
+
+.dg-payment-breakdown__line--danger .dg-payment-breakdown__line-label,
+.dg-payment-breakdown__line--danger .dg-payment-breakdown__line-value {
+  color: var(--danger-text);
+  font-weight: 600;
+}

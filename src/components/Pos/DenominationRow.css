@@ -1,0 +1,84 @@
+/* Nominál — § Pokladna · platba.
+   Návrh: řádek 100 px, rádius 16 px, odsazení 16 px, mezera 12 px,
+   nominál 17 px / 600 v šířce 62 px, krokovač 48 px / rádius 14 px,
+   počet 22 px / 700 v šířce 34 px, součet 15 px / 400. */
+
+.dg-denomination-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(100px * var(--scale));
+  padding: 0 calc(16px * var(--scale));
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background-color: var(--surface);
+  gap: calc(12px * var(--scale));
+}
+
+.dg-denomination-row__note {
+  flex-shrink: 0;
+  width: calc(62px * var(--scale));
+  color: var(--text-1);
+  font-size: calc(17px * var(--scale));
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.dg-denomination-row__step {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: calc(48px * var(--scale));
+  height: calc(48px * var(--scale));
+  border: 0;
+  border-radius: calc(14px * var(--scale));
+  background-color: var(--surface-15);
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(22px * var(--scale));
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Dotykový cíl 44 px i v nejmenší velikosti UI, kde návrhových 48 px spadne
+   na 40,8 px: krokovač zůstane podle návrhu, plocha se rozšíří neviditelně. */
+.dg-denomination-row__step::after {
+  content: '';
+  position: absolute;
+  left: calc(-1 * max(0px, (44px - 48px * var(--scale)) / 2));
+  right: calc(-1 * max(0px, (44px - 48px * var(--scale)) / 2));
+  top: calc(-1 * max(0px, (44px - 48px * var(--scale)) / 2));
+  bottom: calc(-1 * max(0px, (44px - 48px * var(--scale)) / 2));
+}
+
+.dg-denomination-row__step:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.dg-denomination-row__count {
+  flex-shrink: 0;
+  width: calc(34px * var(--scale));
+  color: var(--text-1);
+  font-size: calc(22px * var(--scale));
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.dg-denomination-row__sum {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--text-3);
+  font-size: calc(15px * var(--scale));
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}

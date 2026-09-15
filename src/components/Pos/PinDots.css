@@ -1,0 +1,25 @@
+/* Tečky PIN — § Pokladna · platba.
+   Návrh: tečka 14 px, mezera 12 px, zadaná plná (text-1), prázdná obrys 1,5 px. */
+
+.dg-pin-dots {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  width: fit-content;
+  gap: calc(12px * var(--scale));
+}
+
+.dg-pin-dots__dot {
+  box-sizing: border-box;
+  width: calc(14px * var(--scale));
+  height: calc(14px * var(--scale));
+  border: 1.5px solid var(--border-strong);
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+.dg-pin-dots__dot.is-filled {
+  border-color: transparent;
+  background-color: var(--text-1);
+}
