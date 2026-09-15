@@ -42,6 +42,29 @@ export const section: ShowcaseSection = {
       ),
     },
     {
+      title: 'Jako odkaz',
+      note: 'S `href` je řádek `<a>` — rozcestník vykreslený na serveru funguje i bez JavaScriptu a jde otevřít na novou kartu. Nedostupný řádek odkaz nekreslí.',
+      stack: true,
+      wide: true,
+      render: () => (
+        <SirkaRadku>
+          <ListRow
+            icon={<IconFile size={19} />}
+            title="Skener a dostupnost"
+            sub="Načtěte kód kamerou, uvidíte velikosti"
+            href="#radky-seznamu"
+          />
+          <ListRow
+            icon={<IconFile size={19} />}
+            title="Přehled majitele"
+            sub="Jen pro majitele"
+            href="#radky-seznamu"
+            disabled
+          />
+        </SirkaRadku>
+      ),
+    },
+    {
       title: 'S akčním tlačítkem',
       note: 'Akce na řádku je nejvýš jedna a nikdy nezakryje text.',
       stack: true,

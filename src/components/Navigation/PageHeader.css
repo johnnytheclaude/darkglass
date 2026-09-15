@@ -29,6 +29,10 @@
   cursor: pointer;
 }
 
+.dg-page-header__back {
+  text-decoration: none;
+}
+
 .dg-page-header__back:hover {
   background: var(--surface-3);
 }

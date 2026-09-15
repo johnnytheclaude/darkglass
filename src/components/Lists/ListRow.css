@@ -28,6 +28,13 @@
   cursor: pointer;
 }
 
+/* Řádek jako odkaz: vypadá stejně, ale je to `<a>` — barvu a podtržení si bere
+   z řádku, ne z výchozího stylu odkazů aplikace. */
+.dg-list-row--link {
+  color: inherit;
+  text-decoration: none;
+}
+
 .dg-list-row--interactive:focus-visible {
   outline: 2px solid var(--accent-text);
   outline-offset: -2px;

@@ -4,6 +4,11 @@ import { IconArrowLeft } from '../Icons/IconArrowLeft'
 export interface PageHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   /** Tlačítko zpět se ukáže, jakmile je co dělat po kliknutí. */
   onBack?: () => void
+  /**
+   * Cíl šipky zpět jako odkaz — pro stránky vykreslené na serveru, kde není
+   * komu předat `onBack`. Vykreslí `<a>`, takže funguje i bez JavaScriptu.
+   */
+  backHref?: string
   backLabel?: string
   title?: ReactNode
   /** Kde jsme a co se stalo naposledy. */
@@ -25,6 +30,7 @@ export interface PageHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 't
  */
 export function PageHeader({
   onBack,
+  backHref,
   backLabel = 'Zpět',
   title,
   subtitle,
@@ -37,7 +43,11 @@ export function PageHeader({
 
   return (
     <div className={classes} {...rest}>
-      {onBack ? (
+      {backHref != null ? (
+        <a className="dg-page-header__back" href={backHref} aria-label={backLabel}>
+          <IconArrowLeft />
+        </a>
+      ) : onBack ? (
         <button className="dg-page-header__back" type="button" aria-label={backLabel} onClick={onBack}>
           <IconArrowLeft />
         </button>

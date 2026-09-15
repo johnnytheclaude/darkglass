@@ -1,6 +1,8 @@
-import type { HTMLAttributes, KeyboardEvent, MouseEvent, ReactNode, Ref } from 'react'
+import type { AnchorHTMLAttributes, HTMLAttributes, KeyboardEvent, MouseEvent, ReactNode, Ref } from 'react'
 import { IconCheck } from '../Icons/IconCheck'
 import { IconChevronRight } from '../Icons/IconChevronRight'
+
+type AnchorProps = AnchorHTMLAttributes<HTMLAnchorElement>
 
 export type ListRowTone = 'danger' | 'warning' | 'info' | 'success' | 'purple' | 'neutral'
 
@@ -30,6 +32,12 @@ export interface ListRowProps extends Omit<HTMLAttributes<HTMLDivElement>, 'titl
   action?: ReactNode
   /** Šipka na konci; výchozí je zapnutá u řádků s `onClick`. */
   chevron?: boolean
+  /**
+   * Cíl odkazu. Řádek se vykreslí jako `<a>`, takže funguje i bez JavaScriptu
+   * a jde otevřít na novou kartu — rozcestník serverové aplikace je odkaz,
+   * ne tlačítko. Nedostupný řádek odkaz nekreslí.
+   */
+  href?: string
   /** Řádek uvnitř seskupeného seznamu — bez vlastní výplně a rádiusu. */
   inset?: boolean
   /** Nedostupná akce — řádek zůstane čitelný, ale nereaguje a neostří se. */
@@ -57,6 +65,7 @@ export function ListRow({
   badge,
   action,
   chevron,
+  href,
   inset = false,
   disabled = false,
   className,
@@ -64,38 +73,33 @@ export function ListRow({
   onKeyDown,
   ...rest
 }: ListRowProps) {
-  const interactive = onClick != null && !disabled
-  const showChevron = chevron ?? onClick != null
+  const asLink = href != null && !disabled
+  const interactive = (onClick != null || asLink) && !disabled
+  const showChevron = chevron ?? (onClick != null || href != null)
   const classes = [
     'dg-list-row',
     inset ? 'dg-list-row--inset' : null,
     interactive ? 'dg-list-row--interactive' : null,
+    asLink ? 'dg-list-row--link' : null,
     disabled ? 'is-disabled' : null,
     className,
   ]
     .filter(Boolean)
     .join(' ')
 
-  /* Řádek je div, ale klikatelný řádek je akce: musí jít i z klávesnice. */
+  /* Řádek je div, ale klikatelný řádek je akce: musí jít i z klávesnice.
+     Odkaz (`href`) to umí sám, tam se klávesnice nesimuluje. */
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     onKeyDown?.(event)
-    if (!interactive || event.defaultPrevented) return
+    if (!interactive || asLink || event.defaultPrevented) return
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
       onClick?.(event as unknown as MouseEvent<HTMLDivElement>)
     }
   }
 
-  return (
-    <div
-      className={classes}
-      onClick={interactive ? onClick : undefined}
-      onKeyDown={handleKeyDown}
-      role={interactive ? 'button' : undefined}
-      tabIndex={interactive ? 0 : undefined}
-      aria-disabled={disabled ? true : undefined}
-      {...rest}
-    >
+  const content = (
+    <>
       {selectable ? (
         <button
           type="button"
@@ -128,6 +132,34 @@ export function ListRow({
       {showChevron ? (
         <IconChevronRight size={18} className="dg-list-row__chevron" />
       ) : null}
+    </>
+  )
+
+  if (asLink) {
+    return (
+      <a
+        className={classes}
+        href={href}
+        onClick={onClick as unknown as AnchorProps['onClick']}
+        onKeyDown={onKeyDown as unknown as AnchorProps['onKeyDown']}
+        {...(rest as AnchorProps)}
+      >
+        {content}
+      </a>
+    )
+  }
+
+  return (
+    <div
+      className={classes}
+      onClick={interactive ? onClick : undefined}
+      onKeyDown={handleKeyDown}
+      role={interactive ? 'button' : undefined}
+      tabIndex={interactive ? 0 : undefined}
+      aria-disabled={disabled ? true : undefined}
+      {...rest}
+    >
+      {content}
     </div>
   )
 }
