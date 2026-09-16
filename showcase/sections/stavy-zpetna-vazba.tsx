@@ -43,6 +43,9 @@ function Odznaky() {
         Online
       </Badge>
       <Badge tone="plain">Koncept</Badge>
+      <Badge tone="contrast" size="m" dot dotTone="danger">
+        Živě
+      </Badge>
     </div>
   )
 }

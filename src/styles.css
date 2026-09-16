@@ -111,6 +111,7 @@
 @import "./components/Pos/ChoiceCard.css";
 @import "./components/Pos/ChoiceGroup.css";
 @import "./components/Pos/ConfirmSheet.css";
+@import "./components/Pos/CountDisplay.css";
 @import "./components/Pos/CountedTotal.css";
 @import "./components/Pos/CountRow.css";
 @import "./components/Pos/CustomerBar.css";

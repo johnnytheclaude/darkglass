@@ -2,6 +2,8 @@ import { useState, useSyncExternalStore } from 'react'
 import { AmountDisplay } from '../../src/components/Pos/AmountDisplay'
 import { AttemptLog } from '../../src/components/Pos/AttemptLog'
 import { ChangeAndPay } from '../../src/components/Pos/ChangeAndPay'
+import { CountDisplay } from '../../src/components/Pos/CountDisplay'
+import { GroupCaption } from '../../src/components/Pos/GroupCaption'
 import { CountedTotal } from '../../src/components/Pos/CountedTotal'
 import { FactCard } from '../../src/components/Pos/FactCard'
 import { DenominationRow } from '../../src/components/Pos/DenominationRow'
@@ -271,6 +273,24 @@ function Kasa() {
   )
 }
 
+/* Počet kusů na telefonu — klávesnice píše do velkého pole nad sebou. */
+function Pocet() {
+  const [zadano, setZadano] = useState('1')
+
+  return (
+    <div style={{ width: '100%', maxWidth: 360, display: 'grid', gap: 12, justifyItems: 'stretch' }}>
+      <GroupCaption>Kolik kusů jste našli?</GroupCaption>
+      <CountDisplay value={zadano === '' ? '0' : zadano} />
+      <Numpad
+        variant="pin"
+        keyboard={false}
+        onDigit={(d) => setZadano((v) => (v === '0' ? d : (v + d).slice(0, 4)))}
+        onDelete={() => setZadano((v) => v.slice(0, -1))}
+      />
+    </div>
+  )
+}
+
 export const section: ShowcaseSection = {
   id: 'pokladna-platba',
   title: '§ Pokladna · platba',
@@ -295,6 +315,12 @@ export const section: ShowcaseSection = {
       stack: true,
       note: 'Varianta `price`: nízké klávesy v kalkulačkovém pořadí (7 nahoře), desetinná čárka a vlastní dolní řada akcí. „C" maže celou částku, „⌫" znak, „+21 %" dopočítá cenu s DPH. Fyzickou klávesnici tahle ukázka schválně neposlouchá — patří klávesnicím výš.',
       render: () => <CenaPolozky />,
+    },
+    {
+      title: 'Zadaný počet',
+      stack: true,
+      note: 'Pole, do kterého se ťuká počet kusů — inventura na telefonu. Ptej se nad ním otázkou (GroupCaption), pole nese jen hodnotu a čtečce ji hlásí jako živý stav.',
+      render: () => <Pocet />,
     },
     {
       title: 'Způsoby platby',

@@ -84,3 +84,47 @@
 .dg-badge--dot.dg-badge--purple {
   background-color: var(--surface-2);
 }
+
+/* Obrácený odznak — bílý na tmavém motivu, tmavý na světlém. Návrh mobilu
+   jím říká „počítá se právě teď“ v hlavičce obrazovky. */
+.dg-badge--contrast,
+.dg-badge--dot.dg-badge--contrast {
+  background-color: var(--contrast-fill);
+  color: var(--contrast-text);
+}
+
+/* Tečka si smí nést vlastní ladění — odznak zůstane obrácený a barvu drží
+   jen tečka (návrh: bílá pilulka „Živě“ s červenou tečkou). */
+.dg-badge__dot--success {
+  background-color: var(--success);
+}
+
+.dg-badge__dot--warning {
+  background-color: var(--warning);
+}
+
+.dg-badge__dot--danger {
+  background-color: var(--danger);
+}
+
+.dg-badge__dot--info {
+  background-color: var(--accent);
+}
+
+.dg-badge__dot--purple {
+  background-color: var(--purple);
+}
+
+/* Odznak v hlavičce telefonu — návrh: 38 vysoký, odsazení 0 16, mezera 8,
+   popisek 14/600, tečka 9. */
+.dg-badge--m {
+  min-height: calc(38px * var(--scale));
+  padding: 0 calc(16px * var(--scale));
+  gap: calc(8px * var(--scale));
+  font-size: calc(14px * var(--scale));
+}
+
+.dg-badge--m .dg-badge__dot {
+  width: calc(9px * var(--scale));
+  height: calc(9px * var(--scale));
+}
