@@ -172,7 +172,7 @@
    (docs/navrh/html/{admin,pokladna,mobil,knihovna-dark,knihovna-light}.html):
    blur(17px) na kontejnerech (karty, panely, navigace, rámy grafů a tabulek),
    blur(10px) na drobné pilulce Pill / Glass. Platí v OBOU motivech — světlá
-   plocha --surface je taky průsvitná (#FFFFFFC7).
+   plocha --surface je taky průsvitná (#FFFFFFA6).
 
    Sklo nese kontejner, ne prvek uvnitř: řádky seznamu, pole, dlaždice,
    číslice, stavová lišta a tabulková lišta zůstávají ploché — v návrhu je na
