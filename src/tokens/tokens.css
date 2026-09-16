@@ -10,10 +10,10 @@
    výhradně NEAKTIVNÍ STAV (vypnuté prvky), na který se poměr podle WCAG 1.4.3
    nevztahuje — pro čitelný text se nikdy nepoužívá.
    Výjimka (task #634, rozhodnutí ownera 16. 9. 2026): světlý motiv je proti
-   exportu ZESÍLENÝ — --surface #FFFFFFC7 (78 %) → #FFFFFFA6 (65 %) a
+   exportu ZESÍLENÝ — --surface #FFFFFFC7 (78 %) → #FFFFFF99 (60 %, owner vybral okem ze čtyř variant) a
    --bg-tint-b #DCE4F2 → #D2DDF0. Export knihovna-light má sklo tak jemné, že
    pod plochou projdou z 13 úrovní jasu pozadí jen ~3; po zesílení jich projde
-   ~5 a přechod je vidět. Vault v Penu srovnává owner sám — do té doby je
+   ~5–6 a přechod je vidět. Vault v Penu srovnává owner sám — do té doby je
    zdrojem pravdy pro tyhle dva tokeny tenhle soubor, ne .pen. */
 
 :root {
@@ -48,7 +48,7 @@
   --bg-tint-a: #FFFFFF;
   --bg-tint-b: #D2DDF0;
   --surface-05: #00000008;
-  --surface: #FFFFFFA6;
+  --surface: #FFFFFF99;
   --surface-15: #00000012;
   --surface-2: #FFFFFF;
   --surface-3: #0000001F;
