@@ -9,6 +9,9 @@ import { GroupedList } from '../../src/components/Lists/GroupedList'
 import { ListRow } from '../../src/components/Lists/ListRow'
 import { MetaRow } from '../../src/components/Lists/MetaRow'
 import { IconReceipt } from '../../src/components/Icons/IconReceipt'
+import { IconBanknote } from '../../src/components/Icons/IconBanknote'
+import { IconCreditCard } from '../../src/components/Icons/IconCreditCard'
+import { IconTicket } from '../../src/components/Icons/IconTicket'
 import { Avatar } from '../../src/components/Overview/Avatar'
 import { Switch } from '../../src/components/Controls/Switch'
 import type { ShowcaseSection } from '../registry'
@@ -89,6 +92,34 @@ export const section: ShowcaseSection = {
             title="P01-2026-000041"
             sub="kartou · 2 480 Kč · 9:41"
             onClick={() => {}}
+          />
+        </SirkaRadku>
+      ),
+    },
+    {
+      title: 'Způsoby platby — ikony banknote a ticket',
+      note: 'Ikony hotovosti a stravenek z návrhu (artboard Admin 25 · Platby a zaokrouhlení) v dlaždici řádku, vedle karty pro srovnání. Vypínač je v akci vpravo.',
+      stack: true,
+      wide: true,
+      render: () => (
+        <SirkaRadku>
+          <ListRow
+            icon={<IconBanknote size={19} />}
+            title="Hotovost"
+            sub="zaokrouhluje se podle pravidla vedle"
+            action={<Switch checked onChange={() => {}} label="Hotovost" />}
+          />
+          <ListRow
+            icon={<IconCreditCard size={19} />}
+            title="Platební karta"
+            sub="terminál se nastavuje u pokladny"
+            action={<Switch checked onChange={() => {}} label="Platební karta" />}
+          />
+          <ListRow
+            icon={<IconTicket size={19} />}
+            title="Stravenky"
+            sub="jen na potraviny, bez vracení peněz"
+            action={<Switch checked onChange={() => {}} label="Stravenky" />}
           />
         </SirkaRadku>
       ),
