@@ -1,0 +1,101 @@
+/* Nav / Kroky jako pilulky — § Navigace.
+   Návrh (admin · první spuštění, artboard 27): pilulka 40 px vysoká, rádius
+   pilulky, tichá výplň --surface-05 s obrysem --border, mezera mezi značkou
+   a popiskem 9 px, mezi pilulkami 8 px, popisek 13,5 px; číslo 13 px tučně.
+   Právě probíhající krok je na plném akcentu bez obrysu. */
+
+.dg-step-pills {
+  width: 100%;
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-step-pills__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  gap: calc(8px * var(--scale));
+  list-style: none;
+}
+
+.dg-step-pills__step {
+  display: flex;
+  min-width: 0;
+}
+
+.dg-step-pills__pill {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  gap: calc(9px * var(--scale));
+  min-width: 0;
+  height: calc(40px * var(--scale));
+  padding: 0 calc(15px * var(--scale));
+  border-radius: var(--r-pill);
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
+  background-color: var(--surface-05);
+  color: var(--text-2);
+  font-size: calc(13.5px * var(--scale));
+  font-weight: 500;
+  text-decoration: none;
+}
+
+a.dg-step-pills__pill:hover {
+  background-color: var(--surface-15);
+  color: var(--text-1);
+}
+
+a.dg-step-pills__pill:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.dg-step-pills__num {
+  flex-shrink: 0;
+  color: var(--text-3);
+  font-size: calc(13px * var(--scale));
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.dg-step-pills__check {
+  flex-shrink: 0;
+  color: var(--success);
+}
+
+.dg-step-pills__label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Stav se čte jen čtečkou — vidoucí ho pozná z tvaru a barvy značky. */
+.dg-step-pills__state {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.dg-step-pills__step.is-current .dg-step-pills__pill {
+  outline: none;
+  background-color: var(--accent-fill);
+  color: var(--on-accent);
+  font-weight: 600;
+}
+
+.dg-step-pills__step.is-current .dg-step-pills__num {
+  color: var(--on-accent);
+}
+
+.dg-step-pills__step.is-skipped .dg-step-pills__pill {
+  color: var(--text-3);
+}

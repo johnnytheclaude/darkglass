@@ -76,6 +76,7 @@
 @import "./components/Navigation/CommandPalette.css";
 @import "./components/Navigation/PageHeader.css";
 @import "./components/Navigation/Sidebar.css";
+@import "./components/Navigation/StepPills.css";
 @import "./components/Navigation/Stepper.css";
 @import "./components/Navigation/TabsPill.css";
 @import "./components/Navigation/TabsUnderline.css";

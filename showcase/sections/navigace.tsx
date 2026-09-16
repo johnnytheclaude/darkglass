@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Breadcrumbs } from '../../src/components/Navigation/Breadcrumbs'
+import { StepPills } from '../../src/components/Navigation/StepPills'
 import { Stepper } from '../../src/components/Navigation/Stepper'
 import { TabsUnderline } from '../../src/components/Navigation/TabsUnderline'
 import { ToolRail } from '../../src/components/Navigation/ToolRail'
@@ -141,6 +142,23 @@ export const section: ShowcaseSection = {
       note: 'Hotové kroky nesou fajfku a dá se do nich vrátit; zbývající jsou ztlumené.',
       wide: true,
       render: () => <Pruvodce />,
+    },
+    {
+      title: 'Kroky jako pilulky',
+      note: 'Checklist, kde kroky nejsou lineární: hotový nese fajfku, přeskočený pomlčku, právě probíhající sedí na akcentu.',
+      wide: true,
+      render: () => (
+        <StepPills
+          steps={[
+            { key: 'firma', label: 'Firma', state: 'done', href: '#firma' },
+            { key: 'prodejna', label: 'Prodejna a pokladna', state: 'done', href: '#prodejna' },
+            { key: 'tiskarny', label: 'Tiskárny', state: 'current', href: '#tiskarny' },
+            { key: 'kategorie', label: 'Kategorie a marže', state: 'todo', href: '#kategorie' },
+            { key: 'dodak', label: 'První dodák', state: 'skipped', href: '#dodak' },
+            { key: 'stitky', label: 'Štítky', state: 'todo' },
+          ]}
+        />
+      ),
     },
   ],
 }
