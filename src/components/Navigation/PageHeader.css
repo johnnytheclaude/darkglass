@@ -82,7 +82,30 @@
    nadpis 19/700 (-0,4), popisek 12,5/400, mezera 10. Na malém displeji nese
    obrazovku obsah, ne její jméno. */
 .dg-page-header--s {
-  gap: calc(10px * var(--scale));
+  column-gap: calc(10px * var(--scale));
+  row-gap: calc(2px * var(--scale));
+}
+
+/* Návrh drží jméno přihlášeného na řádku s nadpisem a popisek pouští pod ně
+   přes celou šířku. Obal nadpisů proto v téhle variantě mizí (display:
+   contents) a o pořadí rozhoduje order — jinak by se akce na 375 px zalomily
+   pod dlouhý popisek a mezi hlavičku a obsah by spadla díra. */
+.dg-page-header--s .dg-page-header__titles {
+  display: contents;
+}
+
+.dg-page-header--s .dg-page-header__title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.dg-page-header--s .dg-page-header__actions {
+  order: 1;
+}
+
+.dg-page-header--s .dg-page-header__sub {
+  flex: 1 0 100%;
+  order: 2;
 }
 
 .dg-page-header--s .dg-page-header__titles {
