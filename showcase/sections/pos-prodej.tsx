@@ -222,6 +222,9 @@ export const section: ShowcaseSection = {
           >
             vel. 52 · Hochman Vinohrady 3 ks
           </NoteRow>
+          <NoteRow wide label="Vrací se zaplacená cena">
+            · po slevách, ne cena před slevou
+          </NoteRow>
         </div>
       ),
     },
