@@ -30,6 +30,12 @@ export interface DataTableRow {
   tone?: 'ok' | 'danger' | 'warn' | 'info'
   /** Vybraný řádek (hromadný výběr) — zaškrtnuté políčko a tichý akcentový podklad. */
   selected?: boolean
+  /**
+   * Jméno zaškrtávátka pro odečítač. Bez něj mají všechny řádky stejné
+   * „Vybrat řádek" a nevidomý je od sebe nerozezná — seznam, ve kterém se
+   * hromadná akce dělá naslepo. Aplikace sem posílá, co je na řádku vidět.
+   */
+  selectLabel?: string
   /** Mezitulek skupiny (Table / Group Header) nad tímto řádkem. */
   group?: { label: ReactNode; count?: number }
 }
@@ -128,7 +134,7 @@ export function DataTable({
                 type="button"
                 className={row.selected ? 'dg-table__check is-selected' : 'dg-table__check'}
                 aria-pressed={!!row.selected}
-                aria-label="Vybrat řádek"
+                aria-label={row.selectLabel ?? 'Vybrat řádek'}
                 onClick={(e) => {
                   e.stopPropagation()
                   onSelectedChange?.(row.id, !row.selected)
