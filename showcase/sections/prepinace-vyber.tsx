@@ -85,6 +85,7 @@ function UkazkaSegmentovanych() {
   const [ctyri, setCtyri] = useState('vse')
   const [sNeaktivni, setSNeaktivni] = useState('prodejna')
   const [naSirku, setNaSirku] = useState('uctenka')
+  const [dotyk, setDotyk] = useState('prodejna')
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-start' }}>
       <SegmentedControl
@@ -116,6 +117,17 @@ function UkazkaSegmentovanych() {
         ]}
         value={ctyri}
         onChange={setCtyri}
+      />
+      <SegmentedControl
+        block
+        size="touch"
+        label="Kde cena platí (telefon)"
+        options={[
+          { value: 'prodejna', label: 'Jen tato prodejna' },
+          { value: 'katalog', label: 'Katalog firmy' },
+        ]}
+        value={dotyk}
+        onChange={setDotyk}
       />
       <SegmentedControl
         label="Sklad"

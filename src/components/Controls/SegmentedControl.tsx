@@ -14,6 +14,11 @@ export interface SegmentedControlProps extends Omit<HTMLAttributes<HTMLDivElemen
   onChange?: (value: string) => void
   /** Přes celou šířku — volby se rozdělí rovným dílem. */
   block?: boolean
+  /**
+   * `touch` zvedne volbu na 44 px — přepínač na telefonu se mačká prstem
+   * a 34 px z návrhu desktopu je pod dotykovým minimem.
+   */
+  size?: 'm' | 'touch'
   /** Popis skupiny pro čtečku („Období“). */
   label?: string
   ref?: Ref<HTMLDivElement>
@@ -31,6 +36,7 @@ export function SegmentedControl({
   value,
   onChange,
   block = false,
+  size = 'm',
   label,
   className,
   onKeyDown,
@@ -85,7 +91,12 @@ export function SegmentedControl({
 
   return (
     <div
-      className={['dg-segmented', block ? 'dg-segmented--block' : null, className]
+      className={[
+        'dg-segmented',
+        block ? 'dg-segmented--block' : null,
+        size === 'touch' ? 'dg-segmented--touch' : null,
+        className,
+      ]
         .filter(Boolean)
         .join(' ')}
       role="radiogroup"

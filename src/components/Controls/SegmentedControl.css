@@ -43,6 +43,12 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Telefon: volba se mačká prstem, takže má dotykové minimum 44 px. */
+.dg-segmented--touch .dg-segmented__item {
+  height: calc(44px * var(--scale));
+  font-size: calc(15px * var(--scale));
+}
+
 .dg-segmented--block .dg-segmented__item {
   flex: 1 1 0;
 }
