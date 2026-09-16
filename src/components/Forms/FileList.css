@@ -91,6 +91,7 @@
 }
 
 .dg-filerow__remove {
+  position: relative;
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
@@ -104,6 +105,18 @@
   background-color: var(--surface-15);
   color: var(--text-2);
   cursor: pointer;
+}
+
+/* Kolečko zůstává podle návrhu 28 px, ale prst míří na 44 px — dotykový cíl
+   se zvětšuje neviditelnou plochou, ne kolečkem, aby řádek nenarostl. */
+.dg-filerow__remove::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(44px * var(--scale));
+  height: calc(44px * var(--scale));
+  transform: translate(-50%, -50%);
 }
 
 .dg-filerow__remove:hover {
