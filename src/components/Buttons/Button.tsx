@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, ReactNode, Ref } from 'react'
+import type { ButtonHTMLAttributes, ElementType, ReactNode, Ref } from 'react'
 
 export type ButtonVariant =
   | 'primary'
@@ -28,6 +28,16 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean
   /** Roztažení na šířku rodiče (Btn / Primary Full). */
   block?: boolean
+  /**
+   * Tlačítko, které někam vede (stažení souboru, odkaz na stránku), se kreslí
+   * jako odkaz — `<button>` v `<a>` je neplatné HTML a čtečka z něj přečte
+   * obojí. Vzhled se nemění.
+   */
+  href?: string
+  /** Komponenta odkazu (např. `Link` z Next.js); bez ní obyčejné `<a>`. */
+  linkAs?: ElementType
+  /** Stažení místo otevření — platí jen s `href`. */
+  download?: boolean
   ref?: Ref<HTMLButtonElement>
 }
 
@@ -52,6 +62,9 @@ export function Button({
   loading = false,
   block = false,
   type = 'button',
+  href,
+  linkAs,
+  download,
   className,
   children,
   disabled,
@@ -68,12 +81,16 @@ export function Button({
     .filter(Boolean)
     .join(' ')
 
+  const Tag = (href ? (linkAs ?? 'a') : 'button') as ElementType
+  const tagProps = href
+    ? { href, download, 'aria-disabled': disabled || loading || undefined }
+    : { type, disabled: disabled || loading }
+
   return (
-    <button
-      type={type}
+    <Tag
       className={classes}
-      disabled={disabled || loading}
       aria-busy={loading || undefined}
+      {...tagProps}
       {...rest}
     >
       <span className="dg-button__content">
@@ -90,6 +107,6 @@ export function Button({
         ) : null}
       </span>
       {loading ? <span className="dg-button__spinner" aria-hidden="true" /> : null}
-    </button>
+    </Tag>
   )
 }
