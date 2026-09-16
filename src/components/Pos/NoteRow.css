@@ -35,3 +35,14 @@
   flex-shrink: 0;
   margin-left: auto;
 }
+
+/* Užší varianta z artboardu mobilu (mobil/07 „Formát"): popisek 80, písmo 12 —
+   na displeji 375 px se tím věta vejde na řádek, místo aby se lámala. */
+
+.dg-note-row--compact {
+  font-size: calc(12px * var(--scale));
+}
+
+.dg-note-row--compact .dg-note-row__label {
+  width: calc(80px * var(--scale));
+}
