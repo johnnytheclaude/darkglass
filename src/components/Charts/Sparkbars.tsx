@@ -13,6 +13,12 @@ export interface SparkbarsProps extends Omit<HTMLAttributes<HTMLDivElement>, 'ti
   title?: ReactNode
   subtitle?: ReactNode
   bars: SparkbarsBar[]
+  /**
+   * Popisky osy pod sloupci — rozprostřou se po šířce grafu. Hodí se, když
+   * sloupců je víc, než kolik snese popisek u každého (hodiny dne na telefonu:
+   * čtyři popisky stačí, dvacet čtyři by se slilo). Bez nich se osa nekreslí.
+   */
+  axis?: ReactNode[]
   max?: number
   ref?: Ref<HTMLDivElement>
 }
@@ -21,7 +27,7 @@ export interface SparkbarsProps extends Omit<HTMLAttributes<HTMLDivElement>, 'ti
  * Chart / Sparkbars — malý graf v kartě. Bez osy a bez legendy: ukazuje jen
  * tvar dne, špičky jsou v akcentu.
  */
-export function Sparkbars({ title, subtitle, bars, max, className, ...rest }: SparkbarsProps) {
+export function Sparkbars({ title, subtitle, bars, axis, max, className, ...rest }: SparkbarsProps) {
   const top = max ?? Math.max(1, ...bars.map((b) => b.value))
   const classes = ['dg-sparkbars', className].filter(Boolean).join(' ')
 
@@ -37,6 +43,15 @@ export function Sparkbars({ title, subtitle, bars, max, className, ...rest }: Sp
           />
         ))}
       </div>
+      {axis && axis.length > 0 ? (
+        <div className="dg-sparkbars__axis" aria-hidden="true">
+          {axis.map((tick, i) => (
+            <span key={i} className="dg-sparkbars__tick">
+              {tick}
+            </span>
+          ))}
+        </div>
+      ) : null}
     </ChartCard>
   )
 }

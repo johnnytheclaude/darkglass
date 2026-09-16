@@ -110,6 +110,24 @@ export const section: ShowcaseSection = {
       ),
     },
     {
+      title: 'Malý graf s osou (telefon)',
+      note: 'Popisků je pár a rozprostřou se po šířce — u dvaceti čtyř sloupců by se slily.',
+      wide: true,
+      render: () => (
+        <Sparkbars
+          title="Průběh"
+          subtitle="Dnes"
+          style={{ maxWidth: 330 }}
+          axis={['0', '8', '15', '23']}
+          bars={Array.from({ length: 24 }, (_, hour) => ({
+            value: hour >= 8 && hour <= 18 ? 10 + ((hour * 37) % 60) : 0,
+            label: `${hour}:00`,
+            highlight: hour >= 8 && hour <= 18,
+          }))}
+        />
+      ),
+    },
+    {
       title: 'Malý graf v kartě',
       note: 'Bez osy a bez legendy — ukazuje jen tvar dne.',
       wide: true,
