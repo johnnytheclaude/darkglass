@@ -31,3 +31,14 @@
   line-height: 1.05;
   white-space: nowrap;
 }
+
+/* Varianta z návrhu telefonu (artboard mobil/08): popisek je nad hodnotou
+   a hodnota drží 44 px — nezmenšuje se podle šířky karty, protože stojí na
+   vlastním řádku. Dlouhá částka se zmenší až tehdy, když by nevyšla. */
+.dg-amount-display--display {
+  gap: 0;
+}
+
+.dg-amount-display--display .dg-amount-display__value {
+  font-size: clamp(calc(30px * var(--scale)), calc(13cqw + 6px), calc(44px * var(--scale)));
+}
