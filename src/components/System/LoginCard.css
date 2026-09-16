@@ -46,12 +46,13 @@
   gap: calc(12px * var(--scale));
 }
 
+/* Obal jen roztáhne obsah na šířku karty. Vlastní ohraničení nese až prvek
+   uvnitř: hlavní tlačítko v návrhu žádné nemá a obtažený obal kolem pilulky
+   kreslil obdélník přes její zaoblení. */
 .dg-login-card__submit,
 .dg-login-card__alt {
   display: flex;
   width: 100%;
-  outline: 1px solid var(--border);
-  outline-offset: -0.5px;
 }
 
 .dg-login-card__submit > *,
