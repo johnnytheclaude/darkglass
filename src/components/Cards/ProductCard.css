@@ -54,3 +54,12 @@
   line-height: 1.35;
   overflow-wrap: anywhere;
 }
+
+/* Nadřádek — návrh mobilu, artboard 04: „Právě načteno kamerou“ nad názvem.
+   Návrh: 12,5/400 tlumeně, stejně jako meta pod kartou. */
+.dg-product-card__eyebrow {
+  color: var(--text-3);
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 400;
+  line-height: 1.2;
+}

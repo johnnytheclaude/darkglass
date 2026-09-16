@@ -3,8 +3,13 @@ import type { HTMLAttributes, ReactNode, Ref } from 'react'
 export interface ProductCardProps extends HTMLAttributes<HTMLDivElement> {
   /** Název zboží i s barvou nebo provedením („Sako CITY CLASSIC · modrá“). */
   name: ReactNode
-  /** Cena — největší text karty, čte se první. */
-  price: ReactNode
+  /** Nadřádek nad názvem („Právě načteno kamerou“) — návrh mobilu, artboard 04. */
+  eyebrow?: ReactNode
+  /**
+   * Cena — největší text karty, čte se první. Na obrazovkách, kde se zboží
+   * jen identifikuje (inventura), se cena nekreslí vůbec.
+   */
+  price?: ReactNode
   /** Poznámka u ceny („akce“); stojí vedle částky, ne místo ní. */
   priceNote?: ReactNode
   /** Řádek pod cenou: odkud údaj je a jaký kód se načetl. */
@@ -21,6 +26,7 @@ export interface ProductCardProps extends HTMLAttributes<HTMLDivElement> {
  */
 export function ProductCard({
   name,
+  eyebrow,
   price,
   priceNote,
   meta,
@@ -30,11 +36,14 @@ export function ProductCard({
 }: ProductCardProps) {
   return (
     <div className={['dg-product-card', className].filter(Boolean).join(' ')} {...rest}>
+      {eyebrow != null ? <span className="dg-product-card__eyebrow">{eyebrow}</span> : null}
       <span className="dg-product-card__name">{name}</span>
-      <span className="dg-product-card__price">
-        {price}
-        {priceNote != null ? <span className="dg-product-card__price-note">{priceNote}</span> : null}
-      </span>
+      {price != null ? (
+        <span className="dg-product-card__price">
+          {price}
+          {priceNote != null ? <span className="dg-product-card__price-note">{priceNote}</span> : null}
+        </span>
+      ) : null}
       {meta != null ? <span className="dg-product-card__meta">{meta}</span> : null}
       {children}
     </div>

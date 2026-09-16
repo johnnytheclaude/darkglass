@@ -54,15 +54,24 @@ export const section: ShowcaseSection = {
       title: 'Karta / Produkt',
       note:
         'Co se právě načetlo: název, cena a odkud údaj je. Hlavička pracovní ' +
-        'obrazovky telefonu — cena je největší text, poznámka u ní nese akci ceny.',
+        'obrazovky telefonu — cena je největší text, poznámka u ní nese akci ceny. ' +
+        'Bez ceny se z téže karty stane hlavička inventury: nadřádek říká, odkud ' +
+        'se kód vzal.',
       stack: true,
       render: () => (
-        <div style={{ width: 350, maxWidth: '100%' }}>
+        <div style={{ width: 350, maxWidth: '100%', display: 'grid', gap: 12 }}>
           <ProductCard
             name="Sako CITY CLASSIC · modrá"
             price="4 990 Kč"
             priceNote="akce"
             meta="načteno kamerou · kód 2000000118"
+          />
+          {/* Inventura na telefonu (artboard mobil 04) — cena tam nepatří,
+              zboží se jen identifikuje, proto nadřádek místo částky. */}
+          <ProductCard
+            eyebrow="Právě načteno kamerou"
+            name="Sako CITY CLASSIC · vel. 52"
+            meta="S1-52-67 · zatím nespočítáno"
           />
         </div>
       ),
