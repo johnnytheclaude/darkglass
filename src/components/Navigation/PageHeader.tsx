@@ -51,6 +51,7 @@ export function PageHeader({
   subtitle,
   actions,
   titleAs: TitleTag = 'h1',
+  size = 'm',
   className,
   ...rest
 }: PageHeaderProps) {
