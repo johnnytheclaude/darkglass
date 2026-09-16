@@ -24,6 +24,12 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Nizsi varianta z artboardu 18 (vratka): vyska 76, popisek 20 / 700. */
+.dg-pay-button--compact {
+  height: calc(76px * var(--scale));
+  font-size: calc(20px * var(--scale));
+}
+
 .dg-pay-button__label {
   max-width: 100%;
   overflow: hidden;

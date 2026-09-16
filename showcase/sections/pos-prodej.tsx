@@ -258,6 +258,7 @@ export const section: ShowcaseSection = {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, width: '100%', maxWidth: 520 }}>
           <PayButton label="Zaplatit · F2" />
           <PayButton label="Zaplatit · F2" disabled />
+          <PayButton compact label="Vrátit 4 990 Kč" />
           <div style={{ display: 'flex', gap: 10 }}>
             <Button variant="secondary" size="xl" block>Sleva · F8</Button>
             <Button variant="secondary" size="xl" block>Odložit · F6</Button>

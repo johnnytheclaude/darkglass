@@ -13,18 +13,31 @@ export interface PayButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> 
   label: ReactNode
   /** Ikona před popiskem. */
   iconStart?: ReactNode
+  /**
+   * Nižší varianta 76 px s popiskem 20 px (artboard Pokladna 18 — vratka).
+   * Obrazovka, kde hlavní akce stojí v kartě souhrnu vedle dvou vedlejších
+   * tlačítek, ji má v návrhu o dvanáct pixelů nižší než prodejní „Zaplatit".
+   */
+  compact?: boolean
   ref?: Ref<HTMLButtonElement>
 }
 
 export function PayButton({
   label,
   iconStart,
+  compact = false,
   type = 'button',
   className,
   ...rest
 }: PayButtonProps) {
   return (
-    <button type={type} className={['dg-pay-button', className].filter(Boolean).join(' ')} {...rest}>
+    <button
+      type={type}
+      className={['dg-pay-button', compact ? 'dg-pay-button--compact' : null, className]
+        .filter(Boolean)
+        .join(' ')}
+      {...rest}
+    >
       {iconStart != null ? (
         <span className="dg-pay-button__icon" aria-hidden="true">
           {iconStart}
