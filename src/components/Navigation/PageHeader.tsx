@@ -1,6 +1,8 @@
 import type { ElementType, HTMLAttributes, ReactNode, Ref } from 'react'
 import { IconArrowLeft } from '../Icons/IconArrowLeft'
 
+export type PageHeaderSize = 'm' | 's'
+
 export interface PageHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   /** Tlačítko zpět se ukáže, jakmile je co dělat po kliknutí. */
   onBack?: () => void
@@ -26,6 +28,13 @@ export interface PageHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 't
    * panelu se předá `h2`, případně `span`, když nadpis stránky nese někdo jiný.
    */
   titleAs?: 'h1' | 'h2' | 'h3' | 'span'
+  /**
+   * Velikost hlavičky. `m` (výchozí) je nadpis obrazovky na desktopu a na
+   * vstupních obrazovkách telefonu — 26 px. `s` je pracovní hlavička
+   * telefonu z návrhu mobilu (19 px nadpis, 12,5 px popisek): obsah obrazovky
+   * je důležitější než její jméno, tak ji návrh drží nízkou.
+   */
+  size?: PageHeaderSize
   ref?: Ref<HTMLDivElement>
 }
 
@@ -45,7 +54,9 @@ export function PageHeader({
   className,
   ...rest
 }: PageHeaderProps) {
-  const classes = ['dg-page-header', className].filter(Boolean).join(' ')
+  const classes = ['dg-page-header', size === 's' && 'dg-page-header--s', className]
+    .filter(Boolean)
+    .join(' ')
   const BackLink: ElementType = backAs ?? 'a'
 
   return (

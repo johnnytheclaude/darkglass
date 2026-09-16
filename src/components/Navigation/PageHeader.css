@@ -77,3 +77,28 @@
   margin-left: auto;
   gap: calc(14px * var(--scale));
 }
+
+/* Pracovní hlavička telefonu — návrh mobilu (docs/navrh/html/mobil.html):
+   nadpis 19/700 (-0,4), popisek 12,5/400, mezera 10. Na malém displeji nese
+   obrazovku obsah, ne její jméno. */
+.dg-page-header--s {
+  gap: calc(10px * var(--scale));
+}
+
+.dg-page-header--s .dg-page-header__titles {
+  gap: calc(2px * var(--scale));
+}
+
+.dg-page-header--s .dg-page-header__title {
+  font-size: calc(19px * var(--scale));
+  letter-spacing: -0.4px;
+}
+
+.dg-page-header--s .dg-page-header__sub {
+  font-size: calc(12.5px * var(--scale));
+  line-height: 1.44;
+}
+
+.dg-page-header--s .dg-page-header__actions {
+  gap: calc(10px * var(--scale));
+}
