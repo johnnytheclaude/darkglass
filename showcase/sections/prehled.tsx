@@ -160,6 +160,22 @@ export const section: ShowcaseSection = {
       render: () => <DailyDemo />,
     },
     {
+      title: 'Období · dotyková velikost',
+      note: 'size="touch" zvedne záložku na 44 px — přepínač období na telefonu.',
+      render: () => (
+        <PeriodTabs
+          size="touch"
+          value="dnes"
+          tabs={[
+            { key: 'dnes', label: 'Dnes' },
+            { key: 'tyden', label: 'Týden' },
+            { key: 'mesic', label: 'Měsíc' },
+            { key: 'vlastni', label: 'Vlastní' },
+          ]}
+        />
+      ),
+    },
+    {
       title: 'Panel upozornění · 8 položek',
       note: 'Stejný panel jako v § Složené bloky, jen s delším seznamem.',
       wide: true,

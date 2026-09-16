@@ -9,6 +9,11 @@ export interface PeriodTabsProps extends Omit<HTMLAttributes<HTMLDivElement>, 'o
   tabs: PeriodTab[]
   value?: string
   onChange?: (key: string) => void
+  /**
+   * Velikost záložky. `m` (výchozí) je 38 px z návrhu. `touch` zvedne
+   * záložku na 44 px — přepínač období na telefonu se mačká prstem, ne myší.
+   */
+  size?: 'm' | 'touch'
   ref?: Ref<HTMLDivElement>
 }
 
@@ -16,8 +21,10 @@ export interface PeriodTabsProps extends Omit<HTMLAttributes<HTMLDivElement>, 'o
  * Období (Tab / Vše) — přepínač období pod grafem. Aktivní záložka je plná
  * v kontrastní barvě; skupina se v úzkém místě zalomí, nikdy nepřeteče.
  */
-export function PeriodTabs({ tabs, value, onChange, className, ...rest }: PeriodTabsProps) {
-  const classes = ['dg-period-tabs', className].filter(Boolean).join(' ')
+export function PeriodTabs({ tabs, value, onChange, size = 'm', className, ...rest }: PeriodTabsProps) {
+  const classes = ['dg-period-tabs', size === 'touch' && 'dg-period-tabs--touch', className]
+    .filter(Boolean)
+    .join(' ')
 
   return (
     <div className={classes} role="tablist" {...rest}>

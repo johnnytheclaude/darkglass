@@ -39,3 +39,9 @@
   color: var(--contrast-text);
   font-weight: 600;
 }
+
+/* Dotyková velikost pro telefon: 44 px je nejmenší cíl, který se dá spolehlivě
+   trefit prstem (návrh mobilu, artboard 09). */
+.dg-period-tabs--touch .dg-period-tabs__tab {
+  min-height: calc(44px * var(--scale));
+}
