@@ -8,6 +8,7 @@ import { Toast } from '../../src/components/Feedback/Toast'
 import { Tooltip } from '../../src/components/Feedback/Tooltip'
 import { IconAlert } from '../../src/components/Icons/IconAlert'
 import { IconCheck } from '../../src/components/Icons/IconCheck'
+import { IconCloudAlert } from '../../src/components/Icons/IconCloudAlert'
 import { IconCloudOff } from '../../src/components/Icons/IconCloudOff'
 import { IconFile } from '../../src/components/Icons/IconFile'
 import { IconInbox } from '../../src/components/Icons/IconInbox'
@@ -127,7 +128,13 @@ export const section: ShowcaseSection = {
             sub="Odejde do účetnictví, až bude spojení"
             actionLabel="Doklady"
           />
-          <Toast tone="danger" title="Doklad se neodeslal" sub="3 pokusy" actionLabel="Detail" />
+          <Toast
+            tone="danger"
+            icon={<IconCloudAlert size={17} />}
+            title="Doklad se neodeslal"
+            sub="3 pokusy"
+            actionLabel="Detail"
+          />
         </>
       ),
     },
