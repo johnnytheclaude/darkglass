@@ -33,6 +33,7 @@
 @import "./components/Controls/Chip.css";
 @import "./components/Controls/Radio.css";
 @import "./components/Controls/SegmentedControl.css";
+@import "./components/Controls/SegmentedField.css";
 @import "./components/Controls/Slider.css";
 @import "./components/Controls/Switch.css";
 @import "./components/Data/ActivityHeatmap.css";

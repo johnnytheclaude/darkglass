@@ -3,6 +3,7 @@ import { Checkbox } from '../../src/components/Controls/Checkbox'
 import { Chip, RemovableChip } from '../../src/components/Controls/Chip'
 import { Radio } from '../../src/components/Controls/Radio'
 import { SegmentedControl } from '../../src/components/Controls/SegmentedControl'
+import { SegmentedField } from '../../src/components/Controls/SegmentedField'
 import { Slider } from '../../src/components/Controls/Slider'
 import { Switch } from '../../src/components/Controls/Switch'
 import type { ShowcaseSection } from '../registry'
@@ -141,6 +142,48 @@ function UkazkaSegmentovanych() {
   )
 }
 
+/** Tentýž přepínač jako pole formuláře — drží hodnotu v DOM, bez onChange. */
+function UkazkaSegmentovanehoPole() {
+  return (
+    <form
+      style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-start' }}
+      onSubmit={(event) => event.preventDefault()}
+    >
+      <SegmentedField
+        name="zaokrouhleni"
+        label="Zaokrouhlení"
+        defaultValue="cele"
+        options={[
+          { value: 'cele', label: 'celé Kč' },
+          { value: 'bez', label: 'bez' },
+        ]}
+      />
+      <SegmentedField
+        name="skladani"
+        label="Skládání slev"
+        defaultValue="nejvyssi"
+        options={[
+          { value: 'scitat', label: 'sčítat' },
+          { value: 'nejvyssi', label: 'nejvyšší' },
+          { value: 'jedna', label: 'jen jedna' },
+        ]}
+      />
+      <SegmentedField
+        block
+        name="doklad"
+        label="Doklad"
+        defaultValue="uctenka"
+        options={[
+          { value: 'uctenka', label: 'Účtenka' },
+          { value: 'faktura', label: 'Faktura' },
+          { value: 'archiv', label: 'Archiv', disabled: true },
+        ]}
+        style={{ maxWidth: 420 }}
+      />
+    </form>
+  )
+}
+
 function UkazkaStitku() {
   const [jenAktivni, setJenAktivni] = useState(true)
   const [stitky, setStitky] = useState(['Kategorie A', 'Praha'])
@@ -218,6 +261,13 @@ export const section: ShowcaseSection = {
       stack: true,
       wide: true,
       render: () => <UkazkaSegmentovanych />,
+    },
+    {
+      title: 'Segmentovaný přepínač jako pole formuláře',
+      note: 'Stojí na radiích, takže se odesílá s formulářem a funguje i bez JavaScriptu — pro stránky vykreslené na serveru.',
+      stack: true,
+      wide: true,
+      render: () => <UkazkaSegmentovanehoPole />,
     },
     {
       title: 'Štítky a odznaky',
