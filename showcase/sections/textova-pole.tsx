@@ -6,6 +6,7 @@ import { TextArea } from '../../src/components/Fields/TextArea'
 import { TextField } from '../../src/components/Fields/TextField'
 import { IconCalendar } from '../../src/components/Icons/IconCalendar'
 import { IconChevronDown } from '../../src/components/Icons/IconChevronDown'
+import { IconScanText } from '../../src/components/Icons/IconScanText'
 import { IconSearch } from '../../src/components/Icons/IconSearch'
 import type { ShowcaseSection } from '../registry'
 
@@ -160,6 +161,21 @@ export const section: ShowcaseSection = {
       note: 'Přijímá přetažení i klik; po výběru ukáže jméno souboru.',
       stack: true,
       render: () => <UkazkaNahrani />,
+    },
+    {
+      title: 'Hledáček',
+      note: 'Vysoký rámeček pro focení papíru na telefonu — klepnutí spustí fotoaparát.',
+      stack: true,
+      render: () => (
+        <Dropzone
+          variant="viewfinder"
+          accept="image/*"
+          icon={<IconScanText size={56} />}
+          title="Srovnejte dodák do rámečku"
+          hint={null}
+          style={SIROKE}
+        />
+      ),
     },
   ],
 }

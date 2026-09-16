@@ -9,6 +9,11 @@ export interface DropzoneProps extends Omit<InputHTMLAttributes<HTMLInputElement
   title?: ReactNode
   /** Druhý řádek: čím ještě jde soubor vybrat a co se přijímá. */
   hint?: ReactNode
+  /**
+   * `upload` je plocha na přetažení souboru, `viewfinder` je vysoký rámeček
+   * hledáčku — obsluha do něj srovná papír a klepnutím spustí fotoaparát.
+   */
+  variant?: 'upload' | 'viewfinder'
   /** Ikona v kolečku; výchozí je šipka nahoru. */
   icon?: ReactNode
   /** Soubory z přetažení i z dialogu chodí sem. */
@@ -26,6 +31,7 @@ export interface DropzoneProps extends Omit<InputHTMLAttributes<HTMLInputElement
 export function Dropzone({
   title = 'Přetáhněte sem soubor',
   hint = 'nebo klikněte a vyberte soubor',
+  variant = 'upload',
   icon,
   onFiles,
   wrapperClassName,
@@ -43,6 +49,7 @@ export function Dropzone({
 
   const classes = [
     'dg-dropzone',
+    variant === 'viewfinder' ? 'dg-dropzone--viewfinder' : null,
     over ? 'is-over' : null,
     disabled ? 'is-disabled' : null,
     wrapperClassName,
@@ -70,10 +77,10 @@ export function Dropzone({
         {...rest}
       />
       <span className="dg-dropzone__icon" aria-hidden="true">
-        {icon ?? <IconUpload size={23} />}
+        {icon ?? <IconUpload size={variant === 'viewfinder' ? 56 : 23} />}
       </span>
-      <span className="dg-dropzone__title">{title}</span>
-      <span className="dg-dropzone__hint">{hint}</span>
+      {title != null ? <span className="dg-dropzone__title">{title}</span> : null}
+      {hint != null ? <span className="dg-dropzone__hint">{hint}</span> : null}
     </label>
   )
 }
