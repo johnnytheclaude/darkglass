@@ -19,10 +19,44 @@
   outline-offset: -0.5px;
 }
 
+/* Popisek a odznak srovnání drží jeden řádek — odznak je u pravé hrany karty. */
+.dg-stat-spark__head {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  gap: calc(8px * var(--scale));
+}
+
 .dg-stat-spark__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
   color: var(--text-2);
   font-size: calc(14.5px * var(--scale));
   font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-stat-spark__badge {
+  display: flex;
+  flex-shrink: 0;
+}
+
+/* Vysvětlivka pod grafem; bez grafu se přisadí k číslu automatickým marginem. */
+.dg-stat-spark__note {
+  margin-top: calc(8px * var(--scale));
+  overflow: hidden;
+  color: var(--text-3);
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dg-stat-spark__bars + .dg-stat-spark__note {
+  margin-top: calc(6px * var(--scale));
 }
 
 .dg-stat-spark__value {

@@ -4,6 +4,7 @@ import { KanbanCard, KanbanColumn } from '../../src/components/Data/KanbanColumn
 import { SegmentedProgress } from '../../src/components/Data/SegmentedProgress'
 import { StatSparkCard } from '../../src/components/Data/StatSparkCard'
 import { TableEmpty } from '../../src/components/Data/TableEmpty'
+import { Badge } from '../../src/components/Feedback/Badge'
 import { TableLoading } from '../../src/components/Data/TableLoading'
 import { Timeline, TimelineEvent } from '../../src/components/Data/Timeline'
 import { Avatar } from '../../src/components/Overview/Avatar'
@@ -120,6 +121,29 @@ export const section: ShowcaseSection = {
           bars={[13, 19, 16, 25, 22, 30, 27, 37, 34, 42]}
           style={{ maxWidth: 280 }}
         />
+      ),
+    },
+    {
+      title: 'Statistika s grafem — se srovnáním',
+      note: 'Odznak u popisku srovnává s minulým obdobím, poznámka pod grafem říká s čím. Bez dat se graf nekreslí vůbec.',
+      render: () => (
+        <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+          <StatSparkCard
+            label="Tržba celkem"
+            value="486 200 Kč"
+            badge={<Badge tone="success">+12,4 %</Badge>}
+            note="proti 1.–14. 8."
+            bars={[12, 16, 13, 20, 17, 25, 22]}
+            style={{ maxWidth: 280 }}
+          />
+          <StatSparkCard
+            label="Tržba celkem"
+            value="1 980 Kč"
+            note="první den provozu"
+            bars={[]}
+            style={{ maxWidth: 280 }}
+          />
+        </div>
       ),
     },
     {
