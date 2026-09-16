@@ -24,6 +24,7 @@
 @import "./components/Cards/NotificationsPanel.css";
 @import "./components/Charts/BarChartHorizontal.css";
 @import "./components/Charts/BarChartVertical.css";
+@import "./components/Charts/MiniBars.css";
 @import "./components/Charts/ChartCard.css";
 @import "./components/Charts/DonutChart.css";
 @import "./components/Charts/Sparkbars.css";
@@ -67,6 +68,7 @@
 @import "./components/Forms/RangeSlider.css";
 @import "./components/Lists/GroupedList.css";
 @import "./components/Lists/ListRow.css";
+@import "./components/Lists/MetaRow.css";
 @import "./components/Navigation/Accordion.css";
 @import "./components/Navigation/Breadcrumbs.css";
 @import "./components/Navigation/BulkActionBar.css";

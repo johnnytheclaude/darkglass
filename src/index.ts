@@ -49,6 +49,8 @@ export type {
 } from './components/Charts/BarChartVertical'
 export { ChartCard } from './components/Charts/ChartCard'
 export type { ChartCardProps, ChartTone } from './components/Charts/ChartCard'
+export { MiniBars } from './components/Charts/MiniBars'
+export type { MiniBar, MiniBarsProps } from './components/Charts/MiniBars'
 export { DonutChart } from './components/Charts/DonutChart'
 export type { DonutChartProps, DonutSegment } from './components/Charts/DonutChart'
 export { Sparkbars } from './components/Charts/Sparkbars'
@@ -93,6 +95,8 @@ export type { TimelineEventProps, TimelineProps, TimelineTone } from './componen
 
 export { GroupedList } from './components/Lists/GroupedList'
 export type { GroupedListProps } from './components/Lists/GroupedList'
+export { MetaRow } from './components/Lists/MetaRow'
+export type { MetaRowProps, MetaRowTone } from './components/Lists/MetaRow'
 export { ListRow } from './components/Lists/ListRow'
 export type { ListRowProps, ListRowTone } from './components/Lists/ListRow'
 

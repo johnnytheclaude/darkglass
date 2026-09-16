@@ -1,0 +1,65 @@
+/* Row / Údaj se stavem — § Řádky seznamů.
+   Návrh: mezera 10, název 14/500, druhý řádek 12,5/400 ztlumený,
+   stav 12,5/600 barevný. Mezi řádky nic nekreslí — drží je mezera karty. */
+
+.dg-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  gap: calc(10px * var(--scale));
+  font-family: var(--font), system-ui, sans-serif;
+}
+
+.dg-meta-row__text {
+  display: flex;
+  flex: 1 1 calc(160px * var(--scale));
+  flex-direction: column;
+  min-width: 0;
+  gap: calc(2px * var(--scale));
+}
+
+.dg-meta-row__title {
+  overflow: hidden;
+  color: var(--text-1);
+  font-size: calc(14px * var(--scale));
+  font-weight: 500;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+}
+
+.dg-meta-row__sub {
+  color: var(--text-3);
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.dg-meta-row__status {
+  flex: 0 0 auto;
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.dg-meta-row__status--ok {
+  color: var(--success);
+}
+
+.dg-meta-row__status--warning {
+  color: var(--warning);
+}
+
+.dg-meta-row__status--danger {
+  color: var(--danger);
+}
+
+.dg-meta-row__status--accent {
+  color: var(--accent);
+}
+
+.dg-meta-row__status--neutral {
+  color: var(--text-3);
+}

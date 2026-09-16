@@ -1,6 +1,7 @@
 import { BarChartHorizontal } from '../../src/components/Charts/BarChartHorizontal'
 import { BarChartVertical } from '../../src/components/Charts/BarChartVertical'
 import { DonutChart } from '../../src/components/Charts/DonutChart'
+import { MiniBars } from '../../src/components/Charts/MiniBars'
 import { Sparkbars } from '../../src/components/Charts/Sparkbars'
 import { StackedBarChart } from '../../src/components/Charts/StackedBarChart'
 import type { ShowcaseSection } from '../registry'
@@ -14,6 +15,23 @@ export const section: ShowcaseSection = {
   order: 100,
   note: 'Jen sloupce a prstence — spolehlivě se vykreslí a čtou se bez legendy.',
   demos: [
+    {
+      title: 'Nízké sloupce do karty',
+      note: 'Hodnota nad sloupcem, prázdné pásmo zůstává vidět jako tenká stopa.',
+      wide: true,
+      render: () => (
+        <div style={{ maxWidth: 420 }}>
+          <MiniBars
+            bars={[
+              { label: '0–6 měs.', value: 1360, valueLabel: '1 360 Kč' },
+              { label: '6–12 měs.', value: 0, valueLabel: '0 Kč' },
+              { label: '12–24 měs.', value: 0, valueLabel: '0 Kč' },
+              { label: '24+ měs.', value: 0, valueLabel: '0 Kč' },
+            ]}
+          />
+        </div>
+      ),
+    },
     {
       title: 'Svislé sloupce s osou',
       note: 'Osa drží vlevo, vyzdvižený sloupec má nad sebou hodnotu.',

@@ -7,6 +7,7 @@ import { IconFile } from '../../src/components/Icons/IconFile'
 import { IconX } from '../../src/components/Icons/IconX'
 import { GroupedList } from '../../src/components/Lists/GroupedList'
 import { ListRow } from '../../src/components/Lists/ListRow'
+import { MetaRow } from '../../src/components/Lists/MetaRow'
 import { IconReceipt } from '../../src/components/Icons/IconReceipt'
 import { Avatar } from '../../src/components/Overview/Avatar'
 import { Switch } from '../../src/components/Controls/Switch'
@@ -24,6 +25,20 @@ export const section: ShowcaseSection = {
   order: 55,
   note: 'Nejpoužívanější prvek aplikace. Vysoký 74 px, aby se dal pohodlně trefit i prstem. Řádek s množstvím (ListRow / Množství) je řádek košíku — má vlastní ukázku v § Pokladna · prodej, časová osa je v § Data · rozšíření.',
   demos: [
+    {
+      title: 'Údaj se stavem',
+      note: 'Řádek do karty: dvouřádkový text vlevo, barevný stav vpravo. Vlastní plochu nemá.',
+      stack: true,
+      render: () => (
+        <SirkaRadku>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <MetaRow title="Jaro 2026 · JARO10" sub="10 % · 37 / 120 uplatněno" status="aktivní" tone="ok" />
+            <MetaRow title="Vánoce 2025 · XMAS15" sub="15 % · 88 / 100 uplatněno" status="skončila" />
+            <MetaRow title="Otevření e-shopu" sub="200 Kč · připraveno" status="naplánováno" tone="warning" />
+          </div>
+        </SirkaRadku>
+      ),
+    },
     {
       title: 'S ikonou a šipkou',
       note: 'Dlouhý nadpis se ořízne třemi tečkami — datum ani šipka se nikdy neuříznou.',
