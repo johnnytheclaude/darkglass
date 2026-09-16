@@ -111,6 +111,7 @@ export function ListRow({
     interactive ? 'dg-list-row--interactive' : null,
     asLink ? 'dg-list-row--link' : null,
     active ? 'is-active' : null,
+    selected ? 'is-selected' : null,
     disabled ? 'is-disabled' : null,
     className,
   ]

@@ -56,6 +56,12 @@
   outline-color: var(--accent);
 }
 
+/* Zaskrtnuty radek hromadneho vyberu: tichejsi tint akcentu (artboard 18 —
+   vratka). Vybranost nese plocha, aby bylo ze dvou metru videt, co se vraci. */
+.dg-list-row.is-selected {
+  background-color: var(--accent-soft);
+}
+
 .dg-list-row--interactive:focus-visible {
   outline: 2px solid var(--accent-text);
   outline-offset: -2px;

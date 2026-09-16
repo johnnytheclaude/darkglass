@@ -43,6 +43,11 @@
   font-size: calc(12px * var(--scale));
 }
 
+/* Sirsi popisek z artboardu 18 — delsi pravidlo se do 110 px zalomi. */
+.dg-note-row--wide .dg-note-row__label {
+  width: calc(172px * var(--scale));
+}
+
 .dg-note-row--compact .dg-note-row__label {
   width: calc(80px * var(--scale));
 }

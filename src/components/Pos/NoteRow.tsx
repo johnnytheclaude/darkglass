@@ -9,6 +9,11 @@ export interface NoteRowProps extends HTMLAttributes<HTMLDivElement> {
   compact?: boolean
   /** Akce vpravo (např. „Rezervovat“); bez ní řádek jen informuje. */
   action?: ReactNode
+  /**
+   * Sirsi popisek 172 px (artboard Pokladna 18 — „Vrací se zaplacená cena“);
+   * do vychozich 110 px se delsi pravidlo zalomi na dva radky.
+   */
+  wide?: boolean
   ref?: Ref<HTMLDivElement>
 }
 
@@ -17,10 +22,10 @@ export interface NoteRowProps extends HTMLAttributes<HTMLDivElement> {
  * Používá se tam, kde údaj nemá vlastní řádek seznamu (jiné sklady, důvod,
  * stav spojení). Text je běžný obsah, ne dekorace — nezesvětluje se průhledností.
  */
-export function NoteRow({ label, children, action, compact, className, ...rest }: NoteRowProps) {
+export function NoteRow({ label, children, action, compact, wide, className, ...rest }: NoteRowProps) {
   return (
     <div
-      className={['dg-note-row', compact ? 'dg-note-row--compact' : null, className]
+      className={['dg-note-row', compact ? 'dg-note-row--compact' : null, wide ? 'dg-note-row--wide' : null, className]
         .filter(Boolean)
         .join(' ')}
       {...rest}
