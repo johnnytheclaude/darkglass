@@ -13,7 +13,10 @@
   gap: calc(14px * var(--scale));
 }
 
+/* Kolečko zpět je z návrhu 40 px, prst ale potřebuje 44 — plocha se proto
+   rozšíří neviditelně stejně jako u tlačítek (::after), vzhled zůstává. */
 .dg-page-header__back {
+  position: relative;
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
@@ -31,6 +34,16 @@
 
 .dg-page-header__back {
   text-decoration: none;
+}
+
+.dg-page-header__back::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(44px, 100%);
+  height: max(44px, 100%);
+  transform: translate(-50%, -50%);
 }
 
 .dg-page-header__back:hover {
