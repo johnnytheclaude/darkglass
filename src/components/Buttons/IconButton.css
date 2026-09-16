@@ -2,6 +2,21 @@
    Vzhled variant i stavy dědí z .dg-button, tady je jen geometrie. */
 
 .dg-button.dg-icon-button {
+  position: relative;
   width: calc(var(--dg-button-h) * var(--scale));
   padding: 0;
+}
+
+/* Prst trefí 44 px, i když se čtverec kreslí menší — 34 a 42 px z návrhu jsou
+   pod dotykovým minimem a na telefonu (šipky na týden v hlavičce) by se
+   mačkaly vedle. Plocha je neviditelná, takže rozvržení zůstává podle návrhu;
+   stejný trik používá šipka zpět v PageHeaderu. */
+.dg-button.dg-icon-button::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(44px, 100%);
+  height: max(44px, 100%);
+  transform: translate(-50%, -50%);
 }
