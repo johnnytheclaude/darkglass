@@ -4,6 +4,8 @@
    sloupec rádius 8, prázdné pásmo tenká stopa 4 px. */
 
 .dg-mini-bars {
+  /* Nejvyšší sloupec podle návrhu; ostatní se k němu poměřují. */
+  --dg-mini-bars-plot: calc(72px * var(--scale));
   display: flex;
   align-items: flex-end;
   box-sizing: border-box;
@@ -37,15 +39,8 @@
   color: var(--text-1);
 }
 
-.dg-mini-bars__track {
-  display: flex;
-  flex: 1 1 auto;
-  align-items: flex-end;
-  width: 100%;
-  min-height: 0;
-}
-
 .dg-mini-bars__bar {
+  flex: 0 0 auto;
   width: 100%;
   min-height: calc(4px * var(--scale));
   border-radius: var(--r-xs);

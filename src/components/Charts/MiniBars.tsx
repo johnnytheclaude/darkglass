@@ -17,6 +17,8 @@ export interface MiniBarsProps extends HTMLAttributes<HTMLDivElement> {
 
 /**
  * Chart / Mini Bars — nízké sloupce s hodnotou nad sloupcem a popiskem pod ním.
+ * Sloupec i hodnota sedí u dolní hrany, takže se u prázdného pásma nula drží
+ * dole u stopy, ne nahoře u vrcholu sousedního sloupce.
  * Na rozdíl od `BarChartVertical` nemá osu ani vlastní kartu: vejde se do karty
  * vedle textu, takže se hodí na rozpad jedné veličiny do několika pásem.
  * Prázdné pásmo zůstává vidět jako tenká stopa, aby se sloupce daly počítat.
@@ -40,12 +42,15 @@ export function MiniBars({ bars, max, className, ...rest }: MiniBarsProps) {
                 {bar.valueLabel}
               </span>
             ) : null}
-            <span className="dg-mini-bars__track">
-              <span
-                className={on ? 'dg-mini-bars__bar dg-mini-bars__bar--on' : 'dg-mini-bars__bar'}
-                style={{ height: `${Math.max(0, Math.min(100, (bar.value / top) * 100))}%` }}
-              />
-            </span>
+            <span
+              className={on ? 'dg-mini-bars__bar dg-mini-bars__bar--on' : 'dg-mini-bars__bar'}
+              style={{
+                height: `calc(var(--dg-mini-bars-plot) * ${Math.max(
+                  0,
+                  Math.min(1, bar.value / top),
+                )})`,
+              }}
+            />
             <span className="dg-mini-bars__label">{bar.label}</span>
           </div>
         )
