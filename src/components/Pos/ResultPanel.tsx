@@ -12,6 +12,8 @@ export interface ResultPanelProps extends Omit<HTMLAttributes<HTMLDivElement>, '
   title: ReactNode
   /** Řádek pod nadpisem — identita dokladu, typ, způsob platby. */
   meta?: ReactNode
+  /** Hutnější rytmus pro stav, který nese víc obsahu (kód na displeji). */
+  compact?: boolean
   /** Obsah panelu pod hlavičkou: částka, stav tisku, akce. */
   children?: ReactNode
   ref?: Ref<HTMLDivElement>
@@ -23,8 +25,10 @@ export interface ResultPanelProps extends Omit<HTMLAttributes<HTMLDivElement>, '
  * pod ním stojí jen to, o čem se ještě rozhoduje. Panel má pevnou šířku
  * čitelného sloupce a zbytek plochy nechává prázdný — je to konec, ne formulář.
  */
-export function ResultPanel({ icon, tone = 'success', title, meta, className, children, ...rest }: ResultPanelProps) {
-  const classes = ['dg-result-panel', `dg-result-panel--${tone}`, className].filter(Boolean).join(' ')
+export function ResultPanel({ icon, tone = 'success', title, meta, compact = false, className, children, ...rest }: ResultPanelProps) {
+  const classes = ['dg-result-panel', `dg-result-panel--${tone}`, compact ? 'dg-result-panel--compact' : null, className]
+    .filter(Boolean)
+    .join(' ')
 
   return (
     <div className={classes} {...rest}>

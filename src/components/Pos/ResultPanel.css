@@ -85,3 +85,30 @@
   background-color: var(--surface-2);
   color: var(--text-2);
 }
+
+/* Hutnější rytmus — stav s kódem na displeji nese o dva bloky víc a na
+   pokladním displeji 1000 px by jinak vytlačil hlavní akci mimo plochu.
+   Kód zůstává ve své fyzické velikosti, ubírá se jen kolem něj. */
+.dg-result-panel--compact {
+  gap: calc(12px * var(--scale));
+}
+
+.dg-result-panel--compact .dg-result-panel__icon {
+  width: calc(64px * var(--scale));
+  height: calc(64px * var(--scale));
+}
+
+.dg-result-panel--compact .dg-result-panel__icon > * {
+  width: calc(32px * var(--scale));
+  height: calc(32px * var(--scale));
+}
+
+.dg-result-panel--compact .dg-result-panel__title {
+  font-size: calc(32px * var(--scale));
+  letter-spacing: -1.1px;
+}
+
+.dg-result-panel--compact .dg-result-panel__body {
+  margin-top: calc(2px * var(--scale));
+  gap: calc(14px * var(--scale));
+}
