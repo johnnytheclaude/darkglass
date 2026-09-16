@@ -7,6 +7,7 @@ import { IconFile } from '../../src/components/Icons/IconFile'
 import { IconX } from '../../src/components/Icons/IconX'
 import { GroupedList } from '../../src/components/Lists/GroupedList'
 import { ListRow } from '../../src/components/Lists/ListRow'
+import { IconReceipt } from '../../src/components/Icons/IconReceipt'
 import { Avatar } from '../../src/components/Overview/Avatar'
 import { Switch } from '../../src/components/Controls/Switch'
 import type { ShowcaseSection } from '../registry'
@@ -36,6 +37,29 @@ export const section: ShowcaseSection = {
             title="Záznam se nepodařilo odeslat"
             sub="ZÁZ-2026-000021 · účetní ho nevidí"
             date="13. 9."
+            onClick={() => {}}
+          />
+        </SirkaRadku>
+      ),
+    },
+    {
+      title: 'Vybraný řádek',
+      note: 'Seznam s detailem vedle sebe (doklady, odložené účty): vybraný řádek drží akcentovou výplň a obrys, aby byl poznat i ze dvou metrů. Nesouvisí se zaškrtávátkem hromadného výběru.',
+      stack: true,
+      wide: true,
+      render: () => (
+        <SirkaRadku>
+          <ListRow
+            icon={<IconReceipt size={19} />}
+            title="P01-2026-000042"
+            sub="hotově · 8 460 Kč · 10:18"
+            active
+            onClick={() => {}}
+          />
+          <ListRow
+            icon={<IconReceipt size={19} />}
+            title="P01-2026-000041"
+            sub="kartou · 2 480 Kč · 9:41"
             onClick={() => {}}
           />
         </SirkaRadku>

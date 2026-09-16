@@ -35,6 +35,13 @@
   text-decoration: none;
 }
 
+/* Vybraný řádek: akcentová výplň a obrys, jako vybraný doklad v návrhu.
+   Text zůstává stejný — vybranost nese plocha, ne jiná barva písma. */
+.dg-list-row.is-active {
+  background-color: var(--accent-soft);
+  outline-color: var(--accent);
+}
+
 .dg-list-row--interactive:focus-visible {
   outline: 2px solid var(--accent-text);
   outline-offset: -2px;

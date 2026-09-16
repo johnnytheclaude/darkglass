@@ -53,6 +53,13 @@ export interface ListRowProps extends Omit<HTMLAttributes<HTMLDivElement>, 'titl
   linkAs?: ElementType
   /** Řádek uvnitř seskupeného seznamu — bez vlastní výplně a rádiusu. */
   inset?: boolean
+  /**
+   * Vybraný řádek v seznamu, jehož obsah se ukazuje vedle (seznam + detail).
+   * Kreslí se akcentem, ne jen tmavší výplní — v návrhu je vybraný doklad
+   * poznat i ze dvou metrů. Nemá nic společného se `selected`, což je
+   * zaškrtávátko hromadného výběru.
+   */
+  active?: boolean
   /** Nedostupná akce — řádek zůstane čitelný, ale nereaguje a neostří se. */
   disabled?: boolean
   ref?: Ref<HTMLDivElement>
@@ -81,6 +88,7 @@ export function ListRow({
   href,
   linkAs,
   inset = false,
+  active = false,
   disabled = false,
   className,
   onClick,
@@ -95,6 +103,7 @@ export function ListRow({
     inset ? 'dg-list-row--inset' : null,
     interactive ? 'dg-list-row--interactive' : null,
     asLink ? 'dg-list-row--link' : null,
+    active ? 'is-active' : null,
     disabled ? 'is-disabled' : null,
     className,
   ]
@@ -172,6 +181,7 @@ export function ListRow({
          ho serverová komponenta Nextu nepředá klientovi a stránka spadne. */
       onKeyDown={interactive || onKeyDown ? handleKeyDown : undefined}
       role={interactive ? 'button' : undefined}
+      aria-current={active ? true : undefined}
       tabIndex={interactive ? 0 : undefined}
       aria-disabled={disabled ? true : undefined}
       {...rest}
