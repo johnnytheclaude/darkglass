@@ -14,6 +14,7 @@
 @import "./components/Calendar/DatePresets.css";
 @import "./components/Calendar/TimePicker.css";
 @import "./components/Cards/Card.css";
+@import "./components/Cards/ProductCard.css";
 @import "./components/Cards/FloatingPill.css";
 @import "./components/Cards/GaugeCard.css";
 @import "./components/Cards/KeyValueList.css";

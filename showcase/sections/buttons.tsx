@@ -1,10 +1,12 @@
 import { Button } from '../../src/components/Buttons/Button'
 import type { ButtonProps } from '../../src/components/Buttons/Button'
 import { IconButton } from '../../src/components/Buttons/IconButton'
+import { IconCheck } from '../../src/components/Icons/IconCheck'
 import { IconChevronLeft } from '../../src/components/Icons/IconChevronLeft'
 import { IconEllipsis } from '../../src/components/Icons/IconEllipsis'
 import { IconPencil } from '../../src/components/Icons/IconPencil'
 import { IconPlus } from '../../src/components/Icons/IconPlus'
+import { IconScanBarcode } from '../../src/components/Icons/IconScanBarcode'
 import { IconSearch } from '../../src/components/Icons/IconSearch'
 import { IconX } from '../../src/components/Icons/IconX'
 import type { ShowcaseSection } from '../registry'
@@ -78,6 +80,28 @@ export const section: ShowcaseSection = {
             Velké
           </Button>
         </>
+      ),
+    },
+    {
+      title: 'Akce na telefonu',
+      note:
+        'Btn / Touch — 64 px a rádius 24 místo pilulky, vždy na celou šířku. ' +
+        'Hlavní akce mobilního rozhraní u spodní hrany, na dosah palce.',
+      stack: true,
+      render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: 350 }}>
+          <Button size="touch" block iconStart={<IconScanBarcode />}>
+            Načíst další kód
+          </Button>
+          <div style={{ display: 'flex', gap: 10 }}>
+            <Button size="touch" variant="secondary" block>
+              Zamítnout
+            </Button>
+            <Button size="touch" block iconStart={<IconCheck />}>
+              Schválit
+            </Button>
+          </div>
+        </div>
       ),
     },
     {

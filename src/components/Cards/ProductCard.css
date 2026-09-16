@@ -1,0 +1,56 @@
+/* Karta / Produkt — § Mobil · Skener (docs/navrh/html/mobil.html, artboard 03).
+   Návrh: rádius 24, odsazení 16, mezera 4, název 17/600 (-0,3) s řádkováním
+   21 px, cena 30/700 (-1) bez zalomení, meta 12,5/400 tlumeně. */
+
+.dg-product-card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(16px * var(--scale));
+  border-radius: var(--r-lg);
+  background-color: var(--surface);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  gap: calc(4px * var(--scale));
+  font-family: var(--font), system-ui, sans-serif;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
+}
+
+.dg-product-card__name {
+  color: var(--text-1);
+  font-size: calc(17px * var(--scale));
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  line-height: 1.25;
+}
+
+/* Cena se nezalomí ani na 375 px: je to jedno číslo, ne věta. */
+.dg-product-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: calc(8px * var(--scale));
+  color: var(--text-1);
+  font-size: calc(30px * var(--scale));
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.dg-product-card__price-note {
+  color: var(--accent-text);
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.dg-product-card__meta {
+  color: var(--text-3);
+  font-size: calc(12.5px * var(--scale));
+  font-weight: 400;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}

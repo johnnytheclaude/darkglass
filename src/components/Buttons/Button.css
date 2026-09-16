@@ -97,6 +97,18 @@
   --dg-button-icon: 20px;
 }
 
+/* Akce na telefonu (§ Mobil — docs/navrh/html/mobil.html): 64 px, rádius 24,
+   odsazení 20, popisek 17 px, ikona 20 px. Jediná velikost mimo pilulku —
+   na dosah palce u spodní hrany a podle návrhu vždy na celou šířku. */
+.dg-button--touch {
+  --dg-button-h: 64px;
+  --dg-button-px: 20px;
+  --dg-button-fs: 17px;
+  --dg-button-icon: 20px;
+
+  border-radius: var(--r-lg);
+}
+
 .dg-button--block {
   width: 100%;
 }

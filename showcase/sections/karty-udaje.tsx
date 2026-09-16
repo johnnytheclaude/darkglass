@@ -1,5 +1,6 @@
 import { Card } from '../../src/components/Cards/Card'
 import { KeyValueList, KeyValueRow } from '../../src/components/Cards/KeyValueList'
+import { ProductCard } from '../../src/components/Cards/ProductCard'
 import { StatCard } from '../../src/components/Cards/StatCard'
 import { IconButton } from '../../src/components/Buttons/IconButton'
 import { IconPencil } from '../../src/components/Icons/IconPencil'
@@ -46,6 +47,23 @@ export const section: ShowcaseSection = {
           >
             <span style={{ color: 'var(--text-3)', fontSize: 13 }}>Místo pro obsah</span>
           </Card>
+        </div>
+      ),
+    },
+    {
+      title: 'Karta / Produkt',
+      note:
+        'Co se právě načetlo: název, cena a odkud údaj je. Hlavička pracovní ' +
+        'obrazovky telefonu — cena je největší text, poznámka u ní nese akci ceny.',
+      stack: true,
+      render: () => (
+        <div style={{ width: 350, maxWidth: '100%' }}>
+          <ProductCard
+            name="Sako CITY CLASSIC · modrá"
+            price="4 990 Kč"
+            priceNote="akce"
+            meta="načteno kamerou · kód 2000000118"
+          />
         </div>
       ),
     },

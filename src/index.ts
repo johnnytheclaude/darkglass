@@ -14,6 +14,8 @@ export type { DatePresetsProps, DatePresetOption } from './components/Calendar/D
 export { TimePicker } from './components/Calendar/TimePicker'
 export type { TimePickerProps } from './components/Calendar/TimePicker'
 
+export { ProductCard } from './components/Cards/ProductCard'
+export type { ProductCardProps } from './components/Cards/ProductCard'
 export { Card } from './components/Cards/Card'
 export type { CardProps } from './components/Cards/Card'
 export { FloatingPill } from './components/Cards/FloatingPill'
