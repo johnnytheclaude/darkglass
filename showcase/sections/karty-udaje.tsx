@@ -105,6 +105,17 @@ export const section: ShowcaseSection = {
       ),
     },
     {
+      title: 'Velké číslo · úzká dvojice (telefon)',
+      note: 'Varianta size="s" z návrhu mobilu — dvě karty vedle sebe na 375 px.',
+      stack: true,
+      render: () => (
+        <div style={{ display: 'flex', gap: 10, maxWidth: 350 }}>
+          <StatCard size="s" label="Doklady" value="3" />
+          <StatCard size="s" label="Kusů" value="4" />
+        </div>
+      ),
+    },
+    {
       title: 'Avataři · čtyři velikosti',
       note: 'Iniciály rostou s kolečkem (28/36/44/56 px podle návrhu).',
       render: () => (

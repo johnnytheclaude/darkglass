@@ -25,7 +25,7 @@ export type { GaugeCardProps, GaugeCardStat, GaugeCardTone } from './components/
 export { KeyValueList, KeyValueRow } from './components/Cards/KeyValueList'
 export type { KeyValueListProps, KeyValueRowProps } from './components/Cards/KeyValueList'
 export { StatCard } from './components/Cards/StatCard'
-export type { StatCardProps, StatDelta } from './components/Cards/StatCard'
+export type { StatCardProps, StatCardSize, StatDelta } from './components/Cards/StatCard'
 export { LabelPreview } from './components/Cards/LabelPreview'
 export type { LabelPreviewProps } from './components/Cards/LabelPreview'
 export { QrCard } from './components/Cards/QrCard'

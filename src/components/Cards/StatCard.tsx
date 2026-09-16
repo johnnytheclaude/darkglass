@@ -3,6 +3,7 @@ import { IconArrowDown } from '../Icons/IconArrowDown'
 import { IconArrowUp } from '../Icons/IconArrowUp'
 
 export type StatDelta = 'up' | 'down' | 'none'
+export type StatCardSize = 'm' | 's'
 
 export interface StatCardProps extends HTMLAttributes<HTMLDivElement> {
   /** Popisek nad číslem — co se měří. */
@@ -13,6 +14,12 @@ export interface StatCardProps extends HTMLAttributes<HTMLDivElement> {
   delta?: ReactNode
   /** Směr srovnání; `none` je šedé bez šipky. */
   deltaDirection?: StatDelta
+  /**
+   * Velikost. `m` (výchozí) je karta obrazovky — číslo 34 px a výška 150.
+   * `s` je úzká dvojice údajů z návrhu mobilu (artboard 09): výplň 14,
+   * popisek 12,5 a číslo 24, aby se dvě karty vešly vedle sebe na 375 px.
+   */
+  size?: StatCardSize
   ref?: Ref<HTMLDivElement>
 }
 
@@ -25,10 +32,13 @@ export function StatCard({
   value,
   delta,
   deltaDirection = 'none',
+  size = 'm',
   className,
   ...rest
 }: StatCardProps) {
-  const classes = ['dg-stat-card', className].filter(Boolean).join(' ')
+  const classes = ['dg-stat-card', size === 's' && 'dg-stat-card--s', className]
+    .filter(Boolean)
+    .join(' ')
 
   return (
     <div className={classes} {...rest}>

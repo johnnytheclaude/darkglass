@@ -67,3 +67,27 @@
 .dg-stat-card__delta--none {
   color: var(--text-3);
 }
+
+/* Úzká varianta z návrhu mobilu (artboard 09, „Doklady / Kusů“): dvě karty
+   vedle sebe na 375 px. Číslo tu nemá výšku, kterou by tlačilo dolů, takže
+   `margin-top: auto` u hodnoty odpadá. */
+.dg-stat-card--s {
+  min-height: 0;
+  padding: calc(14px * var(--scale));
+  gap: calc(2px * var(--scale));
+}
+
+.dg-stat-card--s .dg-stat-card__label {
+  font-size: calc(12.5px * var(--scale));
+}
+
+.dg-stat-card--s .dg-stat-card__value {
+  margin-top: 0;
+  font-size: calc(24px * var(--scale));
+  letter-spacing: -0.8px;
+}
+
+.dg-stat-card--s .dg-stat-card__delta {
+  margin-top: calc(4px * var(--scale));
+  font-size: calc(12px * var(--scale));
+}
