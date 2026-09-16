@@ -58,6 +58,19 @@ export const section: ShowcaseSection = {
       ),
     },
     {
+      title: 'Užší řádek telefonu',
+      note: 'Varianta z artboardu mobilu (Můj rozpis): 62 px a menší písmo, aby se na displej telefonu vešel celý týden. Jinak se chová stejně — odznak i akcentovaný výběr platí dál.',
+      stack: true,
+      wide: true,
+      render: () => (
+        <SirkaRadku>
+          <ListRow compact title="Úterý 15. 9." sub="8:00 – 18:00 · 10 h" />
+          <ListRow compact active title="Středa 16. 9." sub="8:00 – 18:00 · 10 h" badge={<Badge tone="info">dnes</Badge>} />
+          <ListRow compact disabled title="Neděle 20. 9." sub="volno" />
+        </SirkaRadku>
+      ),
+    },
+    {
       title: 'Vybraný řádek',
       note: 'Seznam s detailem vedle sebe (doklady, odložené účty): vybraný řádek drží akcentovou výplň a obrys, aby byl poznat i ze dvou metrů. Nesouvisí se zaškrtávátkem hromadného výběru.',
       stack: true,

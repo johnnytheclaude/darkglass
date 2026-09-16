@@ -18,6 +18,20 @@
   outline-offset: -0.5px;
 }
 
+/* Užší varianta z artboardu mobilu (mobil/10 „Den"): výška 62, nadpis 14,5,
+   podřádek 12,5. Sedm dnů týdne se tak na telefonu vejde bez rolování. */
+.dg-list-row--compact {
+  min-height: calc(62px * var(--scale));
+}
+
+.dg-list-row--compact .dg-list-row__title {
+  font-size: calc(14.5px * var(--scale));
+}
+
+.dg-list-row--compact .dg-list-row__sub {
+  font-size: calc(12.5px * var(--scale));
+}
+
 .dg-list-row--inset {
   border-radius: 0;
   background-color: transparent;

@@ -51,6 +51,11 @@ export interface ListRowProps extends Omit<HTMLAttributes<HTMLDivElement>, 'titl
    * `Link`, aby klepnutí nepřenačítalo celou stránku. Bez `href` se neuplatní.
    */
   linkAs?: ElementType
+  /**
+   * Užší řádek z artboardu mobilu (mobil/10 „Den"): 62 px místo 74 a menší
+   * písmo, aby se na displej telefonu vešel celý týden naráz.
+   */
+  compact?: boolean
   /** Řádek uvnitř seskupeného seznamu — bez vlastní výplně a rádiusu. */
   inset?: boolean
   /**
@@ -87,6 +92,7 @@ export function ListRow({
   chevron,
   href,
   linkAs,
+  compact = false,
   inset = false,
   active = false,
   disabled = false,
@@ -100,6 +106,7 @@ export function ListRow({
   const showChevron = chevron ?? (onClick != null || href != null)
   const classes = [
     'dg-list-row',
+    compact ? 'dg-list-row--compact' : null,
     inset ? 'dg-list-row--inset' : null,
     interactive ? 'dg-list-row--interactive' : null,
     asLink ? 'dg-list-row--link' : null,
