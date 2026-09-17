@@ -1,0 +1,23 @@
+/* FormStack (sloupec polí formuláře) — § Formuláře.
+   Návrh: karta formuláře je flex sloupec s mezerou 14 mezi poli
+   (admin.html, „Karta / Nastavení akce" — pole jsou přímé děti s gap 14).
+   Uvnitř pole zůstává mezera popisek → rámeček 8 (viz FieldShell). */
+
+.dg-formstack {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  gap: var(--dg-gap-m);
+}
+
+.dg-formstack--tesne {
+  gap: var(--dg-gap-s);
+}
+
+/* Ve scrollovaném sloupci si pole drží svou výšku — bez toho se blok se
+   seznamem výsledků na nízkém okně smrskne na nulu (stejně jako v dialogu). */
+.dg-formstack > * {
+  flex-shrink: 0;
+}

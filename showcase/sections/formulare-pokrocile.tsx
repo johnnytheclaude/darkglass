@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { SelectField } from '../../src/components/Fields/SelectField'
 import { Autocomplete } from '../../src/components/Forms/Autocomplete'
 import { FileList, FileRow } from '../../src/components/Forms/FileList'
+import { FormStack } from '../../src/components/Forms/FormStack'
 import { MultiSelectField } from '../../src/components/Forms/MultiSelectField'
 import { OtpField } from '../../src/components/Forms/OtpField'
 import { PasswordField } from '../../src/components/Forms/PasswordField'
@@ -169,6 +170,18 @@ export const section: ShowcaseSection = {
   order: 35,
   note: 'Rozbalené stavy, vícenásobný výběr, hesla a soubory.',
   demos: [
+    {
+      title: 'Sloupec polí formuláře',
+      note: 'FormStack drží svislou mezeru mezi poli za celý formulář (14 z návrhu, „těsně“ 12). Pole si margin nikdy nedělá samo — jinak se mezera zdvojí ve dvousloupcové mřížce a zmizí, když se pole podmíněně vynechá. Uvnitř Card a FormDialog ho psát nemusíš, ty stack už jsou.',
+      stack: true,
+      render: () => (
+        <FormStack style={POLE}>
+          <SelectField label="Sklad" value="alfa" options={FIRMY} onValueChange={() => {}} />
+          <SelectField label="Dodavatel" value="beta" options={FIRMY} onValueChange={() => {}} />
+          <PasswordField label="Heslo k účtu" value="tajne-heslo" onChange={() => {}} />
+        </FormStack>
+      ),
+    },
     {
       title: 'Rozbalený výběr',
       note: 'Nabídka je v toku pod polem, ne v překryvu — při odrolování zůstane u pole.',

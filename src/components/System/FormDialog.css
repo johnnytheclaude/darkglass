@@ -94,7 +94,7 @@
   min-height: 0;
   overflow: auto;
   width: 100%;
-  gap: calc(14px * var(--scale));
+  gap: var(--dg-gap-m);
 }
 
 /* Ve scrollovaném sloupci si každý blok drží svou výšku. Bez toho se blok

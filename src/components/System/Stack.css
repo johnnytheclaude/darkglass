@@ -1,6 +1,7 @@
 /* Stack (sloupec s jednotnou mezerou) — § Systémové prvky.
    Návrh: mezery panelů 8 / 12 / 14 / 16 / 20 px (admin.html — rozpěrky
-   mezi bloky karty a mezi kartami sloupce). */
+   mezi bloky karty a mezi kartami sloupce); hodnoty drží tokeny --dg-gap-*
+   ve styles.css, sdílené s FormStack a tělem karty. */
 
 .dg-stack {
   display: flex;
@@ -16,23 +17,23 @@
 }
 
 .dg-stack--gap-xs {
-  gap: calc(8px * var(--scale));
+  gap: var(--dg-gap-xs);
 }
 
 .dg-stack--gap-s {
-  gap: calc(12px * var(--scale));
+  gap: var(--dg-gap-s);
 }
 
 .dg-stack--gap-m {
-  gap: calc(14px * var(--scale));
+  gap: var(--dg-gap-m);
 }
 
 .dg-stack--gap-l {
-  gap: calc(16px * var(--scale));
+  gap: var(--dg-gap-l);
 }
 
 .dg-stack--gap-xl {
-  gap: calc(20px * var(--scale));
+  gap: var(--dg-gap-xl);
 }
 
 .dg-stack--start {

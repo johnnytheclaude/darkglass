@@ -55,15 +55,23 @@
   justify-content: center;
 }
 
+/* Tělo karty je svislý stack: mezeru mezi bloky (a mezi poli formuláře) drží
+   karta, ne to, co v ní zrovna stojí. Bez toho se bloky dotýkaly, protože
+   komponenty knihovny margin nemají (tasky #681, #692). */
 .dg-card__body {
+  display: flex;
   flex: 1 1 auto;
+  flex-direction: column;
   min-width: 0;
+  gap: var(--dg-gap-m);
 }
 
 .dg-card__body--framed {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: var(--dg-gap-xs);
   box-sizing: border-box;
   min-height: calc(90px * var(--scale));
   padding: calc(14px * var(--scale));
