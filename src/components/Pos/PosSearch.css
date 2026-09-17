@@ -8,6 +8,10 @@
   box-sizing: border-box;
   width: 100%;
   height: calc(62px * var(--scale));
+  /* Vysku pole urcuje navrh, ne zbyle misto. Ve sloupcovem flexu (obrazovka
+     Doklady) se bez tohohle pole smrsklo na vysku textu — vychozi flex-shrink: 1
+     a min-height: auto z nej udelaly ~28 px misto 62 (task #708). */
+  flex-shrink: 0;
   padding: 0 calc(20px * var(--scale));
   border-radius: var(--r-md);
   outline: 1px solid var(--border);
