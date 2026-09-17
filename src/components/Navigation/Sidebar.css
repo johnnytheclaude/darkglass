@@ -126,11 +126,33 @@ a.dg-sidebar__item {
   font-weight: 600;
 }
 
-/* Sekce i její podpoložky stojí přímo v panelu — obal jen drží pohromadě,
-   mezery mezi položkami dělá `gap` panelu. */
-.dg-sidebar__section,
-.dg-sidebar__subitems {
+/* Sekce stojí přímo v panelu — obal jen drží pohromadě, mezery mezi položkami
+   dělá `gap` panelu. */
+.dg-sidebar__section {
   display: contents;
+}
+
+/* Rozbalené podmenu je vlastní sloupec, který se v nízkém okně smrskne a roluje
+   uvnitř sebe. Hlavní položky pod ním (u Adminu Lidé a Nastavení) tak zůstanou
+   v dohledu i tehdy, když má otevřená sekce devět podpoložek a okno je vysoké
+   768 px — bez toho je vytlačí pod spodní hranu rolovací části a vypadá to, že
+   je zakryla pata panelu (task #673). Záporný okraj s odpovídajícím odsazením
+   je tu ze stejného důvodu jako u `__scroll`: podsvícení položky má sahat až
+   tam, kam sahá bez rolování. Podmenu se nesmrskne pod tři řádky — níž přebírá
+   rolování celý panel, ať v sekci vždy něco zůstane vidět. */
+.dg-sidebar__subitems {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin: 0 calc(-10px * var(--scale));
+  padding: 0 calc(10px * var(--scale));
+  min-height: calc(106px * var(--scale));
+  overflow-x: hidden;
+  overflow-y: auto;
+  gap: 2px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface-3) transparent;
 }
 
 /* Výplň mezi položkami a patou panelu. */
@@ -152,6 +174,8 @@ a.dg-sidebar__item {
   overflow-x: hidden;
   overflow-y: auto;
   gap: 2px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface-3) transparent;
 }
 
 /* Karta firmy — znak 34 px s rádiusem 10, název 14,5/600 a pod ním aplikace. */
