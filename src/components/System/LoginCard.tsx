@@ -18,6 +18,12 @@ export interface LoginCardProps extends Omit<HTMLAttributes<HTMLDivElement>, 'ti
   alternative?: ReactNode
   /** Popisek oddělovače mezi tlačítky. */
   dividerLabel?: ReactNode
+  /**
+   * Zarovnání obsahu karty. `start` je výchozí (přihlášení s poli formuláře),
+   * `center` kreslí kartu na střed — značka, nadpis i klávesnice pod sebou
+   * na ose, jak to má zamčená obrazovka Pokladny.
+   */
+  align?: 'start' | 'center'
   ref?: Ref<HTMLDivElement>
 }
 
@@ -34,11 +40,17 @@ export function LoginCard({
   submit,
   alternative,
   dividerLabel = 'nebo',
+  align = 'start',
   className,
   ...rest
 }: LoginCardProps) {
   return (
-    <div className={['dg-login-card', className].filter(Boolean).join(' ')} {...rest}>
+    <div
+      className={['dg-login-card', align === 'center' ? 'dg-login-card--center' : null, className]
+        .filter(Boolean)
+        .join(' ')}
+      {...rest}
+    >
       {mark != null ? <span className="dg-login-card__mark">{mark}</span> : null}
       {eyebrow != null ? <span className="dg-login-card__eyebrow">{eyebrow}</span> : null}
       <div className="dg-login-card__title">{title}</div>

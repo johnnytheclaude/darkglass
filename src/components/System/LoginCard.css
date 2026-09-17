@@ -19,6 +19,13 @@
   outline-offset: -0.5px;
 }
 
+/* Karta na střed — zamčená obrazovka Pokladny má v návrhu všechno na jedné
+   ose: název firmy, nadpis, tečky PINu, klávesnici i větu o pěti pokusech. */
+.dg-login-card--center {
+  align-items: center;
+  text-align: center;
+}
+
 .dg-login-card__mark {
   display: inline-flex;
   align-items: center;

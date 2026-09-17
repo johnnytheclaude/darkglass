@@ -21,13 +21,6 @@
   outline-offset: -0.75px;
 }
 
-/* Nepovinná číslice PINu (pátá a šestá): tečka zůstane, jen ztichne — obsluha
-   pak vidí, že smí přestat dřív, a přitom pozná, kam ještě může psát. */
-.dg-pin-dots__dot.is-optional {
-  border-color: var(--border);
-  outline-color: var(--border);
-}
-
 .dg-pin-dots__dot.is-filled {
   border-color: transparent;
   background-color: var(--text-1);
