@@ -26,6 +26,12 @@
   text-align: center;
 }
 
+/* Obal poli roztahuje sve deti na sirku karty; prvek s vlastni sirkou (tecky
+   PINu, klavesnice) by v nem jinak zustal u leveho okraje. */
+.dg-login-card--center .dg-login-card__fields {
+  align-items: center;
+}
+
 .dg-login-card__mark {
   display: inline-flex;
   align-items: center;
