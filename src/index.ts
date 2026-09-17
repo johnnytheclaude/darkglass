@@ -405,6 +405,8 @@ export { LoginCard } from './components/System/LoginCard'
 export type { LoginCardProps } from './components/System/LoginCard'
 export { SettingRow, SettingsList } from './components/System/SettingRow'
 export type { SettingRowProps, SettingsListProps } from './components/System/SettingRow'
+export { Stack } from './components/System/Stack'
+export type { StackProps, StackGap, StackAlign, StackElement } from './components/System/Stack'
 export { Spinner } from './components/System/Spinner'
 export type { SpinnerProps, SpinnerSize } from './components/System/Spinner'
 

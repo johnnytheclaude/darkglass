@@ -1,0 +1,48 @@
+/* Stack (sloupec s jednotnou mezerou) — § Systémové prvky.
+   Návrh: mezery panelů 8 / 12 / 14 / 16 / 20 px (admin.html — rozpěrky
+   mezi bloky karty a mezi kartami sloupce). */
+
+.dg-stack {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+}
+
+.dg-stack--row {
+  flex-direction: row;
+  align-items: center;
+}
+
+.dg-stack--gap-xs {
+  gap: calc(8px * var(--scale));
+}
+
+.dg-stack--gap-s {
+  gap: calc(12px * var(--scale));
+}
+
+.dg-stack--gap-m {
+  gap: calc(14px * var(--scale));
+}
+
+.dg-stack--gap-l {
+  gap: calc(16px * var(--scale));
+}
+
+.dg-stack--gap-xl {
+  gap: calc(20px * var(--scale));
+}
+
+.dg-stack--start {
+  align-items: flex-start;
+}
+
+.dg-stack--center {
+  align-items: center;
+}
+
+.dg-stack--end {
+  align-items: flex-end;
+}

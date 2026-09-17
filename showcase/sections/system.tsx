@@ -9,6 +9,7 @@ import { Kbd } from '../../src/components/System/Kbd'
 import { LoginCard } from '../../src/components/System/LoginCard'
 import { SettingRow, SettingsList } from '../../src/components/System/SettingRow'
 import { Spinner } from '../../src/components/System/Spinner'
+import { Stack } from '../../src/components/System/Stack'
 import { Button } from '../../src/components/Buttons/Button'
 import { IconAlert } from '../../src/components/Icons/IconAlert'
 import { IconLogout } from '../../src/components/Icons/IconLogout'
@@ -20,6 +21,24 @@ import type { ShowcaseSection } from '../registry'
 /* Pole a přepínače jsou zástupné jen pro ukázku — skutečné komponenty
    § Textová pole a § Přepínače a výběr dělají tasky #480 a #481. Dialog,
    přihlášení a řádky nastavení jsou rámy, do kterých se vloží. */
+
+function DemoBlock({ children }: { children: ReactNode }) {
+  return (
+    <div
+      style={{
+        padding: '10px 14px',
+        borderRadius: 12,
+        backgroundColor: 'var(--surface-05)',
+        outline: '1px solid var(--border)',
+        outlineOffset: '-0.5px',
+        color: 'var(--text-2)',
+        fontSize: 13,
+      }}
+    >
+      {children}
+    </div>
+  )
+}
 
 function DemoField({ label, value, placeholder }: { label: string; value?: string; placeholder?: string }) {
   return (
@@ -143,6 +162,21 @@ export const section: ShowcaseSection = {
   order: 95,
   note: 'Načítání, oznámení přes celou šířku, dialogy s formulářem a chybové stránky.',
   demos: [
+    {
+      title: 'Sloupec s jednotnou mezerou',
+      note: 'Stack drží mezeru za celý panel — bloky uvnitř žádné vlastní marginy nemají, takže mezera nezmizí, když se blok vynechá. Mezery 8 / 12 / 14 / 16 / 20 podle návrhu.',
+      stack: true,
+      render: () => (
+        <Stack gap="l" style={{ width: 360, maxWidth: '100%' }}>
+          {(['xs', 's', 'm', 'l', 'xl'] as const).map((gap) => (
+            <Stack key={gap} gap={gap}>
+              <DemoBlock>mezera „{gap}“</DemoBlock>
+              <DemoBlock>druhý blok</DemoBlock>
+            </Stack>
+          ))}
+        </Stack>
+      ),
+    },
     {
       title: 'Načítání',
       note: 'Tři hrany podle návrhu (36 / 52 / 72). Stopa je ztlumená, oblouk v akcentu.',
