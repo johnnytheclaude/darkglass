@@ -157,6 +157,8 @@ export function DateRangeField({
           onBlur={() => commitText('from')}
           onKeyDown={(event) => {
             if (event.key === 'Enter') {
+              // Enter potvrzuje napsané datum, formulář neodesílá (viz DateField).
+              event.preventDefault()
               commitText('from')
               setOpen(false)
             }
@@ -182,6 +184,8 @@ export function DateRangeField({
           onBlur={() => commitText('to')}
           onKeyDown={(event) => {
             if (event.key === 'Enter') {
+              // Enter potvrzuje napsané datum, formulář neodesílá (viz DateField).
+              event.preventDefault()
               commitText('to')
               setOpen(false)
             }

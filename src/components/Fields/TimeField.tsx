@@ -140,6 +140,8 @@ export function TimeField({
           onBlur={commitText}
           onKeyDown={(event) => {
             if (event.key === 'Enter') {
+              // Viz DateField: Enter potvrzuje čas, formulář neodesílá.
+              event.preventDefault()
               commitText()
               setOpen(false)
               return

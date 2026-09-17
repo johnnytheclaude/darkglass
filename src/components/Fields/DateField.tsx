@@ -151,6 +151,10 @@ export function DateField({
           onBlur={commitText}
           onKeyDown={(event) => {
             if (event.key === 'Enter') {
+              // Enter potvrzuje napsané datum, neodesílá formulář: hodnota se do
+              // skrytého pole dostane až dalším vykreslením, takže odeslání ve
+              // stejném stisku by poslalo tu předchozí (task #699).
+              event.preventDefault()
               commitText()
               setOpen(false)
               return
