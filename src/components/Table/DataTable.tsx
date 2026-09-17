@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useRef } from 'react'
-import type { HTMLAttributes, ReactNode, Ref } from 'react'
+import type { CSSProperties, HTMLAttributes, ReactNode, Ref } from 'react'
 import { IconCheck } from '../Icons/IconCheck'
 import { IconChevronRight } from '../Icons/IconChevronRight'
 import { IconSort } from '../Icons/IconSort'
@@ -38,6 +38,13 @@ export interface DataTableRow {
   selectLabel?: string
   /** Mezitulek skupiny (Table / Group Header) nad tímto řádkem. */
   group?: { label: ReactNode; count?: number }
+  /**
+   * Úroveň zanoření řádku pod řádek nad ním (0 nebo bez hodnoty = samostatný
+   * řádek). Vnořený řádek je odsazený a vede k němu svislá linka, takže je na
+   * první pohled vidět, co pod co patří (pokladna a sklad pod svou prodejnou).
+   * Tabulka zanoření jen kreslí — pořadí řádků skládá ten, kdo je posílá.
+   */
+  depth?: number
 }
 
 export interface DataTableProps extends HTMLAttributes<HTMLDivElement> {
@@ -120,6 +127,7 @@ export function DataTable({
             row.selected ? 'dg-table__tr--selected' : null,
             row.id === activeId ? 'dg-table__tr--active' : null,
             onRowClick ? 'dg-table__tr--interactive' : null,
+            row.depth ? 'dg-table__tr--child' : null,
           ]
             .filter(Boolean)
             .join(' ')}
@@ -150,12 +158,17 @@ export function DataTable({
                 'dg-table__td',
                 `dg-table__td--${column.align ?? 'left'}`,
                 column.muted ? 'dg-table__td--muted' : null,
+                i === 0 && row.depth ? 'dg-table__td--nested' : null,
               ]
                 .filter(Boolean)
                 .join(' ')}
               role="cell"
               key={i}
-              style={widthStyle(column.width)}
+              style={
+                i === 0 && row.depth
+                  ? ({ ...widthStyle(column.width), '--dg-depth': row.depth } as CSSProperties)
+                  : widthStyle(column.width)
+              }
             >
               {row.cells[i]}
             </span>

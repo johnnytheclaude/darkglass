@@ -1,14 +1,26 @@
 import type { HTMLAttributes, ReactNode, Ref } from 'react'
 
 export interface SettingsListProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   * Karta vyplní celou šířku místa, které dostala. Návrh kreslí samostatně
+   * stojící kartu nastavení 500 px širokou, ale v detailu oblasti stojí vedle
+   * seznamu oblastí a má vyplnit zbytek šířky (návrh admin/24: „Detail
+   * oblasti" je flex 1 a karta v něm width 100 %) — tam se posílá `fluid`.
+   */
+  fluid?: boolean
   children?: ReactNode
   ref?: Ref<HTMLDivElement>
 }
 
 /** Settings List — karta, do které se skládají řádky nastavení. */
-export function SettingsList({ children, className, ...rest }: SettingsListProps) {
+export function SettingsList({ children, className, fluid, ...rest }: SettingsListProps) {
   return (
-    <div className={['dg-settings-list', className].filter(Boolean).join(' ')} {...rest}>
+    <div
+      className={['dg-settings-list', fluid ? 'dg-settings-list--fluid' : null, className]
+        .filter(Boolean)
+        .join(' ')}
+      {...rest}
+    >
       {children}
     </div>
   )

@@ -78,6 +78,34 @@
   cursor: pointer;
 }
 
+/* Vnořený řádek (pokladna a sklad pod svou prodejnou): odsazení nese první
+   buňka, ne celý řádek — pravé sloupce tak zůstanou zarovnané s ostatními
+   řádky tabulky. Svislá linka vede od řádku nad ním, vodorovná k názvu. */
+.dg-table__td--nested {
+  position: relative;
+  padding-left: calc(var(--dg-depth, 1) * 26px * var(--scale));
+}
+
+.dg-table__td--nested::before {
+  position: absolute;
+  top: 50%;
+  left: calc((var(--dg-depth, 1) - 0.5) * 26px * var(--scale));
+  width: calc(10px * var(--scale));
+  height: 1px;
+  background-color: var(--border);
+  content: '';
+}
+
+.dg-table__td--nested::after {
+  position: absolute;
+  top: calc(-32px * var(--scale));
+  bottom: 50%;
+  left: calc((var(--dg-depth, 1) - 0.5) * 26px * var(--scale));
+  width: 1px;
+  background-color: var(--border);
+  content: '';
+}
+
 /* Row / Tint — podbarvení nese celý řádek, ne buňka: podklad sedí na
    `.dg-table__tr` (min-width: max-content), takže drží i za pravou hranou
    při vodorovném posouvání. Buňky vlastní výplň nemají.

@@ -17,6 +17,12 @@
   outline-offset: -0.5px;
 }
 
+/* Karta v detailu oblasti stojí vedle seznamu oblastí a vyplní zbytek šířky
+   (návrh admin/24) — pevných 500 px je míra samostatně stojící karty. */
+.dg-settings-list--fluid {
+  width: 100%;
+}
+
 .dg-setting-row {
   display: flex;
   flex-wrap: wrap;
