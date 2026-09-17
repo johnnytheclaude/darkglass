@@ -10,6 +10,7 @@ import { IconBrain } from '../../src/components/Icons/IconBrain'
 import { IconMerge } from '../../src/components/Icons/IconMerge'
 import { IconPrinter } from '../../src/components/Icons/IconPrinter'
 import { IconSearch } from '../../src/components/Icons/IconSearch'
+import { TextField } from '../../src/components/Fields/TextField'
 import { TableEmpty } from '../../src/components/Data/TableEmpty'
 import { TableLoading } from '../../src/components/Data/TableLoading'
 import { DataTable, TableName, TableNumber } from '../../src/components/Table/DataTable'
@@ -232,6 +233,27 @@ const RADKY_SKUPINY: DataTableRow[] = [
   },
 ]
 
+/* Tabulka s editovatelnými buňkami — pole a pod ním tichý popisek. */
+const SLOUPCE_EDIT: DataTableColumn[] = [
+  { label: 'Kód', width: 130 },
+  { label: 'Název' },
+  { label: 'Množství', width: 110, align: 'right' },
+  { label: 'Cena', width: 120, align: 'right' },
+]
+
+const RADKY_EDIT: DataTableRow[] = [
+  { kod: 'AB-100-37', nazev: 'První položka', popis: 'varianta bílá / 37', ks: '4', cena: '446' },
+  { kod: 'AB-100-38', nazev: 'Druhá položka', popis: 'varianta bílá / 38', ks: '2', cena: '446' },
+].map((radek) => ({
+  id: radek.kod,
+  cells: [
+    <TextField aria-label="Kód" defaultValue={radek.kod} />,
+    <TextField aria-label="Název" defaultValue={radek.nazev} help={radek.popis} />,
+    <TextField aria-label="Množství" defaultValue={radek.ks} />,
+    <TextField aria-label="Cena" defaultValue={radek.cena} />,
+  ],
+}))
+
 const SLOUPCE_SKUPINY: DataTableColumn[] = [
   { label: 'POLOŽKA' },
   { label: 'JEDN.', width: 70, muted: true },
@@ -278,6 +300,13 @@ export const section: ShowcaseSection = {
       stack: true,
       wide: true,
       render: () => <DataTable columns={SLOUPCE_TINT} rows={RADKY_TINT} />,
+    },
+    {
+      title: 'Editovatelné buňky (rowAlign="top")',
+      note: 'Tabulka s poli v buňkách: se svislým středem se vyšší buňka (pole a popisek pod ním) přetahuje s ostatními a pole se v řádku rozejdou. rowAlign="top" postaví buňky k hornímu okraji, takže všechna pole řádku stojí na jedné ose a popisek roste dolů.',
+      stack: true,
+      wide: true,
+      render: () => <DataTable rowAlign="top" columns={SLOUPCE_EDIT} rows={RADKY_EDIT} />,
     },
     {
       title: 'Skupina v tabulce (Table / Group Header)',

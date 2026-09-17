@@ -74,6 +74,21 @@
   gap: calc(14px * var(--scale));
 }
 
+/* Řádek s editovatelnými buňkami: pole stojí na jedné ose a popisek pod
+   polem (varianta, poznámka) roztáhne jen svou buňku. Se svislým středem se
+   vyšší buňka přetahuje s ostatními a pole v řádku se rozejdou. */
+.dg-table--rows-top .dg-table__tr {
+  align-items: flex-start;
+  padding-top: calc(12px * var(--scale));
+  padding-bottom: calc(12px * var(--scale));
+}
+
+/* Text v takové buňce se smí zalomit — jinak by popisek pod polem zmizel. */
+.dg-table--rows-top .dg-table__td {
+  overflow: visible;
+  white-space: normal;
+}
+
 .dg-table__tr--interactive {
   cursor: pointer;
 }

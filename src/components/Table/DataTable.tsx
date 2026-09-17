@@ -60,6 +60,13 @@ export interface DataTableProps extends HTMLAttributes<HTMLDivElement> {
    * sám se nascrolluje do výřezu — tabulku pak jde obsloužit bez myši.
    */
   activeId?: string | null
+  /**
+   * Svislé zarovnání buněk v řádku. `center` (výchozí) je pro čtené seznamy;
+   * `top` je pro tabulku s editovatelnými buňkami, kde je pod polem ještě
+   * popisek (varianta, poznámka) — pak stojí všechna pole řádku na jedné ose
+   * a vyšší buňka ostatní neposune.
+   */
+  rowAlign?: 'center' | 'top'
   ref?: Ref<HTMLDivElement>
 }
 
@@ -77,10 +84,13 @@ export function DataTable({
   onSelectedChange,
   onRowClick,
   activeId = null,
+  rowAlign = 'center',
   className,
   ...rest
 }: DataTableProps) {
-  const classes = ['dg-table', className].filter(Boolean).join(' ')
+  const classes = ['dg-table', rowAlign === 'top' ? 'dg-table--rows-top' : null, className]
+    .filter(Boolean)
+    .join(' ')
   const wrap = useRef<HTMLDivElement | null>(null)
 
   // Klávesnicí vybraný řádek musí být vidět i v dlouhém seznamu.
