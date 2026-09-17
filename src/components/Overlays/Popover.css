@@ -1,0 +1,28 @@
+/* Plovoucí panel nad polem — § Kalendář a čas.
+   Návrh: plocha rádius 16, odsazení 8, stín 0 16 48 jako rozbalená nabídka. */
+
+.dg-popover {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 6px * var(--scale));
+  left: 0;
+  box-sizing: border-box;
+  max-width: calc(100vw - 24px * var(--scale));
+  padding: calc(8px * var(--scale));
+  border-radius: calc(16px * var(--scale));
+  background-color: var(--surface-solid);
+  box-shadow: 0 calc(16px * var(--scale)) calc(48px * var(--scale)) var(--shadow);
+  font-family: var(--font), system-ui, sans-serif;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
+}
+
+.dg-popover--end {
+  right: 0;
+  left: auto;
+}
+
+/* Panel visí uvnitř rámu pole, takže rám musí být kotvou souřadnic. */
+.dg-field--popover {
+  position: relative;
+}

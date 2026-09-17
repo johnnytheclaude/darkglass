@@ -1,0 +1,96 @@
+/* Pole s datem, časem a obdobím — § Kalendář a čas.
+   Rám, popisek i nápověda jsou z FieldShell; tady je jen to, co mají navíc:
+   tlačítko popoveru v rámu a dvojice vstupů u období. */
+
+/* Tlačítko, kterým se otevírá kalendář nebo seznam časů. Na dotyku má mít
+   celý cíl aspoň 44 px — proto se na hrubém ukazovadle roztáhne přes celou
+   výšku rámu; myší stačí 32 px, aby pole nevypadalo jako dvě tlačítka. */
+.dg-field__button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: calc(32px * var(--scale));
+  min-height: calc(32px * var(--scale));
+  margin-right: calc(-6px * var(--scale));
+  padding: 0;
+  border: 0;
+  border-radius: calc(10px * var(--scale));
+  background: none;
+  color: var(--text-3);
+  cursor: pointer;
+}
+
+.dg-field__button:hover:not(:disabled) {
+  background-color: var(--surface-15);
+  color: var(--text-1);
+}
+
+.dg-field__button:disabled {
+  cursor: not-allowed;
+}
+
+@media (pointer: coarse) {
+  .dg-field__button {
+    min-width: calc(44px * var(--scale));
+    min-height: calc(44px * var(--scale));
+  }
+}
+
+/* Seznam časů je vysoký celý den — v popoveru se roluje, ne přeteče. */
+.dg-timefield__popover {
+  max-height: calc(260px * var(--scale));
+  overflow-y: auto;
+}
+
+/* Období: dva vstupy a pomlčka v jednom rámu. Vstupy si dělí místo rovným
+   dílem, aby se rám nehýbal podle toho, kolik je v nich napsáno. */
+.dg-daterange__input {
+  flex: 1 1 0;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: none;
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: calc(15px * var(--scale));
+  font-weight: 500;
+  outline: none;
+}
+
+.dg-daterange__input::placeholder {
+  color: var(--text-3);
+  font-weight: 400;
+}
+
+.dg-daterange__input:disabled {
+  cursor: not-allowed;
+}
+
+.dg-daterange__dash {
+  flex: 0 0 auto;
+  color: var(--text-3);
+}
+
+/* Rychlé volby stojí vlevo od kalendáře; na úzkém okně se přeskládají nad něj. */
+.dg-daterange__popover {
+  display: flex;
+  gap: calc(10px * var(--scale));
+}
+
+.dg-daterange__presets {
+  flex: 0 0 auto;
+  min-width: calc(150px * var(--scale));
+}
+
+@media (max-width: 560px) {
+  .dg-daterange__popover {
+    flex-direction: column;
+  }
+
+  .dg-daterange__presets {
+    min-width: 0;
+  }
+}
