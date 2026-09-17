@@ -171,6 +171,16 @@
   white-space: nowrap;
 }
 
+/* Název řádku zůstává --text-1 tučně, i když je uvnitř odkaz na detail —
+   klikatelnost nese celý řádek (hover, šipka), ne barva textu (task #691). */
+.dg-list-row__title a:not(.dg-cell-link),
+.dg-list-row__sub a:not(.dg-cell-link) {
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-decoration: none;
+}
+
 .dg-list-row__sub {
   overflow: hidden;
   color: var(--text-2);

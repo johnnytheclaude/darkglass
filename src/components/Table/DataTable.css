@@ -203,6 +203,35 @@
   white-space: nowrap;
 }
 
+/* Hlavní text řádku drží --text-1 tučně i tehdy, když je odkazem na detail.
+   Že řádek vede dál, říká hover celého řádku a šipka › vpravo, ne barva textu
+   (artboardy admin 02 Katalog, 15 Zákazníci, 16 Doklady). Bez tohoto pravidla
+   si odkaz v buňce vzal barvu odkazu z aplikace a názvy v prvním sloupci byly
+   na tmavém podkladu modré a špatně čitelné (task #691). Skutečný inline odkaz
+   uvnitř textu buňky si barvu akcentu vyžádá třídou `dg-cell-link`. */
+.dg-table__name-label a:not(.dg-cell-link),
+.dg-table__td > a:not(.dg-cell-link) {
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-decoration: none;
+}
+
+.dg-table__name-label a:not(.dg-cell-link):hover,
+.dg-table__td > a:not(.dg-cell-link):hover {
+  text-decoration: none;
+}
+
+/* Inline odkaz uvnitř buňky (ne název řádku) zůstává v barvě akcentu. */
+.dg-table .dg-cell-link {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.dg-table .dg-cell-link:hover {
+  text-decoration: underline;
+}
+
 .dg-table__number--negative {
   color: var(--danger-text);
 }
