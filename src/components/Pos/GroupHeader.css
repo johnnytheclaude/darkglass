@@ -47,7 +47,9 @@
   font: inherit;
   letter-spacing: inherit;
   text-align: left;
-  text-transform: inherit;
+  /* Rozbalitelná skupina nese jméno věci („Kent Body Fit NOS - Brillant white"),
+     ne mezitulek — verzálky by z názvu udělaly křik a hůř se čte. */
+  text-transform: none;
 }
 
 .dg-group-header--toggle:hover {
