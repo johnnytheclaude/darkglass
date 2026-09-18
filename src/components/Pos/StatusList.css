@@ -28,10 +28,16 @@
   white-space: nowrap;
 }
 
+/* Hodnota stojí vpravo na řádku (návrh má mezi popisem a hodnotou výplň).
+   Dlouhá hodnota — výčet typu „adresa prostředí, TID, e-mail a heslo" — se
+   ale nesmí protáhnout ven z karty: řádek ji zalomí (flex-wrap výše) a text
+   zůstane zarovnaný doprava. Nowrap by ji pustil přes okraj modálu. */
 .dg-status-list__value {
+  min-width: 0;
   margin-left: auto;
   font-weight: 500;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  text-align: right;
 }
 
 .dg-status-list__value--ok {
