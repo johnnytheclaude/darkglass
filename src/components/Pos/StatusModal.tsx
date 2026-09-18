@@ -94,9 +94,14 @@ export function StatusModal({
       {...rest}
     >
       <div className="dg-status-modal__head">
-        <span className="dg-status-modal__tile" aria-hidden={progress ? undefined : 'true'}>
-          {progress && icon == null ? <Spinner size="s" label="Čekám…" /> : icon}
-        </span>
+        {/* Dlaždice patří k modálu jen tehdy, když je co ukázat: prázdný barevný
+            čtverec vypadá jako nedokreslená ikona, a návrh u stavových karet
+            žádnou dlaždici nemá. */}
+        {progress || icon != null ? (
+          <span className="dg-status-modal__tile" aria-hidden={progress ? undefined : 'true'}>
+            {progress && icon == null ? <Spinner size="s" label="Čekám…" /> : icon}
+          </span>
+        ) : null}
         <span className="dg-status-modal__text" aria-live={progress ? 'polite' : undefined}>
           <span className="dg-status-modal__title">{title}</span>
           {meta != null ? <span className="dg-status-modal__meta">{meta}</span> : null}
