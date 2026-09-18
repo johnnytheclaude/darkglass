@@ -35,14 +35,18 @@
   white-space: nowrap;
 }
 
-/* Počet drží vpravo a nikdy se nezlomí — na dotykovém displeji se čte první. */
+/* Počet drží vpravo a na dotykovém displeji se čte první. Krátký počet („3 ks")
+   se na řádek vejde vždy; delší popis stavu („1 ks skladem · na cestě 4 ks ·
+   1 rezervovaný") se na úzkém displeji zalomí — uříznutý text na konci řádku
+   je horší než dvouřádkový počet. */
 .dg-variant-row__count {
   margin-left: auto;
-  flex-shrink: 0;
+  min-width: 0;
   color: var(--text-3);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  white-space: nowrap;
+  text-align: right;
+  text-wrap: pretty;
 }
 
 .dg-variant-row.is-active {
