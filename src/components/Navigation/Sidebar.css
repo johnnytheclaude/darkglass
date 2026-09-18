@@ -155,6 +155,17 @@ a.dg-sidebar__item {
   scrollbar-color: var(--surface-3) transparent;
 }
 
+/* Trvalý náznak, že podmenu pokračuje pod dolní hranou — macOS ukazuje
+   posuvník jen při aktivním rolování, takže bez tohohle odrolovaná poslední
+   podpoložka vypadá jako poslední (task #709). Mask místo barevného přechodu,
+   ať fade sedí i na panelu s `backdrop-filter` a poloprůhledným `--surface` —
+   zesvětlení/ztmavení dvou překrývajících se poloprůhledných vrstev by
+   nesedělo s okolím. Třída se přidává jen při skutečném přetečení dole. */
+.dg-sidebar__subitems--overflow {
+  -webkit-mask-image: linear-gradient(to top, transparent, black calc(20px * var(--scale)));
+  mask-image: linear-gradient(to top, transparent, black calc(20px * var(--scale)));
+}
+
 /* Výplň mezi položkami a patou panelu. */
 .dg-sidebar__spacer {
   flex: 1 1 auto;

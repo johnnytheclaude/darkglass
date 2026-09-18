@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, HTMLAttributes, ReactNode, Ref } from 'react'
 
 /** Úroveň položky: hlavní sekce menu, nebo podpoložka pod ní. */
@@ -213,6 +214,34 @@ export function SidebarSection({
     ? children.length > 0
     : children != null && children !== false
   const open = hasChildren && expanded
+  const subitemsRef = useRef<HTMLDivElement>(null)
+  const [hasMoreBelow, setHasMoreBelow] = useState(false)
+
+  useEffect(() => {
+    const el = subitemsRef.current
+    if (!open || !el) {
+      setHasMoreBelow(false)
+      return
+    }
+
+    const update = () => {
+      setHasMoreBelow(el.scrollHeight - el.scrollTop - el.clientHeight > 1)
+    }
+
+    update()
+    el.addEventListener('scroll', update)
+    const observer = new ResizeObserver(update)
+    observer.observe(el)
+
+    return () => {
+      el.removeEventListener('scroll', update)
+      observer.disconnect()
+    }
+  }, [open, children])
+
+  const subitemsClasses = ['dg-sidebar__subitems', hasMoreBelow ? 'dg-sidebar__subitems--overflow' : null]
+    .filter(Boolean)
+    .join(' ')
 
   return (
     <div className="dg-sidebar__section">
@@ -225,7 +254,11 @@ export function SidebarSection({
       >
         {label}
       </SidebarItem>
-      {open ? <div className="dg-sidebar__subitems">{children}</div> : null}
+      {open ? (
+        <div ref={subitemsRef} className={subitemsClasses}>
+          {children}
+        </div>
+      ) : null}
     </div>
   )
 }
