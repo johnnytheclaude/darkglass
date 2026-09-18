@@ -19,6 +19,40 @@
   scrollbar-color: var(--surface-3) transparent;
 }
 
+/* Náznak, že tabulka pokračuje za hranou karty. Na telefonu je v Katalogu
+   vidět jen sloupec Produkt a cena ani stav skladu o sobě nedají vědět —
+   macOS kreslí překryvný posuvník až při rolování, takže tabulka vypadá
+   celá (task #763). Mask místo barevného přechodu ze stejného důvodu jako
+   u podmenu panelu (task #709): sedí i na poloprůhledné ploše a nese ji
+   samotná rolovací vrstva, takže se s obsahem neposouvá. Třídu přidává
+   komponenta jen při skutečném přetečení na tu stranu. */
+.dg-table--more-right {
+  -webkit-mask-image: linear-gradient(to left, transparent, black calc(28px * var(--scale)));
+  mask-image: linear-gradient(to left, transparent, black calc(28px * var(--scale)));
+}
+
+.dg-table--more-left {
+  -webkit-mask-image: linear-gradient(to right, transparent, black calc(28px * var(--scale)));
+  mask-image: linear-gradient(to right, transparent, black calc(28px * var(--scale)));
+}
+
+.dg-table--more-left.dg-table--more-right {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black calc(28px * var(--scale)),
+    black calc(100% - 28px * var(--scale)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black calc(28px * var(--scale)),
+    black calc(100% - 28px * var(--scale)),
+    transparent
+  );
+}
+
 /* Mřížka tabulky — hlavička i řádky v jedné šířce, aby se sloupce při
    vodorovném posouvání nerozjely proti hlavičce (task #563). */
 .dg-table__grid {

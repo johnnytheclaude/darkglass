@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import type { CSSProperties, HTMLAttributes, ReactNode, Ref } from 'react'
 import { IconCheck } from '../Icons/IconCheck'
 import { IconChevronRight } from '../Icons/IconChevronRight'
@@ -88,10 +88,18 @@ export function DataTable({
   className,
   ...rest
 }: DataTableProps) {
-  const classes = ['dg-table', rowAlign === 'top' ? 'dg-table--rows-top' : null, className]
+  const wrap = useRef<HTMLDivElement | null>(null)
+  const [more, setMore] = useState({ left: false, right: false })
+
+  const classes = [
+    'dg-table',
+    rowAlign === 'top' ? 'dg-table--rows-top' : null,
+    more.left ? 'dg-table--more-left' : null,
+    more.right ? 'dg-table--more-right' : null,
+    className,
+  ]
     .filter(Boolean)
     .join(' ')
-  const wrap = useRef<HTMLDivElement | null>(null)
 
   // Klávesnicí vybraný řádek musí být vidět i v dlouhém seznamu.
   useEffect(() => {
@@ -99,6 +107,32 @@ export function DataTable({
     const row = wrap.current?.querySelector('[data-dg-active="true"]')
     row?.scrollIntoView({ block: 'nearest' })
   }, [activeId])
+
+  // Trvalý náznak, že tabulka pokračuje za pravou hranou — na úzké obrazovce
+  // (telefon) je jinak vidět jen první sloupec a cena ani stav skladu nedávají
+  // o sobě vědět; macOS posuvník ukáže až při rolování (task #763).
+  useEffect(() => {
+    const el = wrap.current
+    if (!el) return
+
+    const update = () => {
+      const left = el.scrollLeft > 1
+      const right = el.scrollWidth - el.scrollLeft - el.clientWidth > 1
+      setMore((prev) => (prev.left === left && prev.right === right ? prev : { left, right }))
+    }
+
+    update()
+    el.addEventListener('scroll', update)
+    const observer = new ResizeObserver(update)
+    observer.observe(el)
+    const grid = el.firstElementChild
+    if (grid) observer.observe(grid)
+
+    return () => {
+      el.removeEventListener('scroll', update)
+      observer.disconnect()
+    }
+  }, [columns, rows])
 
   return (
     <div className={classes} role="table" ref={wrap} {...rest}>
