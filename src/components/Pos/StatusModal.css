@@ -8,7 +8,13 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  width: 100%;
+  /* Šířku nese komponenta, ne obal v aplikaci: návrh kreslí stavový modál
+     jako kartu 420 px (panel Stav zařízení v artboardu F9), ne jako stránku.
+     max-width: 100% ho na úzké obrazovce (pod ~460 px) srazí na plochu, kterou
+     mu překryv nechá — nikdy se neusekne. */
+  width: calc(420px * var(--scale));
+  max-width: 100%;
+  max-height: 100%;
   padding: calc(24px * var(--scale));
   border-radius: var(--r-lg);
   background-color: var(--surface-solid);
@@ -16,6 +22,12 @@
   gap: calc(16px * var(--scale));
   outline: 1px solid var(--border);
   outline-offset: -0.5px;
+}
+
+/* Širší rám pro výsledek delší úlohy (souhrn naskladnění, fronta dokladů),
+   kde se dvousloupcové řádky do 420 px nevejdou. */
+.dg-status-modal--wide {
+  width: calc(560px * var(--scale));
 }
 
 .dg-status-modal__head {
@@ -83,6 +95,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-height: 0;
+  overflow: auto;
 }
 
 .dg-status-modal__line {

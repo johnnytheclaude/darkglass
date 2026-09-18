@@ -35,6 +35,8 @@ export interface StatusModalProps extends Omit<HTMLAttributes<HTMLDivElement>, '
   footer?: ReactNode
   /** Dotykový displej: akce v patce dostanou výšku 52 px. */
   touch?: boolean
+  /** Širší rám (560 px) pro souhrn delší úlohy — jinak 420 px z návrhu. */
+  wide?: boolean
   /** Zavření křížkem; bez něj se křížek nevykreslí. */
   onClose?: () => void
   /** Escape zavírá modál. Vypni jen tam, kde si klávesu bere aplikace. */
@@ -60,6 +62,7 @@ export function StatusModal({
   hint,
   footer,
   touch = false,
+  wide = false,
   onClose,
   closeOnEscape = true,
   children,
@@ -76,6 +79,7 @@ export function StatusModal({
     `dg-status-modal--${resolvedTone}`,
     state ? `dg-status-modal--state-${state}` : null,
     touch ? 'dg-status-modal--touch' : null,
+    wide ? 'dg-status-modal--wide' : null,
     className,
   ]
     .filter(Boolean)

@@ -5,6 +5,9 @@ import { useEscapeClose } from './useEscapeClose'
 
 export type ConfirmDialogTone = 'danger' | 'accent' | 'warning' | 'success'
 
+/** Šířky rámu z exportu návrhu; jiná se z aplikace nastavit nedá. */
+export type ConfirmDialogWidth = 460 | 520 | 560 | 620 | 660 | 720
+
 export interface ConfirmDialogProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   /** Otázka v nadpisu — čte ji i odečítač jako jméno dialogu. */
   title: ReactNode
@@ -13,6 +16,8 @@ export interface ConfirmDialogProps extends Omit<HTMLAttributes<HTMLDivElement>,
   /** Ikona v dlaždici; barvu dlaždice řídí `tone`. */
   icon?: ReactNode
   tone?: ConfirmDialogTone
+  /** Šířka rámu podle návrhu — výchozí 460 px. */
+  width?: ConfirmDialogWidth
   onClose?: () => void
   closeLabel?: string
   /** Escape zavírá dialog (= odpověď „ne“). Vypni jen výjimečně. */
@@ -31,6 +36,7 @@ export function ConfirmDialog({
   body,
   icon,
   tone = 'danger',
+  width = 460,
   onClose,
   closeLabel = 'Zavřít dialog',
   closeOnEscape = true,
@@ -44,7 +50,14 @@ export function ConfirmDialog({
 
   return (
     <div
-      className={['dg-confirm', `dg-confirm--${tone}`, className].filter(Boolean).join(' ')}
+      className={[
+        'dg-confirm',
+        `dg-confirm--${tone}`,
+        width === 460 ? null : `dg-confirm--w${width}`,
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
       role="alertdialog"
       aria-modal="true"
       aria-labelledby={titleId}

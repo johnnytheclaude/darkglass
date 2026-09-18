@@ -31,6 +31,27 @@
   width: calc(620px * var(--scale));
 }
 
+/* Další šířky z exportu návrhu — vybírá je prop `width`, ne CSS obrazovky. */
+.dg-form-dialog--w460 {
+  width: calc(460px * var(--scale));
+}
+
+.dg-form-dialog--w520 {
+  width: calc(520px * var(--scale));
+}
+
+.dg-form-dialog--w560 {
+  width: calc(560px * var(--scale));
+}
+
+.dg-form-dialog--w660 {
+  width: calc(660px * var(--scale));
+}
+
+.dg-form-dialog--w760 {
+  width: calc(760px * var(--scale));
+}
+
 .dg-form-dialog__head {
   display: flex;
   align-items: flex-start;

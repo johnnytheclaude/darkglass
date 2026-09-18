@@ -23,6 +23,29 @@
   outline-offset: -0.5px;
 }
 
+/* Šířky z exportu návrhu (docs/navrh/html/pokladna.html): potvrzení nad prodejem
+   je 620 px, chybový dialog s výpisem 660 px. Šířku drží komponenta — obrazovka
+   si ji vybere propem `width`, ne vlastním CSS. */
+.dg-confirm--w520 {
+  width: calc(520px * var(--scale));
+}
+
+.dg-confirm--w560 {
+  width: calc(560px * var(--scale));
+}
+
+.dg-confirm--w620 {
+  width: calc(620px * var(--scale));
+}
+
+.dg-confirm--w660 {
+  width: calc(660px * var(--scale));
+}
+
+.dg-confirm--w720 {
+  width: calc(720px * var(--scale));
+}
+
 .dg-confirm--accent {
   --confirm-tone: var(--accent);
   --confirm-soft: var(--accent-soft);

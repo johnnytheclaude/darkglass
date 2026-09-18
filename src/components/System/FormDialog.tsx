@@ -3,6 +3,9 @@ import type { HTMLAttributes, ReactNode, Ref } from 'react'
 import { IconX } from '../Icons/IconX'
 import { useEscapeClose } from '../Overlays/useEscapeClose'
 
+/** Šířky rámu z exportu návrhu; `wide` je zkratka pro 620 px. */
+export type FormDialogWidth = 460 | 480 | 520 | 560 | 620 | 660 | 760
+
 export interface FormDialogProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   /** Nadpis dialogu — čte ho i odečítač jako jméno dialogu. */
   title: ReactNode
@@ -12,6 +15,8 @@ export interface FormDialogProps extends Omit<HTMLAttributes<HTMLDivElement>, 't
   aside?: ReactNode
   /** Širší rám (620 px podle Panel / Dostupnost) pro dialog se seznamem. */
   wide?: boolean
+  /** Šířka rámu podle návrhu — výchozí 480 px; přebíjí `wide`. */
+  width?: FormDialogWidth
   /** Zavření; bez handleru se křížek nevykreslí. */
   onClose?: () => void
   closeLabel?: string
@@ -33,6 +38,7 @@ export function FormDialog({
   subtitle,
   aside,
   wide = false,
+  width,
   onClose,
   closeLabel = 'Zavřít dialog',
   closeOnEscape = true,
@@ -46,7 +52,19 @@ export function FormDialog({
 
   return (
     <div
-      className={['dg-form-dialog', wide ? 'dg-form-dialog--wide' : null, className]
+      className={[
+        'dg-form-dialog',
+        width != null
+          ? width === 480
+            ? null
+            : width === 620
+              ? 'dg-form-dialog--wide'
+              : `dg-form-dialog--w${width}`
+          : wide
+            ? 'dg-form-dialog--wide'
+            : null,
+        className,
+      ]
         .filter(Boolean)
         .join(' ')}
       role="dialog"

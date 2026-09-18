@@ -133,7 +133,11 @@ export { TreeItem, TreeView } from './components/Navigation/TreeView'
 export type { TreeItemProps, TreeViewProps } from './components/Navigation/TreeView'
 
 export { ConfirmDialog } from './components/Overlays/ConfirmDialog'
-export type { ConfirmDialogProps, ConfirmDialogTone } from './components/Overlays/ConfirmDialog'
+export type {
+  ConfirmDialogProps,
+  ConfirmDialogTone,
+  ConfirmDialogWidth,
+} from './components/Overlays/ConfirmDialog'
 export { DialogActions } from './components/Overlays/DialogActions'
 export type { DialogActionsProps } from './components/Overlays/DialogActions'
 export { Drawer, DrawerRow } from './components/Overlays/Drawer'
@@ -407,7 +411,7 @@ export type { FootnoteProps } from './components/System/Footnote'
 export { ErrorPage } from './components/System/ErrorPage'
 export type { ErrorPageProps, ErrorPageTone } from './components/System/ErrorPage'
 export { FormDialog } from './components/System/FormDialog'
-export type { FormDialogProps } from './components/System/FormDialog'
+export type { FormDialogProps, FormDialogWidth } from './components/System/FormDialog'
 export { Kbd } from './components/System/Kbd'
 export type { KbdProps } from './components/System/Kbd'
 export { LoginCard } from './components/System/LoginCard'
