@@ -71,8 +71,9 @@ export interface ListRowProps extends Omit<HTMLAttributes<HTMLDivElement>, 'titl
 }
 
 /**
- * ListRow — nejpoužívanější prvek aplikace. Vysoký 74 px, aby se dal
- * trefit prstem; text se vždy ořízne, řádek nikdy nepřeteče.
+ * ListRow — nejpoužívanější prvek aplikace. Vysoký nejméně 74 px, aby se dal
+ * trefit prstem; nadpis i podřádek se zalomí nejvýš do dvou řádků a teprve pak
+ * se ořežou, takže řádek nikdy nepřeteče a věta se neseká uprostřed slova.
  */
 export function ListRow({
   icon,

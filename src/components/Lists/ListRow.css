@@ -160,15 +160,24 @@
   gap: calc(2px * var(--scale));
 }
 
+/* Nadpis i podřádek se zalomí do dvou řádků, teprve pak se ořežou (task #782).
+   Jeden řádek s výpustkou usekával větu uprostřed slova („prodejny, pokladny,
+   tiskárny, termi…“) všude, kde je seznam v užším sloupci — na 1440 px tak
+   z popisku sestavy zbyla první polovina. Řádek smí povyrůst; min-height 74 px
+   platí dál, takže krátké řádky vypadají jako dosud. */
 .dg-list-row__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
   color: var(--text-1);
   font-size: calc(15.5px * var(--scale));
   font-weight: 600;
   letter-spacing: -0.2px;
   line-height: 1.25;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 
 /* Název řádku zůstává --text-1 tučně, i když je uvnitř odkaz na detail —
@@ -182,13 +191,17 @@
 }
 
 .dg-list-row__sub {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
   color: var(--text-2);
   font-size: calc(13px * var(--scale));
   font-weight: 400;
   line-height: 1.25;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 
 .dg-list-row__date {
