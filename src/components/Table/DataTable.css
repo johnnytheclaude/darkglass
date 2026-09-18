@@ -320,3 +320,70 @@
   outline: 1px solid var(--accent);
   outline-offset: -1px;
 }
+
+/* Karta místo řádku na telefonu (task #796) — vodorovné rolování tabulky se
+   na úzké obrazovce nedá pohodlně ovládat prstem a skryje cenu i stav.
+   Sloupec 0 zůstává titulek karty vždy; které další sloupce se ukážou jako
+   klíčové údaje pod ním, volí aplikace přes `column.mobileCard` (katalog:
+   cena, skladem, stav — viz jednotlivé prohlížeče v Adminu). Zbytek sloupců
+   se schová, ne jen zalomí — na kartě by bylo příliš údajů najednou. */
+@media (max-width: 600px) {
+  .dg-table {
+    overflow-x: hidden;
+  }
+
+  .dg-table__grid {
+    min-width: 0;
+  }
+
+  .dg-table__header {
+    display: none;
+  }
+
+  .dg-table__tr {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    min-height: 0;
+    padding: calc(14px * var(--scale)) calc(16px * var(--scale));
+    gap: calc(4px * var(--scale)) calc(14px * var(--scale));
+  }
+
+  .dg-table__tr:not(:last-child) {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dg-table__check-col,
+  .dg-table__action-col {
+    flex: 0 0 auto;
+  }
+
+  .dg-table__td--mobile-title {
+    flex: 1 1 auto;
+    min-width: calc(120px * var(--scale));
+    overflow: visible;
+    white-space: normal;
+  }
+
+  .dg-table__td--mobile-hide {
+    display: none;
+  }
+
+  .dg-table__td--mobile-field {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: calc(84px * var(--scale));
+    gap: calc(2px * var(--scale));
+    overflow: visible;
+    text-align: left;
+    white-space: normal;
+  }
+
+  .dg-table__td--mobile-field::before {
+    color: var(--text-3);
+    font-size: calc(10px * var(--scale));
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    content: attr(data-th);
+  }
+}

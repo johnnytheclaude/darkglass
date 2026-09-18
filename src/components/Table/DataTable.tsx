@@ -15,6 +15,14 @@ export interface DataTableColumn {
   muted?: boolean
   /** Sloupec se dá řadit — vedle popisku je šipka. */
   sortable?: boolean
+  /**
+   * Sloupec se na telefonu (≤600 px) kreslí jako klíčový údaj karty — pod
+   * názvem (sloupec 0, vždy titulek karty) se zobrazí i s popiskem z
+   * `label`. Nejde o skrytí zbytku sloupců na displeji, ale o výběr: bez
+   * `mobileCard` sloupec na kartě není vůbec vidět, tabulka se nerozpadá na
+   * dva až tři vodorovné posuny. Doporučeno 2–3 sloupce na obrazovku.
+   */
+  mobileCard?: boolean
 }
 
 export interface DataTableRow {
@@ -234,11 +242,15 @@ export function DataTable({
                 `dg-table__td--${column.align ?? 'left'}`,
                 column.muted ? 'dg-table__td--muted' : null,
                 i === 0 && row.depth ? 'dg-table__td--nested' : null,
+                i === 0 ? 'dg-table__td--mobile-title' : null,
+                i !== 0 && column.mobileCard ? 'dg-table__td--mobile-field' : null,
+                i !== 0 && !column.mobileCard ? 'dg-table__td--mobile-hide' : null,
               ]
                 .filter(Boolean)
                 .join(' ')}
               role="cell"
               key={i}
+              data-th={i !== 0 && column.mobileCard && typeof column.label === 'string' ? column.label : undefined}
               style={
                 i === 0 && row.depth
                   ? ({ ...widthStyle(column.width), '--dg-depth': row.depth } as CSSProperties)
