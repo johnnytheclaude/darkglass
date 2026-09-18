@@ -60,6 +60,7 @@ export function TextArea({
           rows={rows}
           className={['dg-textarea__input', className].filter(Boolean).join(' ')}
           disabled={disabled}
+          required={required}
           aria-invalid={error != null ? true : undefined}
           aria-describedby={noteId}
           {...rest}

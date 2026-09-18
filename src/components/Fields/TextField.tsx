@@ -23,6 +23,11 @@ export interface TextFieldProps extends Omit<InputHTMLAttributes<HTMLInputElemen
  * Textové pole se vším, co návrh rozlišuje jako stav: prázdné, vyplněné,
  * zaostřené (kroužek řeší CSS), chyba, neaktivní, s ikonou, s jednotkou
  * a s nápovědou. Datum i rozbalovací pole jsou tatáž komponenta s ikonou.
+ *
+ * `type` má výchozí hodnotu `text` schválně: holý `<input>` bez atributu
+ * `type` nechytí žádný selektor `input[type=…]`, takže v hostitelské aplikaci
+ * propadne na vzhled prohlížeče (v tmavém motivu šedé pole výšky 21 px).
+ * Rámeček a výplň kreslí knihovna, ale atribut musí být vidět i v DOM.
  */
 export function TextField({
   label,
@@ -37,6 +42,7 @@ export function TextField({
   disabled,
   id,
   style,
+  type = 'text',
   ...rest
 }: TextFieldProps) {
   const autoId = useId()
@@ -68,8 +74,10 @@ export function TextField({
         ) : null}
         <input
           id={inputId}
+          type={type}
           className={['dg-textfield__input', className].filter(Boolean).join(' ')}
           disabled={disabled}
+          required={required}
           aria-invalid={error != null ? true : undefined}
           aria-describedby={noteId}
           {...rest}
