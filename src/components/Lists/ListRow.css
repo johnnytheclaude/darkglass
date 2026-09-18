@@ -227,11 +227,46 @@
 .dg-list-row__badge,
 .dg-list-row__action {
   display: inline-flex;
+  /* Odznak ani akce se nesmrskávají — text vedle nich má min-width: 0 a
+     ustupuje jako první. Tlačítko s celým slovesem by se jinak stlačilo do
+     svislého sloupce písmen (task #799). */
   flex: 0 0 auto;
+  min-width: auto;
   align-items: center;
 }
 
 .dg-list-row__chevron {
   flex: 0 0 auto;
   color: var(--chevron);
+}
+
+/* Akce v řádku na úzkém okně (task #799).
+   Akční slot nese tlačítka s celým slovesem („Vypravit převodkou", „Zrušit“) —
+   ta se nesmí smrsknout: s `min-width: 0` se z tlačítka stal svislý sloupec
+   písmen a řádek přesto přetekl (494 px při okně 375 px). Slot proto drží
+   `flex: 0 0 auto` i `min-width: auto` (viz blok výše) a na telefonu se místo
+   smrskávání zalomí pod text.
+   Zalomení je podmíněné, ne plošné: text dostane základ 0 a spodní hranici,
+   takže se akce přesune na druhý řádek jen tehdy, když se vedle textu opravdu
+   nevejde. Krátká ikonová akce zůstává vedle textu jako dosud a řádky bez
+   akce se nemění vůbec — dvakrát vyšší dlaždice rozcestníku mobilu (task #713)
+   se tím nevracejí. */
+@media (max-width: 700px) {
+  .dg-list-row:has(> .dg-list-row__action) {
+    flex-wrap: wrap;
+  }
+
+  .dg-list-row:has(> .dg-list-row__action) > .dg-list-row__text {
+    flex: 1 1 0;
+    min-width: calc(150px * var(--scale));
+  }
+
+  .dg-list-row > .dg-list-row__action {
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    min-width: auto;
+    margin-left: auto;
+    gap: calc(8px * var(--scale));
+  }
 }
