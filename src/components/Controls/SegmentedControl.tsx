@@ -122,7 +122,7 @@ export function SegmentedControl({
             disabled={option.disabled}
             onClick={() => onChange?.(option.value)}
           >
-            {option.label}
+            <span className="dg-segmented__label">{option.label}</span>
           </button>
         )
       })}

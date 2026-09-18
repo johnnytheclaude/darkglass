@@ -36,11 +36,20 @@
   font-size: calc(13.5px * var(--scale));
   font-weight: 500;
   line-height: 1;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Ellipsis na flex položce sama o sobě nefunguje (text v ní zůstává na
+   šířku obsahu a přeteče přes sousední volbu) — potřebuje vlastní blokový
+   potomek, na kterém teprve overflow:hidden ořízne (task #782/#760 vzorec). */
+.dg-segmented__label {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 /* Telefon: volba se mačká prstem, takže má dotykové minimum 44 px. */
