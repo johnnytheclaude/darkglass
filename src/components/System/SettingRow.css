@@ -54,9 +54,16 @@
   line-height: 1.35;
 }
 
+/* Ovládací sloupec drží svou přirozenou šířku, ale nikdy nepřeroste řádek:
+   bez max-width se z obsahu širšího než karta (náhled barvy firmy, task #760)
+   roztáhl celý řádek a stránka se dala rolovat do stran. min-width: 0 dovolí
+   vnitřnímu obsahu zalomit se místo přetečení. */
 .dg-setting-row__control {
   display: flex;
   flex: 0 0 auto;
   align-items: center;
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
   gap: calc(8px * var(--scale));
 }
