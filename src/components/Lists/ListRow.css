@@ -193,8 +193,10 @@
 .dg-list-row__sub {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
+  /* Podřádek je věta, ne jméno — v úzkém sloupci telefonu se do dvou řádků
+     nevejde („zařízení nespárováno · zatím se neozvala“), tak dostane tři. */
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
   overflow: hidden;
   color: var(--text-2);
   font-size: calc(13px * var(--scale));
