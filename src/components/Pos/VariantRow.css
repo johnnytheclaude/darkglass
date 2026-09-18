@@ -7,6 +7,7 @@
   align-items: center;
   box-sizing: border-box;
   width: 100%;
+  flex-wrap: wrap;
   min-height: calc(58px * var(--scale));
   padding: calc(6px * var(--scale)) calc(16px * var(--scale));
   border-radius: var(--r-sm);
@@ -37,11 +38,13 @@
 
 /* Počet drží vpravo a na dotykovém displeji se čte první. Krátký počet („3 ks")
    se na řádek vejde vždy; delší popis stavu („1 ks skladem · na cestě 4 ks ·
-   1 rezervovaný") se na úzkém displeji zalomí — uříznutý text na konci řádku
-   je horší než dvouřádkový počet. */
+   1 rezervovaný") se na úzkém displeji přesune pod popisek varianty a zalomí
+   se — uříznutý text na konci řádku je horší než dvouřádkový počet, a velikost
+   („52") se kvůli němu zkracovat nesmí. */
 .dg-variant-row__count {
   margin-left: auto;
-  min-width: 0;
+  flex-shrink: 0;
+  max-width: 100%;
   color: var(--text-3);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
