@@ -54,6 +54,33 @@ export const section: ShowcaseSection = {
       ),
     },
     {
+      title: 'Řada hodin · úzká i široká karta',
+      note: 'Na úzké kartě se popisky ředí na každý třetí, aby se nesekaly; široká je ukáže všechny.',
+      wide: true,
+      render: () => {
+        const hodiny = Array.from({ length: 19 }, (_, i) => ({
+          label: String(i),
+          value: i < 8 ? 0 : 400 + ((i * 917) % 2600),
+        }))
+        return (
+          <div style={{ display: 'grid', gap: 16 }}>
+            <BarChartVertical
+              title="Tržba po hodinách"
+              subtitle="Úzká karta (telefon)"
+              style={{ maxWidth: 343 }}
+              bars={hodiny}
+            />
+            <BarChartVertical
+              title="Tržba po hodinách"
+              subtitle="Široká karta (desktop)"
+              style={{ maxWidth: 700 }}
+              bars={hodiny}
+            />
+          </div>
+        )
+      },
+    },
+    {
       title: 'Vodorovné sloupce · žebříček',
       note: 'Název i hodnota nad pruhem, takže se nekrátí ani v úzké kartě.',
       wide: true,

@@ -19,6 +19,13 @@ export interface BarChartVerticalProps extends Omit<HTMLAttributes<HTMLDivElemen
   ticks?: ReactNode[]
   /** Horní hranice osy. Bez ní se bere největší hodnota v datech. */
   max?: number
+  /**
+   * Po kolikátém sloupci se na úzké kartě kreslí popisek osy. Bez něj se
+   * odvodí z počtu sloupců: řada hodin (0–18) se na telefonu naředí na
+   * každou třetí, aby se popisky neosekávaly ani nepřekrývaly. Na široké
+   * kartě se neředí — tam se vejdou všechny.
+   */
+  labelStride?: number
   ref?: Ref<HTMLDivElement>
 }
 
@@ -32,14 +39,22 @@ export function BarChartVertical({
   bars,
   ticks,
   max,
+  labelStride,
   className,
   ...rest
 }: BarChartVerticalProps) {
   const top = max ?? Math.max(1, ...bars.map((b) => b.value))
   const classes = ['dg-bars-v', className].filter(Boolean).join(' ')
+  const stride = labelStride ?? autoLabelStride(bars.length)
 
   return (
-    <ChartCard className={classes} title={title} subtitle={subtitle} {...rest}>
+    <ChartCard
+      className={classes}
+      title={title}
+      subtitle={subtitle}
+      data-label-stride={stride > 1 ? stride : undefined}
+      {...rest}
+    >
       <div className="dg-bars-v__plot">
         {ticks && ticks.length > 0 ? (
           <div className="dg-bars-v__axis" aria-hidden="true">
@@ -75,4 +90,16 @@ export function BarChartVertical({
       </div>
     </ChartCard>
   )
+}
+
+/**
+ * Kolikátý popisek se na úzké kartě kreslí. Počítá se z počtu sloupců: do
+ * sedmi se vejdou vždy, dál se ředí tak, aby jich na telefonu zbylo nejvýš
+ * sedm. CSS umí stride 2, 3 a 4 — proto ten strop.
+ */
+function autoLabelStride(count: number): number {
+  if (count >= 25) return 4
+  if (count >= 13) return 3
+  if (count >= 8) return 2
+  return 1
 }

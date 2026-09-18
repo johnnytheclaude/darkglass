@@ -9,6 +9,7 @@
 
 .dg-bars-v__plot {
   display: flex;
+  container-type: inline-size;
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
@@ -97,4 +98,44 @@
 .dg-bars-v__label--on {
   color: var(--text-1);
   font-weight: 600;
+}
+
+/* Úzká karta (telefon): sloupců je víc, než kolik se vedle sebe vejde
+   popisků — z řady hodin by zbyla první číslice. Popisky se proto ředí
+   podle data-label-stride (komponenta ho počítá z počtu sloupců), zbylé
+   smějí přetéct do místa po skrytých sousedech a sloupce dostanou užší
+   mezeru, aby z nich nezůstaly nitky. Vyzdvižený popisek je vidět vždy.
+   Práh 480 px je pod šířkou karty na tabletu i na desktopu — tam se tedy
+   nemění nic. */
+@container (max-width: 480px) {
+  .dg-bars-v[data-label-stride='3'] .dg-bars-v__label,
+  .dg-bars-v[data-label-stride='4'] .dg-bars-v__label {
+    overflow: visible;
+  }
+
+  .dg-bars-v[data-label-stride='3'] .dg-bars-v__bars,
+  .dg-bars-v[data-label-stride='4'] .dg-bars-v__bars {
+    gap: calc(4px * var(--scale));
+  }
+
+  .dg-bars-v[data-label-stride='3']
+    .dg-bars-v__col:not(:nth-child(3n + 1))
+    .dg-bars-v__label:not(.dg-bars-v__label--on),
+  .dg-bars-v[data-label-stride='4']
+    .dg-bars-v__col:not(:nth-child(4n + 1))
+    .dg-bars-v__label:not(.dg-bars-v__label--on) {
+    visibility: hidden;
+  }
+}
+
+@container (max-width: 320px) {
+  .dg-bars-v[data-label-stride='2'] .dg-bars-v__label {
+    overflow: visible;
+  }
+
+  .dg-bars-v[data-label-stride='2']
+    .dg-bars-v__col:not(:nth-child(2n + 1))
+    .dg-bars-v__label:not(.dg-bars-v__label--on) {
+    visibility: hidden;
+  }
 }
