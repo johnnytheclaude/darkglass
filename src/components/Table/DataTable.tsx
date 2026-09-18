@@ -36,8 +36,26 @@ export interface DataTableRow {
    * hromadná akce dělá naslepo. Aplikace sem posílá, co je na řádku vidět.
    */
   selectLabel?: string
-  /** Mezitulek skupiny (Table / Group Header) nad tímto řádkem. */
-  group?: { label: ReactNode; count?: number }
+  /**
+   * Mezitulek skupiny (Table / Group Header) nad tímto řádkem. Se `expanded`
+   * je z hlavičky přepínač: sbalená skupina schová všechny řádky, které se k ní
+   * hlásí přes `groupId` — tabulka o stovkách variant se pak čte po produktech.
+   */
+  group?: {
+    /** Identita skupiny — řádky se k ní hlásí přes `groupId`. */
+    id?: string
+    label: ReactNode
+    count?: number
+    /** `false` = sbalená, `true` = rozbalená; bez hodnoty se skupina nesbaluje. */
+    expanded?: boolean
+    onExpandedChange?: (expanded: boolean) => void
+    /** Ladění hlavičky — varování skupiny je vidět, i když je sbalená. */
+    tone?: 'warn' | 'danger' | 'info'
+    /** Doplněk hlavičky vpravo (počet kusů, varování). */
+    note?: ReactNode
+  }
+  /** Skupina, do které řádek patří — sbalená skupina ho skryje. */
+  groupId?: string
   /**
    * Úroveň zanoření řádku pod řádek nad ním (0 nebo bez hodnoty = samostatný
    * řádek). Vnořený řádek je odsazený a vede k němu svislá linka, takže je na
@@ -90,6 +108,14 @@ export function DataTable({
 }: DataTableProps) {
   const wrap = useRef<HTMLDivElement | null>(null)
   const [more, setMore] = useState({ left: false, right: false })
+
+  // Sbalené skupiny — hlavička zůstane, řádky pod ní se nekreslí. Stav skupiny
+  // drží ten, kdo řádky posílá; tabulka ho jen čte, ať rozbalení přežije
+  // překreslení a jde rozbalit víc skupin najednou.
+  const collapsed = new Set<string>()
+  for (const row of rows) {
+    if (row.group?.id != null && row.group.expanded === false) collapsed.add(row.group.id)
+  }
 
   const classes = [
     'dg-table',
@@ -162,8 +188,13 @@ export function DataTable({
             className="dg-table__group"
             label={row.group.label}
             count={row.group.count}
+            expanded={row.group.expanded}
+            onExpandedChange={row.group.onExpandedChange}
+            tone={row.group.tone}
+            note={row.group.note}
           />
         ) : null}
+        {row.groupId != null && collapsed.has(row.groupId) ? null : (
         <div
           className={[
             'dg-table__tr',
@@ -223,6 +254,7 @@ export function DataTable({
             </span>
           ) : null}
         </div>
+        )}
         </Fragment>
       ))}
       </div>

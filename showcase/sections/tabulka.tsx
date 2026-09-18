@@ -261,6 +261,44 @@ const SLOUPCE_SKUPINY: DataTableColumn[] = [
   { label: 'HODNOTA', width: 130, align: 'right' },
 ]
 
+/* Rozbalitelná skupina — stav drží ten, kdo řádky posílá, tabulka ho jen čte. */
+const SKUPINY_DEMO = [
+  { id: 'model-a', nazev: 'Model A · 3 varianty · 3 ks', varianty: ['37', '38', '39'], potiz: null },
+  { id: 'model-b', nazev: 'Model B · 2 varianty · 5 ks', varianty: ['40', '41'], potiz: '1 řádek k potvrzení' },
+]
+
+function UkazkaRozbalitelneSkupiny() {
+  const [otevrene, setOtevrene] = useState<string[]>([])
+  const radky: DataTableRow[] = SKUPINY_DEMO.flatMap((skupina) =>
+    skupina.varianty.map((varianta, index) => ({
+      id: `${skupina.id}-${varianta}`,
+      groupId: skupina.id,
+      group:
+        index === 0
+          ? {
+              id: skupina.id,
+              label: skupina.nazev,
+              expanded: otevrene.includes(skupina.id),
+              onExpandedChange: (otevrit: boolean) =>
+                setOtevrene((stav) =>
+                  otevrit ? [...stav, skupina.id] : stav.filter((klic) => klic !== skupina.id),
+                ),
+              tone: skupina.potiz ? ('warn' as const) : undefined,
+              note: skupina.potiz,
+            }
+          : undefined,
+      cells: [
+        <TableName thumb={false}>Velikost {varianta}</TableName>,
+        'ks',
+        <TableNumber>1</TableNumber>,
+        '1 299 Kč',
+      ],
+    })),
+  )
+
+  return <DataTable columns={SLOUPCE_SKUPINY} rows={radky} />
+}
+
 function UkazkaStrankovani() {
   const [strana, setStrana] = useState(1)
 
@@ -314,6 +352,13 @@ export const section: ShowcaseSection = {
       stack: true,
       wide: true,
       render: () => <DataTable columns={SLOUPCE_SKUPINY} rows={RADKY_SKUPINY} />,
+    },
+    {
+      title: 'Rozbalitelná skupina',
+      note: 'Hlavička s expanded a onExpandedChange je tlačítko: sbalená skupina schová řádky, které se k ní hlásí přes groupId, a otevře se klikem i klávesnicí. Rozbalení jedné skupiny ostatní nesbalí. tone a note drží varování v hlavičce, aby ho sbalená skupina neschovala.',
+      stack: true,
+      wide: true,
+      render: () => <UkazkaRozbalitelneSkupiny />,
     },
     {
       title: 'Prázdná tabulka',
