@@ -9,7 +9,10 @@
   ],
   "exports": {
     ".": "./src/index.ts",
-    "./label": "./src/label/index.ts",
+    "./label": {
+      "types": "./src/label/index.d.ts",
+      "default": "./src/label/index.js"
+    },
     "./tokens.css": "./src/tokens/tokens.css",
     "./styles.css": "./src/styles.css"
   },

@@ -6,40 +6,29 @@
 // čísla, rozešly se: #599 přestavěl sazbu v Pokladně a náhled v Adminu zůstal
 // na staré podobě, takže lhal o tom, co z tiskárny vyjede (#821).
 //
-// Tenhle modul je proto bez závislostí a bez Reactu — jde importovat
-// z prohlížeče, z Node i z rendereru Electronu. Neobsahuje kreslení: jen to,
-// CO na cenovce je, V JAKÉM POŘADÍ, JAK VELKÝM PÍSMEM a JAKÝM TVAREM částky.
-// Kreslení si každá aplikace dělá po svém (rastr × HTML), protože výstupy
-// jsou jiné; shodu drží tahle čísla.
+// Tenhle modul je bez závislostí a bez Reactu — unese ho prohlížeč, Node
+// i renderer Electronu. Neobsahuje kreslení: jen to, CO na cenovce je,
+// V JAKÉM POŘADÍ, JAK VELKÝM PÍSMEM a JAKÝM TVAREM částky. Kreslení si každá
+// aplikace dělá po svém (rastr × HTML), protože výstupy jsou jiné; shodu drží
+// tahle čísla.
+//
+// PROČ JE TO .js A NE .ts: knihovna posílá zdroje bez build kroku a Node
+// odmítá odstraňovat typy ze souborů pod `node_modules`
+// (ERR_UNSUPPORTED_NODE_MODULES_TYPE_STRIPPING). Modul, který mají testy obou
+// aplikací importovat za běhu, tedy musí být čisté JS; typy nese `index.d.ts`
+// vedle něj.
 //
 // Závazný podklad je `docs/navrh/stitky/README.md` v repu Pokladny (render
 // z pen.dev souboru ownera). Když se návrh změní, přepiš čísla odtamtud —
 // a jen tady. Testy na obou stranách (Admin i Pokladna) se o tenhle modul
 // opírají, takže změna návrhu nemůže opravit jen jednu aplikaci.
 
-/** Řez písma, který návrh cenovce dává. */
-export type LabelWeight = 500 | 600 | 700
-
-/** Jeden textový prvek sazby — velikost v bodech tiskárny při 300 dpi. */
-export interface LabelTextSpec {
-  /** Velikost písma v bodech (413 b = 35 mm, tedy 1 bod = 0,0847 mm). */
-  dots: number
-  weight: LabelWeight
-  lineHeight: number
-  /** IBM Plex Sans Condensed; číslo pod QR je v běžném IBM Plex Sans. */
-  condensed: boolean
-  /** Prostrkání v bodech — návrh ho dává jen číslu pod QR (0,5 b). */
-  trackingDots?: number
-  /** Do kolika řádek se text smí zalomit, než se zkrátí. */
-  maxLines?: number
-}
-
 /**
  * Míry návrhu #599 v bodech na ploše 413 × 495 (35,0 × 41,9 mm při 300 dpi).
  * Plocha je průnik obou cílových rolí (DK-22225 souvislá 38 mm a DK-11220
  * ražený štítek 39 × 48 mm), aby tatáž cenovka vyšla na obou.
  */
-export const LABEL_DESIGN = {
+export const LABEL_DESIGN = Object.freeze({
   /** Šířka kreslicí plochy. */
   acrossDots: 413,
   /** Výška kreslicí plochy. */
@@ -48,17 +37,29 @@ export const LABEL_DESIGN = {
   paddingDots: 12,
   /** Bodů na milimetr při 300 dpi. */
   dotsPerMm: 300 / 25.4,
-  name: { dots: 30, weight: 500, lineHeight: 1.05, condensed: true, maxLines: 3 },
-  variant: { dots: 56, weight: 700, lineHeight: 1, condensed: true },
-  color: { dots: 30, weight: 500, lineHeight: 1.05, condensed: true },
+  /** Název produktu — láme se přes celou šířku, na střed. */
+  name: Object.freeze({ dots: 30, weight: 500, lineHeight: 1.05, condensed: true, maxLines: 3 }),
+  /** Velikost — po ceně druhý nejnápadnější prvek štítku. */
+  variant: Object.freeze({ dots: 56, weight: 700, lineHeight: 1, condensed: true }),
+  /** Barva — pod velikostí. */
+  color: Object.freeze({ dots: 30, weight: 500, lineHeight: 1.05, condensed: true }),
   /** Strana QR symbolu bez klidové zóny: 126 b = 10,7 mm (21 modulů po 6 b). */
   qrDots: 126,
-  /** Klidová zóna QR v modulech — pod ním ji drží mezera `gaps.qr`. */
+  /** Klidová zóna QR v modulech — svisle ji drží mezera `gaps.qr`. */
   qrQuietModules: 4,
-  code: { dots: 30, weight: 500, lineHeight: 1.05, condensed: false, trackingDots: 0.5 },
-  price: { dots: 56, weight: 700, lineHeight: 1, condensed: true },
-  secondary: { dots: 30, weight: 600, lineHeight: 1.05, condensed: true },
-  gaps: {
+  /** Číslo pod QR — jediný prvek v NEkondenzovaném řezu, s prostrkáním. */
+  code: Object.freeze({
+    dots: 30,
+    weight: 500,
+    lineHeight: 1.05,
+    condensed: false,
+    trackingDots: 0.5,
+  }),
+  /** Cena v Kč — nejnápadnější prvek štítku. */
+  price: Object.freeze({ dots: 56, weight: 700, lineHeight: 1, condensed: true }),
+  /** Informativní cena v cizí měně — volitelná, nejmenší. */
+  secondary: Object.freeze({ dots: 30, weight: 600, lineHeight: 1.05, condensed: true }),
+  gaps: Object.freeze({
     /** Mezi názvem a dvojicí velikost + barva. */
     nameVariant: 12,
     /** Mezi velikostí a barvou. */
@@ -67,73 +68,33 @@ export const LABEL_DESIGN = {
     qr: 24,
     /** Mezi cenou v Kč a cenou v EUR. */
     priceSecondary: 6,
-  },
-} as const satisfies {
-  acrossDots: number
-  alongDots: number
-  paddingDots: number
-  dotsPerMm: number
-  name: LabelTextSpec
-  variant: LabelTextSpec
-  color: LabelTextSpec
-  qrDots: number
-  qrQuietModules: number
-  code: LabelTextSpec
-  price: LabelTextSpec
-  secondary: LabelTextSpec
-  gaps: { nameVariant: number; variantColor: number; qr: number; priceSecondary: number }
-}
+  }),
+})
 
 /** Písma návrhu; kondenzovaný řez nese všechno kromě čísla pod QR. */
 export const LABEL_FONT_CONDENSED = 'IBM Plex Sans Condensed'
 export const LABEL_FONT_REGULAR = 'IBM Plex Sans'
-
-/** Co je na cenovce; pořadí je pořadí shora dolů. */
-export type LabelBlockKind = 'name' | 'variant' | 'color' | 'qr' | 'code' | 'price' | 'secondary'
-
-export interface LabelBlock {
-  kind: LabelBlockKind
-  /** Text k vytištění; u QR obsah kódu. */
-  text: string
-}
-
-export interface LabelData {
-  /** Název položky — snímek k okamžiku zařazení do fronty. */
-  name: string
-  /** Velikost (varianta); u zboží bez parametrů prázdná. */
-  variantName?: string | null
-  /** Barva; když ji aplikace neposílá zvlášť, vezme se ze zbytku jmenovky. */
-  colorName?: string | null
-  /** Kód varianty (EAN, nebo vlastní) — obsah QR i číslo pod ním. */
-  code?: string | null
-  /** Cena VČETNĚ DPH; jinou na cenovku nesmí (§ 13 zák. 526/1990 Sb.). */
-  priceInclVat?: number | null
-  /** Informativní přepočet: měna a kurz podle nastavení firmy (task #671). */
-  secondary?: { currency: string; rate: number } | null
-}
-
-export interface LabelContentOptions {
-  /** Informativní cena v cizí měně pod korunovou — zapíná ji nastavení firmy. */
-  showSecondaryCurrency?: boolean
-}
 
 /**
  * Pořadí, ve kterém prvky mizí, když se na médium nevejdou: nejdřív cena
  * v EUR, pak barva, pak velikost, nakonec název. QR, číslo pod ním a cena
  * v Kč ze štítku nezmizí nikdy.
  */
-export const LABEL_DROP_ORDER: LabelBlockKind[] = ['secondary', 'color', 'variant', 'name']
+export const LABEL_DROP_ORDER = ['secondary', 'color', 'variant', 'name']
 
 /** Co na štítku zůstane za všech okolností. */
-export const LABEL_CORE_KINDS: LabelBlockKind[] = ['qr', 'code', 'price']
+export const LABEL_CORE_KINDS = ['qr', 'code', 'price']
 
 /**
  * Cena v korunách podle návrhu #599: 38000,00 Kč — desetinná čárka, vždy dvě
  * desetinná místa, bez oddělovače tisíců, mezera před měnou. Nedělitelná
  * mezera podle ČSN 01 6910 tady nemá co držet: každý řádek cenovky je jeden
  * vykreslený text, který se nemá kam zlomit.
+ *
+ * @param {number} value
+ * @returns {string}
  */
-export function formatLabelPrice(value: number): string {
+export function formatLabelPrice(value) {
   const rounded = Math.round(value * 100) / 100
   const sign = rounded < 0 ? '-' : ''
   const whole = Math.floor(Math.abs(rounded))
@@ -141,17 +102,26 @@ export function formatLabelPrice(value: number): string {
   return sign + String(whole) + ',' + String(cents).padStart(2, '0') + ' Kč'
 }
 
-/** Informativní přepočet: kolik je cena v cizí měně. */
-export function secondaryAmount(priceCzk: number, rate: number): number {
+/**
+ * Informativní přepočet: kolik je cena v cizí měně.
+ *
+ * @param {number} priceCzk
+ * @param {number} rate
+ * @returns {number}
+ */
+export function secondaryAmount(priceCzk, rate) {
   if (!rate || rate <= 0) return 0
   return Math.round((priceCzk / rate) * 100) / 100
 }
 
-/** Přepočet na cenovku: 1520 EUR — celé jednotky, bez desetin (návrh #599). */
-export function formatSecondary(
-  priceCzk: number,
-  secondary: { currency: string; rate: number },
-): string {
+/**
+ * Přepočet na cenovku: 1520 EUR — celé jednotky, bez desetin (návrh #599).
+ *
+ * @param {number} priceCzk
+ * @param {{ currency: string, rate: number }} secondary
+ * @returns {string}
+ */
+export function formatSecondary(priceCzk, secondary) {
   const amount = secondaryAmount(priceCzk, secondary.rate)
   return String(Math.round(amount)) + ' ' + secondary.currency
 }
@@ -161,11 +131,11 @@ export function formatSecondary(
  * z hodnot parametrů oddělených lomítkem (52 / Brillant White); návrh kreslí
  * první hodnotu velkým písmem (velikost) a zbytek pod ní menším (barva).
  * Barvu poslanou zvlášť to nepřebíjí.
+ *
+ * @param {string | null | undefined} variantName
+ * @returns {{ variant: string | null, color: string | null }}
  */
-export function splitVariantName(variantName?: string | null): {
-  variant: string | null
-  color: string | null
-} {
+export function splitVariantName(variantName) {
   const trimmed = (variantName ?? '').trim()
   if (!trimmed) return { variant: null, color: null }
   const parts = trimmed
@@ -180,9 +150,14 @@ export function splitVariantName(variantName?: string | null): {
  * Obsah štítku v pořadí, ve kterém se tiskne: název → velikost → barva → QR →
  * číslo pod QR → cena v Kč → cena v EUR. Prvek bez dat se vynechá a další se
  * posune — prázdné místo po něm nezůstává.
+ *
+ * @param {import('./index.d.ts').LabelData} data
+ * @param {{ showSecondaryCurrency?: boolean }} [options]
+ * @returns {import('./index.d.ts').LabelBlock[]}
  */
-export function labelBlocks(data: LabelData, options: LabelContentOptions = {}): LabelBlock[] {
-  const blocks: LabelBlock[] = []
+export function labelBlocks(data, options = {}) {
+  /** @type {import('./index.d.ts').LabelBlock[]} */
+  const blocks = []
   const split = splitVariantName(data.variantName)
   const variant = split.variant
   const color = (data.colorName ?? '').trim() || split.color
@@ -206,10 +181,39 @@ export function labelBlocks(data: LabelData, options: LabelContentOptions = {}):
 /**
  * Tři bloky návrhu shora dolů; výšku mezi nimi rozdává space_between.
  * Blok bez jediného prvku se vynechá (zboží bez kódu nemá prostřední blok).
+ *
+ * @param {import('./index.d.ts').LabelBlock[]} blocks
+ * @returns {import('./index.d.ts').LabelBlock[][]}
  */
-export function labelGroups(blocks: LabelBlock[]): LabelBlock[][] {
-  const pick = (...kinds: LabelBlockKind[]) => blocks.filter((block) => kinds.includes(block.kind))
+export function labelGroups(blocks) {
+  /** @param {import('./index.d.ts').LabelBlockKind[]} kinds */
+  const pick = (...kinds) => blocks.filter((block) => kinds.includes(block.kind))
   return [pick('name', 'variant', 'color'), pick('qr', 'code'), pick('price', 'secondary')].filter(
     (group) => group.length > 0,
   )
+}
+
+/**
+ * Sazba jednoho prvku i s mezerou nad ním — v bodech tiskárny. Náhled si tím
+ * spočítá rozměry, aniž by opisoval čísla návrhu: mezeru nad prvkem určuje
+ * návrh a mění se podle toho, co na štítku je (barva bez velikosti se váže
+ * k názvu, ne k velikosti).
+ *
+ * @param {import('./index.d.ts').LabelBlock[]} blocks
+ * @param {import('./index.d.ts').LabelBlockKind} kind
+ * @returns {number}
+ */
+export function labelGapAbove(blocks, kind) {
+  const has = (/** @type {import('./index.d.ts').LabelBlockKind} */ other) =>
+    blocks.some((block) => block.kind === other)
+  if (kind === 'variant') return has('name') ? LABEL_DESIGN.gaps.nameVariant : 0
+  if (kind === 'color') {
+    if (has('variant')) return LABEL_DESIGN.gaps.variantColor
+    return has('name') ? LABEL_DESIGN.gaps.nameVariant : 0
+  }
+  // Klidovou zónu QR drží mezera nad symbolem i pod ním — bez ní čtečka kód
+  // nenajde (task #243, AC5).
+  if (kind === 'qr' || kind === 'code') return LABEL_DESIGN.gaps.qr
+  if (kind === 'secondary') return has('price') ? LABEL_DESIGN.gaps.priceSecondary : 0
+  return 0
 }
