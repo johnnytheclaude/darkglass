@@ -25,6 +25,20 @@
   outline-offset: -0.5px;
 }
 
+/* Hlavička = název + podtitulek. Drží minimální výšku dvou řádků názvu
+   a řádku podtitulku (17 × 1,25 × 2 + 3 + 13 × 1,25 ≈ 62 px), aby štítek
+   pravidla akce pod ní stál v mřížce u všech dlaždic stejně vysoko — ať má
+   název jeden nebo dva řádky a podtitulek je, nebo není (task #865). Na
+   dlaždici bez štítku to nic nemění: cena sedí u dolní hrany a minimální
+   výška dlaždice tuhle rezervu už obsahuje. */
+.dg-product-tile__head {
+  display: flex;
+  width: 100%;
+  min-height: calc(62px * var(--scale));
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .dg-product-tile__name {
   display: -webkit-box;
   width: 100%;
@@ -64,20 +78,24 @@
 }
 
 /* Pravidlo akce (Promotion) cenu na dlaždici nemění — proto tichý orámovaný
-   štítek s názvem akce, ne akcentový popisek akční ceny. Text se láme, aby
-   byl název akce čitelný celý; stav nese text, ne barva. */
+   štítek s názvem akce, ne akcentový popisek akční ceny. Patří k popisu zboží,
+   ne k ceně: stojí hned pod hlavičkou, volné místo zůstává mezi ním a cenou.
+   Text se láme, aby byl název akce čitelný celý; stav nese text, ne barva. */
 .dg-product-tile__promotions {
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
   gap: calc(3px * var(--scale));
-  margin-top: auto;
+  margin-top: calc(6px * var(--scale));
 }
 
 .dg-product-tile__promotion {
+  display: inline-flex;
   box-sizing: border-box;
   max-width: 100%;
+  flex-wrap: wrap;
+  column-gap: calc(5px * var(--scale));
   padding: calc(2px * var(--scale)) calc(6px * var(--scale));
   border: 1px solid var(--border);
   border-radius: calc(6px * var(--scale));
@@ -88,8 +106,16 @@
   overflow-wrap: anywhere;
 }
 
-.dg-product-tile__promotions + .dg-product-tile__sale {
-  margin-top: calc(4px * var(--scale));
+/* Název akce a výše slevy se liší sytostí, ne oddělovačem — bez tečky před
+   znaménkem mínus (task #865). */
+.dg-product-tile__promotion-name {
+  font-weight: 600;
+}
+
+.dg-product-tile__promotion-detail {
+  color: var(--text-3);
+  font-weight: 400;
+  white-space: nowrap;
 }
 
 .dg-product-tile__price {
@@ -100,9 +126,15 @@
   flex-wrap: wrap;
 }
 
-.dg-product-tile__name + .dg-product-tile__price,
-.dg-product-tile__note + .dg-product-tile__price {
+/* Bez popisku akce si volné místo bere cena — s ním ho bere popisek. */
+.dg-product-tile__head + .dg-product-tile__price,
+.dg-product-tile__promotions + .dg-product-tile__price {
   margin-top: auto;
+}
+
+.dg-product-tile__head + .dg-product-tile__price,
+.dg-product-tile__promotions + .dg-product-tile__price,
+.dg-product-tile__promotions + .dg-product-tile__sale {
   padding-top: calc(8px * var(--scale));
 }
 

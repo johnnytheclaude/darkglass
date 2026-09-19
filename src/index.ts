@@ -260,7 +260,7 @@ export type { ParkedTileProps, ParkedTileTone } from './components/Pos/ParkedTil
 export { PlaceholderTile } from './components/Pos/PlaceholderTile'
 export type { PlaceholderTileProps } from './components/Pos/PlaceholderTile'
 export { ProductTile } from './components/Pos/ProductTile'
-export type { ProductTileProps } from './components/Pos/ProductTile'
+export type { ProductTileProps, ProductTilePromotion, ProductTilePromotionLabel } from './components/Pos/ProductTile'
 export { QuantityRow } from './components/Pos/QuantityRow'
 export type { QuantityRowProps } from './components/Pos/QuantityRow'
 export { QuickCash } from './components/Pos/QuickCash'
