@@ -21,8 +21,20 @@ export interface DataTableColumn {
    * `label`. Nejde o skrytí zbytku sloupců na displeji, ale o výběr: bez
    * `mobileCard` sloupec na kartě není vůbec vidět, tabulka se nerozpadá na
    * dva až tři vodorovné posuny. Doporučeno 2–3 sloupce na obrazovku.
+   *
+   * Tabulka, ve které žádný sloupec `mobileCard` nemá, na telefonu nic
+   * neschovává a ukáže pod titulkem všechny sloupce (task #837): výběr
+   * neproběhl, takže není co vynechat — karta jen s názvem by ztratila stav,
+   * pořadí i akce.
    */
   mobileCard?: boolean
+  /**
+   * Sloupec s akcemi řádku (Upravit, Smazat, šipky pořadí). Na telefonu ani
+   * na sbaleném tabletu se nikdy neschová — stojí na kartě dole přes celou
+   * šířku a bez popisku, ať jsou akce vždy k dosažení (task #837). Bez
+   * příznaku ho tabulka pozná podle prázdného `label`.
+   */
+  actions?: boolean
 }
 
 export interface DataTableRow {
@@ -123,6 +135,10 @@ export function DataTable({
   const [stacked, setStacked] = useState(false)
   const stackedRef = useRef(false)
   const naturalRef = useRef(0)
+  // Karta na telefonu (≤600 px) — pevné šířky sloupců tam nemají co dělat:
+  // akční řada by zůstala 210 px široká a údaje by se lámaly podle desktopových
+  // šířek, ne podle karty (task #837).
+  const [card, setCard] = useState(false)
 
   // Sbalené skupiny — hlavička zůstane, řádky pod ní se nekreslí. Stav skupiny
   // drží ten, kdo řádky posílá; tabulka ho jen čte, ať rozbalení přežije
@@ -134,7 +150,14 @@ export function DataTable({
 
   // Pevná šířka sloupce je inline styl, takže by přebila i CSS sbaleného
   // řádku — ve sbaleném stavu se proto neposílá vůbec.
-  const cellWidth = (w?: number) => (stacked ? undefined : widthStyle(w))
+  const cellWidth = (w?: number) => (stacked || card ? undefined : widthStyle(w))
+
+  // Akční sloupec je ten s příznakem, nebo bez popisku v hlavičce. Karta na
+  // telefonu vybírá sloupce přes `mobileCard`; když nevybral nikdo, ukáže
+  // všechny — schovat vše kromě názvu nikdy není to, co aplikace chtěla.
+  const isActions = (column: DataTableColumn) =>
+    column.actions ?? (column.label == null || column.label === '')
+  const cardAll = !columns.some((column, i) => i !== 0 && column.mobileCard)
 
   const classes = [
     'dg-table',
@@ -168,7 +191,13 @@ export function DataTable({
         ? window.matchMedia('(min-width: 601px) and (max-width: 1024px)')
         : null
 
+    const phoneQuery =
+      typeof window !== 'undefined' && typeof window.matchMedia === 'function'
+        ? window.matchMedia('(max-width: 600px)')
+        : null
+
     const update = () => {
+      setCard(!!phoneQuery?.matches)
       const left = el.scrollLeft > 1
       const right = el.scrollWidth - el.scrollLeft - el.clientWidth > 1
       setMore((prev) => (prev.left === left && prev.right === right ? prev : { left, right }))
@@ -188,6 +217,7 @@ export function DataTable({
     update()
     el.addEventListener('scroll', update)
     tabletQuery?.addEventListener('change', update)
+    phoneQuery?.addEventListener('change', update)
     const observer = new ResizeObserver(update)
     observer.observe(el)
     const grid = el.firstElementChild
@@ -196,6 +226,7 @@ export function DataTable({
     return () => {
       el.removeEventListener('scroll', update)
       tabletQuery?.removeEventListener('change', update)
+      phoneQuery?.removeEventListener('change', update)
       observer.disconnect()
     }
   }, [columns, rows])
@@ -275,15 +306,24 @@ export function DataTable({
                 column.muted ? 'dg-table__td--muted' : null,
                 i === 0 && row.depth ? 'dg-table__td--nested' : null,
                 i === 0 ? 'dg-table__td--mobile-title' : null,
-                i !== 0 ? 'dg-table__td--field' : null,
-                i !== 0 && column.mobileCard ? 'dg-table__td--mobile-field' : null,
-                i !== 0 && !column.mobileCard ? 'dg-table__td--mobile-hide' : null,
+                i !== 0 && isActions(column) ? 'dg-table__td--actions' : null,
+                i !== 0 && !isActions(column) ? 'dg-table__td--field' : null,
+                i !== 0 && !isActions(column) && (column.mobileCard || cardAll)
+                  ? 'dg-table__td--mobile-field'
+                  : null,
+                i !== 0 && !isActions(column) && !column.mobileCard && !cardAll
+                  ? 'dg-table__td--mobile-hide'
+                  : null,
               ]
                 .filter(Boolean)
                 .join(' ')}
               role="cell"
               key={i}
-              data-th={i !== 0 && typeof column.label === 'string' ? column.label : undefined}
+              data-th={
+                i !== 0 && !isActions(column) && typeof column.label === 'string'
+                  ? column.label
+                  : undefined
+              }
               style={
                 i === 0 && row.depth
                   ? ({ ...cellWidth(column.width), '--dg-depth': row.depth } as CSSProperties)

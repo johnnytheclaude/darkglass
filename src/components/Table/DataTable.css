@@ -326,7 +326,11 @@
    Sloupec 0 zůstává titulek karty vždy; které další sloupce se ukážou jako
    klíčové údaje pod ním, volí aplikace přes `column.mobileCard` (katalog:
    cena, skladem, stav — viz jednotlivé prohlížeče v Adminu). Zbytek sloupců
-   se schová, ne jen zalomí — na kartě by bylo příliš údajů najednou. */
+   se schová, ne jen zalomí — na kartě by bylo příliš údajů najednou.
+   Tabulka bez jediného `mobileCard` neschová nic (task #837) — číselníky
+   důvodů ukazovaly na telefonu jen název a stav, pořadí, Upravit i Smazat
+   zmizely. Akční sloupec (`column.actions`, nebo sloupec bez popisku) se
+   neschovává nikdy: stojí na kartě dole přes celou šířku. */
 @media (max-width: 600px) {
   .dg-table {
     overflow-x: hidden;
@@ -352,9 +356,23 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .dg-table__check-col,
-  .dg-table__action-col {
+  .dg-table__check-col {
     flex: 0 0 auto;
+  }
+
+  /* Šipka proklikávacího řádku stojí v pravém horním rohu karty, mimo tok —
+     jako poslední prvek v DOM by se za delším názvem a údaji zalomila pod
+     kartu doleva (Uživatelé na telefonu, task #837). */
+  .dg-table__tr--interactive {
+    position: relative;
+    padding-right: calc(48px * var(--scale));
+  }
+
+  .dg-table__action-col {
+    position: absolute;
+    top: calc(6px * var(--scale));
+    right: calc(4px * var(--scale));
+    height: calc(36px * var(--scale));
   }
 
   .dg-table__td--mobile-title {
@@ -388,6 +406,21 @@
     font-weight: 700;
     letter-spacing: 0.5px;
     content: attr(data-th);
+  }
+
+  /* Akce řádku: poslední řada karty, bez popisku, přes celou šířku, ať se
+     tlačítka nemačkají vedle údajů; tlačítka drží zarovnání sloupce. */
+  .dg-table__td--actions {
+    order: 3;
+    display: flex;
+    flex: 1 0 100%;
+    align-items: center;
+    overflow: visible;
+    white-space: normal;
+  }
+
+  .dg-table__td--actions.dg-table__td--right {
+    justify-content: flex-end;
   }
 }
 
@@ -476,5 +509,19 @@
     font-size: calc(10px * var(--scale));
     font-weight: 700;
     letter-spacing: 0.5px;
+  }
+
+  /* Akce řádku zůstávají i na sbaleném tabletu poslední řadou (task #837). */
+  .dg-table--stacked .dg-table__td--actions {
+    order: 3;
+    display: flex;
+    flex: 1 0 100%;
+    align-items: center;
+    overflow: visible;
+    white-space: normal;
+  }
+
+  .dg-table--stacked .dg-table__td--actions.dg-table__td--right {
+    justify-content: flex-end;
   }
 }
