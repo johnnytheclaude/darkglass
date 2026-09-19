@@ -116,6 +116,13 @@ export function DataTable({
 }: DataTableProps) {
   const wrap = useRef<HTMLDivElement | null>(null)
   const [more, setMore] = useState({ left: false, right: false })
+  // Sbalení řádku do dvou řad na tabletu (task #831). Stav drží i ref, ať ho
+  // měřicí smyčka vidí bez překreslení; naturalRef je poslední změřená šířka
+  // tabulky v rozloženém stavu — ve sbaleném už se změřit nedá (obsah se
+  // vejde vždycky), takže bez ní by se tabulka nikdy nevrátila zpátky.
+  const [stacked, setStacked] = useState(false)
+  const stackedRef = useRef(false)
+  const naturalRef = useRef(0)
 
   // Sbalené skupiny — hlavička zůstane, řádky pod ní se nekreslí. Stav skupiny
   // drží ten, kdo řádky posílá; tabulka ho jen čte, ať rozbalení přežije
@@ -125,9 +132,14 @@ export function DataTable({
     if (row.group?.id != null && row.group.expanded === false) collapsed.add(row.group.id)
   }
 
+  // Pevná šířka sloupce je inline styl, takže by přebila i CSS sbaleného
+  // řádku — ve sbaleném stavu se proto neposílá vůbec.
+  const cellWidth = (w?: number) => (stacked ? undefined : widthStyle(w))
+
   const classes = [
     'dg-table',
     rowAlign === 'top' ? 'dg-table--rows-top' : null,
+    stacked ? 'dg-table--stacked' : null,
     more.left ? 'dg-table--more-left' : null,
     more.right ? 'dg-table--more-right' : null,
     className,
@@ -149,14 +161,33 @@ export function DataTable({
     const el = wrap.current
     if (!el) return
 
+    // Na tabletu se široká tabulka sbalí (task #831); na telefonu to dělá
+    // karta v CSS a na desktopu zůstává tabulka tabulkou.
+    const tabletQuery =
+      typeof window !== 'undefined' && typeof window.matchMedia === 'function'
+        ? window.matchMedia('(min-width: 601px) and (max-width: 1024px)')
+        : null
+
     const update = () => {
       const left = el.scrollLeft > 1
       const right = el.scrollWidth - el.scrollLeft - el.clientWidth > 1
       setMore((prev) => (prev.left === left && prev.right === right ? prev : { left, right }))
+
+      const gridEl = el.firstElementChild as HTMLElement | null
+      const client = el.clientWidth
+      if (!gridEl || client <= 0) return
+      // Šířku, kterou tabulka potřebuje, jde změřit jen dokud je rozložená.
+      if (!stackedRef.current) naturalRef.current = gridEl.scrollWidth
+      const next = !!tabletQuery?.matches && naturalRef.current > client + 1
+      if (next !== stackedRef.current) {
+        stackedRef.current = next
+        setStacked(next)
+      }
     }
 
     update()
     el.addEventListener('scroll', update)
+    tabletQuery?.addEventListener('change', update)
     const observer = new ResizeObserver(update)
     observer.observe(el)
     const grid = el.firstElementChild
@@ -164,6 +195,7 @@ export function DataTable({
 
     return () => {
       el.removeEventListener('scroll', update)
+      tabletQuery?.removeEventListener('change', update)
       observer.disconnect()
     }
   }, [columns, rows])
@@ -243,6 +275,7 @@ export function DataTable({
                 column.muted ? 'dg-table__td--muted' : null,
                 i === 0 && row.depth ? 'dg-table__td--nested' : null,
                 i === 0 ? 'dg-table__td--mobile-title' : null,
+                i !== 0 ? 'dg-table__td--field' : null,
                 i !== 0 && column.mobileCard ? 'dg-table__td--mobile-field' : null,
                 i !== 0 && !column.mobileCard ? 'dg-table__td--mobile-hide' : null,
               ]
@@ -250,11 +283,11 @@ export function DataTable({
                 .join(' ')}
               role="cell"
               key={i}
-              data-th={i !== 0 && column.mobileCard && typeof column.label === 'string' ? column.label : undefined}
+              data-th={i !== 0 && typeof column.label === 'string' ? column.label : undefined}
               style={
                 i === 0 && row.depth
-                  ? ({ ...widthStyle(column.width), '--dg-depth': row.depth } as CSSProperties)
-                  : widthStyle(column.width)
+                  ? ({ ...cellWidth(column.width), '--dg-depth': row.depth } as CSSProperties)
+                  : cellWidth(column.width)
               }
             >
               {row.cells[i]}
