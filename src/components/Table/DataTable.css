@@ -93,6 +93,15 @@
   justify-content: flex-end;
 }
 
+/* Tabulka s obsahem u horní hrany (krok Ceny příjemky) má úzké sloupce
+   s dlouhými popisky — „DPH nákupní ceny" vedle „Nákupní cena s DPH". Na jeden
+   řádek se nevejdou a slily by se do sebe, takže se v téhle podobě lámou.
+   Task #853: platí pro Admin i Pokladnu, protože obě kreslí touž tabulku. */
+.dg-table--rows-top .dg-table__th {
+  white-space: normal;
+  line-height: 1.25;
+}
+
 .dg-table__sort {
   flex: 0 0 auto;
   color: var(--text-3);
