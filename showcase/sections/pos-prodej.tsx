@@ -178,6 +178,31 @@ export const section: ShowcaseSection = {
             note="objednáno"
             count="12 ks"
           />
+          {/* Není skladem: červený řádek s akcí místo počtu (task #850). Stav
+              neříká jen barva — říká ho popisek akce a aria-label řádku. */}
+          <VariantRow
+            variant="vel. 51"
+            tone="danger"
+            aria-label="vel. 51 · není skladem"
+            action={
+              <Button variant="secondary" size="s">
+                Objednat
+              </Button>
+            }
+          />
+          <VariantRow
+            variant="vel. 50"
+            note="právě pípnuto"
+            tone="danger"
+            aria-label="vel. 50 · právě pípnuto · není skladem (jinde 3 ks)"
+            count="jinde 3 ks"
+            action={
+              <Button variant="secondary" size="s">
+                Objednat
+              </Button>
+            }
+            active
+          />
         </div>
       ),
     },

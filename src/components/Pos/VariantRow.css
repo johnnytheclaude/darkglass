@@ -52,6 +52,20 @@
   text-wrap: pretty;
 }
 
+/* Akce v řádku („Objednat") drží vpravo. Je-li vedle ní i počet, počet si
+   vezme volné místo a akce sedí za ním; sama stojí přesně tam, kde jinak
+   počet — o to u dostupnosti velikostí jde (task #850). */
+.dg-variant-row__action {
+  display: flex;
+  margin-left: auto;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.dg-variant-row__count + .dg-variant-row__action {
+  margin-left: 0;
+}
+
 .dg-variant-row.is-active {
   background-color: var(--accent-soft);
   outline: 1px solid var(--accent);
@@ -65,4 +79,23 @@
 
 .dg-variant-row.is-active .dg-variant-row__count {
   color: var(--text-1);
+}
+
+/* Varianta, která není skladem — červený řádek (task #850). Barva je jen
+   posílení: co je vidět barvou, musí být i slovy (popisek akce, aria-label).
+   U právě pípnuté varianty zůstává obrys akcentu i poznámka, aby obsluha
+   pořád viděla, který kus drží v ruce — mění se jen plocha a barva textu. */
+.dg-variant-row--danger {
+  background-color: var(--danger-row);
+}
+
+.dg-variant-row--danger .dg-variant-row__variant,
+.dg-variant-row--danger .dg-variant-row__count,
+.dg-variant-row--danger.is-active .dg-variant-row__variant,
+.dg-variant-row--danger.is-active .dg-variant-row__count {
+  color: var(--danger-text);
+}
+
+.dg-variant-row--danger.is-active {
+  background-color: var(--danger-soft);
 }
