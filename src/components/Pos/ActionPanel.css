@@ -53,9 +53,15 @@
   background-color: var(--border);
 }
 
+/* Akce podle návrhu: svislý sloupec s mezerou 10 px, aby hlavní tlačítko
+   nesedělo natěsno na řádku vedlejších tlačítek pod ním. Stejnou mezeru
+   drží obrazovky i vodorovně mezi vedlejšími tlačítky. */
 .dg-action-panel__action {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   padding-top: calc(6px * var(--scale));
+  gap: calc(10px * var(--scale));
 }
 
 .dg-action-panel__footer {
