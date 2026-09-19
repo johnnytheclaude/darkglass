@@ -86,6 +86,38 @@ export const LABEL_DROP_ORDER = ['secondary', 'color', 'variant', 'name']
 export const LABEL_CORE_KINDS = ['qr', 'code', 'price']
 
 /**
+ * Oddělovač hodnot parametrů ve jmenovce varianty: lomítko obklopené mezerami
+ * („52 / Brillant White"). Tak ji skládá API a jen na něm se zase rozebírá —
+ * lomítko bez mezer patří dovnitř hodnoty (velikost kalhot „38/34", task #872).
+ */
+export const LABEL_VARIANT_SEPARATOR = /\s+\/\s+/
+
+/** Užší podíl kondenzovaného řezu; číslo pod QR je v běžném IBM Plex Sans. */
+export const LABEL_CONDENSED_WIDTH_RATIO = 0.52
+export const LABEL_REGULAR_WIDTH_RATIO = 0.6
+/** Nejmenší písmo, které má na termotisku smysl tisknout (návrh sází 30 b). */
+export const LABEL_MIN_TEXT_DOTS = 20
+
+/**
+ * Největší písmo do velikosti `preferred`, ve kterém se text vejde CELÝ na
+ * šířku `room`; `null`, když se nevejde ani v nejmenším. Takhle se sází cena
+ * a od tasku #872 i velikost: prvek, který se nevejde, se vypustí celý —
+ * nikdy se nezkrátí na půlku, protože „38/3…" je jiná velikost než 38/34.
+ *
+ * @param {string} text
+ * @param {number} preferred
+ * @param {number} room
+ * @param {number} [ratio]
+ * @returns {number | null}
+ */
+export function labelFitDots(text, preferred, room, ratio = LABEL_CONDENSED_WIDTH_RATIO) {
+  for (let dots = preferred; dots >= LABEL_MIN_TEXT_DOTS; dots -= 1) {
+    if (text.length * dots * ratio <= room) return dots
+  }
+  return null
+}
+
+/**
  * Cena v korunách podle návrhu #599: 38000,00 Kč — desetinná čárka, vždy dvě
  * desetinná místa, bez oddělovače tisíců, mezera před měnou. Nedělitelná
  * mezera podle ČSN 01 6910 tady nemá co držet: každý řádek cenovky je jeden
@@ -128,9 +160,15 @@ export function formatSecondary(priceCzk, secondary) {
 
 /**
  * Rozdělení jmenovky varianty na velikost a barvu. Admin skládá jmenovku
- * z hodnot parametrů oddělených lomítkem (52 / Brillant White); návrh kreslí
- * první hodnotu velkým písmem (velikost) a zbytek pod ní menším (barva).
- * Barvu poslanou zvlášť to nepřebíjí.
+ * z hodnot parametrů oddělených lomítkem S MEZERAMI (52 / Brillant White);
+ * návrh kreslí první hodnotu velkým písmem (velikost) a zbytek pod ní menším
+ * (barva). Barvu poslanou zvlášť to nepřebíjí.
+ *
+ * **Dělí se jen na skutečném oddělovači `␣/␣`, nikdy na holém lomítku**
+ * (task #872): velikost kalhot je jedna hodnota „38/34" a rozseknutá na
+ * lomítku vypadala na cenovce jako velikost 38 a barva 34. Lomítko uvnitř
+ * hodnoty je znak hodnoty, ne oddělovač — buď se vysází celá velikost,
+ * nebo žádná.
  *
  * @param {string | null | undefined} variantName
  * @returns {{ variant: string | null, color: string | null }}
@@ -139,7 +177,7 @@ export function splitVariantName(variantName) {
   const trimmed = (variantName ?? '').trim()
   if (!trimmed) return { variant: null, color: null }
   const parts = trimmed
-    .split('/')
+    .split(LABEL_VARIANT_SEPARATOR)
     .map((part) => part.trim())
     .filter(Boolean)
   if (parts.length <= 1) return { variant: trimmed, color: null }

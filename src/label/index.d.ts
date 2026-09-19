@@ -68,6 +68,17 @@ export interface LabelContentOptions {
 
 export declare const LABEL_DROP_ORDER: LabelBlockKind[]
 export declare const LABEL_CORE_KINDS: LabelBlockKind[]
+/** Oddělovač hodnot ve jmenovce varianty — lomítko S MEZERAMI (task #872). */
+export declare const LABEL_VARIANT_SEPARATOR: RegExp
+export declare const LABEL_CONDENSED_WIDTH_RATIO: number
+export declare const LABEL_REGULAR_WIDTH_RATIO: number
+export declare const LABEL_MIN_TEXT_DOTS: number
+export declare function labelFitDots(
+  text: string,
+  preferred: number,
+  room: number,
+  ratio?: number,
+): number | null
 
 export declare function formatLabelPrice(value: number): string
 export declare function secondaryAmount(priceCzk: number, rate: number): number
