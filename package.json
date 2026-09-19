@@ -14,7 +14,11 @@
       "default": "./src/label/index.js"
     },
     "./tokens.css": "./src/tokens/tokens.css",
-    "./styles.css": "./src/styles.css"
+    "./styles.css": "./src/styles.css",
+    "./receiving": {
+      "types": "./src/receiving/index.d.ts",
+      "default": "./src/receiving/index.js"
+    }
   },
   "files": [
     "src"
