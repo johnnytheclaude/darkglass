@@ -51,6 +51,16 @@
   transition: transform 0.15s ease;
 }
 
+/* Klik myší musí dojít na `input`, ne na dekoraci nad ním. Zapnutý knoflík se
+   posouvá `transform`em — tím si vyrábí vlastní stacking context a kreslí se
+   nad absolutně umístěný `input`, takže klik doprostřed zapnutého vypínače
+   padal na knoflík a myší se vypnout nedal (task #812). Dekorace proto pointer
+   eventy nebere; klik na popisek řeší obalující `label`. */
+.dg-switch__track,
+.dg-switch__knob {
+  pointer-events: none;
+}
+
 .dg-switch__input:checked ~ .dg-switch__track {
   background-color: var(--accent-fill);
 }
