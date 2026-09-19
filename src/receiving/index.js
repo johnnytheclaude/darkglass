@@ -184,12 +184,28 @@ export function formatMoney(value, unit) {
   return text + NBSP + (unit || DEFAULT_CURRENCY_UNIT);
 }
 
+/**
+ * Číslo z toho, co obsluha napsala — „1 215,51" i „1215.51"; nesmysl = null.
+ * Pole s prodejní cenou nese měnu jako popisek (#846), takže se „Kč" z textu
+ * zahazuje — do hodnoty se nikdy neuloží.
+ */
+export function parsePrice(text) {
+  const cleaned = String(text === null || text === undefined ? '' : text)
+    .replace(/[\s\u00a0]|Kč|€/g, '')
+    .replace(',', '.');
+  if (!cleaned) return null;
+  const parsed = Number(cleaned);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
 /** Procento do tabulky — „300 %" s nedělitelnou mezerou, bez hodnoty pomlčka. */
-export function formatPercent(value) {
+export function formatPercent(value, digits) {
   if (value === null || value === undefined || !Number.isFinite(Number(value))) return EMPTY_VALUE;
-  const rounded = Math.round(Number(value) * 100) / 100;
-  const digits = Number.isInteger(rounded) ? 0 : 2;
-  return rounded.toLocaleString('cs-CZ', { minimumFractionDigits: digits, maximumFractionDigits: digits }) + NBSP + '%';
+  const text = new Intl.NumberFormat('cs-CZ', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: digits === undefined ? 0 : digits,
+  }).format(Number(value));
+  return text + NBSP + '%';
 }
 
 /** Co se píše místo chybějící hodnoty — ne nula, ne nekonečno, ne prázdno. */

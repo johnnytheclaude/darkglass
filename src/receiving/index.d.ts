@@ -46,8 +46,9 @@ export function marginPercent(
   vatRate: number,
 ): number | null;
 export function formatPrice(value: number | null | undefined): string;
+export function parsePrice(text: string): number | null;
 export function formatMoney(value: number | null | undefined, unit?: string): string;
-export function formatPercent(value: number | null | undefined): string;
+export function formatPercent(value: number | null | undefined, digits?: number): string;
 
 export const RECEIVING_TEXTS: {
   newProductsTitle: string;
