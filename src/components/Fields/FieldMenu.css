@@ -87,3 +87,18 @@
   background-color: var(--surface-3);
   overflow: hidden;
 }
+
+/* Nabídka v překryvné vrstvě — visí portálem na `body` (task #845), takže
+   neodsouvá obsah pod polem. Pozici (`top`, `left`, `width`, `max-height`)
+   dopočítává `FieldMenuLayer` a sází ji inline.
+
+   `z-index` soutěží s celou stránkou, ne s formulářem: musí být nad překryvem
+   dialogu (Admin 60, Pokladna 20/30) i nad vysunutým menu na mobilu (40) —
+   nabídka je vždycky to nejvrchnější, co uživatel právě otevřel. */
+.dg-fieldmenu--layer {
+  position: fixed;
+  z-index: 1000;
+  max-width: calc(100vw - 16px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}

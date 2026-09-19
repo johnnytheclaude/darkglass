@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import type { HTMLAttributes, ReactNode, Ref } from 'react'
 import { FieldShell } from '../Fields/FieldShell'
-import { FieldMenu } from '../Fields/FieldMenu'
+import { FieldMenuLayer } from '../Fields/FieldMenuLayer'
 import type { FieldMenuOption } from '../Fields/FieldMenu'
 import { IconChevronDown } from '../Icons/IconChevronDown'
 import { IconX } from '../Icons/IconX'
@@ -23,6 +23,8 @@ export interface MultiSelectFieldProps
   onOpenChange?: (open: boolean) => void
   /** Popisek křížku u štítku pro čtečku; `%s` nahradí text štítku. */
   removeLabel?: string
+  /** Třída rozbalené nabídky — ta visí portálem mimo pole. */
+  menuClassName?: string
   ref?: Ref<HTMLDivElement>
 }
 
@@ -30,6 +32,9 @@ export interface MultiSelectFieldProps
  * Vícenásobný výběr — vybrané hodnoty jsou štítky v poli, každý se dá shodit
  * křížkem. Štítky se zalamují do dalšího řádku, pole se natáhne; nikdy
  * nepřetečou ven z formuláře.
+ *
+ * Rozbalená nabídka visí v překryvné vrstvě (`FieldMenuLayer`, task #845),
+ * takže obsah pod polem neodsouvá a zavírá se i klikem mimo.
  */
 export function MultiSelectField({
   label,
@@ -45,11 +50,14 @@ export function MultiSelectField({
   defaultOpen = false,
   onOpenChange,
   removeLabel = 'Odebrat %s',
+  menuClassName,
   className,
   ...rest
 }: MultiSelectFieldProps) {
   const [ownOpen, setOwnOpen] = useState(defaultOpen)
   const isOpen = open ?? ownOpen
+  /** Rám pole; nabídka v překryvné vrstvě se měří podle něj (task #845). */
+  const boxRef = useRef<HTMLDivElement>(null)
 
   const setOpen = (next: boolean) => {
     if (open === undefined) setOwnOpen(next)
@@ -69,6 +77,7 @@ export function MultiSelectField({
       {...rest}
     >
       <div
+        ref={boxRef}
         className={[
           'dg-field__box',
           'dg-multiselect__box',
@@ -105,7 +114,10 @@ export function MultiSelectField({
         </button>
       </div>
       {isOpen ? (
-        <FieldMenu
+        <FieldMenuLayer
+          anchorRef={boxRef}
+          className={menuClassName}
+          onDismiss={() => setOpen(false)}
           options={options}
           value={values}
           onSelect={(next) =>

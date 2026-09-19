@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import type { HTMLAttributes, ReactNode, Ref } from 'react'
 import { FieldShell } from './FieldShell'
-import { FieldMenu } from './FieldMenu'
+import { FieldMenuLayer } from './FieldMenuLayer'
 import type { FieldMenuOption } from './FieldMenu'
 import { useEscapeClose } from '../Overlays/useEscapeClose'
 import { IconChevronDown } from '../Icons/IconChevronDown'
@@ -29,13 +29,18 @@ export interface SelectFieldProps
   open?: boolean
   defaultOpen?: boolean
   onOpenChange?: (open: boolean) => void
+  /** Třída rozbalené nabídky — ta visí portálem mimo pole, selektorem se k ní nedostanete. */
+  menuClassName?: string
   ref?: Ref<HTMLDivElement>
 }
 
 /**
- * Rozbalovací výběr — zavřený je to pole se šipkou, rozbalený má pod sebou
- * nabídku. Nabídka je v toku dokumentu (ne v portálu), takže v ukázce i ve
- * formuláři sedí přesně pod polem a nikam neuteče při odrolování.
+ * Rozbalovací výběr — zavřený je to pole se šipkou, rozbalený má nad sebou
+ * nebo pod sebou nabídku. Nabídka visí v překryvné vrstvě portálem na
+ * `document.body` (`FieldMenuLayer`, task #845): otevření výběru tím nemění
+ * rozvržení stránky — nic pod polem se neodsune — nabídka se u spodního kraje
+ * okna otočí nahoru, u pravého se zarovná dovnitř a při rolování se veze
+ * s polem (a zavře se, jakmile pole z okna zmizí).
  *
  * Je to náhrada nativního `<select>` i tam, kde se formulář odesílá serverové
  * akci: s `name` vedle sebe drží skryté pole s hodnotou. Neřízený režim
@@ -61,12 +66,15 @@ export function SelectField({
   open,
   defaultOpen = false,
   onOpenChange,
+  menuClassName,
   className,
   ...rest
 }: SelectFieldProps) {
   const [ownOpen, setOwnOpen] = useState(defaultOpen)
   const isOpen = open ?? ownOpen
   const buttonId = useId()
+  /** Spouštěč: nabídka se podle něj měří a fokus se na něj po zavření vrací. */
+  const boxRef = useRef<HTMLButtonElement>(null)
 
   const [ownValue, setOwnValue] = useState(defaultValue ?? '')
   const lastDefault = useRef(defaultValue)
@@ -84,7 +92,7 @@ export function SelectField({
     onOpenChange?.(next)
   }
 
-  useEscapeClose(() => setOpen(false), isOpen)
+  useEscapeClose(() => closeMenu(), isOpen)
 
   /** Položka pod klávesnicí. Zavřená nabídka aktivní položku nemá. */
   const [active, setActive] = useState<string | null>(null)
@@ -95,10 +103,20 @@ export function SelectField({
     setOpen(true)
   }
 
+  /**
+   * Zavření nabídky vrací fokus na spouštěč. Bez toho po výběru myší zůstane
+   * fokus na tlačítku položky, které se zavřením zmizí — spadne na `<body>`
+   * a další Tab začne od začátku stránky (task #845).
+   */
+  function closeMenu() {
+    setOpen(false)
+    boxRef.current?.focus()
+  }
+
   function choose(next: string) {
     if (value === undefined) setOwnValue(next)
     onValueChange?.(next)
-    setOpen(false)
+    closeMenu()
   }
 
   function move(delta: number) {
@@ -141,7 +159,7 @@ export function SelectField({
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
       if (active != null) choose(active)
-      else setOpen(false)
+      else closeMenu()
       return
     }
     if (event.key === 'Tab') setOpen(false)
@@ -159,6 +177,7 @@ export function SelectField({
       {...rest}
     >
       <button
+        ref={boxRef}
         type="button"
         id={buttonId}
         className={[
@@ -184,12 +203,15 @@ export function SelectField({
       </button>
       {name != null ? <input type="hidden" name={name} value={current} /> : null}
       {isOpen ? (
-        <FieldMenu
+        <FieldMenuLayer
+          anchorRef={boxRef}
+          className={menuClassName}
           options={options}
           value={current}
           activeValue={active ?? undefined}
           aria-labelledby={buttonId}
           onSelect={choose}
+          onDismiss={() => setOpen(false)}
         />
       ) : null}
     </FieldShell>

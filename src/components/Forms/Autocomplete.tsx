@@ -1,7 +1,7 @@
-import { useId } from 'react'
+import { useId, useRef } from 'react'
 import type { InputHTMLAttributes, ReactNode, Ref } from 'react'
 import { FieldShell } from '../Fields/FieldShell'
-import { FieldMenu } from '../Fields/FieldMenu'
+import { FieldMenuLayer } from '../Fields/FieldMenuLayer'
 import type { FieldMenuOption } from '../Fields/FieldMenu'
 import { IconSearch } from '../Icons/IconSearch'
 
@@ -49,6 +49,8 @@ export function Autocomplete({
   const autoId = useId()
   const inputId = id ?? autoId
   const count = options.length
+  /** Rám pole; nabídka návrhů se podle něj měří (task #845). */
+  const boxRef = useRef<HTMLDivElement>(null)
 
   return (
     <FieldShell
@@ -61,6 +63,7 @@ export function Autocomplete({
       className={['dg-autocomplete', wrapperClassName].filter(Boolean).join(' ')}
     >
       <div
+        ref={boxRef}
         className={['dg-field__box', error != null ? 'dg-field__box--error' : null]
           .filter(Boolean)
           .join(' ')}
@@ -81,7 +84,9 @@ export function Autocomplete({
         />
       </div>
       {open && count > 0 ? (
-        <FieldMenu
+        <FieldMenuLayer
+          anchorRef={boxRef}
+          className="dg-fieldmenu--autocomplete"
           options={options}
           activeValue={activeValue}
           hint={hint ?? `${count} ${count === 1 ? 'návrh' : count < 5 ? 'návrhy' : 'návrhů'}`}
