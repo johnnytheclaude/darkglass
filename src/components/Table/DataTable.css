@@ -369,6 +369,9 @@
   }
 
   .dg-table__td--mobile-field {
+    /* Odznak ani jiná grafická buňka se na kartě neroztahuje přes celý
+       sloupec — roztažený Badge vypadá jako zašedlé vstupní pole (task #814). */
+    align-items: flex-start;
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
