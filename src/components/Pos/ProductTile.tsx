@@ -12,6 +12,13 @@ export interface ProductTileProps extends Omit<ButtonHTMLAttributes<HTMLButtonEl
   oldPrice?: ReactNode
   /** Popisek akce („AKCE do 15. 9.“). */
   saleLabel?: ReactNode
+  /**
+   * Oznaceni pravidla akce, ktere na zbozi plati („DNY MARIANE · −20 %“).
+   * Je to jiny stav nez `saleLabel`: akcni cena polozky cenu meni (a kresli se
+   * s preskrtnutou starou cenou), kdezto pravidlo akce se pocita az nad
+   * kosikem — cena na dlazdici zustava. Proto vlastni tichy stitek, ne akcent.
+   */
+  promotionLabel?: ReactNode
   /** Vybraná dlaždice (Tile / Product Selected). */
   selected?: boolean
   ref?: Ref<HTMLButtonElement>
@@ -29,6 +36,7 @@ export function ProductTile({
   note,
   oldPrice,
   saleLabel,
+  promotionLabel,
   selected = false,
   type = 'button',
   className,
@@ -42,6 +50,9 @@ export function ProductTile({
     <button type={type} className={classes} aria-pressed={selected || undefined} {...rest}>
       <span className="dg-product-tile__name">{name}</span>
       {note != null ? <span className="dg-product-tile__note">{note}</span> : null}
+      {promotionLabel != null ? (
+        <span className="dg-product-tile__promotion">{promotionLabel}</span>
+      ) : null}
       {saleLabel != null ? <span className="dg-product-tile__sale">{saleLabel}</span> : null}
       <span className="dg-product-tile__price">
         {oldPrice != null ? <s className="dg-product-tile__old">{oldPrice}</s> : null}

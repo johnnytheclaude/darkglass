@@ -63,6 +63,27 @@
   white-space: nowrap;
 }
 
+/* Pravidlo akce (Promotion) cenu na dlaždici nemění — proto tichý orámovaný
+   štítek s názvem akce, ne akcentový popisek akční ceny. Text se láme, aby
+   byl název akce čitelný celý; stav nese text, ne barva. */
+.dg-product-tile__promotion {
+  box-sizing: border-box;
+  max-width: 100%;
+  margin-top: auto;
+  padding: calc(2px * var(--scale)) calc(6px * var(--scale));
+  border: 1px solid var(--border);
+  border-radius: calc(6px * var(--scale));
+  color: var(--text-2);
+  font-size: calc(11px * var(--scale));
+  font-weight: 600;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.dg-product-tile__promotion + .dg-product-tile__sale {
+  margin-top: calc(4px * var(--scale));
+}
+
 .dg-product-tile__price {
   display: flex;
   width: 100%;
