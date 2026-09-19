@@ -149,6 +149,16 @@ export type { PopoverProps } from './components/Overlays/Popover'
 export { SectionHeader } from './components/Overlays/SectionHeader'
 export type { SectionHeaderProps } from './components/Overlays/SectionHeader'
 export { useEscapeClose } from './components/Overlays/useEscapeClose'
+export {
+  DialogSaveProvider,
+  useDialogDismiss,
+  useDialogSave,
+} from './components/Overlays/useDialogDismiss'
+export type {
+  DialogDismiss,
+  DialogDismissOptions,
+  DialogSave,
+} from './components/Overlays/useDialogDismiss'
 
 export { ActionTile } from './components/Overview/ActionTile'
 export type { ActionTileProps } from './components/Overview/ActionTile'
