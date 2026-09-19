@@ -128,10 +128,15 @@
   white-space: nowrap;
 }
 
+/* Zkracuje se nejdřív výše slevy, ne název akce: název je to, čím obsluha
+   akci pojmenuje zákazníkovi (task #865). Proto vysoký flex-shrink. */
+
 .dg-product-tile__promotion-detail {
-  flex: 0 0 auto;
+  overflow: hidden;
+  flex: 0 999 auto;
   color: var(--text-3);
   font-weight: 400;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
