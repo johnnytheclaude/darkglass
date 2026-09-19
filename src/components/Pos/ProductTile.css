@@ -52,6 +52,14 @@
   -webkit-line-clamp: 3;
 }
 
+/* Na dlaždici se štítkem akce se název zkracuje po dvou řádcích — tolik jich
+   má hlavička v rezervě, takže štítky sousedních dlaždic v řadě stojí stejně
+   vysoko i na úzkém displeji, kde se dlouhý název jinak láme do tří řádků
+   (task #865). Dlaždice bez štítku si tři řádky nechává. */
+.dg-product-tile:has(.dg-product-tile__promotions) .dg-product-tile__name {
+  -webkit-line-clamp: 2;
+}
+
 /* Podtitulek varianty stojí hned pod názvem, cena zůstává u dolní hrany. */
 .dg-product-tile__note {
   width: 100%;
@@ -80,7 +88,9 @@
 /* Pravidlo akce (Promotion) cenu na dlaždici nemění — proto tichý orámovaný
    štítek s názvem akce, ne akcentový popisek akční ceny. Patří k popisu zboží,
    ne k ceně: stojí hned pod hlavičkou, volné místo zůstává mezi ním a cenou.
-   Text se láme, aby byl název akce čitelný celý; stav nese text, ne barva. */
+   Štítek je vždy na jeden řádek: dlouhý název akce se zkrátí třemi tečkami,
+   výše slevy zůstává celá, protože jinak štítek přeroste do dvou řádků a
+   v řadě se rozjede (task #865). Stav nese text, ne barva. */
 .dg-product-tile__promotions {
   display: flex;
   width: 100%;
@@ -94,7 +104,9 @@
   display: inline-flex;
   box-sizing: border-box;
   max-width: 100%;
-  flex-wrap: wrap;
+  align-items: baseline;
+  flex-wrap: nowrap;
+  overflow: hidden;
   column-gap: calc(5px * var(--scale));
   padding: calc(2px * var(--scale)) calc(6px * var(--scale));
   border: 1px solid var(--border);
@@ -103,16 +115,21 @@
   font-size: calc(11px * var(--scale));
   font-weight: 600;
   line-height: 1.3;
-  overflow-wrap: anywhere;
+  white-space: nowrap;
 }
 
 /* Název akce a výše slevy se liší sytostí, ne oddělovačem — bez tečky před
    znaménkem mínus (task #865). */
 .dg-product-tile__promotion-name {
+  overflow: hidden;
+  flex: 0 1 auto;
   font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .dg-product-tile__promotion-detail {
+  flex: 0 0 auto;
   color: var(--text-3);
   font-weight: 400;
   white-space: nowrap;
