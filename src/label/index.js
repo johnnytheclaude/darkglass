@@ -85,13 +85,6 @@ export const LABEL_DROP_ORDER = ['secondary', 'color', 'variant', 'name']
 /** Co na štítku zůstane za všech okolností. */
 export const LABEL_CORE_KINDS = ['qr', 'code', 'price']
 
-/**
- * Oddělovač hodnot parametrů ve jmenovce varianty: lomítko obklopené mezerami
- * („52 / Brillant White"). Tak ji skládá API a jen na něm se zase rozebírá —
- * lomítko bez mezer patří dovnitř hodnoty (velikost kalhot „38/34", task #872).
- */
-export const LABEL_VARIANT_SEPARATOR = /\s+\/\s+/
-
 /** Užší podíl kondenzovaného řezu; číslo pod QR je v běžném IBM Plex Sans. */
 export const LABEL_CONDENSED_WIDTH_RATIO = 0.52
 export const LABEL_REGULAR_WIDTH_RATIO = 0.6
@@ -159,35 +152,21 @@ export function formatSecondary(priceCzk, secondary) {
 }
 
 /**
- * Rozdělení jmenovky varianty na velikost a barvu. Admin skládá jmenovku
- * z hodnot parametrů oddělených lomítkem S MEZERAMI (52 / Brillant White);
- * návrh kreslí první hodnotu velkým písmem (velikost) a zbytek pod ní menším
- * (barva). Barvu poslanou zvlášť to nepřebíjí.
- *
- * **Dělí se jen na skutečném oddělovači `␣/␣`, nikdy na holém lomítku**
- * (task #872): velikost kalhot je jedna hodnota „38/34" a rozseknutá na
- * lomítku vypadala na cenovce jako velikost 38 a barva 34. Lomítko uvnitř
- * hodnoty je znak hodnoty, ne oddělovač — buď se vysází celá velikost,
- * nebo žádná.
- *
- * @param {string | null | undefined} variantName
- * @returns {{ variant: string | null, color: string | null }}
- */
-export function splitVariantName(variantName) {
-  const trimmed = (variantName ?? '').trim()
-  if (!trimmed) return { variant: null, color: null }
-  const parts = trimmed
-    .split(LABEL_VARIANT_SEPARATOR)
-    .map((part) => part.trim())
-    .filter(Boolean)
-  if (parts.length <= 1) return { variant: trimmed, color: null }
-  return { variant: parts[0], color: parts.slice(1).join(' ') }
-}
-
-/**
  * Obsah štítku v pořadí, ve kterém se tiskne: název → velikost → barva → QR →
  * číslo pod QR → cena v Kč → cena v EUR. Prvek bez dat se vynechá a další se
  * posune — prázdné místo po něm nezůstává.
+ *
+ * **Velikost a barva se sem posílají zvlášť (`sizeName`, `colorName`) a sazba
+ * je z ničeho neodvozuje** (task #887). Dřív se tu jmenovka varianty rozebírala
+ * na lomítku a významy se přiřazovaly pozicí — první část velikost, druhá
+ * barva. Katalog ale obsahuje obě pořadí zároveň („62 / Antracit" i „brillant
+ * white / 37"), takže pozice význam nenese a na půlce zboží vycházela cenovka
+ * obráceně. Kdo štítek zadává, ví z dat, co je velikost a co barva; sazba to
+ * hádat nesmí.
+ *
+ * `variantName` zůstává jen jako celá jmenovka pro úlohy, které velikost zvlášť
+ * nenesou (ruční dotisk, starší řádky fronty). Použije se **celá** jako velký
+ * prvek — nikdy se nerozebírá.
  *
  * @param {import('./index.d.ts').LabelData} data
  * @param {{ showSecondaryCurrency?: boolean }} [options]
@@ -196,9 +175,8 @@ export function splitVariantName(variantName) {
 export function labelBlocks(data, options = {}) {
   /** @type {import('./index.d.ts').LabelBlock[]} */
   const blocks = []
-  const split = splitVariantName(data.variantName)
-  const variant = split.variant
-  const color = (data.colorName ?? '').trim() || split.color
+  const variant = (data.sizeName ?? '').trim() || (data.variantName ?? '').trim()
+  const color = (data.colorName ?? '').trim()
 
   if (data.name) blocks.push({ kind: 'name', text: data.name })
   if (variant) blocks.push({ kind: 'variant', text: variant })

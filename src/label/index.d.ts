@@ -50,10 +50,18 @@ export interface LabelBlock {
 export interface LabelData {
   /** Název položky — snímek k okamžiku zařazení do fronty. */
   name: string
-  /** Velikost (varianta); u zboží bez parametrů prázdná. */
-  variantName?: string | null
-  /** Barva; když ji aplikace neposílá zvlášť, vezme se ze zbytku jmenovky. */
+  /**
+   * Velikost — na cenovce největším písmem. Bere se ze struktury dat (parametr
+   * „velikost"), nikdy z rozpadu jmenovky varianty (task #887).
+   */
+  sizeName?: string | null
+  /** Barva — drobně pod velikostí; ze struktury dat (parametr „barva"). */
   colorName?: string | null
+  /**
+   * Celá jmenovka varianty pro úlohy, které velikost zvlášť nenesou. Sází se
+   * CELÁ jako velký prvek, nikdy se nerozebírá (task #887).
+   */
+  variantName?: string | null
   /** Kód varianty (EAN, nebo vlastní) — obsah QR i číslo pod ním. */
   code?: string | null
   /** Cena VČETNĚ DPH; jinou na cenovku nesmí. */
@@ -68,8 +76,6 @@ export interface LabelContentOptions {
 
 export declare const LABEL_DROP_ORDER: LabelBlockKind[]
 export declare const LABEL_CORE_KINDS: LabelBlockKind[]
-/** Oddělovač hodnot ve jmenovce varianty — lomítko S MEZERAMI (task #872). */
-export declare const LABEL_VARIANT_SEPARATOR: RegExp
 export declare const LABEL_CONDENSED_WIDTH_RATIO: number
 export declare const LABEL_REGULAR_WIDTH_RATIO: number
 export declare const LABEL_MIN_TEXT_DOTS: number
@@ -86,10 +92,6 @@ export declare function formatSecondary(
   priceCzk: number,
   secondary: { currency: string; rate: number },
 ): string
-export declare function splitVariantName(variantName?: string | null): {
-  variant: string | null
-  color: string | null
-}
 export declare function labelBlocks(
   data: LabelData,
   options?: LabelContentOptions,
