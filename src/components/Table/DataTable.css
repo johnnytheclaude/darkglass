@@ -349,6 +349,26 @@
     min-width: 0;
   }
 
+  /* Hlavička skupiny se na telefonu řídí šířkou karty, ne šířkou obsahu
+     tabulky: min-width: max-content platí jen tam, kde se tabulka posouvá
+     do stran. Odznak skupiny („6 řádků k potvrzení") se proto zalomí pod
+     název a neuřízne se o pravou hranu karty (task #949). */
+  .dg-table__group {
+    flex-wrap: wrap;
+    min-width: 0;
+  }
+
+  .dg-table__group .dg-group-header__note {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
+
+  /* U rozbalitelné skupiny stojí odznak pod názvem, ne pod šipkou —
+     odsazení je šířka šipky (14) i s mezerou (8). */
+  .dg-table__group.dg-group-header--toggle .dg-group-header__note {
+    padding-left: calc(22px * var(--scale));
+  }
+
   .dg-table__header {
     display: none;
   }
