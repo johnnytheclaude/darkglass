@@ -241,3 +241,54 @@ export function labelGapAbove(blocks, kind) {
   if (kind === 'secondary') return has('price') ? LABEL_DESIGN.gaps.priceSecondary : 0
   return 0
 }
+
+/**
+ * Zalomení názvu na šířku kresby — sdílené s rastrem Pokladny (task #956).
+ *
+ * Délka řádku se odhaduje týmž poměrem šířky písma jako u ceny a velikosti
+ * (`LABEL_CONDENSED_WIDTH_RATIO`), takže náhled láme na stejných místech jako
+ * tisk. Delší název, než se vejde na `LABEL_DESIGN.name.maxLines` řádek, se na
+ * poslední řádce zkrátí třemi tečkami — víc řádek by na cenovce ubralo místo
+ * QR kódu a ceny (task #955). Totéž platí pro jediné dlouhé slovo bez mezer:
+ * seká se natvrdo, ale poslední řádka vždy skončí třemi tečkami, aby bylo
+ * poznat, že název pokračuje.
+ *
+ * @param {string} text
+ * @param {number} [room] šířka kresby bez okrajů v bodech
+ * @param {number} [dots] velikost písma názvu
+ * @param {number} [ratio]
+ * @returns {string[]}
+ */
+export function labelNameLines(
+  text,
+  room = LABEL_DESIGN.acrossDots - 2 * LABEL_DESIGN.paddingDots,
+  dots = LABEL_DESIGN.name.dots,
+  ratio = LABEL_CONDENSED_WIDTH_RATIO,
+) {
+  const maxLines = LABEL_DESIGN.name.maxLines
+  const max = Math.max(4, Math.floor(room / (dots * ratio)))
+  /** @type {string[]} */
+  const lines = []
+  let line = ''
+  for (const word of String(text).split(/\s+/).filter(Boolean)) {
+    const candidate = line ? line + ' ' + word : word
+    if (candidate.length <= max) {
+      line = candidate
+      continue
+    }
+    if (line) lines.push(line)
+    // Slovo delší než řádek (dlouhý kód, složenina) se rozseká natvrdo.
+    line = word
+    while (line.length > max && lines.length < maxLines) {
+      lines.push(line.slice(0, max))
+      line = line.slice(max)
+    }
+  }
+  if (line) lines.push(line)
+  if (lines.length <= maxLines) return lines.length ? lines : ['']
+  const kept = lines.slice(0, maxLines)
+  const last = kept[maxLines - 1]
+  kept[maxLines - 1] = last.length > max - 3 ? last.slice(0, Math.max(1, max - 3)) + '...' : last + '...'
+  return kept
+}
+

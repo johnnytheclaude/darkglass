@@ -98,3 +98,12 @@ export declare function labelBlocks(
 ): LabelBlock[]
 export declare function labelGroups(blocks: LabelBlock[]): LabelBlock[][]
 export declare function labelGapAbove(blocks: LabelBlock[], kind: LabelBlockKind): number
+
+/** Zalomení názvu na nejvýš `LABEL_DESIGN.name.maxLines` řádek; poslední končí třemi tečkami. */
+export declare function labelNameLines(
+  text: string,
+  room?: number,
+  dots?: number,
+  ratio?: number,
+): string[]
+
