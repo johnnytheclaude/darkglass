@@ -18,12 +18,21 @@ export interface LabelTextSpec {
   maxLines?: number
 }
 
+/**
+ * Název na cenovce — jediný prvek, kterému sazba `maxLines` opravdu dává
+ * (`index.js`), takže ho typ nese jako povinný: konzument se na něj smí
+ * spolehnout bez obcházení nepovinnosti.
+ */
+export interface LabelNameSpec extends LabelTextSpec {
+  maxLines: number
+}
+
 export interface LabelDesign {
   acrossDots: number
   alongDots: number
   paddingDots: number
   dotsPerMm: number
-  name: LabelTextSpec
+  name: LabelNameSpec
   variant: LabelTextSpec
   color: LabelTextSpec
   qrDots: number
