@@ -38,7 +38,7 @@ export const LABEL_DESIGN = Object.freeze({
   /** Bodů na milimetr při 300 dpi. */
   dotsPerMm: 300 / 25.4,
   /** Název produktu — láme se přes celou šířku, na střed. */
-  name: Object.freeze({ dots: 30, weight: 500, lineHeight: 1.05, condensed: true, maxLines: 3 }),
+  name: Object.freeze({ dots: 30, weight: 500, lineHeight: 1.05, condensed: true, maxLines: 2 }),
   /** Velikost — po ceně druhý nejnápadnější prvek štítku. */
   variant: Object.freeze({ dots: 56, weight: 700, lineHeight: 1, condensed: true }),
   /** Barva — pod velikostí. */
