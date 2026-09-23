@@ -55,8 +55,11 @@ export const LABEL_DESIGN = Object.freeze({
     condensed: false,
     trackingDots: 0.5,
   }),
-  /** Cena v Kč — nejnápadnější prvek štítku. */
-  price: Object.freeze({ dots: 56, weight: 700, lineHeight: 1, condensed: true }),
+  /**
+   * Cena v Kč — nejnápadnější prvek štítku. Od #952 má 67 b = 5,67 mm: po tisku
+   * na skutečné roli si ji prodejna vyžádala o 20 % větší (dřív 56 b).
+   */
+  price: Object.freeze({ dots: 67, weight: 700, lineHeight: 1, condensed: true }),
   /** Informativní cena v cizí měně — volitelná, nejmenší. */
   secondary: Object.freeze({ dots: 30, weight: 600, lineHeight: 1.05, condensed: true }),
   gaps: Object.freeze({
@@ -66,8 +69,13 @@ export const LABEL_DESIGN = Object.freeze({
     variantColor: 4,
     /** Nad QR i pod ním — je to zároveň klidová zóna kódu (4 moduly = 24 b). */
     qr: 24,
-    /** Mezi cenou v Kč a cenou v EUR. */
-    priceSecondary: 6,
+    /**
+     * Mezi cenou v Kč a cenou v EUR. Od #952 čtyři body místo šesti: větší cena
+     * v Kč spotřebovala celou svislou rezervu štítku (9 b) a další dva body se
+     * musely vzít odtud. Klidová zóna QR (`qr`) se sáhnout nesmí a tahle mezera
+     * je uvnitř jedné skupiny, takže štítek bez ceny v EUR zůstal beze změny.
+     */
+    priceSecondary: 4,
   }),
 })
 
